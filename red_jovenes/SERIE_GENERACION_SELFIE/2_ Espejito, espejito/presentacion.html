@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Espejito, Espejito · Raíces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<style>
+/* ──────────────────────────────────────────────
+   RESET & BASE
+   ────────────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Poppins',Arial,sans-serif}
+
+/* ──────────────────────────────────────────────
+   PRESENTATION CONTAINER  1920 × 1080
+   ────────────────────────────────────────────── */
+#pres{
+  position:fixed;
+  width:1920px;height:1080px;
+  transform-origin:0 0;
+  background:#0a0a0a;
+  overflow:hidden;
+  cursor:none;
+}
+
+/* ──────────────────────────────────────────────
+   SLIDE BASE
+   ────────────────────────────────────────────── */
+.slide{
+  position:absolute;inset:0;
+  display:none;flex-direction:column;
+  align-items:flex-start;justify-content:center;
+  padding:80px 120px;
+  background:#0a0a0a;
+  overflow:hidden;
+}
+.slide.active{display:flex}
+
+/* ──────────────────────────────────────────────
+   SHARED COMPONENTS
+   ────────────────────────────────────────────── */
+.label{
+  font-family:'Poppins',Arial;font-weight:700;font-size:28px;
+  letter-spacing:6px;text-transform:uppercase;
+  color:#E8521A;margin-bottom:24px;
+}
+.orange-line{
+  width:160px;height:6px;background:#E8521A;
+  margin:32px 0;border-radius:3px;
+}
+.verse-ref{
+  font-size:34px;color:#555;letter-spacing:3px;margin-top:8px;
+}
+/* Huge background number */
+.bg-num{
+  position:absolute;right:-30px;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',Impact,sans-serif;
+  font-size:580px;line-height:1;
+  color:#E8521A;opacity:0.08;
+  pointer-events:none;user-select:none;
+  letter-spacing:-20px;
+}
+/* Decorative circle (title slide) */
+.deco-circle{
+  position:absolute;right:-120px;top:50%;transform:translateY(-50%);
+  width:760px;height:760px;border-radius:50%;
+  border:6px solid #E8521A;opacity:0.12;
+}
+.deco-circle::before{
+  content:'';position:absolute;inset:60px;border-radius:50%;
+  border:4px solid #E8521A;
+}
+.deco-circle::after{
+  content:'';position:absolute;inset:130px;border-radius:50%;
+  border:3px solid #E8521A;
+}
+/* Diagonal accent bar */
+.diag{
+  position:absolute;right:0;top:0;width:380px;height:1080px;
+  background:linear-gradient(135deg,transparent 40%,rgba(232,82,26,0.06) 40%);
+  pointer-events:none;
+}
+
+/* ──────────────────────────────────────────────
+   SLIDE 0 — TITLE
+   ────────────────────────────────────────────── */
+#s0{background:#0a0a0a}
+#s0 .title-main{
+  font-family:'Bebas Neue',Impact;
+  font-size:240px;line-height:0.88;
+  color:#fff;letter-spacing:8px;
+}
+#s0 .title-main span{color:#E8521A;display:block;margin-left:60px}
+#s0 .series{
+  font-size:46px;color:#E8521A;font-weight:700;
+  letter-spacing:4px;margin-top:40px;
+}
+#s0 .msg{font-size:34px;color:#444;letter-spacing:2px;margin-top:8px}
+/* Mini logo top-right */
+.corner-logo{
+  position:absolute;top:50px;right:80px;
+  font-family:'Bebas Neue';font-size:28px;color:#E8521A;
+  letter-spacing:6px;opacity:0.5;
+}
+
+/* ──────────────────────────────────────────────
+   SLIDE 1 — HOOK
+   ────────────────────────────────────────────── */
+#s1{align-items:center;justify-content:center;text-align:center}
+#s1 .pre{font-size:96px;color:#fff;font-family:'Bebas Neue';letter-spacing:10px;line-height:1}
+#s1 .word{font-size:320px;color:#E8521A;font-family:'Bebas Neue';letter-spacing:10px;line-height:0.9}
+#s1 .post{font-size:96px;color:#fff;font-family:'Bebas Neue';letter-spacing:10px;line-height:1}
+#s1::before{
+  content:'';position:absolute;top:0;right:0;
+  width:0;height:0;
+  border-top:400px solid rgba(232,82,26,0.08);
+  border-left:400px solid transparent;
+}
+
+/* ──────────────────────────────────────────────
+   POINT INTRO SLIDES  (s2,s5,s8,s11,s14)
+   ────────────────────────────────────────────── */
+.pt-intro{}
+.pt-intro .pt-label{
+  font-size:26px;font-weight:700;letter-spacing:8px;
+  color:#E8521A;margin-bottom:30px;
+}
+.pt-intro .pt-title{
+  font-family:'Bebas Neue',Impact;
+  font-size:192px;line-height:0.86;
+  color:#fff;letter-spacing:4px;
+  max-width:1100px;
+}
+.pt-intro .pt-title span{color:#E8521A}
+.pt-intro .pt-tag{
+  font-size:52px;color:#777;font-weight:400;
+  margin-top:36px;max-width:900px;line-height:1.3;
+}
+.pt-intro .pt-refs{
+  font-size:32px;color:#333;letter-spacing:2px;margin-top:16px;
+}
+
+/* ──────────────────────────────────────────────
+   DYNAMIC SLIDES
+   ────────────────────────────────────────────── */
+.dyn-slide{
+  align-items:center;justify-content:center;
+  background:#000;
+  padding:0;
+}
+.no-cam{
+  display:flex;flex-direction:column;align-items:center;gap:30px;
+  text-align:center;
+}
+.no-cam .icon{font-size:110px;opacity:0.3}
+.no-cam p{font-size:52px;color:#444;font-weight:600}
+.no-cam .code-box{
+  background:#151515;border:2px solid #333;border-radius:16px;
+  padding:20px 50px;
+}
+.no-cam .code-box span{font-size:44px;color:#555;letter-spacing:3px}
+.no-cam .code-box strong{font-size:72px;color:#E8521A;letter-spacing:12px;font-family:'Bebas Neue'}
+
+/* ──────────────────────────────────────────────
+   CONTENT SLIDES  (verse + attribution)
+   ────────────────────────────────────────────── */
+.content-slide{align-items:center;justify-content:center;text-align:center}
+.content-slide .quote{
+  font-family:'Bebas Neue',Impact;
+  font-size:160px;color:#fff;
+  letter-spacing:4px;line-height:0.9;
+  max-width:1700px;
+}
+.content-slide .quote span{color:#E8521A}
+.content-slide .attribution{
+  font-size:54px;color:#555;margin-top:40px;
+  letter-spacing:3px;font-weight:600;
+}
+
+/* ──────────────────────────────────────────────
+   CLOSING SLIDE
+   ────────────────────────────────────────────── */
+#s17{align-items:center;justify-content:center;text-align:center}
+#s17 .c1{font-family:'Bebas Neue';font-size:200px;color:#fff;letter-spacing:8px;line-height:1}
+#s17 .c2{font-family:'Bebas Neue';font-size:340px;color:#E8521A;letter-spacing:8px;line-height:0.85}
+#s17 .c3{font-size:68px;color:#666;font-style:italic;margin-top:24px}
+#s17 .c4{font-size:40px;color:#333;margin-top:16px;letter-spacing:3px}
+
+/* ──────────────────────────────────────────────
+   EFFECT CANVAS (full overlay on dynamic slides)
+   ────────────────────────────────────────────── */
+#fx-canvas{
+  position:absolute;inset:0;
+  width:1920px;height:1080px;
+  display:none;z-index:60;
+  pointer-events:none;
+}
+
+/* ──────────────────────────────────────────────
+   DYNAMIC BADGE (shown during effect)
+   ────────────────────────────────────────────── */
+#dyn-badge{
+  position:absolute;top:36px;right:60px;
+  background:#E8521A;color:#fff;
+  font-size:26px;font-weight:700;letter-spacing:4px;
+  padding:14px 30px;border-radius:8px;
+  z-index:70;display:none;
+  text-transform:uppercase;
+}
+
+/* ──────────────────────────────────────────────
+   PAIRING OVERLAY (bottom-left, small)
+   ────────────────────────────────────────────── */
+#pair-bar{
+  position:absolute;bottom:36px;left:60px;
+  background:rgba(20,20,20,0.9);
+  border:1px solid #222;border-radius:12px;
+  padding:16px 32px;z-index:80;
+  display:flex;align-items:center;gap:20px;
+}
+#pair-bar .pb-label{font-size:24px;color:#555;letter-spacing:2px}
+#pair-bar .pb-code{font-family:'Bebas Neue';font-size:52px;color:#E8521A;letter-spacing:10px}
+#pair-bar.connected{border-color:#27ae60}
+#pair-bar.connected .pb-label{color:#27ae60}
+
+/* ──────────────────────────────────────────────
+   NAV ARROWS
+   ────────────────────────────────────────────── */
+#nav-prev,#nav-next{
+  position:fixed;top:50%;transform:translateY(-50%);
+  background:rgba(232,82,26,0.15);border:none;cursor:pointer;
+  font-size:60px;color:#E8521A;padding:20px 16px;
+  z-index:200;transition:background 0.2s;opacity:0;
+  border-radius:8px;
+}
+#nav-prev{left:12px}
+#nav-next{right:12px}
+body:hover #nav-prev,body:hover #nav-next{opacity:1}
+#nav-prev:hover,#nav-next:hover{background:rgba(232,82,26,0.35)}
+
+/* ──────────────────────────────────────────────
+   SLIDE COUNTER
+   ────────────────────────────────────────────── */
+#slide-counter{
+  position:fixed;bottom:20px;right:20px;
+  font-size:22px;color:#333;z-index:200;
+  letter-spacing:2px;font-weight:600;
+}
+
+/* ──────────────────────────────────────────────
+   CAMERA MODE (phone UI)
+   ────────────────────────────────────────────── */
+#cam-mode{
+  display:none;position:fixed;inset:0;
+  background:#0a0a0a;flex-direction:column;
+  align-items:center;justify-content:center;gap:30px;
+  z-index:9999;
+}
+#cam-mode.show{display:flex}
+#cam-mode .brand{font-family:'Bebas Neue';font-size:72px;color:#E8521A;letter-spacing:8px}
+#cam-mode .subtitle{font-size:28px;color:#666;text-align:center;max-width:500px;line-height:1.5}
+#cam-mode input{
+  background:#151515;border:2px solid #333;border-radius:12px;
+  padding:20px 40px;font-size:52px;font-family:'Bebas Neue';
+  color:#fff;letter-spacing:12px;text-align:center;text-transform:uppercase;
+  outline:none;width:320px;
+}
+#cam-mode input:focus{border-color:#E8521A}
+#cam-mode button{
+  background:#E8521A;color:#fff;border:none;border-radius:12px;
+  padding:22px 80px;font-size:32px;font-weight:700;letter-spacing:4px;
+  cursor:pointer;text-transform:uppercase;
+}
+#cam-mode button:hover{background:#ff6a35}
+#cam-status{font-size:32px;font-weight:600;letter-spacing:2px;
+  color:#555;min-height:44px;text-align:center}
+#cam-status.ok{color:#27ae60}
+#cam-status.err{color:#e74c3c}
+
+/* ──────────────────────────────────────────────
+   ANIMATIONS
+   ────────────────────────────────────────────── */
+@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.slide.active .pt-title,.slide.active .title-main,.slide.active .quote,
+.slide.active .word{animation:fadeIn 0.5s ease both}
+</style>
+</head>
+<body>
+
+<!-- ─── CAMERA MODE (phone) ─────────────────────────────── -->
+<div id="cam-mode">
+  <div class="brand">RAÍCES · CÁMARA</div>
+  <div class="subtitle">Ingresá el código que aparece en la pantalla</div>
+  <input id="room-input" type="text" maxlength="6" placeholder="XXXX" autocomplete="off" autocapitalize="characters">
+  <button id="cam-connect-btn">CONECTAR</button>
+  <div id="cam-status">En espera...</div>
+</div>
+
+<!-- ─── VIDEO REMOTO OCULTO ─────────────────────────────── -->
+<video id="remote-video" autoplay playsinline muted style="display:none;position:absolute;opacity:0"></video>
+
+<!-- ─── PRESENTACIÓN ─────────────────────────────────────── -->
+<div id="pres">
+
+  <!-- S0 TITLE ──────────────────────────────────────────── -->
+  <div class="slide active" id="s0">
+    <div class="deco-circle"></div>
+    <div class="diag"></div>
+    <div class="corner-logo">RAÍCES · RED DE JÓVENES</div>
+    <div class="title-main">ESPEJITO,<span>ESPEJITO</span></div>
+    <div class="orange-line"></div>
+    <div class="series">GENERACIÓN SELFIE</div>
+    <div class="msg">Mensaje 2</div>
+  </div>
+
+  <!-- S1 HOOK ──────────────────────────────────────────── -->
+  <div class="slide" id="s1">
+    <div class="pre">¿EN QUÉ</div>
+    <div class="word">ESPEJO</div>
+    <div class="post">TE MIRÁS?</div>
+  </div>
+
+  <!-- S2 POINT 1 INTRO ──────────────────────────────────── -->
+  <div class="slide pt-intro" id="s2">
+    <div class="bg-num">01</div>
+    <div class="diag"></div>
+    <div class="pt-label">PUNTO 01</div>
+    <div class="pt-title">EL ESPEJO<br>VIEJO Y <span>ROTO</span></div>
+    <div class="orange-line"></div>
+    <div class="pt-tag">El pasado que Dios ya enterró</div>
+    <div class="pt-refs">2 Co. 5:17 · Gál. 2:20 · Ef. 4:22-24</div>
+  </div>
+
+  <!-- S3 DYNAMIC 1 ─────────────────────────────────────── -->
+  <div class="slide dyn-slide" id="s3" data-effect="broken">
+    <div class="no-cam" id="nocam-3">
+      <div class="icon">🪞</div>
+      <p>Conectá la cámara para esta dinámica</p>
+      <div class="code-box"><span>Código: </span><strong id="code-3">----</strong></div>
+    </div>
+  </div>
+
+  <!-- S4 CONTENT 1 ─────────────────────────────────────── -->
+  <div class="slide content-slide" id="s4">
+    <div class="diag"></div>
+    <div class="quote">YA NO VIVO YO<br><span>SINO CRISTO EN MÍ</span></div>
+    <div class="attribution">— Gálatas 2:20</div>
+  </div>
+
+  <!-- S5 POINT 2 INTRO ──────────────────────────────────── -->
+  <div class="slide pt-intro" id="s5">
+    <div class="bg-num">02</div>
+    <div class="diag"></div>
+    <div class="pt-label">PUNTO 02</div>
+    <div class="pt-title">EL ESPEJO<br><span>MODERNO</span></div>
+    <div class="orange-line"></div>
+    <div class="pt-tag">La identidad que el mundo te asigna</div>
+    <div class="pt-refs">Romanos 12:2 NTV</div>
+  </div>
+
+  <!-- S6 DYNAMIC 2 ─────────────────────────────────────── -->
+  <div class="slide dyn-slide" id="s6" data-effect="modern">
+    <div class="no-cam" id="nocam-6">
+      <div class="icon">🪟</div>
+      <p>Conectá la cámara para esta dinámica</p>
+      <div class="code-box"><span>Código: </span><strong id="code-6">----</strong></div>
+    </div>
+  </div>
+
+  <!-- S7 CONTENT 2 ─────────────────────────────────────── -->
+  <div class="slide content-slide" id="s7">
+    <div class="diag"></div>
+    <div class="quote"><span>NO IMITEN</span><br>AL MUNDO</div>
+    <div class="attribution" style="margin-top:20px">Dejen que Dios los transforme</div>
+    <div class="attribution">— Romanos 12:2 NTV</div>
+  </div>
+
+  <!-- S8 POINT 3 INTRO ──────────────────────────────────── -->
+  <div class="slide pt-intro" id="s8">
+    <div class="bg-num">03</div>
+    <div class="diag"></div>
+    <div class="pt-label">PUNTO 03</div>
+    <div class="pt-title">EL ESPEJO<br><span>RETROVISOR</span></div>
+    <div class="orange-line"></div>
+    <div class="pt-tag">La nostalgia que te paraliza</div>
+    <div class="pt-refs">Génesis 19 · Filipenses 3:13-14</div>
+  </div>
+
+  <!-- S9 DYNAMIC 3 ─────────────────────────────────────── -->
+  <div class="slide dyn-slide" id="s9" data-effect="retro">
+    <div class="no-cam" id="nocam-9">
+      <div class="icon">🚗</div>
+      <p>Conectá la cámara para esta dinámica</p>
+      <div class="code-box"><span>Código: </span><strong id="code-9">----</strong></div>
+    </div>
+  </div>
+
+  <!-- S10 CONTENT 3 ────────────────────────────────────── -->
+  <div class="slide content-slide" id="s10">
+    <div class="diag"></div>
+    <div class="quote">OLVIDANDO<br><span>LO QUE QUEDA ATRÁS</span></div>
+    <div class="attribution">— Filipenses 3:13-14</div>
+  </div>
+
+  <!-- S11 POINT 4 INTRO ─────────────────────────────────── -->
+  <div class="slide pt-intro" id="s11">
+    <div class="bg-num">04</div>
+    <div class="diag"></div>
+    <div class="pt-label">PUNTO 04</div>
+    <div class="pt-title">ESPEJOS<br><span>LOCOS</span></div>
+    <div class="orange-line"></div>
+    <div class="pt-tag">El sistema que distorsiona quién sos</div>
+    <div class="pt-refs">Génesis 3:4-7 · 3:8-13</div>
+  </div>
+
+  <!-- S12 DYNAMIC 4 ────────────────────────────────────── -->
+  <div class="slide dyn-slide" id="s12" data-effect="crazy">
+    <div class="no-cam" id="nocam-12">
+      <div class="icon">🎪</div>
+      <p>Conectá la cámara para esta dinámica</p>
+      <div class="code-box"><span>Código: </span><strong id="code-12">----</strong></div>
+    </div>
+  </div>
+
+  <!-- S13 CONTENT 4 ────────────────────────────────────── -->
+  <div class="slide content-slide" id="s13">
+    <div class="diag"></div>
+    <div class="quote">NO TE MIRES EN<br><span>EL ESPEJO DEL DIABLO</span></div>
+    <div class="attribution">— Génesis 3:4-7</div>
+  </div>
+
+  <!-- S14 POINT 5 INTRO ─────────────────────────────────── -->
+  <div class="slide pt-intro" id="s14">
+    <div class="bg-num">05</div>
+    <div class="diag"></div>
+    <div class="pt-label">PUNTO 05</div>
+    <div class="pt-title">EL ESPEJO<br>DE LA <span>FE</span></div>
+    <div class="orange-line"></div>
+    <div class="pt-tag">Mirarte como Dios te ve</div>
+    <div class="pt-refs">2 Corintios 3:18</div>
+  </div>
+
+  <!-- S15 DYNAMIC 5 ────────────────────────────────────── -->
+  <div class="slide dyn-slide" id="s15" data-effect="faith">
+    <div class="no-cam" id="nocam-15">
+      <div class="icon">🦁</div>
+      <p>Conectá la cámara para esta dinámica</p>
+      <div class="code-box"><span>Código: </span><strong id="code-15">----</strong></div>
+    </div>
+  </div>
+
+  <!-- S16 CONTENT 5 ────────────────────────────────────── -->
+  <div class="slide content-slide" id="s16">
+    <div class="diag"></div>
+    <div class="quote">TRANSFORMADOS<br><span>DE GLORIA EN GLORIA</span></div>
+    <div class="attribution">— 2 Corintios 3:18</div>
+  </div>
+
+  <!-- S17 CLOSING ──────────────────────────────────────── -->
+  <div class="slide" id="s17">
+    <div class="deco-circle" style="right:-80px;opacity:0.08"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <div class="c1">¡COMO UN</div>
+      <div class="c2">LEÓN!</div>
+      <div class="c3">no como un gatito 🦁</div>
+      <div class="orange-line" style="width:200px;margin:30px auto"></div>
+      <div class="c4">2 CORINTIOS 3:18</div>
+    </div>
+  </div>
+
+  <!-- ── EFFECT CANVAS OVERLAY ── -->
+  <canvas id="fx-canvas" width="1920" height="1080"></canvas>
+
+  <!-- ── DYNAMIC BADGE ── -->
+  <div id="dyn-badge">🎥 DINÁMICA</div>
+
+  <!-- ── PAIRING BAR ── -->
+  <div id="pair-bar">
+    <div class="pb-label">📱 CÁMARA</div>
+    <div class="pb-code" id="pb-code">----</div>
+  </div>
+
+</div><!-- /pres -->
+
+<!-- ── NAV ARROWS ── -->
+<button id="nav-prev">‹</button>
+<button id="nav-next">›</button>
+<div id="slide-counter">1 / 18</div>
+
+<script>
+'use strict';
+/* ════════════════════════════════════════════════
+   MODE DETECTION
+   ════════════════════════════════════════════════ */
+const isCameraMode = location.search.includes('camera') || location.search.includes('cam');
+if(isCameraMode) document.getElementById('cam-mode').classList.add('show');
+
+/* ════════════════════════════════════════════════
+   SCALING
+   ════════════════════════════════════════════════ */
+const pres = document.getElementById('pres');
+function scaleUp(){
+  const s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
+  const tx = (window.innerWidth  - 1920*s)/2;
+  const ty = (window.innerHeight - 1080*s)/2;
+  pres.style.transform = `translate(${tx}px,${ty}px) scale(${s})`;
+}
+scaleUp();
+window.addEventListener('resize', scaleUp);
+
+/* ════════════════════════════════════════════════
+   SLIDES NAVIGATION
+   ════════════════════════════════════════════════ */
+const SLIDES = ['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14','s15','s16','s17'];
+let cur = 0;
+const counter = document.getElementById('slide-counter');
+const fxCanvas = document.getElementById('fx-canvas');
+const dynBadge = document.getElementById('dyn-badge');
+let rafId = null;
+
+function goTo(i){
+  if(i<0||i>=SLIDES.length) return;
+  document.getElementById(SLIDES[cur]).classList.remove('active');
+  cur = i;
+  const el = document.getElementById(SLIDES[cur]);
+  el.classList.add('active');
+  counter.textContent = `${cur+1} / ${SLIDES.length}`;
+  const isDyn = el.classList.contains('dyn-slide');
+  fxCanvas.style.display = isDyn && cameraReady ? 'block' : 'none';
+  dynBadge.style.display = isDyn && cameraReady ? 'flex' : 'none';
+  if(isDyn && cameraReady){ startEffect(el.dataset.effect); }
+  else { if(rafId){ cancelAnimationFrame(rafId); rafId=null; } }
+}
+document.getElementById('nav-prev').addEventListener('click',()=>goTo(cur-1));
+document.getElementById('nav-next').addEventListener('click',()=>goTo(cur+1));
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown') goTo(cur+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp') goTo(cur-1);
+  if(e.key==='f'||e.key==='F') document.documentElement.requestFullscreen?.();
+});
+/* Touch swipe */
+let tx0=0;
+document.addEventListener('touchstart',e=>tx0=e.touches[0].clientX,{passive:true});
+document.addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx0;
+  if(Math.abs(dx)>60){ dx<0?goTo(cur+1):goTo(cur-1); }
+});
+
+/* ════════════════════════════════════════════════
+   PEERJS  —  DISPLAY SIDE
+   ════════════════════════════════════════════════ */
+const remoteVideo = document.getElementById('remote-video');
+let cameraReady = false;
+const pbCode = document.getElementById('pb-code');
+const pairBar = document.getElementById('pair-bar');
+let peer = null;
+
+function generateCode(){
+  return Math.random().toString(36).substr(2,4).toUpperCase();
+}
+
+function initDisplayPeer(){
+  if(isCameraMode) return;
+  const code = generateCode();
+  const peerId = 'raices-espejito-' + code;
+  pbCode.textContent = code;
+  // Update all code placeholders in dynamic slides
+  ['3','6','9','12','15'].forEach(n=>{
+    const el = document.getElementById('code-'+n);
+    if(el) el.textContent = code;
+  });
+
+  peer = new Peer(peerId);
+  peer.on('open', ()=> console.log('Display peer ready:', peerId));
+  peer.on('error', err=>{
+    if(err.type==='unavailable-id'){
+      // ID taken, regenerate
+      setTimeout(initDisplayPeer, 500);
+    }
+  });
+  peer.on('call', call=>{
+    call.answer();
+    call.on('stream', stream=>{
+      remoteVideo.srcObject = stream;
+      remoteVideo.play();
+      cameraReady = true;
+      pairBar.classList.add('connected');
+      pairBar.querySelector('.pb-label').textContent = '✓ CÁMARA OK';
+      // If currently on a dynamic slide, show canvas
+      const curEl = document.getElementById(SLIDES[cur]);
+      if(curEl.classList.contains('dyn-slide')){
+        fxCanvas.style.display = 'block';
+        dynBadge.style.display = 'flex';
+        startEffect(curEl.dataset.effect);
+      }
+    });
+    call.on('close',()=>{ cameraReady=false; pairBar.classList.remove('connected'); });
+  });
+}
+initDisplayPeer();
+
+/* ════════════════════════════════════════════════
+   PEERJS  —  CAMERA SIDE
+   ════════════════════════════════════════════════ */
+if(isCameraMode){
+  const input = document.getElementById('room-input');
+  const btn   = document.getElementById('cam-connect-btn');
+  const status= document.getElementById('cam-status');
+  let camPeer = null, localStream = null;
+
+  btn.addEventListener('click', async ()=>{
+    const code = (input.value||'').trim().toUpperCase();
+    if(code.length < 4){ status.textContent='Ingresá el código de 4 letras'; status.className='err'; return; }
+    status.textContent = 'Accediendo a la cámara...'; status.className='';
+    try{
+      localStream = await navigator.mediaDevices.getUserMedia({
+        video:{ facingMode:{ideal:'environment'}, width:{ideal:1920}, height:{ideal:1080} },
+        audio: false
+      });
+      status.textContent = 'Conectando...';
+      camPeer = new Peer();
+      camPeer.on('open', ()=>{
+        const call = camPeer.call('raices-espejito-'+code, localStream);
+        call.on('stream',()=>{ status.textContent='¡Conectado!'; status.className='ok'; });
+        call.on('error', e=>{ status.textContent='Error: '+e; status.className='err'; });
+      });
+      camPeer.on('error', e=>{ status.textContent='No se encontró la pantalla. Verificá el código.'; status.className='err'; });
+    } catch(e){
+      status.textContent = 'Sin acceso a la cámara: ' + e.message;
+      status.className = 'err';
+    }
+  });
+}
+
+/* ════════════════════════════════════════════════
+   EFFECTS ENGINE
+   ════════════════════════════════════════════════ */
+const ctx = fxCanvas.getContext('2d');
+const W = 1920, H = 1080;
+let currentEffect = '';
+
+function startEffect(name){
+  if(rafId) cancelAnimationFrame(rafId);
+  currentEffect = name;
+  if(name === 'retro') startDelayCapture();
+  loop(0);
+}
+
+function loop(t){
+  if(!cameraReady){ rafId=null; return; }
+  const curEl = document.getElementById(SLIDES[cur]);
+  if(!curEl||!curEl.classList.contains('dyn-slide')){ rafId=null; return; }
+  drawEffect(currentEffect, t);
+  rafId = requestAnimationFrame(loop);
+}
+
+function drawEffect(name, t){
+  if(!remoteVideo || remoteVideo.readyState < 2) return;
+  ctx.clearRect(0,0,W,H);
+  switch(name){
+    case 'broken': drawBroken(t); break;
+    case 'modern': drawModern();  break;
+    case 'retro':  drawRetro(t);  break;
+    case 'crazy':  drawCrazy(t);  break;
+    case 'faith':  drawFaith(t);  break;
+  }
+}
+
+/* ─── EFFECT 1: ESPEJO VIEJO Y ROTO ─────────── */
+function drawBroken(t){
+  // B&W + high contrast
+  ctx.filter = 'grayscale(1) contrast(1.5) brightness(0.72)';
+  ctx.drawImage(remoteVideo, 0, 0, W, H);
+  ctx.filter = 'none';
+
+  // Crack origin (slightly upper-center)
+  const ox = W*0.51, oy = H*0.42;
+
+  // Main cracks: angle in degrees, relative length
+  const cracks = [
+    [-175,0.7],[-148,0.65],[-120,0.72],[-90,0.6],[-62,0.75],[-35,0.68],
+    [-10,0.62],[18,0.7],[48,0.68],[80,0.72],[112,0.65],[142,0.7],[165,0.6]
+  ];
+  cracks.forEach(([deg, len])=>{
+    const r = deg * Math.PI/180;
+    const bendR = r + (Math.random()-0.5)*0.12;
+    const ex = ox + Math.cos(r)*W*len;
+    const ey = oy + Math.sin(r)*H*len*1.1;
+    const mx = ox + Math.cos(bendR)*W*len*0.45 + Math.sin(r)*W*0.03;
+    const my = oy + Math.sin(bendR)*H*len*0.45 - Math.cos(r)*H*0.03;
+    // Dark crack
+    ctx.beginPath(); ctx.moveTo(ox,oy); ctx.lineTo(mx,my); ctx.lineTo(ex,ey);
+    ctx.strokeStyle='rgba(0,0,0,0.97)'; ctx.lineWidth=5; ctx.stroke();
+    // Silver glint
+    ctx.beginPath(); ctx.moveTo(ox+1.5,oy+1.5); ctx.lineTo(mx+1.5,my+1.5); ctx.lineTo(ex+1.5,ey+1.5);
+    ctx.strokeStyle='rgba(220,220,220,0.25)'; ctx.lineWidth=2; ctx.stroke();
+  });
+  // Concentric rings at origin
+  [W*0.055, W*0.13, W*0.22].forEach(r=>{
+    ctx.beginPath(); ctx.arc(ox,oy,r,0,Math.PI*2);
+    ctx.strokeStyle='rgba(0,0,0,0.8)'; ctx.lineWidth=3; ctx.stroke();
+  });
+  // Vignette
+  const vg = ctx.createRadialGradient(W/2,H/2,W*0.22,W/2,H/2,W*0.72);
+  vg.addColorStop(0,'rgba(0,0,0,0)'); vg.addColorStop(1,'rgba(0,0,0,0.65)');
+  ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
+  // Label
+  ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle='#fff'; ctx.font='bold 46px Poppins,Arial'; ctx.textAlign='center';
+  ctx.fillText('EL ESPEJO VIEJO Y ROTO', W/2, H-28);
+}
+
+/* ─── EFFECT 2: ESPEJO MODERNO ───────────────── */
+const FRAGS = [
+  // [sx,sy,sw,sh, dx,dy,dw,dh] all in 1920×1080 coords
+  [0,   0,  620,450,  0,   0,  620,450],
+  [700, 80, 500,360,  680, 30, 500,360],
+  [300,450, 780,380,  0,  500, 780,380],
+  [1100,0,  680,500,  1240,0,  680,500],
+  [900,400, 600,420,  1250,500,670,420],
+  [200,600, 660,380,  840, 520,660,380],
+  [50, 50,  400,300,  10,  720,500,280],
+  [1400,300,480,360,  1440,570,480,360],
+];
+function drawModern(){
+  ctx.fillStyle='#000'; ctx.fillRect(0,0,W,H);
+  const vW = remoteVideo.videoWidth||W;
+  const vH = remoteVideo.videoHeight||H;
+  FRAGS.forEach(([sx,sy,sw,sh,dx,dy,dw,dh])=>{
+    ctx.drawImage(remoteVideo, sx/1920*vW, sy/1080*vH, sw/1920*vW, sh/1080*vH, dx,dy,dw,dh);
+    // Thick dark gap
+    ctx.strokeStyle='#000'; ctx.lineWidth=14;
+    ctx.strokeRect(dx,dy,dw,dh);
+  });
+  // Label bar
+  ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle='#E8521A'; ctx.font='bold 46px Poppins,Arial'; ctx.textAlign='center';
+  ctx.fillText('EL ESPEJO MODERNO — tu imagen cortada y fragmentada', W/2, H-28);
+}
+
+/* ─── EFFECT 3: RETROVISOR + DELAY ──────────── */
+const DELAY_MS = 8000;
+let delayBuf = []; // {src, time}
+let delayCaptureId = null;
+let delayImg = new Image();
+let delayImgSrc = '';
+
+function startDelayCapture(){
+  delayBuf = [];
+  clearInterval(delayCaptureId);
+  delayCaptureId = setInterval(()=>{
+    if(!remoteVideo||remoteVideo.readyState<2) return;
+    const oc = document.createElement('canvas');
+    oc.width=480; oc.height=270;
+    oc.getContext('2d').drawImage(remoteVideo,0,0,480,270);
+    delayBuf.push({src:oc.toDataURL('image/jpeg',0.55), time:Date.now()});
+    if(delayBuf.length>35) delayBuf.shift();
+  }, 250);
+}
+
+function getDelayedSrc(){
+  const target = Date.now() - DELAY_MS;
+  let best = delayBuf[0];
+  for(const f of delayBuf){
+    if(f.time <= target) best = f;
+    else break;
+  }
+  return best ? best.src : null;
+}
+
+function drawRetro(t){
+  ctx.fillStyle='#111'; ctx.fillRect(0,0,W,H);
+
+  // Rearview mirror dimensions
+  const mw=W*0.68, mh=H*0.46;
+  const mx=(W-mw)/2, my=H*0.14;
+  const rcx=mx+mw/2, rcy=my+mh/2;
+
+  // Draw live video (small, in background)
+  ctx.globalAlpha=0.18;
+  ctx.drawImage(remoteVideo,0,0,W,H);
+  ctx.globalAlpha=1;
+
+  // Get delayed frame
+  const dsrc = getDelayedSrc();
+  if(dsrc && dsrc !== delayImgSrc){ delayImg.src=dsrc; delayImgSrc=dsrc; }
+
+  // Clip to oval
+  ctx.save();
+  ctx.beginPath(); ctx.ellipse(rcx,rcy,mw/2,mh/2,0,0,Math.PI*2); ctx.clip();
+  if(delayImg.complete && delayImg.naturalWidth>0){
+    ctx.filter='sepia(20%) contrast(1.1)';
+    ctx.drawImage(delayImg, mx, my, mw, mh);
+    ctx.filter='none';
+  } else {
+    ctx.drawImage(remoteVideo, mx, my, mw, mh);
+  }
+  // Dark reflection overlay
+  const refl = ctx.createLinearGradient(mx,my,mx,my+mh);
+  refl.addColorStop(0,'rgba(255,255,255,0.06)');
+  refl.addColorStop(0.5,'rgba(0,0,0,0)');
+  refl.addColorStop(1,'rgba(0,0,0,0.2)');
+  ctx.fillStyle=refl; ctx.fillRect(mx,my,mw,mh);
+  ctx.restore();
+
+  // Mirror frame (metallic)
+  const frameGrad = ctx.createLinearGradient(mx,my,mx+mw,my+mh);
+  frameGrad.addColorStop(0,'#888'); frameGrad.addColorStop(0.5,'#ddd'); frameGrad.addColorStop(1,'#666');
+  ctx.strokeStyle=frameGrad; ctx.lineWidth=18;
+  ctx.beginPath(); ctx.ellipse(rcx,rcy,mw/2,mh/2,0,0,Math.PI*2); ctx.stroke();
+
+  // Mirror mount (bottom)
+  ctx.fillStyle='#555'; ctx.fillRect(rcx-20,my+mh,40,H*0.1);
+  ctx.fillRect(rcx-80,my+mh+H*0.08,160,28);
+
+  // Label
+  const elapsed = delayBuf.length > 0 ? Math.min(DELAY_MS, Date.now()-delayBuf[0].time)/1000 : 0;
+  const label = elapsed >= DELAY_MS/1000 ? `LO QUE ERAS HACE ${Math.round(DELAY_MS/1000)} SEGUNDOS` : `Grabando buffer... espera ${Math.ceil(DELAY_MS/1000-elapsed)}s`;
+  ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle='#E8521A'; ctx.font='bold 44px Poppins,Arial'; ctx.textAlign='center';
+  ctx.fillText(label, W/2, H-28);
+}
+
+/* ─── EFFECT 4: ESPEJOS LOCOS ────────────────── */
+function drawCrazy(t){
+  ctx.fillStyle='#0a0a0a'; ctx.fillRect(0,0,W,H);
+  const pw = W/3; // panel width
+
+  const vW=remoteVideo.videoWidth||W;
+  const vH=remoteVideo.videoHeight||H;
+
+  // Panel 1: TALL & THIN  (narrow center, stretched height)
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0,0,pw,H); ctx.clip();
+  const t1x = pw*0.18, t1w = pw*0.64, t1y = -H*0.22, t1h = H*1.44;
+  ctx.drawImage(remoteVideo, 0,0,vW,vH, t1x,t1y,t1w,t1h);
+  ctx.restore();
+
+  // Panel 2: FAT & SHORT  (wide, compressed height)
+  ctx.save();
+  ctx.beginPath(); ctx.rect(pw+8,0,pw-16,H); ctx.clip();
+  const t2x = pw-pw*0.22, t2w = pw*1.44, t2y = H*0.28, t2h = H*0.44;
+  ctx.drawImage(remoteVideo, 0,0,vW,vH, t2x,t2y,t2w,t2h);
+  ctx.restore();
+
+  // Panel 3: WAVY  (horizontal sine distortion)
+  ctx.save();
+  ctx.beginPath(); ctx.rect(pw*2+8,0,pw-8,H); ctx.clip();
+  const sliceH = 5;
+  for(let sy=0; sy<H; sy+=sliceH){
+    const wave = Math.sin((sy/H*14 + t*0.0012)*Math.PI*2)*38;
+    ctx.drawImage(remoteVideo,
+      0, sy/H*vH, vW, sliceH/H*vH,
+      pw*2+8+wave, sy, pw-8, sliceH
+    );
+  }
+  ctx.restore();
+
+  // Separator lines
+  ctx.fillStyle='#000';
+  ctx.fillRect(pw,0,14,H);
+  ctx.fillRect(pw*2+2,0,14,H);
+
+  // Panel labels
+  const labels=[['FLACO',pw/2],['GORDO',pw+pw/2],['ONDULADO',pw*2+pw/2]];
+  labels.forEach(([txt,lx])=>{
+    ctx.fillStyle='rgba(0,0,0,0.6)'; ctx.fillRect(lx-130,H-80,260,72);
+    ctx.fillStyle='#E8521A'; ctx.font='bold 38px Poppins,Arial'; ctx.textAlign='center';
+    ctx.fillText(txt, lx, H-32);
+  });
+}
+
+/* ─── EFFECT 5: ESPEJO DE LA FE ──────────────── */
+const MANE_COLORS=['#DAA520','#B8860B','#CD853F','#A0522D','#E8A020','#8B6914'];
+function drawFaith(t){
+  ctx.fillStyle='#080808'; ctx.fillRect(0,0,W,H);
+  const cx=W/2, cy=H/2;
+  const radius = H*0.41;
+
+  // Draw mane behind the circle
+  drawMane(cx, cy, radius, t);
+
+  // Golden glow ring
+  const glow = ctx.createRadialGradient(cx,cy,radius*0.82,cx,cy,radius*1.22);
+  glow.addColorStop(0,'rgba(218,165,32,0)');
+  glow.addColorStop(0.4,'rgba(218,165,32,0.35)');
+  glow.addColorStop(1,'rgba(218,165,32,0)');
+  ctx.strokeStyle=glow; ctx.lineWidth=radius*0.38;
+  ctx.beginPath(); ctx.arc(cx,cy,radius,0,Math.PI*2); ctx.stroke();
+
+  // Circular video with warm golden filter
+  ctx.save();
+  ctx.beginPath(); ctx.arc(cx,cy,radius,0,Math.PI*2); ctx.clip();
+  ctx.filter='sepia(55%) saturate(200%) brightness(1.18) hue-rotate(-12deg)';
+  ctx.drawImage(remoteVideo, cx-radius, cy-radius, radius*2, radius*2);
+  ctx.filter='none';
+  // Inner glow border
+  const ig=ctx.createRadialGradient(cx,cy,radius*0.85,cx,cy,radius);
+  ig.addColorStop(0,'rgba(218,165,32,0)'); ig.addColorStop(1,'rgba(218,165,32,0.28)');
+  ctx.fillStyle=ig; ctx.fillRect(cx-radius,cy-radius,radius*2,radius*2);
+  ctx.restore();
+
+  // Label
+  ctx.fillStyle='rgba(0,0,0,0.55)'; ctx.fillRect(0,H-90,W,90);
+  ctx.fillStyle='#DAA520'; ctx.font='bold 48px Poppins,Arial'; ctx.textAlign='center';
+  ctx.fillText('EL ESPEJO DE LA FE · 2 Corintios 3:18', W/2, H-28);
+}
+
+function drawMane(cx,cy,radius,t){
+  const n = 52;
+  for(let i=0;i<n;i++){
+    const angle = (i/n)*Math.PI*2;
+    const sway  = Math.sin(t*0.0014 + i*0.85)*0.13;
+    const lv    = 0.82 + Math.sin(t*0.002 + i*1.6)*0.18;
+    const sl    = radius*(0.52 + Math.abs(Math.sin(i*2.3))*0.26)*lv;
+    const sw    = radius*0.13;
+    const sx    = cx + Math.cos(angle)*radius*0.88;
+    const sy    = cy + Math.sin(angle)*radius*0.88;
+
+    ctx.save();
+    ctx.translate(sx,sy);
+    ctx.rotate(angle + sway);
+
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.bezierCurveTo( sw*0.65, sl*0.28,  sw*0.45, sl*0.68, 0, sl);
+    ctx.bezierCurveTo(-sw*0.45, sl*0.68, -sw*0.65, sl*0.28, 0, 0);
+    ctx.closePath();
+
+    const alpha = 0.6 + Math.sin(t*0.001+i*1.1)*0.3;
+    ctx.globalAlpha = Math.max(0.25, alpha);
+    ctx.fillStyle = MANE_COLORS[i%MANE_COLORS.length];
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+}
+
+/* ════════════════════════════════════════════════
+   AUTO-FULLSCREEN ON CLICK (display mode)
+   ════════════════════════════════════════════════ */
+if(!isCameraMode){
+  document.addEventListener('click', ()=>{
+    if(!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+  },{once:true});
+}
+
+/* Initial render loop for delay buffer cleanup */
+setInterval(()=>{
+  if(delayCaptureId && currentEffect !== 'retro'){
+    clearInterval(delayCaptureId); delayCaptureId=null;
+  }
+},2000);
+</script>
+</body>
+</html>

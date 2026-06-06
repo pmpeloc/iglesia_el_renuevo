@@ -137,22 +137,23 @@ Este formato se usa para TODAS las reuniones (generales, jóvenes, adolescentes,
 │ │                  Referencia SemiBold        │   │    Referencia en Montserrat SemiBold
 │ └────────────────────────────────────────────┘   │
 ├──────────────────────────────────────────────────┤
-│ A. [Introducción] Texto del punto introductorio  │  ← LISTA CON LETRAS MAYÚSCULAS
-│                                                  │    La etiqueta (Introducción, título
-│    TÉRMINO CLAVE: definición del término...      │    del punto) va con highlight negro
-│    OTRO TÉRMINO:  definición...                  │    y texto blanco
-│                                                  │    Los términos griegos/hebreos van
-│ B. [Punto 1] Texto del desarrollo...             │    en negrita subrayada + definición
-│    a. Sub-punto con texto explicativo            │
-│    b. Sub-punto con texto explicativo            │
+│   [Introducción] Texto introductorio...          │  ← SIN NÚMERO. Etiqueta con
+│                                                  │    highlight negro y texto blanco.
+│ 1. [Título Punto 1] Texto del desarrollo...      │  ← PUNTOS CON NÚMEROS (1, 2, 3...)
+│    a. Sub-punto con texto explicativo            │    La etiqueta del punto va con
+│    b. Sub-punto con texto explicativo            │    highlight negro y texto blanco.
+│    c. Sub-punto con texto explicativo            │    Los términos griegos/hebreos van
+│       TÉRMINO: definición...                     │    en negrita subrayada + definición
 │                                                  │
-│ C. [Punto 2] Texto...                            │
+│ 2. [Título Punto 2] Texto...                     │
 │    a. Sub-punto                                  │
 │    b. Sub-punto                                  │
 │    c. Sub-punto                                  │
 │                                                  │
-│ D. [Punto 3] Texto...                            │
+│ 3. [Título Punto 3] Texto...                     │
 │    (continúa en página 2 si es necesario)        │
+│                                                  │
+│   [Conclusión] Texto de cierre... (si aplica)    │  ← SIN NÚMERO. Igual que Introducción.
 ├──────────────────────────────────────────────────┤
 │ Ejemplos de la Biblia: (si aplica)               │  ← SECCIÓN OPCIONAL al final
 │  [imagen bíblica]         [imagen bíblica]       │    Imágenes de personajes/escenas
@@ -162,11 +163,26 @@ Este formato se usa para TODAS las reuniones (generales, jóvenes, adolescentes,
 └──────────────────────────────────────────────────┘
 ```
 
+**⚠️ REGLA CRÍTICA DE NUMERACIÓN — leer siempre antes de generar:**
+
+```
+Introducción  → SIN número ni letra. Solo etiqueta con highlight negro.
+1. Punto 1    → NÚMERO (1, 2, 3...). Etiqueta con highlight negro.
+   a. sub     → letra minúscula (a, b, c...)
+   b. sub
+2. Punto 2
+3. Punto 3
+Conclusión    → SIN número ni letra. Solo etiqueta con highlight negro (si aplica).
+```
+
+Esta estructura permite que los oyentes se ubiquen rápidamente cuando el predicador dice "vamos al punto 2".
+
 **Reglas de formato detalladas:**
 
 - **Barra de título negra**: Rectángulo de relleno negro, ancho total de la página, texto en blanco Montserrat SemiBold. Es el elemento más llamativo visualmente.
 - **Caja del versículo**: Rectángulo con borde negro y fondo blanco. El versículo va centrado en Montserrat tamaño grande. La referencia (ej: "Mateo 5:3 NVI") va en Montserrat SemiBold debajo.
-- **Lista principal (A, B, C, D, E...)**: Cada ítem lleva su etiqueta/título con highlight negro y texto blanco (como una "tag" oscura), seguida del contenido en la misma línea o párrafo siguiente.
+- **Introducción y Conclusión**: Sin número. Párrafo con etiqueta en highlight negro + texto blanco, seguido del contenido. Misma sangría que los puntos numerados.
+- **Puntos principales (1, 2, 3...)**: Numeración arábiga. La etiqueta/título del punto va con highlight negro y texto blanco, seguida del contenido en la misma línea.
 - **Sub-lista (a, b, c...)**: Sangría adicional, letras minúsculas. Los términos clave (ej: palabras griegas) van en **negrita + subrayado**, seguidos de su definición en texto normal.
 - **Header de página**: El título del mensaje aparece en la esquina superior izquierda en ambas páginas (tamaño pequeño, discreto).
 - **Número de página**: Pie de página, alineado a la derecha.
@@ -243,7 +259,61 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 ---
 
-## 6. Proyecto de software: App de proyección para iglesias
+## 6. Identidad visual — Logos y guía de uso
+
+### 6.1 Iglesia El Renuevo
+
+**Concepto**: Letra "R" con hojas/plantas entrelazadas en la base — evoca renovación y crecimiento.
+**Color principal**: Verde lima `#5DBE2C` | Secundario: Negro y blanco
+**Ruta**: `logos/` en la raíz del repositorio
+
+| Archivo | Descripción | Cuándo usar |
+|---|---|---|
+| `LOGO-EL RENUEVO-R-1.png` | R blanca sobre círculo verde | Fondo oscuro, marca de agua en videos, redes sociales |
+| `LOGO-EL RENUEVO-R-2.png` | R negra sobre círculo verde | Documentos impresos en color, fondo blanco |
+| `LOGO-EL RENUEVO-R-3.png` | R verde sobre círculo negro | Fondos negros, slides oscuros |
+| `LOGO-EL RENUEVO-R-4.png` | R verde sin círculo (solo ícono) | Header de apuntes, marca de agua discreta en documentos |
+| `LOGO-EL RENUEVO-R-5.png` | R blanca sobre círculo negro (monocromático) | Impresión en blanco y negro |
+| `LOGO-EL RENUEVO-R-6.png` | R negra sin círculo (monocromático) | Sellos, documentos formales en B/N |
+
+**Regla de uso**: Para apuntes generales de la congregación usar **R-4** (discreta, sin fondo, solo el ícono verde) en el header o pie. Para material de redes usar **R-1** o **R-3** según el fondo.
+
+---
+
+### 6.2 Red de Jóvenes — "Raíces"
+
+**Concepto**: Huella dactilar con una cruz en el centro (identidad + fe) + tipografía cursiva "Raíces".
+**Colores**: Negro `#000000` + Naranja `#E8521A`
+**Ruta**: `red_jovenes/logos/`
+
+| Archivo | Descripción | Cuándo usar |
+|---|---|---|
+| `Principal.png` | Símbolo + "Raíces" cursiva + "RED DE JÓVENES" (vertical) | Portadas, redes sociales, material principal |
+| `Horizontal.png` | Símbolo (izq) + nombre (der) con borde rectangular | Banners, encabezados web, presentaciones |
+| `Identificador.png` | Solo el símbolo de la huella + cruz (naranja/negro) | Header de apuntes, ícono, marca de agua |
+| `Logotipo.png` | Solo texto "Raíces" + "RED DE JÓVENES" sin símbolo | Cuando ya se muestra el ícono por separado |
+
+**Regla de uso**: Para apuntes de Jóvenes usar **Identificador.png** en el header (esquina). Para material de convocatoria usar **Principal.png** o **Horizontal.png**.
+
+---
+
+### 6.3 Guía general de identidad por tipo de documento
+
+| Tipo de documento | Logo a usar |
+|---|---|
+| Apunte congregación general (domingo/jueves) | `LOGO-EL RENUEVO-R-4.png` — header esquina superior derecha |
+| Apunte Reunión de Jóvenes (sábado noche) | `red_jovenes/logos/Identificador.png` — header esquina superior derecha |
+| Apunte Reunión de Adolescentes | Sin logo específico por ahora (pendiente logos red_adolescentes) |
+| Video redes sociales general | `LOGO-EL RENUEVO-R-1.png` — watermark esquina superior |
+| Video redes sociales Jóvenes | `red_jovenes/logos/Identificador.png` — watermark esquina |
+| Documentos formales / propuestas | `LOGO-EL RENUEVO-R-2.png` o `R-4.png` — encabezado |
+| Presentaciones de diapositivas | Logo según audiencia, esquina inferior derecha |
+
+**Nota para Claude**: Cuando se genere cualquier documento, apunte, video o presentación, incluir siempre el logo correspondiente según esta tabla. Si el usuario no especifica logo, usar el de la iglesia general (R-4) por defecto. Si el contexto es Jóvenes, usar Raíces/Identificador.
+
+---
+
+## 7. Proyecto de software: App de proyección para iglesias
 
 ### Estado: En desarrollo / exploración (junio 2025)
 
@@ -274,7 +344,7 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 ---
 
-## 7. Proyecto: Programa de sostenimiento / donaciones
+## 8. Proyecto: Programa de sostenimiento / donaciones
 
 - **Hebrón** tiene un programa de donaciones ("Programa de Sostenimiento") documentado en DOCX
 - Se trabajó un documento sobre **sillas para el auditorio Hebrón**:
@@ -284,7 +354,7 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 ---
 
-## 8. Preferencias de trabajo con Claude
+## 9. Preferencias de trabajo con Claude
 
 ### Idioma
 - **Siempre en español**. Claude responde en español con Misael.
@@ -314,7 +384,7 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 ---
 
-## 9. Vocabulario y términos usados
+## 10. Vocabulario y términos usados
 
 | Término | Significado |
 |---|---|
@@ -334,7 +404,7 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 ---
 
-## 10. Estado de proyectos activos (junio 2025)
+## 11. Estado de proyectos activos (junio 2025)
 
 | Proyecto | Estado | Notas |
 |---|---|---|
