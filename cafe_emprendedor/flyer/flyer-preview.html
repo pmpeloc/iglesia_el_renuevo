@@ -267,9 +267,11 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
     }
-    .organizer-card {
+    .organizer-card,
+    .church-card {
       display: flex;
       align-items: center;
+      justify-content: center;
       height: 57px;
       padding: 7px 12px;
       border-radius: 12px;
@@ -283,28 +285,28 @@
     .church {
       display: flex;
       align-items: center;
-      gap: 11px;
     }
-    .church img {
-      width: 58px;
-      height: 58px;
+    .church-card {
+      width: 225px;
+      gap: 8px;
+    }
+    .church-card .church-icon {
+      width: 46px;
+      height: 46px;
       object-fit: contain;
-      padding: 4px;
-      border-radius: 50%;
-      background: #fff;
     }
-    .church-label b {
-      display: block;
-      color: #75c92a;
-      font-size: 20px;
-      letter-spacing: .2px;
+    .church-card .church-wordmark {
+      width: 147px;
+      height: 48px;
+      object-fit: contain;
     }
     .story .organizer-label,
     .story .church-label { font-size: 19px; }
     .story .organizer-card { height: 70px; }
     .story .organizer-card img { width: 220px; max-height: 56px; }
-    .story .church img { width: 70px; height: 70px; }
-    .story .church-label b { font-size: 24px; }
+    .story .church-card { width: 270px; height: 70px; }
+    .story .church-card .church-icon { width: 56px; height: 56px; }
+    .story .church-card .church-wordmark { width: 175px; height: 57px; }
   </style>
 </head>
 <body>
@@ -337,7 +339,7 @@
       </div>
     </div>
     <div class="info">
-      <div class="activity">Café &amp; Propósito · Emprender con Fe</div>
+      <div class="activity">Café &amp; Propósito: Emprender con Fe</div>
       <div class="date-row">
         <div class="date">Sábado <b>13</b> de junio</div>
         <div class="time">20:30 <small>HS</small></div>
@@ -351,8 +353,10 @@
           </div>
         </div>
         <div class="church">
-          <img src="../branding/aliados/el-renuevo-r4.png" alt="Iglesia El Renuevo">
-          <div class="church-label">Iglesia<b>El Renuevo</b></div>
+          <div class="church-card">
+            <img class="church-icon" src="../branding/aliados/el-renuevo-r4.png" alt="">
+            <img class="church-wordmark" src="../branding/aliados/el-renuevo-wordmark.png" alt="Iglesia El Renuevo">
+          </div>
         </div>
       </div>
     </div>
@@ -387,7 +391,7 @@
       </div>
     </div>
     <div class="info">
-      <div class="activity">Café &amp; Propósito · Emprender con Fe</div>
+      <div class="activity">Café &amp; Propósito: Emprender con Fe</div>
       <div class="date-row">
         <div class="date">Sábado <b>13</b> de junio</div>
         <div class="time">20:30 <small>HS</small></div>
@@ -401,8 +405,10 @@
           </div>
         </div>
         <div class="church">
-          <img src="../branding/aliados/el-renuevo-r4.png" alt="Iglesia El Renuevo">
-          <div class="church-label">Iglesia<b>El Renuevo</b></div>
+          <div class="church-card">
+            <img class="church-icon" src="../branding/aliados/el-renuevo-r4.png" alt="">
+            <img class="church-wordmark" src="../branding/aliados/el-renuevo-wordmark.png" alt="Iglesia El Renuevo">
+          </div>
         </div>
       </div>
     </div>
