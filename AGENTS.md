@@ -1,6 +1,6 @@
 # Contexto: Iglesia El Renuevo — MCyM
 
-Este repositorio documenta todo el trabajo ministerial, técnico y creativo de **Misael Peloc** en la **Iglesia El Renuevo**, perteneciente al **Movimiento Cristiano y Misionero (MCyM)**. Está diseñado para que Claude tenga contexto completo al comenzar cualquier conversación, sin necesidad de re-explicar lo que ya se trabajó.
+Este repositorio documenta todo el trabajo ministerial, técnico y creativo de **Misael Peloc** en la **Iglesia El Renuevo**, perteneciente al **Movimiento Cristiano y Misionero (MCyM)**. Está diseñado para que Codex tenga contexto completo al comenzar cualquier conversación, sin necesidad de re-explicar lo que ya se trabajó.
 
 ---
 
@@ -50,7 +50,7 @@ Este repositorio documenta todo el trabajo ministerial, técnico y creativo de *
 
 ### 4.1 Estructura estándar del bosquejo
 
-Misael usa un formato fijo para sus prédicas, desarrollado iterativamente con Claude. Siempre respetar este esquema:
+Misael usa un formato fijo para sus prédicas, desarrollado iterativamente con Codex. Siempre respetar este esquema:
 
 ```
 Introducción
@@ -77,7 +77,7 @@ Llamado Final
 - El desarrollo de cada subpunto: **concreto y específico**, nunca genérico ni abstracto
 - Cada punto cierra con **aplicación práctica**: pregunta directa o desafío a la congregación
 
-### 4.2 Preguntas que Claude debe hacer ANTES de armar un bosquejo
+### 4.2 Preguntas que Codex debe hacer ANTES de armar un bosquejo
 
 1. ¿Cuánto tiempo tenés para el mensaje? (20-25 / 30-35 / 40-45 / más de 45 min)
 2. ¿Qué tono querés que predomine? (Desafiante · Reflexivo · Celebratorio · Equilibrado)
@@ -89,7 +89,7 @@ Misael valora y usa:
 - **Análisis de palabras griegas** en los pasajes clave (con transliteración y significado en lenguaje simple)
 - **Tablas visuales** de contrastes o conceptos para poder leer rápido mientras predica
 - Cuando se usan términos griegos, incluir: _término griego (transliteración) — significado concreto_
-- **Verificación bíblica estricta**: Misael detectó en una conversación que Claude inventó un versículo (Josué 14:14 parafraseado como cita directa). **Nunca inventar versículos**. Si la idea es una inferencia teológica del texto, decirlo explícitamente.
+- **Verificación bíblica estricta**: Misael detectó en una conversación que Codex inventó un versículo (Josué 14:14 parafraseado como cita directa). **Nunca inventar versículos**. Si la idea es una inferencia teológica del texto, decirlo explícitamente.
 
 ### 4.3.1 Tono de dirección a la congregación — REGLA FIJA
 
@@ -324,7 +324,7 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 | Documentos formales / propuestas | `LOGO-EL RENUEVO-R-2.png` o `R-4.png` — encabezado |
 | Presentaciones de diapositivas | Logo según audiencia, esquina inferior derecha |
 
-**Nota para Claude**: Cuando se genere cualquier documento, apunte, video o presentación, incluir siempre el logo correspondiente según esta tabla. Si el usuario no especifica logo, usar el de la iglesia general (R-4) por defecto. Si el contexto es Jóvenes, usar Raíces/Identificador.
+**Nota para Codex**: Cuando se genere cualquier documento, apunte, video o presentación, incluir siempre el logo correspondiente según esta tabla. Si el usuario no especifica logo, usar el de la iglesia general (R-4) por defecto. Si el contexto es Jóvenes, usar Raíces/Identificador.
 
 ---
 
@@ -369,21 +369,21 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 ---
 
-## 9. Preferencias de trabajo con Claude
+## 9. Preferencias de trabajo con Codex
 
 ### Idioma
-- **Siempre en español**. Claude responde en español con Misael.
+- **Siempre en español**. Codex responde en español con Misael.
 
 ### Estilo de respuesta
 - **Directo y concreto**. Nada genérico ni abstracto.
 - Misael hace revisiones iterativas: primero revisa en texto, luego pide el archivo final.
 - Le gustan los **checkboxes** para revisar borradores y confirmar qué conservar.
-- Aprecia cuando Claude **hace preguntas antes de trabajar** (especialmente en bosquejos).
+- Aprecia cuando Codex **hace preguntas antes de trabajar** (especialmente en bosquejos).
 
 ### Verificación bíblica
 - **Crítico**: Nunca inventar versículos ni parafrasear como si fuera cita directa.
 - Si es una inferencia teológica, decirlo: "Esto no está en el texto en esas palabras, pero se infiere de..."
-- Misael siempre verifica en su Biblia antes de predicar — lo espera de Claude también.
+- Misael siempre verifica en su Biblia antes de predicar — lo espera de Codex también.
 
 ### Formatos preferidos de entrega
 | Propósito | Formato |
@@ -431,4 +431,4 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 ---
 
-_Última actualización: junio 2025. Generado a partir del historial de conversaciones en Claude web._
+_Última actualización: junio 2025. Generado a partir del historial de conversaciones en Codex web._

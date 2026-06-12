@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Cafe Emprendedor 2026</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #cbc4bb;
+      font-family: "Arial", sans-serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 80px;
+      padding: 60px;
+    }
+    .poster {
+      position: relative;
+      overflow: hidden;
+      background: #3b176b;
+      color: #fff4df;
+      isolation: isolate;
+    }
+    .poster.post { width: 1080px; height: 1350px; }
+    .poster.story { width: 1080px; height: 1920px; }
+
+    .art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+    .post .art {
+      height: 1620px;
+      top: -135px;
+      object-position: center;
+    }
+    .story .art {
+      height: 1620px;
+      bottom: 300px;
+      object-position: center;
+    }
+    .story::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 390px;
+      background: #28105b;
+      z-index: -2;
+    }
+
+    .event-logo {
+      position: absolute;
+      filter: drop-shadow(0 12px 0 rgba(37, 13, 89, .18));
+    }
+    .post .event-logo {
+      left: 42px;
+      top: 36px;
+      width: 580px;
+      height: 315px;
+    }
+    .story .event-logo {
+      left: 48px;
+      top: 58px;
+      width: 650px;
+      height: 354px;
+    }
+
+    .edition {
+      position: absolute;
+      right: 54px;
+      top: 62px;
+      padding: 12px 24px 11px;
+      border: 6px solid #3b176b;
+      border-radius: 999px;
+      background: #ffd41f;
+      color: #3b176b;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 27px;
+      line-height: 1;
+      letter-spacing: 1.5px;
+      transform: rotate(3deg);
+    }
+    .story .edition {
+      right: 62px;
+      top: 74px;
+      font-size: 29px;
+    }
+
+    .tagline {
+      position: absolute;
+      right: 48px;
+      top: 138px;
+      width: 390px;
+      color: #3b176b;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 45px;
+      line-height: .98;
+      letter-spacing: -2px;
+      text-align: right;
+      text-transform: uppercase;
+    }
+    .tagline span {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 3px 10px 7px;
+      background: #75c92a;
+      color: #28105b;
+      transform: rotate(-1deg);
+    }
+    .story .tagline {
+      top: 166px;
+      right: 54px;
+      width: 420px;
+      font-size: 49px;
+    }
+
+    .guest {
+      position: absolute;
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      align-items: center;
+      gap: 14px;
+      width: 370px;
+      min-height: 142px;
+      padding: 13px 18px 13px 13px;
+      border: 6px solid #3b176b;
+      border-radius: 30px 30px 30px 7px;
+      background: #a8cceb;
+      color: #28105b;
+      box-shadow: 10px 12px 0 #ffd41f;
+      transform: rotate(1.5deg);
+    }
+    .post .guest { right: 44px; top: 368px; }
+    .story .guest { right: 48px; top: 430px; width: 400px; }
+    .guest img {
+      display: block;
+      width: 128px;
+      height: 128px;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    .guest-copy small {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 19px;
+      letter-spacing: 2px;
+    }
+    .guest-copy strong {
+      display: block;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 26px;
+      line-height: 1.02;
+      text-transform: uppercase;
+    }
+
+    .info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 24px 46px 25px;
+      background: #28105b;
+      border-top: 8px solid #ffd41f;
+    }
+    .post .info { height: 355px; }
+    .story .info {
+      height: 500px;
+      padding: 34px 55px 34px;
+    }
+
+    .activity {
+      color: #75c92a;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 29px;
+      line-height: 1.05;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .story .activity { font-size: 36px; }
+
+    .date-row {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-top: 13px;
+    }
+    .date {
+      flex: 1;
+      color: #fff4df;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 59px;
+      line-height: .94;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+    .date b { color: #ff674d; }
+    .time {
+      min-width: 304px;
+      padding-left: 27px;
+      border-left: 5px solid #fff4df;
+      color: #ffd41f;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 76px;
+      line-height: .85;
+      letter-spacing: -4px;
+    }
+    .time small {
+      display: inline-block;
+      font-size: 27px;
+      letter-spacing: 0;
+    }
+    .story .date-row { margin-top: 18px; }
+    .story .date { font-size: 73px; }
+    .story .time { min-width: 340px; font-size: 90px; }
+
+    .address {
+      margin-top: 13px;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 29px;
+      line-height: 1.08;
+      color: #fff4df;
+    }
+    .address span {
+      color: #a8cceb;
+      font-family: Arial, sans-serif;
+      font-weight: 700;
+    }
+    .story .address {
+      margin-top: 20px;
+      font-size: 35px;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 2px solid rgba(255,244,223,.35);
+    }
+    .story .footer {
+      margin-top: 25px;
+      padding-top: 20px;
+    }
+    .organizer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .organizer-label,
+    .church-label {
+      color: #fff4df;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.05;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .organizer-card {
+      display: flex;
+      align-items: center;
+      height: 57px;
+      padding: 7px 12px;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .organizer-card img {
+      width: 175px;
+      max-height: 45px;
+      object-fit: contain;
+    }
+    .church {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .church img {
+      width: 58px;
+      height: 58px;
+      object-fit: contain;
+      padding: 4px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .church-label b {
+      display: block;
+      color: #75c92a;
+      font-size: 20px;
+      letter-spacing: .2px;
+    }
+    .story .organizer-label,
+    .story .church-label { font-size: 19px; }
+    .story .organizer-card { height: 70px; }
+    .story .organizer-card img { width: 220px; max-height: 56px; }
+    .story .church img { width: 70px; height: 70px; }
+    .story .church-label b { font-size: 24px; }
+  </style>
+</head>
+<body>
+  <section class="poster post" id="post">
+    <img class="art" src="../branding/ilustracion-campana-01.png" alt="">
+    <div class="event-logo">
+      <svg viewBox="0 0 650 355" width="100%" height="100%" aria-label="Cafe Emprendedor">
+        <path d="M56 65C89 15 168 2 231 29C291 2 377 12 413 53C478 28 577 56 596 123C616 194 578 281 504 310C415 346 283 333 191 327L89 344L101 302C31 269 9 141 56 65Z" fill="#3b176b"/>
+        <path d="M78 230C151 195 252 201 323 224C395 247 476 246 565 214C552 282 485 314 401 320C308 326 210 306 116 319L126 287C102 274 87 255 78 230Z" fill="#ff674d"/>
+        <text x="72" y="192" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="143" font-weight="900" letter-spacing="-10">CAFÉ</text>
+        <path d="M105 194C213 173 378 178 531 196L518 256C385 239 245 236 118 258Z" fill="#2455e6"/>
+        <text x="130" y="238" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" textLength="372" lengthAdjust="spacingAndGlyphs">EMPRENDEDOR</text>
+        <g transform="translate(269 259)" fill="none" stroke="#fff4df" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M0 10H77V42C77 69 61 85 38 85S0 69 0 42Z" fill="#fff4df" stroke="#3b176b"/>
+          <path d="M77 24H91C110 24 110 56 89 58H77" stroke="#3b176b"/>
+          <path d="M23 1C8-15 35-19 20-39" stroke="#3b176b"/>
+          <path d="M47 1C28-17 61-25 48-48" stroke="#3b176b"/>
+          <path d="M48-48L70-45L60-66" stroke="#75c92a"/>
+        </g>
+        <path d="M100 102L112 64L128 100L166 111L129 125L116 162L102 127L65 113Z" fill="#ffd41f"/>
+      </svg>
+    </div>
+    <div class="edition">2ª EDICIÓN</div>
+    <div class="tagline">Ideas que se visten.<br><span>Fe que se comparte.</span></div>
+    <div class="guest">
+      <img src="../branding/aliados/jesus-vive-original.png" alt="Jesus Vive">
+      <div class="guest-copy">
+        <small>INVITADOS</small>
+        <strong>Charla con sus creadores</strong>
+      </div>
+    </div>
+    <div class="info">
+      <div class="activity">Café &amp; Propósito · Emprender con Fe</div>
+      <div class="date-row">
+        <div class="date">Sábado <b>13</b> de junio</div>
+        <div class="time">20:30 <small>HS</small></div>
+      </div>
+      <div class="address">República de Siria 255 <span>· Barrio Centro · Perico, Jujuy</span></div>
+      <div class="footer">
+        <div class="organizer">
+          <div class="organizer-label">Organiza</div>
+          <div class="organizer-card">
+            <img src="../branding/aliados/raices-horizontal.png" alt="Raices Red de Jovenes">
+          </div>
+        </div>
+        <div class="church">
+          <img src="../branding/aliados/el-renuevo-r4.png" alt="Iglesia El Renuevo">
+          <div class="church-label">Iglesia<b>El Renuevo</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="poster story" id="story">
+    <img class="art" src="../branding/ilustracion-campana-01.png" alt="">
+    <div class="event-logo">
+      <svg viewBox="0 0 650 355" width="100%" height="100%" aria-label="Cafe Emprendedor">
+        <path d="M56 65C89 15 168 2 231 29C291 2 377 12 413 53C478 28 577 56 596 123C616 194 578 281 504 310C415 346 283 333 191 327L89 344L101 302C31 269 9 141 56 65Z" fill="#3b176b"/>
+        <path d="M78 230C151 195 252 201 323 224C395 247 476 246 565 214C552 282 485 314 401 320C308 326 210 306 116 319L126 287C102 274 87 255 78 230Z" fill="#ff674d"/>
+        <text x="72" y="192" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="143" font-weight="900" letter-spacing="-10">CAFÉ</text>
+        <path d="M105 194C213 173 378 178 531 196L518 256C385 239 245 236 118 258Z" fill="#2455e6"/>
+        <text x="130" y="238" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" textLength="372" lengthAdjust="spacingAndGlyphs">EMPRENDEDOR</text>
+        <g transform="translate(269 259)" fill="none" stroke="#fff4df" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M0 10H77V42C77 69 61 85 38 85S0 69 0 42Z" fill="#fff4df" stroke="#3b176b"/>
+          <path d="M77 24H91C110 24 110 56 89 58H77" stroke="#3b176b"/>
+          <path d="M23 1C8-15 35-19 20-39" stroke="#3b176b"/>
+          <path d="M47 1C28-17 61-25 48-48" stroke="#3b176b"/>
+          <path d="M48-48L70-45L60-66" stroke="#75c92a"/>
+        </g>
+        <path d="M100 102L112 64L128 100L166 111L129 125L116 162L102 127L65 113Z" fill="#ffd41f"/>
+      </svg>
+    </div>
+    <div class="edition">2ª EDICIÓN</div>
+    <div class="tagline">Ideas que se visten.<br><span>Fe que se comparte.</span></div>
+    <div class="guest">
+      <img src="../branding/aliados/jesus-vive-original.png" alt="Jesus Vive">
+      <div class="guest-copy">
+        <small>INVITADOS</small>
+        <strong>Charla con sus creadores</strong>
+      </div>
+    </div>
+    <div class="info">
+      <div class="activity">Café &amp; Propósito · Emprender con Fe</div>
+      <div class="date-row">
+        <div class="date">Sábado <b>13</b> de junio</div>
+        <div class="time">20:30 <small>HS</small></div>
+      </div>
+      <div class="address">República de Siria 255 <span>· Barrio Centro · Perico, Jujuy</span></div>
+      <div class="footer">
+        <div class="organizer">
+          <div class="organizer-label">Organiza</div>
+          <div class="organizer-card">
+            <img src="../branding/aliados/raices-horizontal.png" alt="Raices Red de Jovenes">
+          </div>
+        </div>
+        <div class="church">
+          <img src="../branding/aliados/el-renuevo-r4.png" alt="Iglesia El Renuevo">
+          <div class="church-label">Iglesia<b>El Renuevo</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
