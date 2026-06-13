@@ -2,15 +2,29 @@
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Cafe Emprendedor 2026</title>
+  <title>Café Emprendedor 2026</title>
   <style>
+    :root {
+      --violet: #321064;
+      --violet-dark: #210949;
+      --violet-light: #51268a;
+      --blue: #2455e6;
+      --coral: #ff674d;
+      --yellow: #ffd41f;
+      --lime: #79d11f;
+      --cream: #fff4df;
+      --sky: #abcff1;
+    }
+
     * { box-sizing: border-box; }
+
     html, body {
       margin: 0;
       padding: 0;
-      background: #cbc4bb;
-      font-family: "Arial", sans-serif;
+      background: #c8c0b7;
+      font-family: Arial, sans-serif;
     }
+
     body {
       display: flex;
       flex-direction: column;
@@ -18,397 +32,660 @@
       gap: 80px;
       padding: 60px;
     }
+
     .poster {
       position: relative;
       overflow: hidden;
-      background: #3b176b;
-      color: #fff4df;
+      color: var(--cream);
+      background: var(--violet);
       isolation: isolate;
     }
+
     .poster.post { width: 1080px; height: 1350px; }
     .poster.story { width: 1080px; height: 1920px; }
 
-    .art {
+    .hero {
       position: absolute;
-      inset: 0;
+      inset: 0 0 auto;
+      overflow: hidden;
+    }
+
+    .post .hero { height: 925px; }
+    .story .hero { height: 1340px; }
+
+    .hero-art {
+      position: absolute;
+      z-index: -3;
       width: 100%;
+      object-fit: cover;
+    }
+
+    .post .hero-art,
+    .story .hero-art {
+      inset: 0;
       height: 100%;
       object-fit: cover;
-      z-index: -3;
     }
-    .post .art {
-      height: 1620px;
-      top: -135px;
-      object-position: center;
-    }
-    .story .art {
-      height: 1620px;
-      bottom: 300px;
-      object-position: center;
-    }
-    .story::after {
+
+    .post .hero-art { object-position: center 33%; }
+    .story .hero-art { object-position: center 38%; }
+
+    .hero::after {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 390px;
-      background: #28105b;
       z-index: -2;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255,244,223,.04) 0%, rgba(255,244,223,0) 60%),
+        linear-gradient(0deg, rgba(33,9,73,.16) 0%, rgba(33,9,73,0) 30%);
+      pointer-events: none;
     }
 
     .event-logo {
       position: absolute;
-      filter: drop-shadow(0 12px 0 rgba(37, 13, 89, .18));
+      object-fit: contain;
+      filter: drop-shadow(0 12px 0 rgba(33,9,73,.2));
     }
+
     .post .event-logo {
-      left: 42px;
-      top: 36px;
-      width: 580px;
-      height: 315px;
+      left: 20px;
+      top: 0;
+      width: 365px;
+      height: 425px;
     }
+
     .story .event-logo {
-      left: 48px;
-      top: 58px;
-      width: 650px;
-      height: 354px;
+      left: 22px;
+      top: 4px;
+      width: 430px;
+      height: 500px;
     }
 
     .edition {
       position: absolute;
-      right: 54px;
-      top: 62px;
-      padding: 12px 24px 11px;
-      border: 6px solid #3b176b;
+      padding: 13px 24px 11px;
+      border: 6px solid var(--violet);
       border-radius: 999px;
-      background: #ffd41f;
-      color: #3b176b;
+      color: var(--violet);
+      background: var(--yellow);
       font-family: "Arial Black", Arial, sans-serif;
-      font-size: 27px;
+      font-size: 28px;
       line-height: 1;
-      letter-spacing: 1.5px;
-      transform: rotate(3deg);
-    }
-    .story .edition {
-      right: 62px;
-      top: 74px;
-      font-size: 29px;
+      letter-spacing: 1px;
+      transform: rotate(2deg);
     }
 
-    .tagline {
-      position: absolute;
-      right: 48px;
-      top: 138px;
-      width: 390px;
-      color: #3b176b;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-size: 45px;
-      line-height: .98;
-      letter-spacing: -2px;
-      text-align: right;
-      text-transform: uppercase;
+    .post .edition {
+      top: 330px;
+      left: 282px;
+      right: auto;
+      font-size: 23px;
+      transform: rotate(-5deg);
+      z-index: 2;
     }
-    .tagline span {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 3px 10px 7px;
-      background: #75c92a;
-      color: #28105b;
+    .story .edition {
+      top: 394px;
+      left: 332px;
+      right: auto;
+      font-size: 27px;
+      transform: rotate(-5deg);
+      z-index: 2;
+    }
+
+    .theme {
+      position: absolute;
+      overflow: hidden;
+      border: 7px solid var(--violet);
+      border-radius: 34px 34px 8px 34px;
+      color: var(--cream);
+      background: var(--violet);
+      box-shadow: 10px 11px 0 var(--yellow);
       transform: rotate(-1deg);
     }
-    .story .tagline {
-      top: 166px;
-      right: 54px;
-      width: 420px;
-      font-size: 49px;
+
+    .post .theme {
+      top: 28px;
+      right: 38px;
+      width: 525px;
+      padding: 18px 24px 20px;
     }
+
+    .story .theme {
+      top: 42px;
+      right: 40px;
+      width: 535px;
+      padding: 21px 27px 23px;
+    }
+
+    .theme-label {
+      display: block;
+      color: var(--yellow);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .theme strong {
+      display: block;
+      margin-top: 7px;
+      color: var(--cream);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 47px;
+      line-height: .92;
+      letter-spacing: -2px;
+      text-transform: uppercase;
+    }
+
+    .story .theme-label { font-size: 31px; }
+    .story .theme strong { font-size: 51px; }
 
     .guest {
       position: absolute;
       display: grid;
-      grid-template-columns: 128px 1fr;
+      grid-template-columns: 218px 1fr;
       align-items: center;
-      gap: 14px;
-      width: 370px;
-      min-height: 142px;
-      padding: 13px 18px 13px 13px;
-      border: 6px solid #3b176b;
-      border-radius: 30px 30px 30px 7px;
-      background: #a8cceb;
-      color: #28105b;
-      box-shadow: 10px 12px 0 #ffd41f;
-      transform: rotate(1.5deg);
+      gap: 18px;
+      min-height: 188px;
+      padding: 15px 19px 15px 15px;
+      border: 7px solid var(--violet);
+      border-radius: 12px 34px 34px 34px;
+      color: var(--violet);
+      background: var(--sky);
+      box-shadow: 10px 11px 0 var(--coral);
+      transform: rotate(1deg);
     }
-    .post .guest { right: 44px; top: 368px; }
-    .story .guest { right: 48px; top: 430px; width: 400px; }
-    .guest img {
-      display: block;
-      width: 128px;
-      height: 128px;
+
+    .post .guest {
+      top: 238px;
+      right: 38px;
+      width: 555px;
+    }
+
+    .story .guest {
+      top: 290px;
+      right: 38px;
+      width: 580px;
+      min-height: 210px;
+      grid-template-columns: 240px 1fr;
+    }
+
+    .guest-logo {
+      width: 218px;
+      height: 150px;
       object-fit: cover;
       border-radius: 20px;
     }
-    .guest-copy small {
-      display: block;
-      margin-bottom: 4px;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-size: 19px;
-      letter-spacing: 2px;
+
+    .story .guest-logo {
+      width: 240px;
+      height: 175px;
     }
-    .guest-copy strong {
+
+    .guest-copy span {
       display: block;
+      margin-bottom: 5px;
+      color: var(--violet);
       font-family: "Arial Black", Arial, sans-serif;
-      font-size: 26px;
-      line-height: 1.02;
+      font-size: 22px;
+      line-height: 1;
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    .info {
+    .guest-copy strong {
+      display: block;
+      color: var(--violet);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 28px;
+      line-height: .98;
+      text-transform: uppercase;
+    }
+
+    .guest-copy small {
+      display: block;
+      margin-top: 9px;
+      color: var(--violet-light);
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.08;
+    }
+
+    .story .guest-copy span { font-size: 24px; }
+    .story .guest-copy strong { font-size: 31px; }
+    .story .guest-copy small { font-size: 20px; }
+
+    .slogan {
+      position: absolute;
+      left: 50%;
+      width: max-content;
+      max-width: 930px;
+      padding: 12px 26px 14px;
+      border: 6px solid var(--violet);
+      border-radius: 999px;
+      color: var(--violet);
+      background: var(--cream);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 31px;
+      line-height: 1;
+      letter-spacing: -.5px;
+      text-align: center;
+      text-transform: uppercase;
+      transform: translateX(-50%) rotate(-1deg);
+      box-shadow: 8px 9px 0 var(--lime);
+    }
+
+    .slogan b { color: var(--coral); }
+    .post .slogan { bottom: 25px; }
+    .story .slogan { bottom: 32px; font-size: 36px; padding: 15px 31px 17px; }
+
+    .program {
+      position: absolute;
+      left: 0;
+      right: 0;
+      color: var(--violet);
+      background: var(--cream);
+      border-top: 8px solid var(--yellow);
+      border-bottom: 8px solid var(--violet);
+    }
+
+    .post .program {
+      top: 925px;
+      height: 235px;
+      padding: 20px 42px 23px;
+    }
+
+    .story .program {
+      top: 1340px;
+      height: 330px;
+      padding: 27px 52px 32px;
+    }
+
+    .program-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .program-heading strong {
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 25px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .program-heading span {
+      padding: 6px 13px;
+      border-radius: 999px;
+      color: var(--cream);
+      background: var(--coral);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .story .program-heading { margin-bottom: 21px; }
+    .story .program-heading strong { font-size: 32px; }
+    .story .program-heading span { font-size: 20px; padding: 8px 16px; }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 13px;
+    }
+
+    .program-item {
+      position: relative;
+      min-height: 139px;
+      padding: 17px 13px 13px 17px;
+      border: 4px solid var(--violet);
+      border-radius: 20px;
+      background: #fffaf0;
+      box-shadow: 5px 5px 0 var(--violet);
+    }
+
+    .program-item:nth-child(1) { border-top: 13px solid var(--coral); }
+    .program-item:nth-child(2) { border-top: 13px solid var(--blue); }
+    .program-item:nth-child(3) { border-top: 13px solid var(--lime); }
+    .program-item:nth-child(4) { border-top: 13px solid var(--yellow); }
+
+    .program-item em {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--coral);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 17px;
+      font-style: normal;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+
+    .program-item strong {
+      display: block;
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 21px;
+      line-height: .98;
+      text-transform: uppercase;
+    }
+
+    .program-item span {
+      display: block;
+      margin-top: 7px;
+      color: #503d68;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.04;
+    }
+
+    .story .program-grid { gap: 17px; }
+    .story .program-item {
+      min-height: 197px;
+      padding: 22px 17px 17px 20px;
+      border-radius: 24px;
+    }
+    .story .program-item em { font-size: 20px; }
+    .story .program-item strong { font-size: 26px; }
+    .story .program-item span { margin-top: 10px; font-size: 19px; line-height: 1.1; }
+
+    .details {
       position: absolute;
       left: 0;
       right: 0;
       bottom: 0;
-      padding: 24px 46px 25px;
-      background: #28105b;
-      border-top: 8px solid #ffd41f;
-    }
-    .post .info { height: 355px; }
-    .story .info {
-      height: 500px;
-      padding: 34px 55px 34px;
+      background: var(--violet-dark);
     }
 
-    .activity {
-      color: #75c92a;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-size: 29px;
-      line-height: 1.05;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      white-space: nowrap;
+    .post .details {
+      height: 190px;
+      padding: 17px 35px 0;
     }
-    .story .activity { font-size: 36px; }
 
-    .date-row {
-      display: flex;
+    .story .details {
+      height: 250px;
+      padding: 27px 48px 0;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: 42% 22% 36%;
       align-items: center;
-      gap: 28px;
-      margin-top: 13px;
-    }
-    .date {
-      flex: 1;
-      color: #fff4df;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-size: 59px;
-      line-height: .94;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-    }
-    .date b { color: #ff674d; }
-    .time {
-      min-width: 304px;
-      padding-left: 27px;
-      border-left: 5px solid #fff4df;
-      color: #ffd41f;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-size: 76px;
-      line-height: .85;
-      letter-spacing: -4px;
-    }
-    .time small {
-      display: inline-block;
-      font-size: 27px;
-      letter-spacing: 0;
-    }
-    .story .date-row { margin-top: 18px; }
-    .story .date { font-size: 73px; }
-    .story .time { min-width: 340px; font-size: 90px; }
-
-    .address {
-      margin-top: 13px;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-size: 29px;
-      line-height: 1.08;
-      color: #fff4df;
-    }
-    .address span {
-      color: #a8cceb;
-      font-family: Arial, sans-serif;
-      font-weight: 700;
-    }
-    .story .address {
-      margin-top: 20px;
-      font-size: 35px;
+      height: 78px;
+      gap: 0;
     }
 
-    .footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 2px solid rgba(255,244,223,.35);
-    }
-    .story .footer {
-      margin-top: 25px;
-      padding-top: 20px;
-    }
-    .organizer {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .organizer-label,
-    .church-label {
-      color: #fff4df;
-      font-family: "Arial Black", Arial, sans-serif;
-      font-size: 16px;
-      line-height: 1.05;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-    .organizer-card,
-    .church-card {
+    .fact {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 57px;
-      padding: 7px 12px;
-      border-radius: 12px;
-      background: #fff;
+      min-width: 0;
+      height: 62px;
+      padding: 0 12px;
+      border-left: 4px solid rgba(255,244,223,.65);
+      white-space: nowrap;
     }
-    .organizer-card img {
-      width: 175px;
-      max-height: 45px;
+
+    .fact:first-child {
+      justify-content: flex-start;
+      padding-left: 8px;
+      border-left: 0;
+    }
+
+    .fact-date {
+      color: var(--cream);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 32px;
+      line-height: 1;
+      letter-spacing: -1px;
+      text-transform: uppercase;
+    }
+
+    .fact-date b { color: var(--coral); }
+
+    .fact-time {
+      color: var(--yellow);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 45px;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .fact-time small {
+      margin-left: 8px;
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .fact-address {
+      justify-content: flex-end;
+      color: var(--cream);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 24px;
+      line-height: 1;
+      text-align: right;
+    }
+
+    .story .facts { height: 100px; }
+    .story .fact { height: 78px; padding: 0 15px; }
+    .story .fact:first-child { padding-left: 8px; }
+    .story .fact-date { font-size: 38px; }
+    .story .fact-time { font-size: 56px; }
+    .story .fact-time small { font-size: 21px; }
+    .story .fact-address { font-size: 29px; }
+
+    .organizers {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 26px;
+      height: 93px;
+      padding: 22px 110px 10px;
+      color: var(--violet);
+      background: var(--cream);
+      border-top: 7px solid var(--coral);
+    }
+
+    .organizers-label {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      padding: 7px 18px 6px;
+      border: 4px solid var(--cream);
+      border-radius: 999px;
+      color: var(--cream);
+      background: var(--violet);
+      font-family: "Arial Black", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transform: translateX(-50%);
+    }
+
+    .raices-logo {
+      justify-self: end;
+      width: 235px;
+      height: 65px;
       object-fit: contain;
     }
-    .church {
+
+    .plus {
+      width: 4px;
+      height: 52px;
+      overflow: hidden;
+      color: transparent;
+      background: var(--coral);
+      border-radius: 999px;
+    }
+
+    .renuevo-lockup {
       display: flex;
       align-items: center;
+      justify-content: start;
+      gap: 10px;
     }
-    .church-card {
-      width: 225px;
-      gap: 8px;
-    }
-    .church-card .church-icon {
-      width: 46px;
-      height: 46px;
+
+    .renuevo-icon {
+      width: 58px;
+      height: 58px;
       object-fit: contain;
     }
-    .church-card .church-wordmark {
-      width: 147px;
-      height: 48px;
+
+    .renuevo-wordmark {
+      width: 185px;
+      height: 57px;
       object-fit: contain;
     }
-    .story .organizer-label,
-    .story .church-label { font-size: 19px; }
-    .story .organizer-card { height: 70px; }
-    .story .organizer-card img { width: 220px; max-height: 56px; }
-    .story .church-card { width: 270px; height: 70px; }
-    .story .church-card .church-icon { width: 56px; height: 56px; }
-    .story .church-card .church-wordmark { width: 175px; height: 57px; }
+
+    .story .organizers {
+      height: 128px;
+      padding: 31px 130px 14px;
+      gap: 34px;
+    }
+
+    .story .organizers-label { top: -21px; font-size: 21px; }
+    .story .raices-logo { width: 280px; height: 82px; }
+    .story .plus { width: 5px; height: 66px; }
+    .story .renuevo-icon { width: 73px; height: 73px; }
+    .story .renuevo-wordmark { width: 230px; height: 72px; }
   </style>
 </head>
 <body>
   <section class="poster post" id="post">
-    <img class="art" src="../branding/ilustracion-campana-01.png" alt="">
-    <div class="event-logo">
-      <svg viewBox="0 0 650 355" width="100%" height="100%" aria-label="Cafe Emprendedor">
-        <path d="M56 65C89 15 168 2 231 29C291 2 377 12 413 53C478 28 577 56 596 123C616 194 578 281 504 310C415 346 283 333 191 327L89 344L101 302C31 269 9 141 56 65Z" fill="#3b176b"/>
-        <path d="M78 230C151 195 252 201 323 224C395 247 476 246 565 214C552 282 485 314 401 320C308 326 210 306 116 319L126 287C102 274 87 255 78 230Z" fill="#ff674d"/>
-        <text x="72" y="192" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="143" font-weight="900" letter-spacing="-10">CAFÉ</text>
-        <path d="M105 194C213 173 378 178 531 196L518 256C385 239 245 236 118 258Z" fill="#2455e6"/>
-        <text x="130" y="238" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" textLength="372" lengthAdjust="spacingAndGlyphs">EMPRENDEDOR</text>
-        <g transform="translate(269 259)" fill="none" stroke="#fff4df" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M0 10H77V42C77 69 61 85 38 85S0 69 0 42Z" fill="#fff4df" stroke="#3b176b"/>
-          <path d="M77 24H91C110 24 110 56 89 58H77" stroke="#3b176b"/>
-          <path d="M23 1C8-15 35-19 20-39" stroke="#3b176b"/>
-          <path d="M47 1C28-17 61-25 48-48" stroke="#3b176b"/>
-          <path d="M48-48L70-45L60-66" stroke="#75c92a"/>
-        </g>
-        <path d="M100 102L112 64L128 100L166 111L129 125L116 162L102 127L65 113Z" fill="#ffd41f"/>
-      </svg>
-    </div>
-    <div class="edition">2ª EDICIÓN</div>
-    <div class="tagline">Ideas que se visten.<br><span>Fe que se comparte.</span></div>
-    <div class="guest">
-      <img src="../branding/aliados/jesus-vive-original.png" alt="Jesus Vive">
-      <div class="guest-copy">
-        <small>INVITADOS</small>
-        <strong>Charla con sus creadores</strong>
+    <div class="hero">
+      <img class="hero-art" src="../branding/ilustracion-campana-02.png" alt="">
+      <img class="event-logo" src="../branding/cafe-emprendedor-logo.png" alt="Café Emprendedor">
+      <div class="edition">2ª EDICIÓN</div>
+      <div class="theme">
+        <span class="theme-label">Café &amp; Propósito</span>
+        <strong>Emprender<br>con Fe</strong>
       </div>
-    </div>
-    <div class="info">
-      <div class="activity">Café &amp; Propósito: Emprender con Fe</div>
-      <div class="date-row">
-        <div class="date">Sábado <b>13</b> de junio</div>
-        <div class="time">20:30 <small>HS</small></div>
-      </div>
-      <div class="address">República de Siria 255 <span>· Barrio Centro · Perico, Jujuy</span></div>
-      <div class="footer">
-        <div class="organizer">
-          <div class="organizer-label">Organiza</div>
-          <div class="organizer-card">
-            <img src="../branding/aliados/raices-horizontal.png" alt="Raices Red de Jovenes">
-          </div>
+      <div class="guest">
+        <img class="guest-logo" src="../branding/aliados/jesus-vive-lockup.png" alt="Jesús Vive">
+        <div class="guest-copy">
+          <span>Invitados</span>
+          <strong>Testimonio real de sus creadores</strong>
+          <small>Una pareja que emprendió uniendo fe, diseño y trabajo.</small>
         </div>
-        <div class="church">
-          <div class="church-card">
-            <img class="church-icon" src="../branding/aliados/el-renuevo-r4.png" alt="">
-            <img class="church-wordmark" src="../branding/aliados/el-renuevo-wordmark.png" alt="Iglesia El Renuevo">
-          </div>
+      </div>
+      <div class="slogan">Ideas que se visten. <b>Fe que se comparte.</b></div>
+    </div>
+
+    <div class="program">
+      <div class="program-heading">
+        <strong>Lo que vamos a vivir</strong>
+        <span>Café + galletas</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-item">
+          <em>01</em>
+          <strong>Testimonio real</strong>
+          <span>Cómo nació Jesús Vive y cómo la fe guía el negocio.</span>
+        </div>
+        <div class="program-item">
+          <em>02</em>
+          <strong>Taller con IA</strong>
+          <span>Diseñá una remera con un mensaje bíblico actual.</span>
+        </div>
+        <div class="program-item">
+          <em>03</em>
+          <strong>Preguntas sin filtro</strong>
+          <span>Capital, precios, matrimonio y decisiones reales.</span>
+        </div>
+        <div class="program-item">
+          <em>04</em>
+          <strong>Desafío 24 hs</strong>
+          <span>Consejos prácticos y oración por tus proyectos.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="facts">
+        <div class="fact fact-date">Sábado <b>&nbsp;13&nbsp;</b> de junio</div>
+        <div class="fact fact-time">20:30 <small>HS</small></div>
+        <div class="fact fact-address">República de Siria 255</div>
+      </div>
+      <div class="organizers">
+        <div class="organizers-label">Organizan</div>
+        <img class="raices-logo" src="../branding/aliados/raices-horizontal.png" alt="Raíces Red de Jóvenes">
+        <div class="plus">+</div>
+        <div class="renuevo-lockup">
+          <img class="renuevo-icon" src="../branding/aliados/el-renuevo-r4.png" alt="">
+          <img class="renuevo-wordmark" src="../branding/aliados/el-renuevo-wordmark.png" alt="Iglesia El Renuevo">
         </div>
       </div>
     </div>
   </section>
 
   <section class="poster story" id="story">
-    <img class="art" src="../branding/ilustracion-campana-01.png" alt="">
-    <div class="event-logo">
-      <svg viewBox="0 0 650 355" width="100%" height="100%" aria-label="Cafe Emprendedor">
-        <path d="M56 65C89 15 168 2 231 29C291 2 377 12 413 53C478 28 577 56 596 123C616 194 578 281 504 310C415 346 283 333 191 327L89 344L101 302C31 269 9 141 56 65Z" fill="#3b176b"/>
-        <path d="M78 230C151 195 252 201 323 224C395 247 476 246 565 214C552 282 485 314 401 320C308 326 210 306 116 319L126 287C102 274 87 255 78 230Z" fill="#ff674d"/>
-        <text x="72" y="192" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="143" font-weight="900" letter-spacing="-10">CAFÉ</text>
-        <path d="M105 194C213 173 378 178 531 196L518 256C385 239 245 236 118 258Z" fill="#2455e6"/>
-        <text x="130" y="238" fill="#fff4df" font-family="Arial Black, Arial, sans-serif" font-size="43" font-weight="900" textLength="372" lengthAdjust="spacingAndGlyphs">EMPRENDEDOR</text>
-        <g transform="translate(269 259)" fill="none" stroke="#fff4df" stroke-width="11" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M0 10H77V42C77 69 61 85 38 85S0 69 0 42Z" fill="#fff4df" stroke="#3b176b"/>
-          <path d="M77 24H91C110 24 110 56 89 58H77" stroke="#3b176b"/>
-          <path d="M23 1C8-15 35-19 20-39" stroke="#3b176b"/>
-          <path d="M47 1C28-17 61-25 48-48" stroke="#3b176b"/>
-          <path d="M48-48L70-45L60-66" stroke="#75c92a"/>
-        </g>
-        <path d="M100 102L112 64L128 100L166 111L129 125L116 162L102 127L65 113Z" fill="#ffd41f"/>
-      </svg>
-    </div>
-    <div class="edition">2ª EDICIÓN</div>
-    <div class="tagline">Ideas que se visten.<br><span>Fe que se comparte.</span></div>
-    <div class="guest">
-      <img src="../branding/aliados/jesus-vive-original.png" alt="Jesus Vive">
-      <div class="guest-copy">
-        <small>INVITADOS</small>
-        <strong>Charla con sus creadores</strong>
+    <div class="hero">
+      <img class="hero-art" src="../branding/ilustracion-campana-02.png" alt="">
+      <img class="event-logo" src="../branding/cafe-emprendedor-logo.png" alt="Café Emprendedor">
+      <div class="edition">2ª EDICIÓN</div>
+      <div class="theme">
+        <span class="theme-label">Café &amp; Propósito</span>
+        <strong>Emprender<br>con Fe</strong>
       </div>
-    </div>
-    <div class="info">
-      <div class="activity">Café &amp; Propósito: Emprender con Fe</div>
-      <div class="date-row">
-        <div class="date">Sábado <b>13</b> de junio</div>
-        <div class="time">20:30 <small>HS</small></div>
-      </div>
-      <div class="address">República de Siria 255 <span>· Barrio Centro · Perico, Jujuy</span></div>
-      <div class="footer">
-        <div class="organizer">
-          <div class="organizer-label">Organiza</div>
-          <div class="organizer-card">
-            <img src="../branding/aliados/raices-horizontal.png" alt="Raices Red de Jovenes">
-          </div>
+      <div class="guest">
+        <img class="guest-logo" src="../branding/aliados/jesus-vive-lockup.png" alt="Jesús Vive">
+        <div class="guest-copy">
+          <span>Invitados</span>
+          <strong>Testimonio real de sus creadores</strong>
+          <small>Una pareja que emprendió uniendo fe, diseño y trabajo.</small>
         </div>
-        <div class="church">
-          <div class="church-card">
-            <img class="church-icon" src="../branding/aliados/el-renuevo-r4.png" alt="">
-            <img class="church-wordmark" src="../branding/aliados/el-renuevo-wordmark.png" alt="Iglesia El Renuevo">
-          </div>
+      </div>
+      <div class="slogan">Ideas que se visten. <b>Fe que se comparte.</b></div>
+    </div>
+
+    <div class="program">
+      <div class="program-heading">
+        <strong>Lo que vamos a vivir</strong>
+        <span>Café + galletas</span>
+      </div>
+      <div class="program-grid">
+        <div class="program-item">
+          <em>01</em>
+          <strong>Testimonio real</strong>
+          <span>Cómo nació Jesús Vive y cómo la fe guía el negocio.</span>
+        </div>
+        <div class="program-item">
+          <em>02</em>
+          <strong>Taller con IA</strong>
+          <span>Diseñá una remera con un mensaje bíblico actual.</span>
+        </div>
+        <div class="program-item">
+          <em>03</em>
+          <strong>Preguntas sin filtro</strong>
+          <span>Capital, precios, matrimonio y decisiones reales.</span>
+        </div>
+        <div class="program-item">
+          <em>04</em>
+          <strong>Desafío 24 hs</strong>
+          <span>Consejos prácticos y oración por tus proyectos.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="details">
+      <div class="facts">
+        <div class="fact fact-date">Sábado <b>&nbsp;13&nbsp;</b> de junio</div>
+        <div class="fact fact-time">20:30 <small>HS</small></div>
+        <div class="fact fact-address">República de Siria 255</div>
+      </div>
+      <div class="organizers">
+        <div class="organizers-label">Organizan</div>
+        <img class="raices-logo" src="../branding/aliados/raices-horizontal.png" alt="Raíces Red de Jóvenes">
+        <div class="plus">+</div>
+        <div class="renuevo-lockup">
+          <img class="renuevo-icon" src="../branding/aliados/el-renuevo-r4.png" alt="">
+          <img class="renuevo-wordmark" src="../branding/aliados/el-renuevo-wordmark.png" alt="Iglesia El Renuevo">
         </div>
       </div>
     </div>
