@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tablero de marca | Cafe Emprendedor</title>
+  <style>
+    :root {
+      --violet: #321064;
+      --violet-dark: #210949;
+      --violet-light: #51268a;
+      --blue: #2455e6;
+      --coral: #ff674d;
+      --yellow: #ffd41f;
+      --lime: #79d11f;
+      --cream: #fff4df;
+      --sky: #abcff1;
+      --ink: #25143d;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #d7d2ca;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+    }
+
+    .board {
+      position: relative;
+      width: 1600px;
+      height: 2400px;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--cream);
+      isolation: isolate;
+    }
+
+    .display {
+      font-family: "Cooper Black", "Arial Black", Arial, sans-serif;
+    }
+
+    .rounded {
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 0 16px;
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 25px;
+      line-height: 1;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 42px;
+      height: 11px;
+      content: "";
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Cooper Black", "Arial Black", Arial, sans-serif;
+      font-size: 58px;
+      line-height: .95;
+      letter-spacing: -2px;
+    }
+
+    .hero {
+      position: relative;
+      height: 620px;
+      overflow: hidden;
+      color: var(--cream);
+      background: var(--violet-dark);
+    }
+
+    .hero-art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 47%;
+      transform: scale(1.02);
+    }
+
+    .hero-shade {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(33, 9, 73, .96) 0%, rgba(33, 9, 73, .76) 39%, rgba(33, 9, 73, .12) 72%, rgba(33, 9, 73, .05) 100%),
+        linear-gradient(0deg, rgba(33, 9, 73, .38), transparent 46%);
+    }
+
+    .hero::before {
+      position: absolute;
+      z-index: 2;
+      right: -105px;
+      bottom: -225px;
+      width: 610px;
+      height: 420px;
+      content: "";
+      border: 18px solid var(--yellow);
+      border-radius: 52% 48% 45% 55%;
+      transform: rotate(-8deg);
+    }
+
+    .hero-copy {
+      position: absolute;
+      z-index: 3;
+      top: 70px;
+      left: 70px;
+      width: 620px;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 13px 24px 11px;
+      border-radius: 999px;
+      color: var(--violet-dark);
+      background: var(--yellow);
+      box-shadow: 8px 8px 0 var(--coral);
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transform: rotate(-2deg);
+    }
+
+    .hero h1 {
+      max-width: 590px;
+      margin: 0;
+      font-family: "Cooper Black", "Arial Black", Arial, sans-serif;
+      font-size: 78px;
+      line-height: .92;
+      letter-spacing: -3px;
+    }
+
+    .hero p {
+      max-width: 540px;
+      margin: 24px 0 0;
+      color: rgba(255, 244, 223, .9);
+      font-size: 27px;
+      font-weight: 700;
+      line-height: 1.22;
+    }
+
+    .hero-logo-wrap {
+      position: absolute;
+      z-index: 4;
+      top: 28px;
+      right: 93px;
+      display: grid;
+      width: 490px;
+      height: 555px;
+      place-items: center;
+    }
+
+    .hero-logo-halo {
+      position: absolute;
+      inset: 47px 20px 25px;
+      border: 9px solid var(--violet-dark);
+      border-radius: 44% 56% 52% 48%;
+      background: rgba(255, 244, 223, .93);
+      box-shadow: 18px 18px 0 rgba(36, 85, 230, .92);
+      transform: rotate(3deg);
+    }
+
+    .hero-logo {
+      position: relative;
+      width: 390px;
+      height: 490px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 0 rgba(33, 9, 73, .16));
+    }
+
+    .brand-line {
+      position: absolute;
+      z-index: 5;
+      right: 58px;
+      bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--violet-dark);
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 18px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transform: rotate(-3deg);
+    }
+
+    .brand-line span {
+      padding: 10px 18px 9px;
+      border: 5px solid var(--violet-dark);
+      border-radius: 999px;
+      background: var(--lime);
+    }
+
+    .logo-system {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr .95fr;
+      height: 430px;
+      border-bottom: 8px solid var(--violet);
+      background: var(--cream);
+    }
+
+    .logo-card {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      overflow: hidden;
+      align-items: center;
+      justify-content: center;
+      border-right: 6px solid var(--violet);
+    }
+
+    .logo-card:last-child {
+      border-right: 0;
+    }
+
+    .logo-card.primary {
+      padding: 55px 50px 40px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255, 212, 31, .95) 0 12px, transparent 13px),
+        radial-gradient(circle at 88% 82%, rgba(36, 85, 230, .95) 0 10px, transparent 11px),
+        var(--coral);
+    }
+
+    .logo-card.primary::after {
+      position: absolute;
+      right: -40px;
+      bottom: 24px;
+      width: 190px;
+      height: 70px;
+      content: "";
+      border: 12px solid var(--cream);
+      border-right: 0;
+      border-bottom: 0;
+      border-radius: 100% 0 0;
+      opacity: .86;
+      transform: rotate(-12deg);
+    }
+
+    .primary-logo {
+      width: 300px;
+      height: 340px;
+      object-fit: contain;
+      filter: drop-shadow(11px 11px 0 rgba(33, 9, 73, .24));
+    }
+
+    .logo-card.symbol {
+      color: var(--cream);
+      background: var(--violet);
+    }
+
+    .symbol-icon {
+      width: 250px;
+      height: 290px;
+      object-fit: contain;
+      filter: drop-shadow(12px 12px 0 rgba(33, 9, 73, .7));
+    }
+
+    .rays {
+      position: absolute;
+      top: 57px;
+      right: 45px;
+      display: grid;
+      gap: 11px;
+      transform: rotate(-22deg);
+    }
+
+    .rays i {
+      display: block;
+      width: 58px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--yellow);
+    }
+
+    .rays i:nth-child(2) {
+      width: 40px;
+      margin-left: 18px;
+      background: var(--coral);
+    }
+
+    .rays i:nth-child(3) {
+      width: 26px;
+      margin-left: 31px;
+      background: var(--lime);
+    }
+
+    .logo-card.rule {
+      align-items: stretch;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px 42px 28px;
+      color: var(--violet-dark);
+      background: var(--sky);
+    }
+
+    .logo-card.rule h2 {
+      margin: 0 0 12px;
+      font-family: "Cooper Black", "Arial Black", Arial, sans-serif;
+      font-size: 38px;
+      line-height: .96;
+    }
+
+    .logo-card.rule p {
+      margin: 0;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.22;
+    }
+
+    .logo-card.rule .eyebrow {
+      margin-bottom: 12px;
+      font-size: 18px;
+      letter-spacing: 2px;
+    }
+
+    .mini-rule {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 18px;
+      padding: 12px 15px;
+      border: 5px solid var(--violet);
+      border-radius: 25px;
+      background: rgba(255, 244, 223, .62);
+      box-shadow: 8px 8px 0 var(--violet);
+    }
+
+    .mini-rule img {
+      width: 60px;
+      height: 72px;
+      object-fit: contain;
+    }
+
+    .mini-rule span {
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+
+    .card-label {
+      position: absolute;
+      top: 23px;
+      left: 26px;
+      padding: 8px 15px 7px;
+      border: 4px solid currentColor;
+      border-radius: 999px;
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .primary .card-label {
+      color: var(--cream);
+      background: var(--violet);
+    }
+
+    .symbol .card-label {
+      color: var(--violet-dark);
+      background: var(--yellow);
+    }
+
+    .palette {
+      height: 400px;
+      padding: 48px 62px 46px;
+      color: var(--violet-dark);
+      background: #fff9ed;
+      border-bottom: 8px solid var(--coral);
+    }
+
+    .palette-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 35px;
+    }
+
+    .palette-note {
+      width: 550px;
+      margin: 0 8px 2px 0;
+      color: #604a78;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.25;
+      text-align: right;
+    }
+
+    .swatches {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 20px;
+    }
+
+    .swatch {
+      display: flex;
+      height: 190px;
+      min-width: 0;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      border: 5px solid var(--violet-dark);
+      border-radius: 38% 62% 58% 42%;
+      box-shadow: 7px 8px 0 rgba(33, 9, 73, .13);
+      transform: rotate(-2deg);
+    }
+
+    .swatch:nth-child(even) {
+      border-radius: 59% 41% 45% 55%;
+      transform: rotate(2deg);
+    }
+
+    .swatch strong {
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 21px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .swatch small {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .swatch.light {
+      color: var(--cream);
+    }
+
+    .swatch.dark {
+      color: var(--violet-dark);
+    }
+
+    .typography {
+      display: grid;
+      grid-template-columns: 44% 56%;
+      height: 395px;
+      border-bottom: 8px solid var(--violet);
+      background: var(--cream);
+    }
+
+    .type-intro {
+      padding: 36px 56px 30px;
+      color: var(--cream);
+      background: var(--violet);
+    }
+
+    .type-intro .eyebrow {
+      color: var(--yellow);
+    }
+
+    .type-intro p {
+      max-width: 560px;
+      margin: 16px 0 0;
+      color: rgba(255, 244, 223, .9);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .lettering-note {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 11px 16px;
+      border: 4px solid var(--yellow);
+      border-radius: 20px;
+      color: var(--violet-dark);
+      background: var(--yellow);
+      box-shadow: 7px 7px 0 var(--coral);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.15;
+    }
+
+    .lettering-note b {
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 24px;
+    }
+
+    .type-samples {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-width: 0;
+      color: var(--violet-dark);
+      background: #fff9ed;
+    }
+
+    .type-sample {
+      position: relative;
+      min-width: 0;
+      padding: 36px 40px 30px;
+      border-right: 5px solid var(--coral);
+    }
+
+    .type-sample:last-child {
+      border-right: 0;
+    }
+
+    .type-sample .aa {
+      display: block;
+      margin: 0;
+      color: var(--coral);
+      font-size: 112px;
+      line-height: .9;
+    }
+
+    .type-sample:last-child .aa {
+      color: var(--blue);
+    }
+
+    .type-sample h3 {
+      margin: 17px 0 7px;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .type-sample p {
+      margin: 0;
+      color: #604a78;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .alphabet {
+      display: block;
+      margin-top: 18px;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      line-height: 1.45;
+    }
+
+    .visual-world {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      height: 555px;
+      background: var(--sky);
+    }
+
+    .visual-rules {
+      position: relative;
+      overflow: hidden;
+      padding: 46px 53px;
+      color: var(--violet-dark);
+      background: var(--sky);
+    }
+
+    .visual-rules::after {
+      position: absolute;
+      right: -105px;
+      bottom: -115px;
+      width: 340px;
+      height: 300px;
+      content: "";
+      border: 38px solid var(--coral);
+      border-radius: 48% 52% 44% 56%;
+      opacity: .95;
+      transform: rotate(17deg);
+    }
+
+    .pillars {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 25px;
+    }
+
+    .pillar {
+      min-height: 100px;
+      padding: 17px 17px 14px;
+      border: 4px solid var(--violet);
+      border-radius: 18px 30px 18px 30px;
+      color: var(--cream);
+      background: var(--violet);
+      box-shadow: 6px 6px 0 var(--yellow);
+    }
+
+    .pillar:nth-child(2) {
+      color: var(--violet-dark);
+      background: var(--yellow);
+      box-shadow: 6px 6px 0 var(--coral);
+    }
+
+    .pillar:nth-child(3) {
+      color: var(--violet-dark);
+      background: var(--lime);
+      box-shadow: 6px 6px 0 var(--blue);
+    }
+
+    .pillar:nth-child(4) {
+      background: var(--coral);
+      box-shadow: 6px 6px 0 var(--violet);
+    }
+
+    .pillar strong {
+      display: block;
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 20px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .pillar span {
+      display: block;
+      margin-top: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .visual-summary {
+      position: relative;
+      z-index: 2;
+      max-width: 540px;
+      margin: 25px 0 0;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .applications {
+      position: relative;
+      overflow: hidden;
+      padding: 46px 44px;
+      color: var(--cream);
+      background: var(--violet-dark);
+    }
+
+    .applications .eyebrow {
+      color: var(--yellow);
+    }
+
+    .application-grid {
+      display: grid;
+      grid-template-columns: .86fr 1.22fr .92fr;
+      align-items: end;
+      gap: 24px;
+      height: 392px;
+      margin-top: 5px;
+    }
+
+    .social-mockup {
+      position: relative;
+      height: 338px;
+      overflow: hidden;
+      border: 6px solid var(--cream);
+      border-radius: 30px;
+      background: var(--cream);
+      box-shadow: 11px 12px 0 var(--coral);
+      transform: rotate(-3deg);
+    }
+
+    .social-mockup img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .screen-mockup {
+      position: relative;
+      height: 290px;
+      margin-bottom: 20px;
+      padding: 14px;
+      border: 8px solid var(--cream);
+      border-radius: 24px;
+      background: #111;
+      box-shadow: 12px 13px 0 var(--blue);
+      transform: rotate(2deg);
+    }
+
+    .screen-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      background: var(--coral);
+    }
+
+    .screen-content > img:first-child {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 46%;
+      filter: brightness(.72) saturate(1.08);
+    }
+
+    .screen-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 155px;
+      height: 185px;
+      object-fit: contain;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(7px 8px 0 rgba(33, 9, 73, .7));
+    }
+
+    .screen-stand {
+      position: absolute;
+      bottom: -43px;
+      left: 50%;
+      width: 130px;
+      height: 45px;
+      border-radius: 0 0 20px 20px;
+      background: var(--cream);
+      transform: translateX(-50%);
+    }
+
+    .cup-mockup {
+      position: relative;
+      height: 350px;
+    }
+
+    .cup {
+      position: absolute;
+      right: 26px;
+      bottom: 20px;
+      width: 210px;
+      height: 280px;
+      border: 7px solid var(--cream);
+      border-radius: 20px 20px 58px 58px;
+      background: var(--yellow);
+      box-shadow: 10px 11px 0 var(--coral);
+      transform: rotate(-4deg);
+    }
+
+    .cup::before {
+      position: absolute;
+      top: 60px;
+      right: -78px;
+      width: 95px;
+      height: 115px;
+      content: "";
+      border: 20px solid var(--cream);
+      border-left: 0;
+      border-radius: 0 60px 60px 0;
+    }
+
+    .cup img {
+      position: absolute;
+      top: 53px;
+      left: 34px;
+      width: 140px;
+      height: 175px;
+      object-fit: contain;
+    }
+
+    .steam {
+      position: absolute;
+      top: -40px;
+      left: 78px;
+      width: 55px;
+      height: 68px;
+      border: 12px solid var(--cream);
+      border-right: 0;
+      border-bottom: 0;
+      border-radius: 40px 0 0;
+      opacity: .9;
+      transform: rotate(20deg);
+    }
+
+    .footer-stamp {
+      position: absolute;
+      right: 34px;
+      bottom: 20px;
+      padding: 8px 13px 7px;
+      border: 3px solid rgba(255, 244, 223, .52);
+      border-radius: 999px;
+      color: rgba(255, 244, 223, .72);
+      font-family: "Arial Rounded MT Bold", "Arial Black", Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <main class="board" id="brand-board">
+    <section class="hero">
+      <img class="hero-art" src="../ilustracion-campana-01.png" alt="">
+      <div class="hero-shade"></div>
+
+      <div class="hero-copy">
+        <span class="hero-kicker">Tablero de marca</span>
+        <h1>Fe que impulsa ideas con propósito.</h1>
+        <p>Una identidad juvenil, cálida y expresiva para encontrarnos, crear y emprender en comunidad.</p>
+      </div>
+
+      <div class="hero-logo-wrap">
+        <div class="hero-logo-halo"></div>
+        <img class="hero-logo" src="../cafe-emprendedor-logo.png" alt="Cafe Emprendedor">
+      </div>
+
+      <div class="brand-line">
+        <span>Fe</span>
+        <span>Ideas</span>
+        <span>Comunidad</span>
+        <span>Acción</span>
+      </div>
+    </section>
+
+    <section class="logo-system">
+      <article class="logo-card primary">
+        <span class="card-label">Logo principal</span>
+        <img class="primary-logo" src="../cafe-emprendedor-logo.png" alt="Logo principal Cafe Emprendedor">
+      </article>
+
+      <article class="logo-card symbol">
+        <span class="card-label">Símbolo</span>
+        <div class="rays" aria-hidden="true"><i></i><i></i><i></i></div>
+        <img class="symbol-icon" src="../cafe-emprendedor-icono.png" alt="Símbolo Cafe Emprendedor">
+      </article>
+
+      <article class="logo-card rule">
+        <p class="eyebrow">Sistema de marca</p>
+        <h2>Flexible, reconocible y siempre en proporción.</h2>
+        <p>El logo completo identifica el encuentro. El símbolo funciona como avatar, sello y recurso gráfico.</p>
+        <div class="mini-rule">
+          <img src="../cafe-emprendedor-icono.png" alt="">
+          <span>Dejar aire alrededor.<br>No estirar, rotar ni alterar colores.</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="palette">
+      <div class="palette-head">
+        <div>
+          <p class="eyebrow">Paleta cromática</p>
+          <h2 class="section-title">Color con energía y propósito</h2>
+        </div>
+        <p class="palette-note">El violeta construye reconocimiento. Coral, azul, amarillo y lima aportan movimiento; crema y celeste equilibran la composición.</p>
+      </div>
+
+      <div class="swatches">
+        <div class="swatch light" style="background:#321064">
+          <strong>#321064</strong><small>Violeta</small>
+        </div>
+        <div class="swatch light" style="background:#210949">
+          <strong>#210949</strong><small>Profundo</small>
+        </div>
+        <div class="swatch light" style="background:#2455e6">
+          <strong>#2455E6</strong><small>Azul acción</small>
+        </div>
+        <div class="swatch light" style="background:#ff674d">
+          <strong>#FF674D</strong><small>Coral</small>
+        </div>
+        <div class="swatch dark" style="background:#ffd41f">
+          <strong>#FFD41F</strong><small>Amarillo</small>
+        </div>
+        <div class="swatch dark" style="background:#79d11f">
+          <strong>#79D11F</strong><small>Lima</small>
+        </div>
+        <div class="swatch dark" style="background:#fff4df">
+          <strong>#FFF4DF</strong><small>Crema</small>
+        </div>
+        <div class="swatch dark" style="background:#abcff1">
+          <strong>#ABCFF1</strong><small>Celeste</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="typography">
+      <div class="type-intro">
+        <p class="eyebrow">Tipografía</p>
+        <h2 class="section-title">Cercana, contundente y legible</h2>
+        <p>Los títulos deben sentirse cercanos y expresivos. La información práctica necesita máxima claridad, especialmente en pantallas y redes.</p>
+        <div class="lettering-note">
+          <b>!</b>
+          <span>El lettering de “CAFÉ EMPRENDEDOR” es propio del logo. Siempre debe utilizarse como imagen original.</span>
+        </div>
+      </div>
+
+      <div class="type-samples">
+        <article class="type-sample">
+          <span class="aa display">Aa</span>
+          <h3 class="display">Cooper Black</h3>
+          <p>Titulares expresivos, frases breves y palabras de impacto.</p>
+          <span class="alphabet display">ABCDEF GHIJKLMN<br>OPQRST UVWXYZ</span>
+        </article>
+        <article class="type-sample">
+          <span class="aa rounded">Aa</span>
+          <h3 class="rounded">Arial Rounded MT Bold</h3>
+          <p>Subtítulos, datos del evento, etiquetas y llamados a la acción.</p>
+          <span class="alphabet rounded">abcdef ghijklmn<br>0123456789</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="visual-world">
+      <div class="visual-rules">
+        <p class="eyebrow">Lenguaje visual</p>
+        <h2 class="section-title">Ilustrado, humano y en movimiento</h2>
+
+        <div class="pillars">
+          <div class="pillar">
+            <strong>Personas</strong>
+            <span>Jóvenes creando, conversando y colaborando.</span>
+          </div>
+          <div class="pillar">
+            <strong>Formas</strong>
+            <span>Globos, cintas, curvas y marcos orgánicos.</span>
+          </div>
+          <div class="pillar">
+            <strong>Símbolos</strong>
+            <span>Café, brotes, flechas, ideas y crecimiento.</span>
+          </div>
+          <div class="pillar">
+            <strong>Composición</strong>
+            <span>Capas, diagonales y contrastes sin perder legibilidad.</span>
+          </div>
+        </div>
+
+        <p class="visual-summary">La marca no busca verse corporativa ni minimalista: debe sentirse viva, juvenil, creativa y cercana.</p>
+      </div>
+
+      <div class="applications">
+        <p class="eyebrow">Aplicaciones</p>
+        <div class="application-grid">
+          <div class="social-mockup">
+            <img src="../../flyer/cafe-emprendedor-publicacion-1080x1350.png" alt="Aplicación en redes sociales">
+          </div>
+
+          <div class="screen-mockup">
+            <div class="screen-content">
+              <img src="../ilustracion-campana-01.png" alt="">
+              <img class="screen-logo" src="../cafe-emprendedor-logo.png" alt="">
+            </div>
+            <div class="screen-stand"></div>
+          </div>
+
+          <div class="cup-mockup">
+            <div class="cup">
+              <div class="steam"></div>
+              <img src="../cafe-emprendedor-icono.png" alt="Aplicación del símbolo en taza">
+            </div>
+          </div>
+        </div>
+        <span class="footer-stamp">Cafe Emprendedor · Identidad visual</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
