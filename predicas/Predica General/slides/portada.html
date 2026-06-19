@@ -1,0 +1,51 @@
+<!-- @dsCard group="Slides" viewport="1920x1080" name="Portada" subtitle="Cover — ink bg, Anton hero, green highlight" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  html, body { margin: 0; }
+  .slide {
+    position: relative; width: 1920px; height: 1080px; box-sizing: border-box;
+    background: var(--ink); color: var(--cream);
+    padding: var(--slide-margin-y) var(--slide-margin-x);
+    display: flex; flex-direction: column; justify-content: center;
+    font-family: var(--font-body); overflow: hidden;
+  }
+  .corner { position: absolute; top: 56px; right: 64px; height: 96px; width: auto; }
+  .kicker {
+    font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-kicker);
+    font-size: 38px; color: var(--green); margin: 0 0 var(--space-4);
+  }
+  .title {
+    font-family: var(--font-display); text-transform: uppercase;
+    font-size: var(--fs-title); line-height: 1.35;
+    letter-spacing: var(--tracking-display); margin: 0; max-width: 1400px;
+  }
+  .mark {
+    background: var(--green); color: var(--ink);
+    padding: 0 0.06em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+  }
+  .verse {
+    font-family: var(--font-quote); font-style: italic; font-size: 52px;
+    color: var(--cream-70); margin: var(--space-6) 0 0; max-width: 1100px;
+  }
+  .ref {
+    align-self: flex-start; margin-top: var(--space-4);
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em;
+    font-size: 34px; color: var(--ink); background: var(--green);
+    padding: 0.55em 1.1em; border-radius: var(--radius-pill);
+  }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <img class="corner" src="../assets/mark-green.png" alt="El Renuevo" />
+    <p class="kicker">Reunión General · Domingo</p>
+    <h1 class="title">Volver al<br /><span class="mark">primer amor</span></h1>
+    <p class="verse">“Pero tengo contra ti que has dejado tu primer amor.”</p>
+    <span class="ref">Apocalipsis 2:4</span>
+  </div>
+</body>
+</html>

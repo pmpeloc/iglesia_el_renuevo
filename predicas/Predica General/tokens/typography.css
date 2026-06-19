@@ -1,0 +1,42 @@
+/* ── El Renuevo · Typography tokens ──────────────────────────────────
+   Anton            → huge uppercase display / titles
+   Montserrat 800   → highlighted statements (green marker)
+   Montserrat 400   → body copy
+   Playfair Italic  → scripture, quotes, framing lines */
+
+:root {
+  /* ── Families ─────────────────────────────────────────────────── */
+  --font-display: "Anton", "Oswald", Impact, sans-serif;
+  --font-body:    "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-quote:   "Playfair Display", Georgia, "Times New Roman", serif;
+
+  /* ── Weights ──────────────────────────────────────────────────── */
+  --weight-body:     400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extra:    800;  /* Montserrat highlight statements */
+
+  /* ── Display / title scale (1920×1080 slide canvas) ───────────── */
+  --fs-mega:   200px;  /* portada hero word */
+  --fs-title:  132px;  /* point title */
+  --fs-h1:      92px;  /* big statement */
+  --fs-h2:      64px;  /* sub-point heading */
+  --fs-h3:      44px;  /* secondary heading */
+
+  /* ── Body scale ───────────────────────────────────────────────── */
+  --fs-lead:    40px;  /* lead paragraph */
+  --fs-body:    32px;  /* body copy */
+  --fs-small:   26px;  /* captions, footnotes */
+  --fs-kicker:  30px;  /* eyebrow / kicker labels */
+
+  /* ── Quote ────────────────────────────────────────────────────── */
+  --fs-quote:   84px;  /* scripture / framing italic */
+
+  /* ── Spacing of type ──────────────────────────────────────────── */
+  --tracking-display:  0.01em;   /* Anton — near-tight */
+  --tracking-kicker:   0.22em;   /* wide uppercase labels */
+  --leading-display:   1.0;
+  --leading-tight:     1.05;
+  --leading-body:      1.45;
+}

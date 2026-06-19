@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Neutrals & surfaces" subtitle="Cream-deep panel, ink-soft, hairlines" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: #fff; }
+  .row { display: flex; gap: 14px; padding: 20px; }
+  .sw { flex: 1; height: 110px; border-radius: var(--radius-sm); border: 1px solid var(--ink-12);
+        display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; box-sizing: border-box; }
+  .name { font-weight: 700; font-size: 12px; letter-spacing: .03em; }
+  .hex { font-size: 11px; opacity: .7; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background: var(--cream-deep);"><span class="name" style="color:var(--ink)">CREAM DEEP</span><span class="hex" style="color:var(--ink)">#EFE6D6</span></div>
+    <div class="sw" style="background: var(--ink-soft);"><span class="name" style="color:var(--cream)">INK SOFT</span><span class="hex" style="color:var(--cream)">#2A2A2A</span></div>
+    <div class="sw" style="background: var(--cream); border-color: var(--ink-12);"><span class="name" style="color:var(--ink)">HAIRLINE</span><span class="hex" style="color:var(--ink)">ink / 12%</span></div>
+    <div class="sw" style="background: var(--cream); ">
+      <span class="name" style="color:var(--ink-70)">MUTED TEXT</span><span class="hex" style="color:var(--ink-70)">ink / 70%</span></div>
+  </div>
+</body>
+</html>

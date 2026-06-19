@@ -1,0 +1,43 @@
+/* ── El Renuevo · Color tokens ───────────────────────────────────────
+   Three-color brand: CREAM background, INK black, GREEN lime accent.
+   High-contrast, bold. Green is the single accent — use it sparingly
+   as a highlight / marker, never as large fills of body text. */
+
+:root {
+  /* ── Base palette ─────────────────────────────────────────────── */
+  --cream:        #F7F1E8;  /* primary background */
+  --cream-deep:   #EFE6D6;  /* secondary surface, subtle panels */
+  --ink:          #1A1A1A;  /* deep black — text, boxes, portada bg */
+  --ink-soft:     #2A2A2A;  /* raised black surfaces on ink */
+  --green:        #5DBE2C;  /* lime accent — THE brand color */
+  --green-deep:   #4A9E22;  /* pressed / darker green */
+  --green-bright: #6FD635;  /* hover / lifted green */
+  --white:        #FFFFFF;
+
+  /* Neutral steps for borders / muted text on cream */
+  --ink-70:  rgba(26, 26, 26, 0.70);
+  --ink-50:  rgba(26, 26, 26, 0.50);
+  --ink-30:  rgba(26, 26, 26, 0.30);
+  --ink-12:  rgba(26, 26, 26, 0.12);
+  --cream-70: rgba(247, 241, 232, 0.70);
+  --cream-40: rgba(247, 241, 232, 0.40);
+
+  /* ── Semantic aliases ─────────────────────────────────────────── */
+  --bg:              var(--cream);     /* default slide background */
+  --bg-alt:          var(--ink);       /* portada / closing background */
+  --surface-card:    var(--ink);       /* black application box */
+  --surface-panel:   var(--cream-deep);
+
+  --text-body:       var(--ink);       /* body copy on cream */
+  --text-muted:      var(--ink-70);
+  --text-on-ink:     var(--cream);     /* copy on black box */
+  --text-on-green:   var(--ink);       /* copy sitting on green */
+
+  --accent:          var(--green);
+  --accent-hover:    var(--green-bright);
+  --accent-press:    var(--green-deep);
+  --highlight:       var(--green);     /* marker behind ExtraBold text */
+
+  --border-hair:     var(--ink-12);
+  --border-strong:   var(--ink);
+}

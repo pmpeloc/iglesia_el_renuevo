@@ -1,0 +1,183 @@
+<!-- @dsCard group="Slides" viewport="1280x720" name="Deck — Predica General" subtitle="Interactive 5-slide deck (← → to navigate)" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Predica General · El Renuevo</title>
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; font-family: var(--font-body); }
+  #stage { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  #canvas { width: 1920px; height: 1080px; position: relative; transform-origin: center center; flex-shrink: 0; }
+  .slide {
+    position: absolute; inset: 0; box-sizing: border-box; overflow: hidden;
+  }
+  .slide:not(.active) { display: none !important; }
+  .corner { position: absolute; top: 56px; right: 64px; width: auto; z-index: 3; }
+
+  /* shared type */
+  .kicker { font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-kicker);
+            font-size: var(--fs-kicker); margin: 0; }
+  .mark-hl { background: var(--green); color: var(--ink); padding: 0 0.07em;
+             box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+  /* 1 · Portada */
+  .s-portada { background: var(--ink); color: var(--cream);
+    padding: var(--slide-margin-y) var(--slide-margin-x); display: flex; flex-direction: column; justify-content: center; }
+  .s-portada .kicker { color: var(--green); font-size: 38px; margin-bottom: var(--space-4); }
+  .s-portada .title { font-family: var(--font-display); text-transform: uppercase; font-size: var(--fs-title);
+    line-height: 1.35; letter-spacing: var(--tracking-display); margin: 0; }
+  .s-portada .verse { font-family: var(--font-quote); font-style: italic; font-size: 52px;
+    color: var(--cream-70); margin: var(--space-6) 0 0; max-width: 1100px; }
+  .ref-pill { align-self: flex-start; margin-top: var(--space-4); font-weight: 700; text-transform: uppercase;
+    letter-spacing: .16em; font-size: 34px; color: var(--ink); background: var(--green);
+    padding: .55em 1.1em; border-radius: var(--radius-pill); }
+
+  /* 2 · Punto */
+  .s-punto { background: var(--cream); color: var(--ink);
+    padding: var(--slide-margin-y) var(--slide-margin-x); display: flex; flex-direction: column; justify-content: center; }
+  .s-punto .num { font-family: var(--font-display); font-size: 360px; line-height: .8; color: var(--green);
+    margin: 0 0 var(--space-2); }
+  .s-punto .kicker { color: var(--green-deep); font-size: 48px; margin-bottom: var(--space-3); }
+  .s-punto .title { font-family: var(--font-display); text-transform: uppercase; font-size: var(--fs-title);
+    line-height: var(--leading-display); letter-spacing: var(--tracking-display); margin: 0; }
+  .s-punto .rule { width: 140px; height: var(--border-2); background: var(--ink); margin-top: var(--space-5); }
+
+  /* 3 · Subpunto */
+  .s-subpunto { background: var(--cream); color: var(--ink); display: grid; grid-template-columns: 1fr 760px; }
+  .s-subpunto .col-text { padding: var(--slide-margin-y) var(--space-7) var(--slide-margin-y) var(--slide-margin-x);
+    display: flex; flex-direction: column; justify-content: center; }
+  .s-subpunto .kicker { color: var(--green-deep); font-size: 34px; margin-bottom: var(--space-3); }
+  .s-subpunto .h2 { font-weight: 800; font-size: var(--fs-h2); line-height: var(--leading-tight);
+    margin: 0 0 var(--space-4); }
+  .s-subpunto .body { font-weight: 600; font-size: 38px; line-height: var(--leading-body); margin: 0; max-width: 820px; }
+  .s-subpunto ul { margin: var(--space-3) 0 0; padding: 0; list-style: none; }
+  .s-subpunto li { font-weight: 600; font-size: 36px; padding-left: 38px; position: relative; margin-bottom: var(--space-2); }
+  .s-subpunto li::before { content: ""; position: absolute; left: 0; top: .55em; width: 18px; height: 18px;
+    background: var(--green); border-radius: 4px; }
+  .s-subpunto .col-img { position: relative; background: var(--ink); display: flex; align-items: center; justify-content: center; }
+  .s-subpunto .col-img .ph { color: var(--cream-40); font-weight: 700; text-transform: uppercase;
+    letter-spacing: .22em; font-size: var(--fs-small); }
+  .s-subpunto .col-img .markbig { position: absolute; height: 220px; opacity: .12; }
+
+  /* 4 · Aplicación */
+  .s-aplicacion { background: var(--cream); padding: var(--slide-margin-y) var(--slide-margin-x);
+    display: flex; align-items: center; justify-content: center; }
+  .s-aplicacion .box { background: var(--ink); color: var(--text-on-ink); border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card); padding: var(--space-7) var(--space-8); max-width: 1380px; width: 100%; }
+  .s-aplicacion .kicker { color: var(--green); font-size: 48px; margin-bottom: var(--space-4); }
+  .s-aplicacion .stmt { font-weight: 800; font-size: var(--fs-h2); line-height: var(--leading-tight); margin: 0; }
+  .s-aplicacion .sub { font-weight: 600; font-size: 46px; line-height: var(--leading-body); color: #FFFFFF;
+    margin: var(--space-4) 0 0; max-width: 1000px; }
+
+  /* 5 · Cierre */
+  .s-cierre { background: var(--ink); color: var(--cream); padding: var(--slide-margin-y) var(--slide-margin-x);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .s-cierre .markbig { height: 140px; width: auto; margin-bottom: var(--space-5); }
+  .s-cierre .quote { font-family: var(--font-quote); font-style: italic; font-size: var(--fs-quote);
+    line-height: 1.18; margin: 0; max-width: 1600px; }
+  .s-cierre .quote .hl { color: var(--green); }
+  .s-cierre .meeting { margin-top: var(--space-5); font-weight: 700; text-transform: uppercase;
+    letter-spacing: var(--tracking-kicker); font-size: var(--fs-kicker); color: var(--green); }
+  .s-cierre .meeting span { color: var(--cream-40); }
+
+  /* nav */
+  .nav { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex;
+    align-items: center; gap: 14px; z-index: 10; }
+  .nav button { font-family: var(--font-body); font-weight: 700; font-size: 15px; color: var(--ink);
+    background: var(--green); border: none; border-radius: var(--radius-pill); width: 44px; height: 44px;
+    cursor: pointer; line-height: 1; }
+  .nav button:hover { background: var(--green-bright); }
+  .nav .count { color: var(--cream); font-weight: 700; font-size: 15px; letter-spacing: .08em;
+    min-width: 64px; text-align: center; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <div id="canvas">
+      <!-- 1 -->
+      <section class="slide s-portada" data-screen-label="Portada">
+        <img class="corner" src="../assets/mark-green.png" alt="El Renuevo" style="height:96px" />
+        <p class="kicker">Reunión General · Domingo</p>
+        <h1 class="title">Volver al<br /><span class="mark-hl">primer amor</span></h1>
+        <p class="verse">“Pero tengo contra ti que has dejado tu primer amor.”</p>
+        <span class="ref-pill">Apocalipsis 2:4</span>
+      </section>
+      <!-- 2 -->
+      <section class="slide s-punto" data-screen-label="Punto">
+        <img class="corner" src="../assets/mark-green.png" alt="El Renuevo" style="height:88px" />
+        <div class="num">01</div>
+        <p class="kicker">Primer Punto</p>
+        <h1 class="title">Un corazón<br />que recuerda</h1>
+        <div class="rule"></div>
+      </section>
+      <!-- 3 -->
+      <section class="slide s-subpunto" data-screen-label="Subpunto">
+        <img class="corner" src="../assets/mark-green.png" alt="El Renuevo" style="height:80px" />
+        <div class="col-text">
+          <p class="kicker">Punto 01 · a</p>
+          <h2 class="h2">El amor que <span class="mark-hl">se enfría</span> con la rutina</h2>
+          <p class="body">La fe no muere de golpe; se apaga en lo cotidiano cuando dejamos de cultivarla.</p>
+          <ul>
+            <li>Servir sin presencia</li>
+            <li>Orar sin intimidad</li>
+            <li>Conocer sin obedecer</li>
+          </ul>
+        </div>
+        <div class="col-img">
+          <img class="markbig" src="../assets/mark-green-circle.png" alt="" />
+          <span class="ph">Imagen</span>
+        </div>
+      </section>
+      <!-- 4 -->
+      <section class="slide s-aplicacion" data-screen-label="Aplicación">
+        <img class="corner" src="../assets/mark-green.png" alt="El Renuevo" style="height:80px" />
+        <div class="box">
+          <p class="kicker">Aplicación</p>
+          <p class="stmt">Esta semana, <span class="mark-hl">vuelve a lo primero</span>: 15 minutos a solas con Él, cada día.</p>
+          <p class="sub">No esperes a sentirlo. Decídelo, agéndalo y preséntate.</p>
+        </div>
+      </section>
+      <!-- 5 -->
+      <section class="slide s-cierre" data-screen-label="Cierre">
+        <img class="markbig" src="../assets/mark-green.png" alt="Iglesia El Renuevo" />
+        <p class="quote">“Acuérdate, pues, de dónde has caído, y <span class="hl">arrepiéntete</span>, y haz las primeras obras.”</p>
+        <div class="meeting">Iglesia El Renuevo <span>·</span> MCyM <span>·</span> Reunión General</div>
+      </section>
+    </div>
+  </div>
+
+  <div class="nav">
+    <button id="prev" aria-label="Anterior">‹</button>
+    <span class="count" id="count">1 / 5</span>
+    <button id="next" aria-label="Siguiente">›</button>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const canvas = document.getElementById('canvas');
+    const countEl = document.getElementById('count');
+    const KEY = 'predica-deck-pos';
+    let i = Math.min(slides.length - 1, Math.max(0, parseInt(localStorage.getItem(KEY) || '0', 10)));
+
+    function fit() {
+      const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      canvas.style.transform = `scale(${s})`;
+    }
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      countEl.textContent = `${i + 1} / ${slides.length}`;
+      localStorage.setItem(KEY, String(i));
+    }
+    document.getElementById('prev').onclick = () => show(i - 1);
+    document.getElementById('next').onclick = () => show(i + 1);
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') show(i + 1);
+      if (e.key === 'ArrowLeft') show(i - 1);
+    });
+    window.addEventListener('resize', fit);
+    fit(); show(i);
+  </script>
+</body>
+</html>

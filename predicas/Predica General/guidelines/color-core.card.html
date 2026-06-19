@@ -1,0 +1,32 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Core palette" subtitle="Cream · Ink · Green — the whole brand" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; font-family: var(--font-body); background: #fff; }
+  .row { display: flex; gap: 14px; padding: 20px; }
+  .sw { flex: 1; height: 110px; border-radius: var(--radius-sm); border: 1px solid var(--ink-12);
+        display: flex; flex-direction: column; justify-content: flex-end; padding: 12px; box-sizing: border-box; }
+  .name { font-weight: 800; font-size: 14px; letter-spacing: .04em; }
+  .hex { font-size: 12px; opacity: .7; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw" style="background: var(--cream);">
+      <span class="name" style="color: var(--ink);">CREAM</span>
+      <span class="hex" style="color: var(--ink);">#F7F1E8</span>
+    </div>
+    <div class="sw" style="background: var(--ink);">
+      <span class="name" style="color: var(--cream);">INK</span>
+      <span class="hex" style="color: var(--cream);">#1A1A1A</span>
+    </div>
+    <div class="sw" style="background: var(--green);">
+      <span class="name" style="color: var(--ink);">GREEN</span>
+      <span class="hex" style="color: var(--ink);">#5DBE2C</span>
+    </div>
+  </div>
+</body>
+</html>

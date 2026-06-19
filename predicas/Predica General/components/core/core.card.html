@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="700x540" name="Core primitives" subtitle="Highlight · Kicker · ScriptureBadge · BlackCard · LogoMark" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; background: var(--cream); font-family: var(--font-body); }
+  .wrap { padding: 28px 30px; display: flex; flex-direction: column; gap: 22px; }
+  .group { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  .label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
+           color: var(--ink-50); width: 130px; flex: none; }
+  .stmt { font-family: var(--font-body); font-weight: 800; font-size: 38px; color: var(--ink); margin: 0; }
+</style>
+</head>
+<body>
+  <div id="root" class="wrap"></div>
+  <script type="text/babel">
+    const { Highlight, Kicker, ScriptureBadge, BlackCard, LogoMark } = window.PredicaGeneral_ebc788;
+
+    function Demo() {
+      return (
+        <>
+          <div className="group">
+            <span className="label">Highlight</span>
+            <p className="stmt">No es religión, es <Highlight>una relación</Highlight></p>
+          </div>
+          <div className="group">
+            <span className="label">Kicker</span>
+            <Kicker>Punto 01 · Reunión General</Kicker>
+          </div>
+          <div className="group">
+            <span className="label">ScriptureBadge</span>
+            <ScriptureBadge>2 Corintios 5:17</ScriptureBadge>
+            <ScriptureBadge variant="outline">Juan 3:16</ScriptureBadge>
+          </div>
+          <div className="group">
+            <span className="label">BlackCard</span>
+            <BlackCard style={{ flex: 1, padding: "24px 28px" }}>
+              <Kicker color="var(--green)">Aplicación</Kicker>
+              <p style={{ fontWeight: 800, fontSize: 30, margin: "12px 0 0" }}>
+                Esta semana, <Highlight>perdona de verdad</Highlight>.
+              </p>
+            </BlackCard>
+          </div>
+          <div className="group">
+            <span className="label">LogoMark</span>
+            <LogoMark variant="bare" size={64} basePath="../../assets" />
+            <LogoMark variant="green" size={64} basePath="../../assets" />
+            <LogoMark variant="black" size={64} basePath="../../assets" />
+          </div>
+        </>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+  </script>
+</body>
+</html>

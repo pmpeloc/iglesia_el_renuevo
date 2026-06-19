@@ -1,0 +1,38 @@
+/* ── El Renuevo · Spacing, radius, shadow tokens ─────────────────────
+   The aesthetic is flat, hard-edged and high-contrast: minimal radii,
+   no soft drop shadows on the brand surfaces. Generous slide margins. */
+
+:root {
+  /* ── Spacing scale (8px base) ─────────────────────────────────── */
+  --space-1:   8px;
+  --space-2:  16px;
+  --space-3:  24px;
+  --space-4:  32px;
+  --space-5:  48px;
+  --space-6:  64px;
+  --space-7:  96px;
+  --space-8: 128px;
+
+  /* Slide safe margins on the 1920×1080 canvas */
+  --slide-margin-x: 120px;
+  --slide-margin-y: 96px;
+
+  /* ── Radius — kept tight; brand is hard-edged ─────────────────── */
+  --radius-none:  0px;
+  --radius-sm:    6px;   /* badges, small chips */
+  --radius-md:   14px;   /* black application box */
+  --radius-lg:   24px;
+  --radius-pill: 999px;
+
+  /* ── Borders ──────────────────────────────────────────────────── */
+  --border-1: 2px;
+  --border-2: 4px;   /* heavy brand rule / underline */
+
+  /* ── Shadow — used very sparingly, only to lift the black box ──── */
+  --shadow-card: 0 24px 60px rgba(26, 26, 26, 0.22);
+  --shadow-none: none;
+
+  /* Highlight marker geometry (green behind ExtraBold text) */
+  --highlight-pad-x: 0.12em;
+  --highlight-pad-y: 0.04em;
+}

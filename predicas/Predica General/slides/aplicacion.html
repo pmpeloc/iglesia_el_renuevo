@@ -1,0 +1,44 @@
+<!-- @dsCard group="Slides" viewport="1920x1080" name="Aplicación" subtitle="Cream bg, black box with white text" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  html, body { margin: 0; }
+  .slide {
+    position: relative; width: 1920px; height: 1080px; box-sizing: border-box;
+    background: var(--cream); padding: var(--slide-margin-y) var(--slide-margin-x);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-body); overflow: hidden;
+  }
+  .corner { position: absolute; top: 56px; right: 64px; height: 80px; width: auto; }
+  .box {
+    background: var(--ink); color: var(--text-on-ink);
+    border-radius: var(--radius-md); box-shadow: var(--shadow-card);
+    padding: var(--space-7) var(--space-8); max-width: 1380px; width: 100%;
+  }
+  .kicker {
+    font-weight: 700; text-transform: uppercase; letter-spacing: var(--tracking-kicker);
+    font-size: 48px; color: var(--green); margin: 0 0 var(--space-4);
+  }
+  .stmt {
+    font-weight: 800; font-size: var(--fs-h2); line-height: var(--leading-tight); margin: 0;
+  }
+  .mark { background: var(--green); color: var(--ink); padding: 0 0.08em;
+          box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .sub { font-weight: 600; font-size: 46px; line-height: var(--leading-body);
+         color: #FFFFFF; margin: var(--space-4) 0 0; max-width: 1000px; }
+</style>
+</head>
+<body>
+  <div class="slide">
+    <img class="corner" src="../assets/mark-green.png" alt="El Renuevo" />
+    <div class="box">
+      <p class="kicker">Aplicación</p>
+      <p class="stmt">Esta semana, <span class="mark">vuelve a lo primero</span>: 15 minutos a solas con Él, cada día.</p>
+      <p class="sub">No esperes a sentirlo. Decídelo, agéndalo y preséntate.</p>
+    </div>
+  </div>
+</body>
+</html>

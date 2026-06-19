@@ -1,0 +1,28 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Radius & black box" subtitle="Hard-edged brand · md radius only on app box" -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; background: var(--cream); font-family: var(--font-body); }
+  .wrap { padding: 22px 24px; display: flex; gap: 22px; align-items: center; }
+  .sq { width: 90px; height: 90px; background: var(--ink); display: flex; align-items: flex-end;
+        padding: 8px; box-sizing: border-box; color: var(--cream); font-size: 11px; font-weight: 700; }
+  .card { flex: 1; background: var(--ink); color: var(--cream); border-radius: var(--radius-md);
+          padding: 16px 20px; box-shadow: var(--shadow-card); }
+  .card b { color: var(--green); }
+  .card .t { font-size: 13px; opacity: .8; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="sq" style="border-radius: var(--radius-none)">0 · none</div>
+    <div class="sq" style="border-radius: var(--radius-sm)">6 · sm</div>
+    <div class="card">
+      <b>Caja de aplicación</b>
+      <div class="t">radius-md 14px · shadow-card — the only lifted surface</div>
+    </div>
+  </div>
+</body>
+</html>

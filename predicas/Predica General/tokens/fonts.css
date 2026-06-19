@@ -1,0 +1,5 @@
+/* ── El Renuevo · Webfonts ───────────────────────────────────────────
+   Anton, Montserrat and Playfair Display are served from Google Fonts.
+   The @import pulls the @font-face declarations (woff2) for consumers. */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap');

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Predica General — Deck" description="5-slide preaching deck for Reunión General: portada, punto, subpunto, aplicación, cierre." -->
+<helmet>
+  <script src="./ds-base.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  </style>
+</helmet>
+
+<div style="position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-body);">
+
+  <div style="width: 1920px; height: 1080px; position: relative; transform-origin: center center; flex-shrink: 0; transform: scale({{ scale }});">
+
+    <!-- 1 · Portada -->
+    <section data-screen-label="Portada" style="position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; background: var(--ink); color: var(--cream); padding: 96px 120px; flex-direction: column; justify-content: center; align-items: stretch; display: {{ d0 }};">
+      <img src="../../assets/mark-green.png" alt="El Renuevo" style="position: absolute; top: 56px; right: 64px; height: 96px; width: auto;" />
+      <p style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; font-size: 38px; color: var(--green); margin: 0 0 32px;">Reunión General · Domingo</p>
+      <h1 style="font-family: var(--font-display); text-transform: uppercase; font-size: 132px; line-height: 1.35; letter-spacing: 0.01em; margin: 0;">Volver al<br /><span style="background: var(--green); color: var(--ink); padding: 0 0.06em; box-decoration-break: clone; -webkit-box-decoration-break: clone;">primer amor</span></h1>
+      <p style="font-family: var(--font-quote); font-style: italic; font-size: 52px; color: var(--cream-70); margin: 64px 0 0; max-width: 1100px;">“Pero tengo contra ti que has dejado tu primer amor.”</p>
+      <span style="align-self: flex-start; margin-top: 32px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em; font-size: 34px; color: var(--ink); background: var(--green); padding: 0.55em 1.1em; border-radius: 999px;">Apocalipsis 2:4</span>
+    </section>
+
+    <!-- 2 · Título de punto -->
+    <section data-screen-label="Punto" style="position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; background: var(--cream); color: var(--ink); padding: 96px 120px; flex-direction: column; justify-content: center; display: {{ d1 }};">
+      <img src="../../assets/mark-green.png" alt="El Renuevo" style="position: absolute; top: 56px; right: 64px; height: 88px; width: auto;" />
+      <div style="font-family: var(--font-display); font-size: 360px; line-height: 0.8; color: var(--green); margin: 0 0 16px;">01</div>
+      <p style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; font-size: 48px; color: var(--green-deep); margin: 0 0 24px;">Primer Punto</p>
+      <h1 style="font-family: var(--font-display); text-transform: uppercase; font-size: 132px; line-height: 0.94; letter-spacing: 0.01em; margin: 0;">Un corazón<br />que recuerda</h1>
+      <div style="width: 140px; height: 4px; background: var(--ink); margin-top: 48px;"></div>
+    </section>
+
+    <!-- 3 · Subpunto -->
+    <section data-screen-label="Subpunto" style="position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; background: var(--cream); color: var(--ink); grid-template-columns: 1fr 760px; display: {{ d2 }};">
+      <img src="../../assets/mark-green.png" alt="El Renuevo" style="position: absolute; top: 56px; right: 64px; height: 80px; width: auto; z-index: 2;" />
+      <div style="padding: 96px 96px 96px 120px; display: flex; flex-direction: column; justify-content: center;">
+        <p style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; font-size: 34px; color: var(--green-deep); margin: 0 0 24px;">Punto 01 · a</p>
+        <h2 style="font-weight: 800; font-size: 64px; line-height: 1.05; margin: 0 0 32px; max-width: 900px;">El amor que <span style="background: var(--green); color: var(--ink); padding: 0 0.08em; box-decoration-break: clone; -webkit-box-decoration-break: clone;">se enfría</span> con la rutina</h2>
+        <p style="font-weight: 600; font-size: 38px; line-height: 1.45; margin: 0; max-width: 820px;">La fe no muere de golpe; se apaga en lo cotidiano cuando dejamos de cultivarla.</p>
+        <ul style="margin: 24px 0 0; padding: 0; list-style: none;">
+          <li style="font-weight: 600; font-size: 36px; line-height: 1.5; padding-left: 38px; position: relative; margin-bottom: 16px;"><span style="position: absolute; left: 0; top: 0.55em; width: 18px; height: 18px; background: var(--green); border-radius: 4px;"></span>Servir sin presencia</li>
+          <li style="font-weight: 600; font-size: 36px; line-height: 1.5; padding-left: 38px; position: relative; margin-bottom: 16px;"><span style="position: absolute; left: 0; top: 0.55em; width: 18px; height: 18px; background: var(--green); border-radius: 4px;"></span>Orar sin intimidad</li>
+          <li style="font-weight: 600; font-size: 36px; line-height: 1.5; padding-left: 38px; position: relative;"><span style="position: absolute; left: 0; top: 0.55em; width: 18px; height: 18px; background: var(--green); border-radius: 4px;"></span>Conocer sin obedecer</li>
+        </ul>
+      </div>
+      <div style="position: relative; background: var(--ink); display: flex; align-items: center; justify-content: center;">
+        <img src="../../assets/mark-green-circle.png" alt="" style="position: absolute; height: 220px; opacity: 0.12;" />
+        <span style="color: var(--cream-40); font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; font-size: 26px;">Imagen</span>
+      </div>
+    </section>
+
+    <!-- 4 · Aplicación -->
+    <section data-screen-label="Aplicación" style="position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; background: var(--cream); padding: 96px 120px; align-items: center; justify-content: center; display: {{ d3 }};">
+      <img src="../../assets/mark-green.png" alt="El Renuevo" style="position: absolute; top: 56px; right: 64px; height: 80px; width: auto;" />
+      <div style="background: var(--ink); color: var(--cream); border-radius: 14px; box-shadow: 0 24px 60px rgba(26,26,26,0.22); padding: 96px 128px; max-width: 1380px; width: 100%;">
+        <p style="font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; font-size: 48px; color: var(--green); margin: 0 0 32px;">Aplicación</p>
+        <p style="font-weight: 800; font-size: 64px; line-height: 1.05; margin: 0;">Esta semana, <span style="background: var(--green); color: var(--ink); padding: 0 0.08em; box-decoration-break: clone; -webkit-box-decoration-break: clone;">vuelve a lo primero</span>: 15 minutos a solas con Él, cada día.</p>
+        <p style="font-weight: 600; font-size: 46px; line-height: 1.45; color: #FFFFFF; margin: 32px 0 0; max-width: 1000px;">No esperes a sentirlo. Decídelo, agéndalo y preséntate.</p>
+      </div>
+    </section>
+
+    <!-- 5 · Cierre -->
+    <section data-screen-label="Cierre" style="position: absolute; inset: 0; box-sizing: border-box; overflow: hidden; background: var(--ink); color: var(--cream); padding: 96px 120px; flex-direction: column; align-items: center; justify-content: center; text-align: center; display: {{ d4 }};">
+      <img src="../../assets/mark-green.png" alt="Iglesia El Renuevo" style="height: 140px; width: auto; margin-bottom: 40px;" />
+      <p style="font-family: var(--font-quote); font-style: italic; font-size: 84px; line-height: 1.18; margin: 0; max-width: 1600px;">“Acuérdate, pues, de dónde has caído, y <span style="color: var(--green);">arrepiéntete</span>, y haz las primeras obras.”</p>
+      <div style="margin-top: 64px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.22em; font-size: 24px; color: var(--green);">Iglesia El Renuevo <span style="color: var(--cream-40);">·</span> MCyM <span style="color: var(--cream-40);">·</span> Reunión General</div>
+    </section>
+  </div>
+
+  <!-- nav -->
+  <div style="position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 14px; z-index: 10;">
+    <button onClick="{{ prev }}" style="font-family: var(--font-body); font-weight: 700; font-size: 18px; color: var(--ink); background: var(--green); border: none; border-radius: 999px; width: 44px; height: 44px; cursor: pointer; line-height: 1;" style-hover="background: var(--green-bright);">‹</button>
+    <span style="color: var(--cream); font-weight: 700; font-size: 15px; letter-spacing: 0.08em; min-width: 64px; text-align: center;">{{ label }}</span>
+    <button onClick="{{ next }}" style="font-family: var(--font-body); font-weight: 700; font-size: 18px; color: var(--ink); background: var(--green); border: none; border-radius: 999px; width: 44px; height: 44px; cursor: pointer; line-height: 1;" style-hover="background: var(--green-bright);">›</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { index: 0, scale: 1 };
+
+  componentDidMount() {
+    this._fit = () => {
+      const s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+      this.setState({ scale: s });
+    };
+    this._key = (e) => {
+      if (e.key === 'ArrowRight') this.go(1);
+      if (e.key === 'ArrowLeft') this.go(-1);
+    };
+    window.addEventListener('resize', this._fit);
+    window.addEventListener('keydown', this._key);
+    this._fit();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._fit);
+    window.removeEventListener('keydown', this._key);
+  }
+
+  go(d) {
+    this.setState((s) => ({ index: (s.index + d + 5) % 5 }));
+  }
+
+  renderVals() {
+    const i = this.state.index;
+    const disp = (n, d) => (i === n ? d : 'none');
+    return {
+      scale: this.state.scale,
+      d0: disp(0, 'flex'),
+      d1: disp(1, 'flex'),
+      d2: disp(2, 'grid'),
+      d3: disp(3, 'flex'),
+      d4: disp(4, 'flex'),
+      label: (i + 1) + ' / 5',
+      next: () => this.go(1),
+      prev: () => this.go(-1),
+    };
+  }
+}
+</script>
+</body>
+</html>
