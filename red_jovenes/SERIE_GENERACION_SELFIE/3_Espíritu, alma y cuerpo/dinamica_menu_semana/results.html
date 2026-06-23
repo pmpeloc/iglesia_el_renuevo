@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=no"
+    />
+    <title>Resultados · El Menú de Mi Semana</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: #000;
+        overflow: hidden;
+        font-family: 'Poppins', sans-serif;
+      }
+      #pres {
+        position: fixed;
+        width: 1920px;
+        height: 1080px;
+        transform-origin: top left;
+        background: #0a0a0a;
+        overflow: hidden;
+      }
+
+      #scr-wait {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: #0a0a0a;
+      }
+      .wait-tag {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 8px;
+        color: #e8521a;
+        text-transform: uppercase;
+        margin-bottom: 40px;
+      }
+      .wait-title {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 180px;
+        color: #fff;
+        letter-spacing: 6px;
+        line-height: 0.9;
+      }
+      .wait-title em {
+        color: #e8521a;
+        font-style: normal;
+        display: block;
+      }
+      .wait-sub {
+        font-size: 36px;
+        color: #aaa;
+        margin-top: 40px;
+        max-width: 900px;
+        line-height: 1.4;
+      }
+      .wait-count {
+        font-size: 30px;
+        color: #888;
+        margin-top: 20px;
+        letter-spacing: 2px;
+      }
+      .wait-qr-wrap {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .wait-qr-wrap img {
+        border: 6px solid #1a1a1a;
+        border-radius: 12px;
+      }
+      .wait-qr-label {
+        font-size: 28px;
+        color: #aaa;
+        letter-spacing: 3px;
+        font-weight: 700;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      .pulsing {
+        animation: pulse 2s ease-in-out infinite;
+      }
+      .refresh-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #111;
+      }
+      .refresh-fill {
+        height: 100%;
+        background: #e8521a;
+        animation: refill 5s linear infinite;
+      }
+      @keyframes refill {
+        from {
+          width: 100%;
+        }
+        to {
+          width: 0%;
+        }
+      }
+
+      #scr-results {
+        position: absolute;
+        inset: 0;
+        display: none;
+        flex-direction: row;
+      }
+
+      .stats-panel {
+        width: 980px;
+        height: 1080px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 80px 100px 80px 110px;
+        position: relative;
+        border-right: 1px solid #141414;
+      }
+      .stats-accent {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 7px;
+        background: linear-gradient(
+          to bottom,
+          transparent 5%,
+          #e8521a 50%,
+          transparent 95%
+        );
+        opacity: 0.5;
+      }
+      .stats-tag {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 7px;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .stats-headline {
+        font-size: 34px;
+        color: #ccc;
+        font-weight: 600;
+        line-height: 1.3;
+        margin-bottom: 46px;
+        max-width: 720px;
+      }
+
+      .area-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 32px;
+      }
+      .area-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .area-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 52px;
+        letter-spacing: 5px;
+      }
+      .area-pct {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 52px;
+      }
+      .area-count {
+        font-size: 22px;
+        color: #888;
+        margin-left: 10px;
+      }
+      .bar-track {
+        height: 18px;
+        background: #141414;
+        border-radius: 9px;
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 9px;
+        transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 0%;
+      }
+      .bar-fill.winner {
+        box-shadow:
+          0 0 20px currentColor,
+          0 0 40px currentColor;
+      }
+
+      .area-e .area-name,
+      .area-e .area-pct {
+        color: #ffd700;
+      }
+      .area-e .bar-fill {
+        background: #ffd700;
+      }
+      .area-a .area-name,
+      .area-a .area-pct {
+        color: #c084fc;
+      }
+      .area-a .bar-fill {
+        background: #c084fc;
+      }
+      .area-c .area-name,
+      .area-c .area-pct {
+        color: #ff6b3d;
+      }
+      .area-c .bar-fill {
+        background: #ff6b3d;
+      }
+
+      .divider {
+        height: 1px;
+        background: #1a1a1a;
+        margin: 10px 0 36px;
+      }
+      .q4-label {
+        font-size: 24px;
+        color: #888;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+      .q4-bars {
+        display: flex;
+        gap: 40px;
+      }
+      .q4-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .q4-name {
+        font-size: 22px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .q4-pct-val {
+        font-size: 30px;
+        font-weight: 900;
+      }
+
+      .bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 28px;
+      }
+      .vote-count {
+        font-size: 28px;
+        color: #888;
+        letter-spacing: 2px;
+      }
+      .vote-count strong {
+        color: #fff;
+        font-size: 36px;
+      }
+      .mini-qr img {
+        border: 4px solid #1a1a1a;
+        border-radius: 8px;
+        display: block;
+      }
+      .mini-qr p {
+        font-size: 16px;
+        color: #888;
+        text-align: center;
+        margin-top: 8px;
+        letter-spacing: 1px;
+      }
+
+      .btn-reset {
+        position: absolute;
+        bottom: 20px;
+        left: 110px;
+        font-size: 15px;
+        color: #1e1e1e;
+        border: 1px solid #1a1a1a;
+        background: transparent;
+        padding: 8px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        transition: all 0.2s;
+        font-family: 'Poppins', sans-serif;
+      }
+      .btn-reset:hover {
+        color: #888;
+        border-color: #333;
+      }
+
+      .diagram-panel {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .winner-label {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 28px;
+        letter-spacing: 8px;
+        color: #555;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      .winner-name {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 110px;
+        letter-spacing: 12px;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        text-align: center;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
+      .winner-name.vis {
+        opacity: 1;
+      }
+      .diagram-wrap {
+        width: 580px;
+        height: 580px;
+      }
+      .diagram-svg {
+        width: 580px;
+        height: 580px;
+        overflow: visible;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="pres">
+      <div id="scr-wait">
+        <div class="wait-tag">Generación Selfie · Espíritu, Alma y Cuerpo</div>
+        <div class="wait-title">EL MENÚ DE<br /><em>MI SEMANA</em></div>
+        <div class="wait-sub">
+          Escaneá el código con tu celular y respondé las 4 preguntas
+        </div>
+        <div class="wait-count pulsing" id="wait-count">
+          Esperando el primer voto…
+        </div>
+        <div class="wait-qr-wrap">
+          <img id="qr-wait" src="" width="280" height="280" alt="QR" />
+          <div class="wait-qr-label">↑ ESCANEÁ PARA VOTAR</div>
+        </div>
+        <div class="refresh-bar"><div class="refresh-fill"></div></div>
+      </div>
+
+      <div id="scr-results">
+        <div class="stats-panel">
+          <div class="stats-accent"></div>
+          <div class="stats-tag">Esta semana, como grupo…</div>
+          <div class="stats-headline" id="headline">
+            Así fue el menú espiritual de la semana
+          </div>
+
+          <div class="area-row area-e">
+            <div class="area-header">
+              <span class="area-name">ESPÍRITU</span>
+              <span
+                ><span class="area-pct" id="pct-e">0</span>%<span
+                  class="area-count"
+                  id="cnt-e"
+                ></span
+              ></span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" id="bar-e"></div></div>
+          </div>
+          <div class="area-row area-a">
+            <div class="area-header">
+              <span class="area-name">ALMA</span>
+              <span
+                ><span class="area-pct" id="pct-a">0</span>%<span
+                  class="area-count"
+                  id="cnt-a"
+                ></span
+              ></span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" id="bar-a"></div></div>
+          </div>
+          <div class="area-row area-c">
+            <div class="area-header">
+              <span class="area-name">CUERPO</span>
+              <span
+                ><span class="area-pct" id="pct-c">0</span>%<span
+                  class="area-count"
+                  id="cnt-c"
+                ></span
+              ></span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" id="bar-c"></div></div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="q4-label">¿Qué necesitamos nutrir más?</div>
+          <div class="q4-bars">
+            <div class="q4-item">
+              <div class="q4-name" style="color: #ffd700">Espíritu</div>
+              <div class="q4-pct-val" id="q4e" style="color: #ffd700">0%</div>
+            </div>
+            <div class="q4-item">
+              <div class="q4-name" style="color: #c084fc">Alma</div>
+              <div class="q4-pct-val" id="q4a" style="color: #c084fc">0%</div>
+            </div>
+            <div class="q4-item">
+              <div class="q4-name" style="color: #ff6b3d">Cuerpo</div>
+              <div class="q4-pct-val" id="q4c" style="color: #ff6b3d">0%</div>
+            </div>
+          </div>
+
+          <div class="bottom-row">
+            <div class="vote-count">
+              <strong id="vote-count">0</strong> personas votaron
+            </div>
+            <div class="mini-qr">
+              <img id="qr-mini" src="" width="120" height="120" alt="QR" />
+              <p>Escaneá para votar</p>
+            </div>
+          </div>
+          <button class="btn-reset" onclick="resetVotes()">
+            ↺ LIMPIAR VOTOS
+          </button>
+        </div>
+
+        <div class="diagram-panel">
+          <div class="winner-label">Lo que más alimentamos fue</div>
+          <div class="winner-name" id="winner-name">—</div>
+          <div class="diagram-wrap">
+            <svg
+              class="diagram-svg"
+              viewBox="0 0 580 580"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <filter
+                  id="glow-e"
+                  x="-80%"
+                  y="-80%"
+                  width="260%"
+                  height="260%"
+                >
+                  <feGaussianBlur stdDeviation="14" result="b1" />
+                  <feGaussianBlur stdDeviation="28" result="b2" />
+                  <feMerge>
+                    <feMergeNode in="b2" />
+                    <feMergeNode in="b1" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter
+                  id="glow-a"
+                  x="-60%"
+                  y="-60%"
+                  width="220%"
+                  height="220%"
+                >
+                  <feGaussianBlur stdDeviation="14" result="b1" />
+                  <feGaussianBlur stdDeviation="28" result="b2" />
+                  <feMerge>
+                    <feMergeNode in="b2" />
+                    <feMergeNode in="b1" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter
+                  id="glow-c"
+                  x="-50%"
+                  y="-50%"
+                  width="200%"
+                  height="200%"
+                >
+                  <feGaussianBlur stdDeviation="14" result="b1" />
+                  <feGaussianBlur stdDeviation="28" result="b2" />
+                  <feMerge>
+                    <feMergeNode in="b2" />
+                    <feMergeNode in="b1" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <circle
+                id="drc"
+                cx="290"
+                cy="290"
+                r="232"
+                fill="none"
+                stroke="#FF6B3D"
+                stroke-width="95"
+                stroke-opacity="0.07"
+                style="
+                  transition:
+                    stroke-opacity 0.6s,
+                    filter 0.6s;
+                "
+              />
+              <circle
+                cx="290"
+                cy="290"
+                r="184"
+                fill="none"
+                stroke="#0a0a0a"
+                stroke-width="3"
+              />
+              <circle
+                id="dra"
+                cx="290"
+                cy="290"
+                r="136"
+                fill="none"
+                stroke="#8B5CF6"
+                stroke-width="95"
+                stroke-opacity="0.07"
+                style="
+                  transition:
+                    stroke-opacity 0.6s,
+                    filter 0.6s;
+                "
+              />
+              <circle
+                cx="290"
+                cy="290"
+                r="88"
+                fill="none"
+                stroke="#0a0a0a"
+                stroke-width="3"
+              />
+              <circle
+                id="dre"
+                cx="290"
+                cy="290"
+                r="86"
+                fill="#FFD700"
+                fill-opacity="0.09"
+                style="
+                  transition:
+                    fill-opacity 0.6s,
+                    filter 0.6s;
+                "
+              />
+              <g id="dlc" style="transition: opacity 0.4s">
+                <text
+                  x="290"
+                  y="28"
+                  text-anchor="middle"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="32"
+                  fill="#FF6B3D"
+                  fill-opacity="0.35"
+                  letter-spacing="6"
+                >
+                  CUERPO
+                </text>
+              </g>
+              <g id="dla" style="transition: opacity 0.4s">
+                <text
+                  x="290"
+                  y="142"
+                  text-anchor="middle"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="28"
+                  fill="#A855F7"
+                  fill-opacity="0.30"
+                  letter-spacing="5"
+                >
+                  ALMA
+                </text>
+              </g>
+              <g id="dle" style="transition: opacity 0.4s">
+                <text
+                  x="290"
+                  y="283"
+                  text-anchor="middle"
+                  font-family="'Bebas Neue',sans-serif"
+                  font-size="24"
+                  fill="#FFD700"
+                  fill-opacity="0.55"
+                  letter-spacing="3"
+                >
+                  ESPÍRITU
+                </text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbx3Yk7vAXcwcgIKaI7cgDRvphCApm5HFhZsOtHeKgDlqn9JWzOK66tAjh24V-oibAXtmQ/exec';
+      const VOTE_URL = 'https://dinamica-2.netlify.app/vote.html';
+    </script>
+
+    <script>
+      function scale() {
+        var el = document.getElementById('pres');
+        var s = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+        el.style.transform = 'scale(' + s + ')';
+        el.style.left = Math.max(0, (window.innerWidth - 1920 * s) / 2) + 'px';
+        el.style.top = Math.max(0, (window.innerHeight - 1080 * s) / 2) + 'px';
+      }
+      window.addEventListener('resize', scale);
+      scale();
+
+      // QR — usando api.qrserver.com (gratuito y confiable)
+      function qrSrc(url, size) {
+        return (
+          'https://api.qrserver.com/v1/create-qr-code/?size=' +
+          size +
+          'x' +
+          size +
+          '&data=' +
+          encodeURIComponent(url)
+        );
+      }
+      document.getElementById('qr-wait').src = qrSrc(VOTE_URL, 280);
+      document.getElementById('qr-mini').src = qrSrc(VOTE_URL, 120);
+
+      var AREAS = {
+        E: {
+          name: 'ESPÍRITU',
+          color: '#FFD700',
+          shadow: '0 0 60px rgba(255,215,0,.9),0 0 120px rgba(255,215,0,.4)',
+        },
+        A: {
+          name: 'ALMA',
+          color: '#C084FC',
+          shadow:
+            '0 0 60px rgba(192,132,252,.9),0 0 120px rgba(192,132,252,.4)',
+        },
+        C: {
+          name: 'CUERPO',
+          color: '#FF6B3D',
+          shadow: '0 0 60px rgba(255,107,61,.9),0 0 120px rgba(255,107,61,.4)',
+        },
+      };
+
+      function resetDiagram() {
+        document.getElementById('drc').setAttribute('stroke-opacity', '0.07');
+        document.getElementById('drc').style.filter = 'none';
+        document.getElementById('dra').setAttribute('stroke-opacity', '0.07');
+        document.getElementById('dra').style.filter = 'none';
+        document.getElementById('dre').setAttribute('fill-opacity', '0.09');
+        document.getElementById('dre').style.filter = 'none';
+        document.getElementById('dlc').style.opacity = '1';
+        document.getElementById('dla').style.opacity = '1';
+        document.getElementById('dle').style.opacity = '1';
+      }
+
+      function updateUI(data) {
+        if (data.count === 0) {
+          document.getElementById('scr-wait').style.display = 'flex';
+          document.getElementById('scr-results').style.display = 'none';
+          document.getElementById('wait-count').textContent =
+            'Esperando el primer voto…';
+          return;
+        }
+        document.getElementById('scr-wait').style.display = 'none';
+        document.getElementById('scr-results').style.display = 'flex';
+
+        var p = data.pct,
+          t = data.totals,
+          n = data.count;
+        document.getElementById('pct-e').textContent = p.E;
+        document.getElementById('pct-a').textContent = p.A;
+        document.getElementById('pct-c').textContent = p.C;
+        document.getElementById('cnt-e').textContent = ' (' + t.E + ' resp.)';
+        document.getElementById('cnt-a').textContent = ' (' + t.A + ' resp.)';
+        document.getElementById('cnt-c').textContent = ' (' + t.C + ' resp.)';
+        document.getElementById('bar-e').style.width = p.E + '%';
+        document.getElementById('bar-a').style.width = p.A + '%';
+        document.getElementById('bar-c').style.width = p.C + '%';
+        document.getElementById('q4e').textContent = data.q4pct.E + '%';
+        document.getElementById('q4a').textContent = data.q4pct.A + '%';
+        document.getElementById('q4c').textContent = data.q4pct.C + '%';
+        document.getElementById('vote-count').textContent = n;
+
+        ['e', 'a', 'c'].forEach(function (k) {
+          document.getElementById('bar-' + k).classList.remove('winner');
+        });
+        var winner = p.E >= p.A && p.E >= p.C ? 'E' : p.A >= p.C ? 'A' : 'C';
+        var w = AREAS[winner];
+        document
+          .getElementById('bar-' + winner.toLowerCase())
+          .classList.add('winner');
+        document.getElementById('headline').textContent =
+          'Lo que más alimentamos fue el ' + w.name.toLowerCase();
+
+        var wn = document.getElementById('winner-name');
+        wn.textContent = w.name;
+        wn.style.color = w.color;
+        wn.style.textShadow = w.shadow;
+        wn.classList.add('vis');
+
+        resetDiagram();
+        if (winner === 'E') {
+          document.getElementById('dre').setAttribute('fill-opacity', '0.85');
+          document.getElementById('dre').style.filter = 'url(#glow-e)';
+          document.getElementById('dra').setAttribute('stroke-opacity', '0.02');
+          document.getElementById('drc').setAttribute('stroke-opacity', '0.02');
+          document.getElementById('dla').style.opacity = '0.1';
+          document.getElementById('dlc').style.opacity = '0.1';
+        } else if (winner === 'A') {
+          document.getElementById('dra').setAttribute('stroke-opacity', '1');
+          document.getElementById('dra').style.filter = 'url(#glow-a)';
+          document.getElementById('dre').setAttribute('fill-opacity', '0.02');
+          document.getElementById('drc').setAttribute('stroke-opacity', '0.02');
+          document.getElementById('dle').style.opacity = '0.1';
+          document.getElementById('dlc').style.opacity = '0.1';
+        } else {
+          document.getElementById('drc').setAttribute('stroke-opacity', '1');
+          document.getElementById('drc').style.filter = 'url(#glow-c)';
+          document.getElementById('dre').setAttribute('fill-opacity', '0.02');
+          document.getElementById('dra').setAttribute('stroke-opacity', '0.02');
+          document.getElementById('dle').style.opacity = '0.1';
+          document.getElementById('dla').style.opacity = '0.1';
+        }
+      }
+
+      function poll() {
+        fetch(SCRIPT_URL + '?action=results', { redirect: 'follow' })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            updateUI(d);
+          })
+          .catch(function (e) {
+            console.warn('Error:', e);
+          });
+      }
+
+      poll();
+      setInterval(poll, 5000);
+
+      function resetVotes() {
+        if (!confirm('¿Borrar todos los votos?')) return;
+        fetch(SCRIPT_URL + '?action=reset', { redirect: 'follow' }).then(
+          function () {
+            poll();
+          },
+        );
+      }
+    </script>
+  </body>
+</html>

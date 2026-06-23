@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía del predicador - Espíritu, alma y cuerpo</title>
+  <style>
+    :root{
+      --bg:#0e1117;
+      --panel:#171b23;
+      --panel2:#202633;
+      --ink:#f5f7fb;
+      --muted:#b8c0cc;
+      --line:#333b4b;
+      --red:#e8521a;
+      --orange:#ff8a2a;
+      --teal:#21c6d4;
+      --green:#39d98a;
+      --gold:#ffd166;
+      --violet:#9b7bff;
+      --blue:#62a8ff;
+      --danger:#ff5c77;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:radial-gradient(circle at 20% 0%, #20283a 0, #0e1117 34rem);
+      color:var(--ink);
+      line-height:1.5;
+      font-size:18px;
+      letter-spacing:0;
+    }
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:rgba(14,17,23,.96);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+    .top{
+      padding:12px 14px 10px;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand strong{
+      display:block;
+      color:var(--ink);
+      font-size:18px;
+      line-height:1.1;
+    }
+    .brand span{
+      display:block;
+      color:var(--muted);
+      font-size:12px;
+      margin-top:3px;
+    }
+    .progress{
+      min-width:58px;
+      text-align:center;
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:7px 10px;
+      color:var(--gold);
+      font-weight:700;
+      background:#111620;
+    }
+    nav{
+      display:flex;
+      gap:7px;
+      overflow:auto;
+      padding:0 12px 12px;
+      scrollbar-width:none;
+    }
+    nav::-webkit-scrollbar{display:none}
+    nav a{
+      color:var(--ink);
+      text-decoration:none;
+      background:#1b2230;
+      border:1px solid #30394a;
+      min-width:42px;
+      height:38px;
+      border-radius:8px;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      flex:0 0 auto;
+    }
+    nav a.dyn{border-color:var(--orange); color:var(--orange)}
+    main{
+      width:min(900px,100%);
+      margin:0 auto;
+      padding:16px 12px 64px;
+    }
+    .legend{
+      background:linear-gradient(135deg,#151a24,#1e2634);
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:14px;
+      margin-bottom:16px;
+    }
+    h1{
+      font-size:26px;
+      line-height:1.1;
+      margin:0 0 6px;
+    }
+    h2{
+      font-size:23px;
+      line-height:1.15;
+      margin:0;
+    }
+    h3{
+      font-size:18px;
+      margin:18px 0 7px;
+      color:var(--gold);
+    }
+    p{margin:8px 0}
+    .small{font-size:14px;color:var(--muted)}
+    .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+    .chip{
+      border-radius:999px;
+      padding:5px 9px;
+      font-size:12px;
+      font-weight:800;
+      background:#242b38;
+      color:var(--ink);
+      border:1px solid #3a4354;
+      text-transform:uppercase;
+    }
+    .chip.exp{color:var(--blue);border-color:var(--blue)}
+    .chip.dyn{color:var(--orange);border-color:var(--orange)}
+    .chip.next{color:var(--green);border-color:var(--green)}
+    .chip.warn{color:var(--gold);border-color:var(--gold)}
+    .slide{
+      border:1px solid var(--line);
+      background:rgba(23,27,35,.96);
+      border-radius:14px;
+      margin:14px 0;
+      overflow:hidden;
+      box-shadow:0 12px 32px rgba(0,0,0,.26);
+    }
+    .slide-head{
+      padding:13px 14px;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(90deg,#1b2230,#141922);
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .num{
+      flex:0 0 auto;
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      color:#fff;
+      background:linear-gradient(135deg,var(--red),var(--orange));
+      font-size:22px;
+      font-weight:900;
+    }
+    .screen{
+      color:var(--muted);
+      font-size:14px;
+      margin-top:5px;
+    }
+    .screen b{color:var(--ink)}
+    .body{padding:14px}
+    .box{
+      border-left:5px solid var(--blue);
+      background:#121824;
+      padding:11px 12px;
+      border-radius:8px;
+      margin:10px 0;
+    }
+    .box.explain{border-color:var(--blue)}
+    .box.bridge{border-color:var(--green)}
+    .box.dynamic{border-color:var(--orange); background:#24190f}
+    .box.question{border-color:var(--gold); background:#201b10}
+    .box.warning{border-color:var(--danger); background:#241117}
+    .label{
+      display:block;
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      margin-bottom:4px;
+      color:var(--muted);
+    }
+    .box.explain .label{color:var(--blue)}
+    .box.bridge .label{color:var(--green)}
+    .box.dynamic .label{color:var(--orange)}
+    .box.question .label{color:var(--gold)}
+    .box.warning .label{color:var(--danger)}
+    ul,ol{padding-left:22px;margin:8px 0}
+    li{margin:5px 0}
+    .cue{
+      margin-top:12px;
+      padding:11px 12px;
+      border-radius:10px;
+      background:#102016;
+      border:1px solid #245b39;
+      color:#dfffea;
+      font-weight:800;
+    }
+    .cue strong{color:var(--green)}
+    .dynamic-card{
+      border:2px solid var(--orange);
+      background:linear-gradient(135deg,#25170f,#161b24);
+    }
+    .dynamic-card .num{
+      background:linear-gradient(135deg,#ff8a2a,#e8521a);
+    }
+    .scenario{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:8px;
+      align-items:center;
+      padding:9px 0;
+      border-bottom:1px solid rgba(255,255,255,.09);
+    }
+    .scenario:last-child{border-bottom:none}
+    .pill{
+      font-size:12px;
+      font-weight:900;
+      color:#101418;
+      padding:5px 8px;
+      border-radius:999px;
+      background:var(--gold);
+      white-space:nowrap;
+    }
+    .pill.spirit{background:var(--green)}
+    .pill.soul{background:var(--teal)}
+    .pill.body{background:var(--orange)}
+    .footer{
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      margin-top:28px;
+    }
+    button{
+      width:100%;
+      border:0;
+      border-radius:10px;
+      padding:12px;
+      color:#fff;
+      background:linear-gradient(135deg,#30394a,#1b2230);
+      font-weight:900;
+      font-size:16px;
+      margin-top:8px;
+    }
+    .done{opacity:.58}
+    .done .slide-head{background:#11151d}
+    @media (min-width:720px){
+      body{font-size:19px}
+      main{padding-left:18px;padding-right:18px}
+      .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+      .grid .box{margin:0}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top">
+      <div class="brand">
+        <strong>Guía del predicador</strong>
+        <span>Generación Selfie · Espíritu, alma y cuerpo</span>
+      </div>
+      <div class="progress" id="progress">0/14</div>
+    </div>
+    <nav aria-label="Navegación por diapositivas">
+      <a href="#s1">1</a><a class="dyn" href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a><a class="dyn" href="#s10">10</a><a class="dyn" href="#s11">11</a><a href="#s12">12</a><a class="dyn" href="#s13">13</a><a href="#s14">14</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="legend">
+      <h1>Cómo usar esta guía</h1>
+      <p>Leé la tarjeta de la diapositiva que está proyectada. Cuando aparezca <b>AVANCE</b>, pedí a proyección la siguiente diapositiva. Cuando aparezca <b>DINÁMICA</b>, pausá la presentación y abrí la app, QR o recurso correspondiente.</p>
+      <div class="chips">
+        <span class="chip exp">Explicar</span>
+        <span class="chip dyn">Dinámica</span>
+        <span class="chip next">Avance</span>
+        <span class="chip warn">Cuidado pastoral</span>
+      </div>
+    </section>
+
+    <article class="slide" id="s1">
+      <div class="slide-head">
+        <div class="num">1</div>
+        <div>
+          <h2>Portada de la enseñanza</h2>
+          <div class="screen"><b>En pantalla:</b> Generación Selfie · Espíritu, alma y cuerpo · ¿Qué parte de nosotros está tomando el control?</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Conectar con la enseñanza anterior: ya hablamos de identidad y de los espejos donde nos miramos. Ahora damos un paso más: no solo importa qué vemos de nosotros, sino <b>qué parte de nosotros está gobernando</b>.</p>
+          <p>Introducir la idea de ser integral: no somos solamente cuerpo, emociones o “vida espiritual” separada. Todo nuestro ser necesita ser rendido a Cristo.</p>
+        </div>
+        <div class="box question">
+          <span class="label">Pregunta para abrir</span>
+          <p>“Cuando tomamos decisiones, reaccionamos, hablamos, publicamos, sentimos o elegimos, ¿qué parte de nosotros está tomando el control?”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 2.</div>
+      </div>
+    </article>
+
+    <article class="slide dynamic-card" id="s2">
+      <div class="slide-head">
+        <div class="num">2</div>
+        <div>
+          <h2>Pregunta disparadora</h2>
+          <div class="screen"><b>En pantalla:</b> ¿Quién está guiando mi vida?</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>No presentar la pregunta solo como algo “religioso”. Guiar la idea hacia la vida diaria: cuerpo, emociones, pensamientos, impulsos, decisiones, voluntad, hábitos, redes, cansancio, deseos y obediencia.</p>
+          <p>Decir: “A veces creemos que decidimos libremente, pero en realidad estamos reaccionando desde el cansancio, desde una emoción, desde un deseo o desde una convicción espiritual.”</p>
+        </div>
+        <div class="box dynamic">
+          <span class="label">DINÁMICA 1 · ¿Quién está al mando?</span>
+          <p><b>Indicación a proyección:</b> abrir la dinámica “¿Quién está al mando?”. Mostrar una situación, dejar que respondan, y luego tocar <b>Ver respuesta</b> para iluminar ESPÍRITU, ALMA o CUERPO.</p>
+          <div class="scenario"><span>Me despierto y lo primero que hago es mirar notificaciones para calmar ansiedad.</span><span class="pill soul">ALMA</span></div>
+          <div class="scenario"><span>Estoy cansado, tengo hambre y contesto mal sin pensar.</span><span class="pill body">CUERPO</span></div>
+          <div class="scenario"><span>Decidimos perdonar aunque todavía nos duela, porque queremos obedecer a Dios.</span><span class="pill spirit">ESPÍRITU</span></div>
+          <div class="scenario"><span>Subo algo solo para ver si me validan o reaccionan.</span><span class="pill soul">ALMA</span></div>
+          <div class="scenario"><span>Antes de responder un mensaje que me provocó, paramos y buscamos dirección de Dios.</span><span class="pill spirit">ESPÍRITU</span></div>
+        </div>
+        <div class="box bridge">
+          <span class="label">Volver a la prédica</span>
+          <p>Cerrar la dinámica diciendo: “La pregunta de hoy no es solamente qué hacemos, sino desde dónde estamos viviendo.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> volver al PPTX y pedir diapositiva 3.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s3">
+      <div class="slide-head">
+        <div class="num">3</div>
+        <div>
+          <h2>Idea central</h2>
+          <div class="screen"><b>En pantalla:</b> Todo nuestro ser rendido a Cristo · espíritu, alma, cuerpo · 1 Tesalonicenses 5:23</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>El mensaje no busca que neguemos el cuerpo ni que despreciemos el alma. Dios creó nuestro ser completo. El problema aparece cuando el orden se invierte y vivimos dominados por impulsos, emociones o deseos.</p>
+          <p>Si vas a citar el texto, leerlo directamente desde la Biblia para no depender de memoria. Enfatizar la idea: Dios quiere santificar y guardar <b>todo nuestro ser</b>.</p>
+        </div>
+        <div class="box warning">
+          <span class="label">Cuidado pastoral</span>
+          <p>No comunicar “el cuerpo es malo” o “sentir es pecado”. La enseñanza apunta al gobierno correcto: que Dios obre desde el interior y ordene lo demás.</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 4.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s4">
+      <div class="slide-head">
+        <div class="num">4</div>
+        <div>
+          <h2>Mapa visual</h2>
+          <div class="screen"><b>En pantalla:</b> Somos un ser integral · Dios obra desde adentro</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Presentar el gráfico: en el centro está el espíritu; el alma contiene pensamientos, memoria, voluntad, razón, afectos; el cuerpo expresa sentidos, hábitos y acciones visibles.</p>
+          <p>Frase clave: “Dios no empieza maquillando lo de afuera; Dios empieza obrando desde adentro.”</p>
+        </div>
+        <div class="box question">
+          <span class="label">Pregunta breve</span>
+          <p>“¿Cuántas veces intentamos cambiar una conducta de afuera, pero sin dejar que Dios trate lo de adentro?”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 5.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s5">
+      <div class="slide-head">
+        <div class="num">5</div>
+        <div>
+          <h2>Hombre interior</h2>
+          <div class="screen"><b>En pantalla:</b> Dios empieza desde adentro · Romanos 7:22 · Efesios 3:16 · 2 Corintios 4:16</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Mostrar que la Biblia habla del “hombre interior”. Hay una obra de Dios que no se ve primero en la apariencia, pero termina afectando toda la vida.</p>
+          <p>Romanos 7:22 habla del deleite del hombre interior en la ley de Dios. Efesios 3:16 habla de ser fortalecidos con poder en el hombre interior. 2 Corintios 4:16 recuerda que el exterior se desgasta, pero el interior se renueva.</p>
+        </div>
+        <div class="box bridge">
+          <span class="label">Puente</span>
+          <p>“Si Dios fortalece lo interior, entonces no podemos vivir solo reaccionando desde lo externo.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 6.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s6">
+      <div class="slide-head">
+        <div class="num">6</div>
+        <div>
+          <h2>Intimidad</h2>
+          <div class="screen"><b>En pantalla:</b> El espíritu se encuentra con Dios · Dios · Espíritu</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>El espíritu es el lugar de encuentro con Dios. Desde ese encuentro nace intimidad, dirección y vida espiritual. No se trata solamente de emoción del momento; se trata de comunión con Dios.</p>
+          <p>Aplicarlo a jóvenes: podemos estar conectados a todo, recibir notificaciones de todo, reaccionar a todo, y aun así estar desconectados de lo más profundo: la presencia de Dios.</p>
+        </div>
+        <div class="box question">
+          <span class="label">Pregunta</span>
+          <p>“¿Estamos dejando que Dios hable desde adentro, o vivimos gobernados por lo que sentimos en el momento?”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 7.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s7">
+      <div class="slide-head">
+        <div class="num">7</div>
+        <div>
+          <h2>Salmo 103</h2>
+          <div class="screen"><b>En pantalla:</b> Bendice, alma mía, a Jehová · El interior da la orden</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Leer o resumir Salmo 103: “Bendice, alma mía, a Jehová… y bendiga todo mi ser su santo nombre.”</p>
+          <p>Marcar el detalle del capítulo: David no le ordena a su espíritu. Desde el interior, su espíritu le habla al alma y a todo su ser. El interior está dando una orden al alma y al cuerpo para bendecir a Dios.</p>
+        </div>
+        <div class="box bridge">
+          <span class="label">Frase útil</span>
+          <p>“No siempre vamos a sentir ganas de bendecir a Dios, pero nuestro espíritu puede ordenar al alma y al cuerpo que se alineen con Dios.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 8.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s8">
+      <div class="slide-head">
+        <div class="num">8</div>
+        <div>
+          <h2>Orden correcto</h2>
+          <div class="screen"><b>En pantalla:</b> El espíritu ordena · Espíritu &gt; Alma &gt; Cuerpo</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Esta es una de las ideas centrales: no vivimos por impulso. Somos guiados por Dios. El orden correcto no es cuerpo mandando, alma justificando y espíritu apagado. El orden correcto es espíritu guiado por Dios, alma alineada y cuerpo obedeciendo.</p>
+        </div>
+        <div class="box question">
+          <span class="label">Aplicación inclusiva</span>
+          <p>“Necesitamos reconocer cuándo nuestro cuerpo está mandando, cuándo nuestra alma está dirigiendo y cuándo realmente estamos siendo guiados por Dios.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 9.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s9">
+      <div class="slide-head">
+        <div class="num">9</div>
+        <div>
+          <h2>Romanos 8</h2>
+          <div class="screen"><b>En pantalla:</b> Dos formas de vivir · Carne / Espíritu · Romanos 8:5-14</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Romanos 8 presenta dos maneras de vivir: según la carne o según el Espíritu. Aclarar que “carne” no significa solamente cuerpo físico, sino la naturaleza humana queriendo vivir sin sujetarse a Dios.</p>
+          <p>La carne produce muerte porque gira alrededor de sí misma. El Espíritu produce vida y paz porque nos guía a Dios.</p>
+        </div>
+        <div class="box warning">
+          <span class="label">Cuidado</span>
+          <p>No hacerlo sonar como “los que fallan quedan afuera”. Enfocarlo como llamado a volver al gobierno del Espíritu: “Necesitamos aprender a distinguir qué voz estamos alimentando.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 10.</div>
+      </div>
+    </article>
+
+    <article class="slide dynamic-card" id="s10">
+      <div class="slide-head">
+        <div class="num">10</div>
+        <div>
+          <h2>Principio</h2>
+          <div class="screen"><b>En pantalla:</b> Lo que alimentamos se fortalece · Espíritu / Carne</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Presentar el principio de forma clara: aquello que alimentamos se fortalece. Si alimentamos la carne, la carne pide más. Si alimentamos el espíritu con la presencia de Dios, el espíritu comienza a pedir más de Dios.</p>
+        </div>
+        <div class="box dynamic">
+          <span class="label">DINÁMICA 3 · Dos platos / la balanza</span>
+          <p><b>Indicación a proyección:</b> abrir la balanza. Ir agregando elementos mientras explicás. Cada elemento inclina la balanza hacia Espíritu o Carne.</p>
+          <ul>
+            <li><b>Espíritu:</b> oración, Palabra, obediencia, adoración, pedir perdón, congregarse, cortar una tentación.</li>
+            <li><b>Carne:</b> alimentar enojo, comparación en redes, orgullo, impulsos sin freno, doble vida, contenido que contamina.</li>
+          </ul>
+          <p>Frase para cerrar: “La balanza no se inclina por lo que decimos creer, sino por lo que venimos alimentando.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> volver al PPTX y pedir diapositiva 11.</div>
+      </div>
+    </article>
+
+    <article class="slide dynamic-card" id="s11">
+      <div class="slide-head">
+        <div class="num">11</div>
+        <div>
+          <h2>Alimentación</h2>
+          <div class="screen"><b>En pantalla:</b> Todo lo que no alimentamos se muere · La pregunta es qué estamos dejando crecer</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Usar el lenguaje del “feed”: todos alimentamos algo. Lo que miramos, repetimos, escuchamos, deseamos y pensamos va formando hambre.</p>
+          <p>Decir: “No podemos esperar hambre espiritual si toda la semana alimentamos otra cosa.”</p>
+        </div>
+        <div class="box dynamic">
+          <span class="label">DINÁMICA 2 · El menú de mi semana</span>
+          <p><b>Indicación a proyección:</b> mostrar QR de encuesta. Dar 2 o 3 minutos para responder desde el celular.</p>
+          <p>Preguntas sugeridas del QR:</p>
+          <ol>
+            <li>Esta semana, ¿qué ocupó más mi atención?</li>
+            <li>¿Qué alimenté más: espíritu, alma o cuerpo?</li>
+            <li>¿Qué hábito se repitió más?</li>
+            <li>¿Qué área necesito ordenar delante de Dios?</li>
+          </ol>
+          <p><b>Resultado en proyector:</b> mostrar qué se alimentó más globalmente: ESPÍRITU / ALMA / CUERPO.</p>
+        </div>
+        <div class="box bridge">
+          <span class="label">Volver a la prédica</span>
+          <p>No usar el resultado para exponer a nadie. Usarlo como diagnóstico grupal: “Esto nos ayuda a ver por dónde necesitamos empezar.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 12.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s12">
+      <div class="slide-head">
+        <div class="num">12</div>
+        <div>
+          <h2>Hábitos</h2>
+          <div class="screen"><b>En pantalla:</b> El cuerpo pide lo que conoce · Lo repetido se vuelve hambre</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Usar la ilustración del helado y el cigarrillo del capítulo: el cuerpo pide lo que aprendió a recibir. No pide lo que nunca conoció. Lo repetido se transforma en hambre.</p>
+          <p>Aplicarlo a hábitos: redes, música, series, enojo, aprobación, comodidad, comida, sueño, pensamientos, oración, Palabra. Todo hábito entrena un deseo.</p>
+        </div>
+        <div class="box question">
+          <span class="label">Pregunta</span>
+          <p>“¿Qué deseo se volvió fuerte en nosotros porque lo repetimos muchas veces?”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 13.</div>
+      </div>
+    </article>
+
+    <article class="slide dynamic-card" id="s13">
+      <div class="slide-head">
+        <div class="num">13</div>
+        <div>
+          <h2>Disciplina</h2>
+          <div class="screen"><b>En pantalla:</b> La victoria se prepara en la mesa</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Explicar</span>
+          <p>Tomar la ilustración del deportista: la victoria no empieza en la competencia, empieza en la alimentación y la disciplina. La vida espiritual también se prepara con decisiones pequeñas y repetidas.</p>
+          <p>Frase fuerte: “Aquello que esté mejor alimentado va a ganar.”</p>
+        </div>
+        <div class="box dynamic">
+          <span class="label">DINÁMICA 4 · Reto de 7 días</span>
+          <p><b>Indicación a proyección:</b> mostrar QR del reto. Explicar que no es para aparentar, sino para acompañarnos en una decisión concreta durante la semana.</p>
+          <p>Opciones de reto:</p>
+          <ul>
+            <li>10 minutos diarios de oración.</li>
+            <li>Leer Romanos 8 durante la semana.</li>
+            <li>Ayunar una app o red social por 7 días.</li>
+            <li>Hacer una acción diaria de obediencia concreta.</li>
+            <li>Reemplazar un hábito que alimenta la carne por uno que alimente el espíritu.</li>
+          </ul>
+          <p>Explicar que cada joven elige horario de recordatorio y marca cuando completa el reto. Vos recibís aviso o registro para acompañar y celebrar los avances.</p>
+        </div>
+        <div class="box warning">
+          <span class="label">Cuidado pastoral</span>
+          <p>Presentarlo como acompañamiento, no como control. “No buscamos medir quién es más espiritual; buscamos ayudarnos a alimentar lo correcto.”</p>
+        </div>
+        <div class="cue"><strong>AVANCE:</strong> pedir diapositiva 14.</div>
+      </div>
+    </article>
+
+    <article class="slide" id="s14">
+      <div class="slide-head">
+        <div class="num">14</div>
+        <div>
+          <h2>Cierre</h2>
+          <div class="screen"><b>En pantalla:</b> Red de Jóvenes - Raíces · Generación Selfie</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="box explain">
+          <span class="label">Cerrar</span>
+          <p>Recapitular en tres frases:</p>
+          <ol>
+            <li>Somos espíritu, alma y cuerpo.</li>
+            <li>Dios quiere obrar desde el interior y ordenar todo nuestro ser.</li>
+            <li>Lo que alimentamos se fortalece; por eso necesitamos decidir qué vamos a alimentar esta semana.</li>
+          </ol>
+        </div>
+        <div class="box question">
+          <span class="label">Llamado final</span>
+          <p>“Necesitamos pedirle al Espíritu Santo que tome el gobierno de nuestro interior, que ordene nuestra alma y que nuestro cuerpo también se rinda a Cristo.”</p>
+          <p>Orar por jóvenes que reconocen que han estado viviendo desde impulsos, emociones o hábitos que no están alimentando el espíritu.</p>
+        </div>
+        <div class="cue"><strong>FINAL:</strong> dejar la diapositiva de cierre mientras se ora o se explica el seguimiento del reto.</div>
+      </div>
+    </article>
+
+    <p class="footer">Guía preparada para uso móvil durante la predicación · Red de Jóvenes Raíces</p>
+  </main>
+
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const progress = document.getElementById('progress');
+    const done = new Set(JSON.parse(localStorage.getItem('guiaDoneSlides') || '[]'));
+
+    function renderDone(){
+      slides.forEach(slide => {
+        slide.classList.toggle('done', done.has(slide.id));
+        if(!slide.querySelector('button')){
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = done.has(slide.id) ? 'Marcar como pendiente' : 'Marcar como visto';
+          btn.addEventListener('click', () => {
+            if(done.has(slide.id)) done.delete(slide.id);
+            else done.add(slide.id);
+            localStorage.setItem('guiaDoneSlides', JSON.stringify([...done]));
+            renderDone();
+          });
+          slide.querySelector('.body').appendChild(btn);
+        } else {
+          slide.querySelector('button').textContent = done.has(slide.id) ? 'Marcar como pendiente' : 'Marcar como visto';
+        }
+      });
+      progress.textContent = `${done.size}/14`;
+    }
+    renderDone();
+  </script>
+</body>
+</html>

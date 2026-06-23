@@ -1,0 +1,647 @@
+{"kind":"deck","id":"pr/q8f767","name":"Deck"}
+{"kind":"layout","layoutId":"302f4665-38f9-4f01-b817-18c503fcd539","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"080b9688-ad62-4147-b026-8b0cea0c9100","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/nsuy5z","slide":1,"title":"GENERACIÓN SELFIE","textShapes":7}
+{"kind":"shape","id":"sh/knih4byh","slide":1,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/v6psfil0","slide":1,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/2lszqtcj","slide":1,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/d0z61032","slide":1,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":1,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/vu9knih4","slide":1,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":1,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/donyd0z6","slide":1,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":1,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/at47y1kr","slide":1,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/3ex0nuxc","slide":1,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":1,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":1,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/ahoza1gv","slide":1,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/32lszqtc","slide":1,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/sneloj2t","slide":1,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/l87ed8ba","slide":1,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":1,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":1,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":1,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/61032lsz","slide":1,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/dsji5sne","slide":1,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":1,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/vy90je9c","slide":1,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":1,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":1,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/oj2t83it","slide":1,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":1,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":1,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":1,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/90je9cvi","slide":1,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/yd0z6103","slide":1,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":1,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/g7adsji5","slide":1,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":1,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":1,"name":"label-outline","bbox":[72,64,350,56]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":1,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":1,"name":"label-text","text":"GENERACIÓN SELFIE","textPreview":"GENERACIÓN SELFIE","textChars":17,"textLines":1,"bbox":[122,78,288,30]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":1,"name":"script","text":"Espíritu,","textPreview":"Espíritu,","textChars":9,"textLines":1,"bbox":[72,165,640,80]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":1,"name":"title","text":"alma y cuerpo","textPreview":"alma y cuerpo","textChars":13,"textLines":1,"bbox":[72,245,760,88]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":1,"name":"subtitle","text":"¿Qué parte de nosotros está tomando el control?","textPreview":"¿Qué parte de nosotros está tomando el control?","textChars":47,"textLines":1,"bbox":[76,378,700,94]}
+{"kind":"shape","id":"sh/3m94fu18","slide":1,"name":"red-impact-bar","bbox":[72,500,520,34]}
+{"kind":"shape","id":"sh/a5gbq1or","slide":1,"name":"orange-impact-bar","bbox":[358,500,234,34]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":1,"name":"cover-phone-outer","bbox":[858,92,278,515]}
+{"kind":"shape","id":"sh/sji5snel","slide":1,"name":"cover-phone-screen","bbox":[880,146,234,387]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":1,"name":"cover-phone-speaker","bbox":[969,114,56,7]}
+{"kind":"shape","id":"sh/adsji5sn","slide":1,"name":"cover-phone-button","bbox":[975,555,44,44]}
+{"kind":"shape","id":"sh/hgn29gr2","slide":1,"name":"cover-phone-corner-tl-h","bbox":[904,176,56,6]}
+{"kind":"shape","id":"sh/svu9knih","slide":1,"name":"cover-phone-corner-tl-v","bbox":[904,176,6,56]}
+{"kind":"shape","id":"sh/6psfil0r","slide":1,"name":"cover-phone-corner-br-h","bbox":[1034,457,56,6]}
+{"kind":"shape","id":"sh/val87ed8","slide":1,"name":"cover-phone-corner-br-v","bbox":[1084,407,6,56]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":1,"name":"cover-phone-ui-left","text":"FLASH","textPreview":"FLASH","textChars":5,"textLines":1,"bbox":[892,511,72,20]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":1,"name":"cover-phone-ui-right","text":"SELFIE","textPreview":"SELFIE","textChars":6,"textLines":1,"bbox":[1038,511,72,20]}
+{"kind":"textbox","id":"sh/vixczed8","slide":1,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/l0rqd4vm","slide":1,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/nsuy5z","slide":1,"text":""}
+{"kind":"slide","id":"sl/09dpmz","slide":2,"title":"PREGUNTA DISPARADORA","textShapes":3}
+{"kind":"shape","id":"sh/mtwra5gb","slide":2,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":2,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/4zidonyd","slide":2,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":2,"name":"label-outline","bbox":[72,64,450,56]}
+{"kind":"shape","id":"sh/mlkjm1cf","slide":2,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":2,"name":"label-text","text":"PREGUNTA DISPARADORA","textPreview":"PREGUNTA DISPARADORA","textChars":20,"textLines":1,"bbox":[122,78,388,30]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":2,"name":"question","text":"¿Quién está\nguiando mi vida?","textPreview":"¿Quién está | guiando mi vida?","textChars":28,"textLines":2,"bbox":[120,205,1040,220]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":2,"name":"lens","bbox":[570,470,140,140]}
+{"kind":"shape","id":"sh/m94fu18j","slide":2,"name":"lens-dot","bbox":[622,522,36,36]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":2,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/zidonyd0","slide":2,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/09dpmz","slide":2,"text":""}
+{"kind":"slide","id":"sl/pfv4da","slide":3,"title":"IDEA CENTRAL","textShapes":6}
+{"kind":"shape","id":"sh/re1w7mp0","slide":3,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":3,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/9knih4by","slide":3,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/25kb6xkf","slide":3,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":3,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/kb6xkf6d","slide":3,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/9w3m94fu","slide":3,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":3,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":3,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":3,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":3,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":3,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/0z61032l","slide":3,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/72x4nap4","slide":3,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":3,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":3,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":3,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":3,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/ed8v6psf","slide":3,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/mlkjm1cf","slide":3,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":3,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/4r65wjud","slide":3,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/xc3ylc7u","slide":3,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/mtwra5gb","slide":3,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/fepkzupw","slide":3,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/4zidonyd","slide":3,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":3,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/qxs72x4n","slide":3,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/fil0rqd4","slide":3,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/1orytsvu","slide":3,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/c7u54zid","slide":3,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":3,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/u18jqh0f","slide":3,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/1032lszq","slide":3,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":3,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/judg7ads","slide":3,"name":"label-outline","bbox":[72,64,275,56]}
+{"kind":"shape","id":"sh/u9knih4b","slide":3,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/54zidony","slide":3,"name":"label-text","text":"IDEA CENTRAL","textPreview":"IDEA CENTRAL","textChars":12,"textLines":1,"bbox":[122,78,213,30]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":3,"name":"main-title","text":"Todo nuestro ser\nrendido a Cristo","textPreview":"Todo nuestro ser | rendido a Cristo","textChars":33,"textLines":2,"bbox":[72,162,820,190]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":3,"name":"thesis-parts","text":"espíritu  ·  alma  ·  cuerpo","textPreview":"espíritu  ·  alma  ·  cuerpo","textChars":28,"textLines":1,"bbox":[78,420,760,56]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":3,"name":"verse-ref","text":"1 Tesalonicenses 5:23","textPreview":"1 Tesalonicenses 5:23","textChars":21,"textLines":1,"bbox":[82,502,520,42]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":3,"name":"whole-circle","bbox":[890,185,250,250]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":3,"name":"whole-text","text":"SER\nINTEGRAL","textPreview":"SER | INTEGRAL","textChars":12,"textLines":2,"bbox":[908,286,214,54]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":3,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/j6tovaho","slide":3,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/pfv4da","slide":3,"text":""}
+{"kind":"slide","id":"sl/zdpihf","slide":4,"title":"MAPA VISUAL","textShapes":7}
+{"kind":"shape","id":"sh/byhgn29g","slide":4,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/0je9cvix","slide":4,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/t47y1kre","slide":4,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":4,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":4,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":4,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/tcj6tova","slide":4,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/ixczed8v","slide":4,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":4,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":4,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/yd0z6103","slide":4,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/90je9cvi","slide":4,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":4,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":4,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":4,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":4,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/g7adsji5","slide":4,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/nih4byhg","slide":4,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/yxobm58z","slide":4,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/61032lsz","slide":4,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":4,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":4,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/dsji5sne","slide":4,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":4,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/vy90je9c","slide":4,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/oj2t83it","slide":4,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":4,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":4,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":4,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/l87ed8ba","slide":4,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/sneloj2t","slide":4,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/32lszqtc","slide":4,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/ahoza1gv","slide":4,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/lkjm1cfa","slide":4,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":4,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/3ex0nuxc","slide":4,"name":"label-outline","bbox":[72,64,255,56]}
+{"kind":"shape","id":"sh/at47y1kr","slide":4,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":4,"name":"label-text","text":"MAPA VISUAL","textPreview":"MAPA VISUAL","textChars":11,"textLines":1,"bbox":[122,78,193,30]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":4,"name":"main-title","text":"Somos un ser\nintegral","textPreview":"Somos un ser | integral","textChars":21,"textLines":2,"bbox":[72,135,520,190]}
+{"kind":"shape","id":"sh/0fepkzup","slide":4,"name":"body-circle","bbox":[660,115,470,470]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":4,"name":"soul-circle","bbox":[730,185,330,330]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":4,"name":"spirit-circle","bbox":[805,260,180,180]}
+{"kind":"textbox","id":"sh/bulwval8","slide":4,"name":"body-label","text":"CUERPO","textPreview":"CUERPO","textChars":6,"textLines":1,"bbox":[770,495,250,56]}
+{"kind":"textbox","id":"sh/032lszqt","slide":4,"name":"soul-label","text":"ALMA","textPreview":"ALMA","textChars":4,"textLines":1,"bbox":[805,205,180,56]}
+{"kind":"textbox","id":"sh/tovahoza","slide":4,"name":"spirit-label","text":"ESPÍRITU","textPreview":"ESPÍRITU","textChars":8,"textLines":1,"bbox":[815,322,160,44]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":4,"name":"diagram-note","text":"Dios obra\ndesde adentro","textPreview":"Dios obra | desde adentro","textChars":23,"textLines":2,"bbox":[102,390,400,112]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":4,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/83itgfml","slide":4,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/zdpihf","slide":4,"text":""}
+{"kind":"slide","id":"sl/mmkwmw","slide":5,"title":"HOMBRE INTERIOR","textShapes":5}
+{"kind":"shape","id":"sh/2hwfyxob","slide":5,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/94fu18jq","slide":5,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":5,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/ra5gbq1o","slide":5,"name":"label-outline","bbox":[72,64,340,56]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":5,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":5,"name":"label-text","text":"HOMBRE INTERIOR","textPreview":"HOMBRE INTERIOR","textChars":15,"textLines":1,"bbox":[122,78,278,30]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":5,"name":"main-title","text":"Dios empieza\ndesde adentro","textPreview":"Dios empieza | desde adentro","textChars":26,"textLines":2,"bbox":[72,165,760,190]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":5,"name":"inner-circle","bbox":[850,205,210,210]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":5,"name":"inner-text","text":"INTERIOR","textPreview":"INTERIOR","textChars":8,"textLines":1,"bbox":[868,286,174,54]}
+{"kind":"shape","id":"sh/sneloj2t","slide":5,"name":"pulse-1","bbox":[800,155,310,310]}
+{"kind":"shape","id":"sh/l87ed8ba","slide":5,"name":"pulse-2","bbox":[750,105,410,410]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":5,"name":"refs","text":"Romanos 7:22\nEfesios 3:16\n2 Corintios 4:16","textPreview":"Romanos 7:22 | Efesios 3:16 | 2 Corintios 4:16","textChars":42,"textLines":3,"bbox":[84,500,420,110]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":5,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/wb2hwfyx","slide":5,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/mmkwmw","slide":5,"text":""}
+{"kind":"slide","id":"sl/r8depv","slide":6,"title":"INTIMIDAD","textShapes":5}
+{"kind":"shape","id":"sh/7ed8bat4","slide":6,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/0z61032l","slide":6,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":6,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":6,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/72x4nap4","slide":6,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":6,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":6,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/ed8v6psf","slide":6,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":6,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/rmhk3q5o","slide":6,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/y1kre1w7","slide":6,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":6,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/g7adsji5","slide":6,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":6,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/yd0z6103","slide":6,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/90je9cvi","slide":6,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/gfmlkjm1","slide":6,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/r65wjudg","slide":6,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":6,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/6tovahoz","slide":6,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/vahoza1g","slide":6,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/ovahoza1","slide":6,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/dg7adsji","slide":6,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":6,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":6,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/onyd0z61","slide":6,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":6,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":6,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/vy90je9c","slide":6,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/lwval87e","slide":6,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":6,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":6,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":6,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/loj2t83i","slide":6,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":6,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":6,"name":"label-outline","bbox":[72,64,235,56]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":6,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":6,"name":"label-text","text":"INTIMIDAD","textPreview":"INTIMIDAD","textChars":9,"textLines":1,"bbox":[122,78,173,30]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":6,"name":"main-title","text":"El espíritu\nse encuentra\ncon Dios","textPreview":"El espíritu | se encuentra | con Dios","textChars":33,"textLines":3,"bbox":[72,145,610,190]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":6,"name":"god","bbox":[780,130,260,96]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":6,"name":"god-text","text":"DIOS","textPreview":"DIOS","textChars":4,"textLines":1,"bbox":[780,150,260,50]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":6,"name":"line-1","bbox":[905,235,10,120]}
+{"kind":"shape","id":"sh/72x4nap4","slide":6,"name":"spirit-box","bbox":[745,365,330,112]}
+{"kind":"textbox","id":"sh/0z61032l","slide":6,"name":"spirit-text","text":"ESPÍRITU","textPreview":"ESPÍRITU","textChars":8,"textLines":1,"bbox":[745,392,330,56]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":6,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/m94fu18j","slide":6,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/r8depv","slide":6,"text":""}
+{"kind":"slide","id":"sl/5zota5","slide":7,"title":"SALMO 103","textShapes":4}
+{"kind":"shape","id":"sh/8bat47y1","slide":7,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":7,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":7,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":7,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":7,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/j2t83itg","slide":7,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":7,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/1cfa9w3m","slide":7,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/crmhk3q5","slide":7,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/2t83itgf","slide":7,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":7,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":7,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/9knih4by","slide":7,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/25kb6xkf","slide":7,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/rqd4vmtw","slide":7,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/kb6xkf6d","slide":7,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/9w3m94fu","slide":7,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":7,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":7,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/j2t83itg","slide":7,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":7,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":7,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":7,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":7,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":7,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":7,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/8bat47y1","slide":7,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/ji5snelo","slide":7,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/uxc3ylc7","slide":7,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":7,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":7,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":7,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/bat47y1k","slide":7,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/47y1kre1","slide":7,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":7,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":7,"name":"label-outline","bbox":[72,64,235,56]}
+{"kind":"shape","id":"sh/bm58z25k","slide":7,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":7,"name":"label-text","text":"SALMO 103","textPreview":"SALMO 103","textChars":9,"textLines":1,"bbox":[122,78,173,30]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":7,"name":"quote","text":"Bendice,\nalma mía,\na Jehová","textPreview":"Bendice, | alma mía, | a Jehová","textChars":27,"textLines":3,"bbox":[74,150,620,260]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":7,"name":"key","text":"El interior da la orden","textPreview":"El interior da la orden","textChars":23,"textLines":1,"bbox":[82,455,560,56]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":7,"name":"megaphone-body","bbox":[780,255,180,110]}
+{"kind":"shape","id":"sh/nih4byhg","slide":7,"name":"megaphone-handle","bbox":[850,360,48,130]}
+{"kind":"shape","id":"sh/yxobm58z","slide":7,"name":"sound-1","bbox":[990,230,110,190]}
+{"kind":"shape","id":"sh/9cvixcze","slide":7,"name":"sound-2","bbox":[1040,195,180,260]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":7,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/7qpg3ex0","slide":7,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/5zota5","slide":7,"text":""}
+{"kind":"slide","id":"sl/7ng2a7","slide":8,"title":"ORDEN CORRECTO","textShapes":12}
+{"kind":"shape","id":"sh/eloj2t83","slide":8,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":8,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":8,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/7u54zido","slide":8,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/ed8bat47","slide":8,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":8,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":8,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/7mp0bi9s","slide":8,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/e1w7mp0b","slide":8,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":8,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/tcj6tova","slide":8,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":8,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":8,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/0je9cvix","slide":8,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/t47y1kre","slide":8,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/idonyd0z","slide":8,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/byhgn29g","slide":8,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/0fepkzup","slide":8,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":8,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":8,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/47y1kre1","slide":8,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/bm58z25k","slide":8,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/m1cfa9w3","slide":8,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":8,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":8,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/bat47y1k","slide":8,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":8,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/t83itgfm","slide":8,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/4nap4r65","slide":8,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/eloj2t83","slide":8,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/36hcrmhk","slide":8,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":8,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":8,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/ed8bat47","slide":8,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/7u54zido","slide":8,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":8,"name":"label-outline","bbox":[72,64,315,56]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":8,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":8,"name":"label-text","text":"ORDEN CORRECTO","textPreview":"ORDEN CORRECTO","textChars":14,"textLines":1,"bbox":[122,78,253,30]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":8,"name":"main-title","text":"El espíritu\nordena","textPreview":"El espíritu | ordena","textChars":18,"textLines":2,"bbox":[72,135,520,190]}
+{"kind":"shape","id":"sh/nqxs72x4","slide":8,"name":"order-1-box","bbox":[540,180,190,155]}
+{"kind":"textbox","id":"sh/u54zidon","slide":8,"name":"order-1-title","text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[570,212,130,54]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":8,"name":"order-1-body","text":"Espíritu","textPreview":"Espíritu","textChars":8,"textLines":1,"bbox":[570,282,130,39]}
+{"kind":"textbox","id":"sh/cbulwval","slide":8,"name":"arrow","text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[745,220,70,70]}
+{"kind":"shape","id":"sh/neloj2t8","slide":8,"name":"order-2-box","bbox":[805,180,190,155]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":8,"name":"order-2-title","text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[835,212,130,54]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":8,"name":"order-2-body","text":"Alma","textPreview":"Alma","textChars":4,"textLines":1,"bbox":[835,282,130,39]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":8,"name":"arrow","text":">","textPreview":">","textChars":1,"textLines":1,"bbox":[1010,220,70,70]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":8,"name":"order-3-box","bbox":[1070,180,190,155]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":8,"name":"order-3-title","text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[1100,212,130,54]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":8,"name":"order-3-body","text":"Cuerpo","textPreview":"Cuerpo","textChars":6,"textLines":1,"bbox":[1100,282,130,39]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":8,"name":"order-note","text":"No vivimos por impulso.\nSomos guiados por Dios.","textPreview":"No vivimos por impulso. | Somos guiados por Dios.","textChars":47,"textLines":2,"bbox":[570,420,620,96]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":8,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/hk3q5o7q","slide":8,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/7ng2a7","slide":8,"text":""}
+{"kind":"slide","id":"sl/3gb9ya","slide":9,"title":"ROMANOS 8","textShapes":8}
+{"kind":"shape","id":"sh/dcbulwva","slide":9,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/6psfil0r","slide":9,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/val87ed8","slide":9,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":9,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/donyd0z6","slide":9,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":9,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/vixczed8","slide":9,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":9,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/d0z61032","slide":9,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/dsji5sne","slide":9,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":9,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":9,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/61032lsz","slide":9,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":9,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/oj2t83it","slide":9,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/vy90je9c","slide":9,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":9,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":9,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/onyd0z61","slide":9,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":9,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/dcbulwva","slide":9,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/6psfil0r","slide":9,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/val87ed8","slide":9,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":9,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/donyd0z6","slide":9,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":9,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/vixczed8","slide":9,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":9,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/d0z61032","slide":9,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":9,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/adsji5sn","slide":9,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":9,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/sji5snel","slide":9,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/3m94fu18","slide":9,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/a5gbq1or","slide":9,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":9,"name":"label-outline","bbox":[72,64,250,56]}
+{"kind":"shape","id":"sh/s72x4nap","slide":9,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":9,"name":"label-text","text":"ROMANOS 8","textPreview":"ROMANOS 8","textChars":9,"textLines":1,"bbox":[122,78,188,30]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":9,"name":"main-title","text":"Dos formas\nde vivir","textPreview":"Dos formas | de vivir","textChars":19,"textLines":2,"bbox":[72,128,600,190]}
+{"kind":"shape","id":"sh/uxc3ylc7","slide":9,"name":"flesh-box","bbox":[116,330,470,215]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":9,"name":"flesh-title","text":"Carne","textPreview":"Carne","textChars":5,"textLines":1,"bbox":[146,362,410,54]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":9,"name":"flesh-body","text":"Lo que se ocupa de sí mismo","textPreview":"Lo que se ocupa de sí mismo","textChars":27,"textLines":1,"bbox":[146,432,410,99]}
+{"kind":"shape","id":"sh/1kre1w7m","slide":9,"name":"spirit-box","bbox":[690,330,470,215]}
+{"kind":"textbox","id":"sh/ulwval87","slide":9,"name":"spirit-title","text":"Espíritu","textPreview":"Espíritu","textChars":8,"textLines":1,"bbox":[720,362,410,54]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":9,"name":"spirit-body","text":"Vida y paz","textPreview":"Vida y paz","textChars":10,"textLines":1,"bbox":[720,432,410,99]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":9,"name":"romans-ref","text":"Romanos 8:5-14","textPreview":"Romanos 8:5-14","textChars":14,"textLines":1,"bbox":[78,560,330,38]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":9,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/u18jqh0f","slide":9,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/3gb9ya","slide":9,"text":""}
+{"kind":"slide","id":"sl/8uda1l","slide":10,"title":"PRINCIPIO","textShapes":5}
+{"kind":"shape","id":"sh/tgfmlkjm","slide":10,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/mp0bi9s3","slide":10,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/bat47y1k","slide":10,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/47y1kre1","slide":10,"name":"label-outline","bbox":[72,64,235,56]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":10,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":10,"name":"label-text","text":"PRINCIPIO","textPreview":"PRINCIPIO","textChars":9,"textLines":1,"bbox":[122,78,173,30]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":10,"name":"feeding","text":"Lo que\nalimentamos\nse fortalece","textPreview":"Lo que | alimentamos | se fortalece","textChars":31,"textLines":3,"bbox":[95,155,620,305]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":10,"name":"Espíritu-label","text":"Espíritu","textPreview":"Espíritu","textChars":8,"textLines":1,"bbox":[760,210,360,42]}
+{"kind":"shape","id":"sh/twra5gbq","slide":10,"name":"Espíritu-track","bbox":[760,268,410,34]}
+{"kind":"shape","id":"sh/1cfa9w3m","slide":10,"name":"Espíritu-fill","bbox":[766,274,342,22]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":10,"name":"Carne-label","text":"Carne","textPreview":"Carne","textChars":5,"textLines":1,"bbox":[760,365,360,42]}
+{"kind":"shape","id":"sh/j6tovaho","slide":10,"name":"Carne-track","bbox":[760,423,410,34]}
+{"kind":"shape","id":"sh/ulwval87","slide":10,"name":"Carne-fill","bbox":[766,429,135,22]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":10,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/a9w3m94f","slide":10,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/8uda1l","slide":10,"text":""}
+{"kind":"slide","id":"sl/8wwrvv","slide":11,"title":"ALIMENTACIÓN","textShapes":7}
+{"kind":"shape","id":"sh/ed8bat47","slide":11,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":11,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/wfyxobm5","slide":11,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/36hcrmhk","slide":11,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/eloj2t83","slide":11,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/lc7u54zi","slide":11,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":11,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/7adsji5s","slide":11,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/epkzupwb","slide":11,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":11,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":11,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":11,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/fyxobm58","slide":11,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/8v6psfil","slide":11,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/xczed8v6","slide":11,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":11,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/fa9w3m94","slide":11,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/8z25kb6x","slide":11,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/1gvy90je","slide":11,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/loj2t83i","slide":11,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":11,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":11,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":11,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/lwval87e","slide":11,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":11,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":11,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":11,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/l87ed8ba","slide":11,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/sneloj2t","slide":11,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":11,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":11,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/onyd0z61","slide":11,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":11,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/6tovahoz","slide":11,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/vahoza1g","slide":11,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/ovahoza1","slide":11,"name":"label-outline","bbox":[72,64,300,56]}
+{"kind":"shape","id":"sh/dg7adsji","slide":11,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/61032lsz","slide":11,"name":"label-text","text":"ALIMENTACIÓN","textPreview":"ALIMENTACIÓN","textChars":12,"textLines":1,"bbox":[122,78,238,30]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":11,"name":"feed-phone-outer","bbox":[132,125,275,505]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":11,"name":"feed-phone-screen","bbox":[154,179,231,377]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":11,"name":"feed-phone-speaker","bbox":[241.5,147,56,7]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":11,"name":"feed-phone-button","bbox":[247.5,578,44,44]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":11,"name":"feed-phone-corner-tl-h","bbox":[178,209,56,6]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":11,"name":"feed-phone-corner-tl-v","bbox":[178,209,6,56]}
+{"kind":"shape","id":"sh/65wjudg7","slide":11,"name":"feed-phone-corner-br-h","bbox":[305,480,56,6]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":11,"name":"feed-phone-corner-br-v","bbox":[355,430,6,56]}
+{"kind":"textbox","id":"sh/obm58z25","slide":11,"name":"feed-phone-ui-left","text":"FLASH","textPreview":"FLASH","textChars":5,"textLines":1,"bbox":[166,534,72,20]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":11,"name":"feed-phone-ui-right","text":"SELFIE","textPreview":"SELFIE","textChars":6,"textLines":1,"bbox":[309,534,72,20]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":11,"name":"phone-word","text":"FEED","textPreview":"FEED","textChars":4,"textLines":1,"bbox":[166,265,210,80]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":11,"name":"starve","text":"Todo lo que\nno alimentamos\nse muere","textPreview":"Todo lo que | no alimentamos | se muere","textChars":35,"textLines":3,"bbox":[520,185,650,240]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":11,"name":"short-note","text":"La pregunta es qué estamos dejando crecer.","textPreview":"La pregunta es qué estamos dejando crecer.","textChars":42,"textLines":1,"bbox":[526,470,620,46]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":11,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/9gr2p8nq","slide":11,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/8wwrvv","slide":11,"text":""}
+{"kind":"slide","id":"sl/qjsung","slide":12,"title":"HÁBITOS","textShapes":4}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":12,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/xczed8v6","slide":12,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/8v6psfil","slide":12,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/fyxobm58","slide":12,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":12,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":12,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":12,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":12,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/q1orytsv","slide":12,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/4nap4r65","slide":12,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/t83itgfm","slide":12,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/mhk3q5o7","slide":12,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":12,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/4byhgn29","slide":12,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/twra5gbq","slide":12,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/m58z25kb","slide":12,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/bq1oryts","slide":12,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/47y1kre1","slide":12,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/tsvu9kni","slide":12,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":12,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/4zidonyd","slide":12,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/fepkzupw","slide":12,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/mtwra5gb","slide":12,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/xc3ylc7u","slide":12,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/4r65wjud","slide":12,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":12,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/mlkjm1cf","slide":12,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":12,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/4fu18jqh","slide":12,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/ed8v6psf","slide":12,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":12,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":12,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/p4r65wju","slide":12,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/i5sneloj","slide":12,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/7qpg3ex0","slide":12,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/0bi9s36h","slide":12,"name":"label-outline","bbox":[72,64,205,56]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":12,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":12,"name":"label-text","text":"HÁBITOS","textPreview":"HÁBITOS","textChars":7,"textLines":1,"bbox":[122,78,143,30]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":12,"name":"main-title","text":"El cuerpo pide\nlo que conoce","textPreview":"El cuerpo pide | lo que conoce","textChars":28,"textLines":2,"bbox":[72,140,760,190]}
+{"kind":"shape","id":"sh/nih4byhg","slide":12,"name":"habit-plate","bbox":[830,205,260,260]}
+{"kind":"shape","id":"sh/yxobm58z","slide":12,"name":"habit-scoop-1","bbox":[870,235,78,78]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":12,"name":"habit-scoop-2","bbox":[955,265,78,78]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":12,"name":"habit-scoop-3","bbox":[910,335,88,56]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":12,"name":"habit-note","text":"Lo repetido\nse vuelve hambre.","textPreview":"Lo repetido | se vuelve hambre.","textChars":29,"textLines":2,"bbox":[82,445,580,96]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":12,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/xs72x4na","slide":12,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/qjsung","slide":12,"text":""}
+{"kind":"slide","id":"sl/6kxzdl","slide":13,"title":"DISCIPLINA","textShapes":3}
+{"kind":"shape","id":"sh/p0bi9s36","slide":13,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":13,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/bulwval8","slide":13,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/032lszqt","slide":13,"name":"label-outline","bbox":[72,64,270,56]}
+{"kind":"shape","id":"sh/tovahoza","slide":13,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":13,"name":"label-text","text":"DISCIPLINA","textPreview":"DISCIPLINA","textChars":10,"textLines":1,"bbox":[122,78,208,30]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":13,"name":"discipline-title","text":"La victoria\nse prepara\nen la mesa","textPreview":"La victoria | se prepara | en la mesa","textChars":33,"textLines":3,"bbox":[80,142,620,285]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":13,"name":"table","bbox":[780,430,360,22]}
+{"kind":"shape","id":"sh/tcj6tova","slide":13,"name":"plate","bbox":[845,215,230,230]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":13,"name":"plate-inner","bbox":[895,265,130,130]}
+{"kind":"shape","id":"sh/obm58z25","slide":13,"name":"fork-1","bbox":[770,220,10,205]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":13,"name":"fork-2","bbox":[748,220,10,68]}
+{"kind":"shape","id":"sh/65wjudg7","slide":13,"name":"fork-3","bbox":[792,220,10,68]}
+{"kind":"textbox","id":"sh/oza1gvy9","slide":13,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/yxobm58z","slide":13,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/6kxzdl","slide":13,"text":""}
+{"kind":"slide","id":"sl/inpbjr","slide":14,"title":"DECISIÓN","textShapes":7}
+{"kind":"shape","id":"sh/9cvixcze","slide":14,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":14,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/r65wjudg","slide":14,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":14,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":14,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/yxobm58z","slide":14,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/nih4byhg","slide":14,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/g7adsji5","slide":14,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":14,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":14,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/onyd0z61","slide":14,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":14,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":14,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/dg7adsji","slide":14,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/ovahoza1","slide":14,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/vahoza1g","slide":14,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/6tovahoz","slide":14,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/dsji5sne","slide":14,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":14,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/kjm1cfa9","slide":14,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/94fu18jq","slide":14,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/2hwfyxob","slide":14,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/r2p8nqxs","slide":14,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/gvy90je9","slide":14,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/9gr2p8nq","slide":14,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":14,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/ra5gbq1o","slide":14,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/kzupwb2h","slide":14,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/9knih4by","slide":14,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/fa9w3m94","slide":14,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/qpg3ex0n","slide":14,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/xczed8v6","slide":14,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/8v6psfil","slide":14,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/fyxobm58","slide":14,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":14,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":14,"name":"label-outline","bbox":[72,64,220,56]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":14,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":14,"name":"label-text","text":"DECISIÓN","textPreview":"DECISIÓN","textChars":8,"textLines":1,"bbox":[122,78,158,30]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":14,"name":"decision-title","text":"¿Qué estamos\nalimentando?","textPreview":"¿Qué estamos | alimentando?","textChars":25,"textLines":2,"bbox":[82,145,760,170]}
+{"kind":"shape","id":"sh/65wjudg7","slide":14,"name":"choice-1-box","bbox":[115,380,455,155]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":14,"name":"choice-1-title","text":"Presencia","textPreview":"Presencia","textChars":9,"textLines":1,"bbox":[145,412,395,54]}
+{"kind":"textbox","id":"sh/obm58z25","slide":14,"name":"choice-1-body","text":"vida y paz","textPreview":"vida y paz","textChars":10,"textLines":1,"bbox":[145,482,395,39]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":14,"name":"choice-2-box","bbox":[705,380,455,155]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":14,"name":"choice-2-title","text":"Carne","textPreview":"Carne","textChars":5,"textLines":1,"bbox":[735,412,395,54]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":14,"name":"choice-2-body","text":"impulso y desgaste","textPreview":"impulso y desgaste","textChars":18,"textLines":1,"bbox":[735,482,395,39]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":14,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/bi9s36hc","slide":14,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/inpbjr","slide":14,"text":""}
+{"kind":"slide","id":"sl/52n6pw","slide":15,"title":"PRÁCTICA","textShapes":9}
+{"kind":"shape","id":"sh/0bi9s36h","slide":15,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/7qpg3ex0","slide":15,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/i5sneloj","slide":15,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/p4r65wju","slide":15,"name":"grid-v","bbox":[0,0,1,720]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":15,"name":"grid-v","bbox":[64,0,1,720]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":15,"name":"grid-v","bbox":[128,0,1,720]}
+{"kind":"shape","id":"sh/ed8v6psf","slide":15,"name":"grid-v","bbox":[192,0,1,720]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":15,"name":"grid-v","bbox":[256,0,1,720]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":15,"name":"grid-v","bbox":[320,0,1,720]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":15,"name":"grid-v","bbox":[384,0,1,720]}
+{"kind":"shape","id":"sh/72x4nap4","slide":15,"name":"grid-v","bbox":[448,0,1,720]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":15,"name":"grid-v","bbox":[512,0,1,720]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":15,"name":"grid-v","bbox":[576,0,1,720]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":15,"name":"grid-v","bbox":[640,0,1,720]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":15,"name":"grid-v","bbox":[704,0,1,720]}
+{"kind":"shape","id":"sh/0z61032l","slide":15,"name":"grid-v","bbox":[768,0,1,720]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":15,"name":"grid-v","bbox":[832,0,1,720]}
+{"kind":"shape","id":"sh/i5sneloj","slide":15,"name":"grid-v","bbox":[896,0,1,720]}
+{"kind":"shape","id":"sh/7qpg3ex0","slide":15,"name":"grid-v","bbox":[960,0,1,720]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":15,"name":"grid-v","bbox":[1024,0,1,720]}
+{"kind":"shape","id":"sh/65wjudg7","slide":15,"name":"grid-v","bbox":[1088,0,1,720]}
+{"kind":"shape","id":"sh/hwfyxobm","slide":15,"name":"grid-v","bbox":[1152,0,1,720]}
+{"kind":"shape","id":"sh/obm58z25","slide":15,"name":"grid-v","bbox":[1216,0,1,720]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":15,"name":"grid-h","bbox":[0,0,1280,1]}
+{"kind":"shape","id":"sh/6xkf6dcb","slide":15,"name":"grid-h","bbox":[0,64,1280,1]}
+{"kind":"shape","id":"sh/hk3q5o7q","slide":15,"name":"grid-h","bbox":[0,128,1280,1]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":15,"name":"grid-h","bbox":[0,192,1280,1]}
+{"kind":"shape","id":"sh/z61032ls","slide":15,"name":"grid-h","bbox":[0,256,1280,1]}
+{"kind":"shape","id":"sh/al87ed8b","slide":15,"name":"grid-h","bbox":[0,320,1280,1]}
+{"kind":"shape","id":"sh/032lszqt","slide":15,"name":"grid-h","bbox":[0,384,1280,1]}
+{"kind":"shape","id":"sh/tovahoza","slide":15,"name":"grid-h","bbox":[0,448,1280,1]}
+{"kind":"shape","id":"sh/ixczed8v","slide":15,"name":"grid-h","bbox":[0,512,1280,1]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":15,"name":"grid-h","bbox":[0,576,1280,1]}
+{"kind":"shape","id":"sh/0fepkzup","slide":15,"name":"grid-h","bbox":[0,640,1280,1]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":15,"name":"grid-h","bbox":[0,704,1280,1]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":15,"name":"label-outline","bbox":[72,64,220,56]}
+{"kind":"shape","id":"sh/bulwval8","slide":15,"name":"label-dot","bbox":[90,84,16,16]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":15,"name":"label-text","text":"PRÁCTICA","textPreview":"PRÁCTICA","textChars":8,"textLines":1,"bbox":[122,78,158,30]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":15,"name":"main-title","text":"Alimentar\nel espíritu","textPreview":"Alimentar | el espíritu","textChars":21,"textLines":2,"bbox":[72,132,560,190]}
+{"kind":"shape","id":"sh/5sneloj2","slide":15,"name":"food-icon-0","bbox":[565,230,150,150]}
+{"kind":"textbox","id":"sh/cbulwval","slide":15,"name":"food-mark-0","text":"Libro","textPreview":"Libro","textChars":5,"textLines":1,"bbox":[580,272,120,45]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":15,"name":"food-title-0","text":"PALABRA","textPreview":"PALABRA","textChars":7,"textLines":1,"bbox":[523,405,234,44]}
+{"kind":"shape","id":"sh/u54zidon","slide":15,"name":"food-icon-1","bbox":[785,230,150,150]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":15,"name":"food-mark-1","text":"Altar","textPreview":"Altar","textChars":5,"textLines":1,"bbox":[800,272,120,45]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":15,"name":"food-title-1","text":"ORACIÓN","textPreview":"ORACIÓN","textChars":7,"textLines":1,"bbox":[743,405,234,44]}
+{"kind":"shape","id":"sh/neloj2t8","slide":15,"name":"food-icon-2","bbox":[1005,230,150,150]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":15,"name":"food-mark-2","text":"Casa","textPreview":"Casa","textChars":4,"textLines":1,"bbox":[1020,272,120,45]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":15,"name":"food-title-2","text":"COMUNIDAD","textPreview":"COMUNIDAD","textChars":9,"textLines":1,"bbox":[963,405,234,44]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":15,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/fepkzupw","slide":15,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/52n6pw","slide":15,"text":""}
+{"kind":"slide","id":"sl/ags5c2","slide":16,"title":"MOMENTO DE RESPUESTA","textShapes":4}
+{"kind":"shape","id":"sh/1032lszq","slide":16,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/u9knih4b","slide":16,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/judg7ads","slide":16,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"shape","id":"sh/c7u54zid","slide":16,"name":"label-outline","bbox":[410,124,460,56]}
+{"kind":"shape","id":"sh/1orytsvu","slide":16,"name":"label-dot","bbox":[428,144,16,16]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":16,"name":"label-text","text":"MOMENTO DE RESPUESTA","textPreview":"MOMENTO DE RESPUESTA","textChars":20,"textLines":1,"bbox":[460,138,398,30]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":16,"name":"response-title","text":"Cristo vive\nen nosotros","textPreview":"Cristo vive | en nosotros","textChars":23,"textLines":2,"bbox":[220,260,840,150]}
+{"kind":"textbox","id":"sh/cvixczed","slide":16,"name":"response-subtitle","text":"Rendimos espíritu, alma y cuerpo.","textPreview":"Rendimos espíritu, alma y cuerpo.","textChars":33,"textLines":1,"bbox":[270,450,740,50]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":16,"name":"response-line","bbox":[430,532,420,5]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":16,"name":"footer-text","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[980,646,286,38]}
+{"kind":"image","id":"im/udg7adsj","slide":16,"name":"","alt":"Identificador Raíces","bbox":[912,632,54,54]}
+{"kind":"notes","id":"nt/ags5c2","slide":16,"text":""}
+{"kind":"slide","id":"sl/pgrf2c","slide":17,"title":"Red de Jóvenes - Raíces","textShapes":2}
+{"kind":"shape","id":"sh/kf6dcbul","slide":17,"name":"bg-dark","bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/vu9knih4","slide":17,"name":"bg-side-depth","bbox":[820,0,460,720]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":17,"name":"accent-glow","bbox":[840,-145,360,360]}
+{"kind":"textbox","id":"sh/knih4byh","slide":17,"name":"close-title","text":"Red de Jóvenes - Raíces","textPreview":"Red de Jóvenes - Raíces","textChars":23,"textLines":1,"bbox":[180,292,920,90]}
+{"kind":"shape","id":"sh/v6psfil0","slide":17,"name":"close-bar","bbox":[388,404,504,22]}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":17,"name":"close-next","text":"Generación Selfie","textPreview":"Generación Selfie","textChars":17,"textLines":1,"bbox":[260,482,760,58]}
+{"kind":"image","id":"im/cvixczed","slide":17,"name":"","alt":"Identificador Raíces","bbox":[572,118,136,136]}
+{"kind":"notes","id":"nt/pgrf2c","slide":17,"text":""}

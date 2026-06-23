@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De generación en generación — Salmo 145:4</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0f0f0f;
+    --bg2:      #1a1a1a;
+    --text:     #f0f0f0;
+    --muted:    #999;
+    --red:      #e05555;
+    --red-bg:   #2a1212;
+    --green:    #5DBE2C;
+    --green-bg: #0e1f09;
+    --gold:     #f0c040;
+    --gold-bg:  #1e1800;
+    --accent:   #5DBE2C;
+    --border:   #333;
+    --nav-h:    64px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: #111;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    z-index: 100;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: #222;
+    color: #ccc;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid #333;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+
+  /* ── HEADER CARD (title block) ── */
+  .header-card {
+    background: var(--bg2);
+    border-left: 6px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .header-card .label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .header-card h1 {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-card .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── VERSE BOX ── */
+  .verse {
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #f5d0d0;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* ── GREEK/HEBREW term ── */
+  .term {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #ddd;
+  }
+  .term-def {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── PUNTO TITLE ── */
+  .punto-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 32px 0 20px;
+    padding: 14px 20px;
+    background: #222;
+    border-radius: 6px;
+    border-left: 5px solid var(--accent);
+  }
+  .punto-num {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  /* ── SUBPOINTS ── */
+  .sub {
+    margin: 18px 0 18px 16px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+  }
+  .sub-label {
+    font-family: Arial, sans-serif;
+    font-size: .85em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .sub p {
+    font-size: 1.1em;
+    color: #e8e8e8;
+  }
+
+  /* ── APPLICATION BOX ── */
+  .aplicacion {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 28px 0 8px;
+    font-size: 1.1em;
+    color: #c8f0b0;
+  }
+  .aplicacion .apl-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* ── QUESTION ── */
+  .pregunta {
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #f5e8a0;
+    font-style: italic;
+  }
+
+  /* ── INTRO / CONCLUSION plain text ── */
+  .plain {
+    font-size: 1.1em;
+    color: #ddd;
+    margin: 14px 0;
+  }
+
+  /* ── LLAMADO ── */
+  .llamado {
+    background: #1e0a2a;
+    border-left: 5px solid #b060e0;
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: #e0c0ff;
+  }
+  .llamado .ll-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b060e0;
+    margin-bottom: 8px;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .nav-hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#intro"   class="active">Intro</a>
+  <a href="#punto1">1 · Decisión</a>
+  <a href="#punto2">2 · Josué</a>
+  <a href="#punto3">3 · Jueces</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Salmo 145:4 — Reunión especial · 20 min</div>
+    <h1>De generación en generación</h1>
+    <div class="meta">Tono: Desafiante &nbsp;·&nbsp; Sin ilustración personal</div>
+  </div>
+
+  <div class="sec-title">Introducción</div>
+
+  <div class="verse">
+    "Una generación alabará tus obras a la otra,
+    y anunciará tus poderosos hechos."
+    <span class="ref">Salmo 145:4 — RVR60</span>
+  </div>
+
+  <p class="plain">
+    Hoy están entre nosotros personas que cargaron el peso de la fe cuando nosotros no existíamos, o cuando éramos demasiado jóvenes para entender. Dios diseñó algo: que lo que Él hace en una generación, llegue a la siguiente.
+  </p>
+  <p class="plain">
+    Pero el Salmo no dice que eso <em>va a pasar solo</em>. Dice que una generación <strong>proclamará</strong> a la otra. Hay una decisión involucrada.
+  </p>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">1.</span>Transmitir es una decisión, no un accidente
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a)</div>
+    <p>
+      El verbo hebreo <span class="term">yesapper</span> <span class="term-def">(יְסַפֵּר — "proclamará, narrará")</span> es activo e intencional. No dice "llegará sola". Alguien tiene que contarlo.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b)</div>
+    <p>
+      El legado espiritual no se hereda biológicamente. La fe de los padres no pasa por la sangre — pasa por la boca y la vida.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c)</div>
+    <p>
+      Lo que Dios hizo es un depósito que se nos confió. Guardarlo en silencio no es humildad — es mayordomía fallida.
+    </p>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿Cuántas cosas hemos visto hacer a Dios que la siguiente generación todavía no conoce porque nunca se las contamos?
+    </div>
+  </div>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">2.</span>Josué: impartir con urgencia y claridad
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a)</div>
+    <p>
+      Antes de morir, Josué reunió a todo Israel y narró punto por punto lo que Dios había hecho — no asumió que ya lo sabían.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Josué reunió a todas las tribus de Israel en Siquem... Y dijo al pueblo: Así dice Jehová Dios de Israel..."
+      <span class="ref">Josué 24:1–2</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b)</div>
+    <p>
+      Habló con claridad y con postura propia — no predicó lo que no vivía.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Escoged hoy a quién sirváis... pero yo y mi casa serviremos a Jehová."
+      <span class="ref">Josué 24:15</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c)</div>
+    <p>
+      La transmisión funcionó — tuvo efecto concreto y duradero.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Y sirvió Israel a Jehová todo el tiempo de Josué, y todo el tiempo de los ancianos que sobrevivieron a Josué y que habían conocido todas las obras que Jehová había hecho por Israel."
+      <span class="ref">Josué 24:31</span>
+    </div>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    Como Josué, necesitamos reunir, narrar y posicionarnos — antes de que sea tarde. La impartición no puede quedarse esperando el "momento perfecto".
+  </div>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">3.</span>Jueces 2:10 — cuando nadie transmite
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a)</div>
+    <p>
+      Murió Josué, murieron los ancianos... y apareció el resultado de ese silencio.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Y se levantó después de ellos otra generación que no conocía a Jehová, ni la obra que él había hecho por Israel."
+      <span class="ref">Jueces 2:10</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b)</div>
+    <p>
+      El vacío espiritual nunca queda vacío — sin el Dios de sus padres, esa generación llenó el espacio con Baal.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Después los hijos de Israel hicieron lo malo ante los ojos de Jehová, y sirvieron a los baales."
+      <span class="ref">Jueces 2:11</span>
+    </div>
+    <p style="margin-top:12px; color:#bbb;">La ignorancia espiritual no es neutral — produce apostasía activa.</p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c)</div>
+    <p>
+      Una generación sin historia espiritual transmitida no solo no avanza — retrocede activamente. El problema no fue la nueva generación: fue el silencio de la anterior.
+    </p>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    Hay generaciones en nuestras familias y en esta iglesia esperando lo que nosotros transmitamos. Si no lo hacemos, algo más lo va a hacer — y ya lo está haciendo.
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión</div>
+
+  <p class="plain">
+    Lo que vivimos hoy — hermanos mayores compartiéndonos su herencia — es exactamente lo que el Salmo 145:4 describe. Una generación proclamando a la otra.
+  </p>
+  <p class="plain">
+    El desafío es que esto no sea la excepción. Que sea el patrón de esta iglesia y de nuestras familias. Necesitamos ser la generación que deja algo tan bien transmitido que la siguiente no tenga que descubrir a Dios desde cero.
+  </p>
+  <p class="plain">
+    Tenemos dos caminos: ser Josué 24, o producir Jueces 2:10. La diferencia no está en la generación que viene — está en lo que nosotros hagamos hoy.
+  </p>
+</section>
+
+<!-- LLAMADO -->
+<section id="llamado">
+  <div class="sec-title">Llamado Final</div>
+
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    Josué no esperó que los jóvenes vinieran a preguntar. Él los convocó. Nosotros también necesitamos convocar, narrar, y posicionarnos. Un Jueces 2:10 no es inevitable — depende de lo que hagamos con lo que Dios nos dio.
+  </div>
+
+  <div class="pregunta" style="margin-top:24px;">
+    ¿Somos una generación que está transmitiendo activamente, o estamos creando el silencio que produce una Jueces 2:10?
+  </div>
+
+  <div class="nav-hint" style="margin-top:60px;">
+    ↑ usá los botones del menú para navegar entre secciones mientras predicás
+  </div>
+</section>
+
+<script>
+  // Highlight active nav link on scroll
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+  const navH  = 64 + 30;
+
+  function updateNav() {
+    let cur = '';
+    secs.forEach(s => {
+      if (window.scrollY >= s.offsetTop - navH) cur = s.id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>

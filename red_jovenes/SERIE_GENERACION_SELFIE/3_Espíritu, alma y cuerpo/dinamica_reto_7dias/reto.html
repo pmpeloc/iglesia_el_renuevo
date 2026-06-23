@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reto del Día · Generación Selfie</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #0a0a0a;
+        color: #fff;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .card {
+        background: #111;
+        border-radius: 20px;
+        padding: 36px 28px;
+        width: 100%;
+        max-width: 440px;
+        border: 1px solid #222;
+        text-align: center;
+      }
+      .tag {
+        font-size: 11px;
+        letter-spacing: 5px;
+        color: #e8521a;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .day-badge {
+        display: inline-block;
+        background: #e8521a;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 800;
+        letter-spacing: 3px;
+        padding: 6px 18px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+      }
+      .reto-box {
+        background: #1a1a1a;
+        border-left: 4px solid #e8521a;
+        border-radius: 12px;
+        padding: 24px 20px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        line-height: 1.5;
+        margin: 24px 0 32px;
+        text-align: left;
+      }
+      .btn-completar {
+        width: 100%;
+        background: #e8521a;
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 22px;
+        font-size: 20px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      .btn-completar:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 28px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #222;
+      }
+      .dot.active {
+        background: #e8521a;
+      }
+      .dot.done {
+        background: #4ade80;
+      }
+
+      /* screens */
+      #screen-loading,
+      #screen-reto,
+      #screen-ok,
+      #screen-ya,
+      #screen-fin,
+      #screen-err {
+        display: none;
+      }
+      #screen-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .spinner {
+        width: 44px;
+        height: 44px;
+        border: 3px solid #222;
+        border-top-color: #e8521a;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .spin-txt {
+        font-size: 16px;
+        color: #888;
+      }
+      .big-icon {
+        font-size: 64px;
+        margin-bottom: 16px;
+      }
+      .ok-title {
+        font-size: 26px;
+        font-weight: 900;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .ok-sub {
+        font-size: 16px;
+        color: #aaa;
+        line-height: 1.6;
+      }
+      .verse {
+        margin-top: 24px;
+        padding: 18px;
+        background: #1a1a1a;
+        border-radius: 12px;
+        font-size: 15px;
+        color: #ccc;
+        font-style: italic;
+        line-height: 1.6;
+        text-align: left;
+      }
+      .progress-label {
+        font-size: 13px;
+        color: #888;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <!-- LOADING -->
+      <div id="screen-loading">
+        <div class="spinner"></div>
+        <div class="spin-txt">Cargando tu reto...</div>
+      </div>
+
+      <!-- RETO -->
+      <div id="screen-reto">
+        <div class="tag">Generación Selfie</div>
+        <div class="day-badge" id="day-label">Día 1 de 7</div>
+        <div class="reto-box" id="reto-text"></div>
+        <button class="btn-completar" id="btn-completar" onclick="completar()">
+          ✅ COMPLETÉ MI RETO
+        </button>
+        <div class="dots" id="dots"></div>
+      </div>
+
+      <!-- YA COMPLETADO -->
+      <div id="screen-ya">
+        <div class="big-icon">✅</div>
+        <div class="ok-title">¡Ya lo completaste!</div>
+        <p class="ok-sub">
+          Ya registraste el reto de hoy. ¡Mañana viene el siguiente!
+        </p>
+        <div class="dots" id="dots-ya"></div>
+      </div>
+
+      <!-- OK COMPLETADO AHORA -->
+      <div id="screen-ok">
+        <div class="big-icon">🔥</div>
+        <div class="ok-title" id="ok-title">¡Reto completado!</div>
+        <p class="ok-sub" id="ok-sub">¡Excelente! Seguís sumando.</p>
+        <div class="verse" id="ok-verse"></div>
+        <div class="dots" id="dots-ok"></div>
+      </div>
+
+      <!-- DÍA FINAL -->
+      <div id="screen-fin">
+        <div class="big-icon">🏆</div>
+        <div class="ok-title">¡7 días completos!</div>
+        <p class="ok-sub">
+          Terminaste el reto entero. ¡Tu espíritu está tomando el mando!
+        </p>
+        <div class="verse">
+          "Porque los que viven conforme al Espíritu, piensan en las cosas del
+          Espíritu." — Romanos 8:5
+        </div>
+      </div>
+
+      <!-- ERROR -->
+      <div id="screen-err">
+        <div class="big-icon">😕</div>
+        <div class="ok-title">Algo falló</div>
+        <p class="ok-sub" id="err-msg">
+          Revisá tu conexión e intentá de nuevo.
+        </p>
+      </div>
+    </div>
+    <script>
+      const SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbwRaieH24Ioke9EMXQLukdb0MQ7qVfsX1TCoAu9XZJe15N97V3MrvjWY8fof3abBVaH/exec';
+
+      const VERSES = [
+        '"Porque la ley del Espíritu de vida en Cristo Jesús me ha librado de la ley del pecado y de la muerte." — Romanos 8:2',
+        '"Y si el Espíritu de aquel que levantó de los muertos a Jesús mora en vosotros, él vivificará también vuestros cuerpos." — Romanos 8:11',
+        '"Porque todos los que son guiados por el Espíritu de Dios, éstos son hijos de Dios." — Romanos 8:14',
+        '"El Espíritu mismo da testimonio a nuestro espíritu, de que somos hijos de Dios." — Romanos 8:16',
+        '"Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien." — Romanos 8:28',
+        '"¿Qué, pues, diremos a esto? Si Dios es por nosotros, ¿quién contra nosotros?" — Romanos 8:31',
+        '"Antes, en todas estas cosas somos más que vencedores por medio de aquel que nos amó." — Romanos 8:37',
+      ];
+
+      var params = new URLSearchParams(window.location.search);
+      var email = params.get('e') || '';
+      var dia = parseInt(params.get('d')) || 1;
+
+      show('screen-loading');
+
+      if (!email) {
+        show('screen-err');
+        document.getElementById('err-msg').textContent =
+          'Link inválido. Usá el link que llegó a tu email.';
+      } else {
+        var url =
+          SCRIPT_URL +
+          '?action=estado&e=' +
+          encodeURIComponent(email) +
+          '&dia=' +
+          dia;
+        fetch(url, { redirect: 'follow' })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            hide('screen-loading');
+            document.getElementById('reto-text').textContent = data.reto || '';
+            document.getElementById('day-label').textContent =
+              'Día ' + dia + ' de 7';
+            renderDots('dots', dia);
+            if (data.completado) {
+              renderDots('dots-ya', dia);
+              show('screen-ya');
+            } else {
+              show('screen-reto');
+            }
+          })
+          .catch(function () {
+            hide('screen-loading');
+            show('screen-err');
+          });
+      }
+
+      function completar() {
+        var btn = document.getElementById('btn-completar');
+        btn.disabled = true;
+        btn.textContent = 'Guardando...';
+
+        var url =
+          SCRIPT_URL +
+          '?action=completar&email=' +
+          encodeURIComponent(email) +
+          '&dia=' +
+          dia;
+        fetch(url, { redirect: 'follow' })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            hide('screen-reto');
+            if (dia === 7) {
+              show('screen-fin');
+            } else {
+              var nombre =
+                data.nombre && data.nombre !== email ? data.nombre : '';
+              document.getElementById('ok-title').textContent = nombre
+                ? '¡Muy bien, ' + nombre + '!'
+                : '¡Reto completado!';
+              document.getElementById('ok-sub').textContent =
+                'Día ' + dia + ' de 7 registrado. ¡Mañana viene el siguiente!';
+              document.getElementById('ok-verse').textContent =
+                VERSES[dia - 1] || '';
+              renderDots('dots-ok', dia);
+              show('screen-ok');
+            }
+          })
+          .catch(function () {
+            btn.disabled = false;
+            btn.textContent = '✅ COMPLETÉ MI RETO';
+            alert('Error al guardar. Revisá tu internet.');
+          });
+      }
+
+      function show(id) {
+        document.getElementById(id).style.display = 'block';
+      }
+      function hide(id) {
+        document.getElementById(id).style.display = 'none';
+      }
+
+      function renderDots(containerId, diaActual) {
+        var c = document.getElementById(containerId);
+        if (!c) return;
+        c.innerHTML = '';
+        for (var i = 1; i <= 7; i++) {
+          var d = document.createElement('div');
+          d.className =
+            'dot' +
+            (i < diaActual ? ' done' : '') +
+            (i === diaActual ? ' active' : '');
+          c.appendChild(d);
+        }
+      }
+    </script>
+  </body>
+</html>

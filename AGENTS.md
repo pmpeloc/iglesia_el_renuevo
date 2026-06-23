@@ -393,6 +393,9 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 | Documentos formales / propuestas | DOCX |
 | Presupuestos / tablas de datos | DOCX o tabla en conversación |
 | Estudio bíblico visual | HTML interactivo o tabla comparativa |
+| Videos / loops de proyección | HTML animado o video horizontal 16:9, con letras muy grandes y legibles desde el fondo del templo |
+
+**Regla fija para proyección**: En todo material pensado para proyectar en pantalla (loops, placas, títulos, anuncios o fondos con texto), usar letras **más grandes de lo normal**. Priorizar lectura inmediata desde lejos antes que estética compacta.
 
 ### Dónde guardar los archivos
 - Carpeta del proyecto: `C:\Users\pmpel\projects\iglesia_el_renuevo\`

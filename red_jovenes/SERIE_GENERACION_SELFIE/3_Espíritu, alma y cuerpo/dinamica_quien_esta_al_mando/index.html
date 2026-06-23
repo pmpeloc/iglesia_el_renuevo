@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>¿Quién está al mando? · Generación Selfie</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Poppins',sans-serif}
+#pres{position:fixed;width:1920px;height:1080px;transform-origin:top left;background:#0a0a0a;overflow:hidden}
+.screen{position:absolute;inset:0;display:none;width:100%;height:100%}
+.screen.active{display:flex}
+#scr-title{flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.title-tag{font-size:28px;font-weight:700;letter-spacing:8px;color:#E8521A;text-transform:uppercase;margin-bottom:30px}
+.title-main{font-family:'Bebas Neue',sans-serif;font-size:220px;line-height:0.88;color:#fff;letter-spacing:6px}
+.title-main em{color:#E8521A;font-style:normal;display:block}
+.title-sub{font-size:40px;color:#aaa;margin-top:44px;font-weight:400;max-width:1000px;line-height:1.4}
+.title-hint{font-size:34px;color:#888;margin-top:20px;letter-spacing:2px}
+.btn-start{margin-top:80px;padding:30px 100px;background:#E8521A;color:#fff;border:none;border-radius:60px;font-size:34px;font-weight:700;letter-spacing:4px;cursor:pointer;font-family:'Poppins',sans-serif;text-transform:uppercase;transition:all 0.2s}
+.btn-start:hover{background:#ff6a35;transform:scale(1.04)}
+#scr-title::before{content:'';position:absolute;top:-200px;right:-200px;width:900px;height:900px;border-radius:50%;border:3px solid #E8521A;opacity:0.05;pointer-events:none}
+#scr-title::after{content:'';position:absolute;bottom:-300px;left:-150px;width:800px;height:800px;border-radius:50%;border:2px solid #E8521A;opacity:0.03;pointer-events:none}
+#scr-question{flex-direction:row}
+.left-panel{width:870px;height:1080px;display:flex;flex-direction:column;justify-content:center;padding:90px 100px 90px 110px;position:relative;border-right:1px solid #141414}
+.left-accent{position:absolute;left:0;top:0;bottom:0;width:7px;background:linear-gradient(to bottom,transparent 5%,#E8521A 50%,transparent 95%);opacity:0.5}
+.q-counter{font-size:32px;font-weight:700;letter-spacing:7px;color:#888;text-transform:uppercase;margin-bottom:40px}
+.q-counter span{color:#E8521A}
+.q-text{font-size:58px;font-weight:700;color:#fff;line-height:1.22;margin-bottom:50px;min-height:270px}
+.q-pregunta{font-size:40px;color:#aaa;font-style:italic;margin-bottom:70px;letter-spacing:1px}
+.btn-reveal{padding:28px 70px;background:transparent;border:3px solid #E8521A;color:#E8521A;border-radius:60px;font-size:30px;font-weight:700;letter-spacing:3px;cursor:pointer;font-family:'Poppins',sans-serif;text-transform:uppercase;transition:all 0.25s;align-self:flex-start}
+.btn-reveal:hover{background:#E8521A;color:#fff}
+.btn-next{padding:28px 70px;background:#E8521A;border:none;color:#fff;border-radius:60px;font-size:30px;font-weight:700;letter-spacing:3px;cursor:pointer;font-family:'Poppins',sans-serif;text-transform:uppercase;transition:all 0.25s;align-self:flex-start;display:none}
+.btn-next:hover{background:#ff6a35}
+.q-bg-num{position:absolute;right:-10px;bottom:-60px;font-family:'Bebas Neue',sans-serif;font-size:480px;color:#fff;opacity:0.018;pointer-events:none;user-select:none;line-height:1}
+.progress-bar{position:absolute;bottom:0;left:0;right:0;height:5px;background:#111}
+.progress-fill{height:100%;background:#E8521A;transition:width 0.6s ease}
+.right-panel{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.diagram-wrap{width:720px;height:720px}
+.diagram-svg{width:720px;height:720px;overflow:visible}
+.answer-label{margin-top:36px;font-family:'Bebas Neue',sans-serif;font-size:90px;letter-spacing:12px;opacity:0;transition:opacity 0.5s ease;text-align:center;line-height:1}
+.answer-label.vis{opacity:1}
+.answer-expl{font-size:36px;color:#ccc;max-width:800px;text-align:center;margin-top:14px;opacity:0;transition:opacity 0.5s ease 0.25s;line-height:1.4;padding:0 40px}
+.answer-expl.vis{opacity:1}
+#scr-final{flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.final-big{font-family:'Bebas Neue',sans-serif;font-size:200px;color:#fff;letter-spacing:8px;line-height:0.88}
+.final-big em{color:#E8521A;font-style:normal;display:block}
+.final-sub{font-size:48px;color:#fff;font-weight:700;margin-top:40px;max-width:1100px;line-height:1.5}
+.btn-restart{margin-top:80px;padding:28px 80px;background:transparent;color:#E8521A;border:3px solid #E8521A;border-radius:60px;font-size:30px;font-weight:700;letter-spacing:4px;cursor:pointer;font-family:'Poppins',sans-serif;text-transform:uppercase;transition:all 0.2s}
+.btn-restart:hover{background:#E8521A;color:#fff}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{animation:fadeIn 0.38s ease forwards}
+.shortcut-hint{position:absolute;bottom:28px;right:40px;font-size:20px;color:#1a1a1a;letter-spacing:2px}
+</style>
+</head>
+<body>
+<div id="pres">
+  <!-- TÍTULO -->
+  <div id="scr-title" class="screen active">
+    <div class="title-tag">Generación Selfie · Espíritu, Alma y Cuerpo</div>
+    <div class="title-main">¿QUIÉN<br>ESTÁ AL<br><em>MANDO?</em></div>
+    <div class="title-sub">Situaciones reales · ¿qué área está gobernando tu vida?</div>
+    <div class="title-hint">BARRA ESPACIADORA para avanzar</div>
+    <button class="btn-start" onclick="startGame()">COMENZAR</button>
+  </div>
+
+  <!-- PREGUNTA -->
+  <div id="scr-question" class="screen">
+    <div class="left-panel">
+      <div class="left-accent"></div>
+      <div class="q-counter">SITUACIÓN <span id="q-num">1</span> DE <span id="q-tot">14</span></div>
+      <div class="q-text" id="q-text">…</div>
+      <div class="q-pregunta">¿Quién está gobernando en este momento?</div>
+      <button class="btn-reveal" id="btn-reveal" onclick="revealAnswer()">VER RESPUESTA</button>
+      <button class="btn-next"   id="btn-next"   onclick="nextQuestion()">SIGUIENTE →</button>
+      <div class="q-bg-num" id="q-bg-num">1</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+    <div class="right-panel">
+      <div class="diagram-wrap">
+        <svg class="diagram-svg" viewBox="0 0 720 720" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow-e" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="14" result="b1"/>
+              <feGaussianBlur stdDeviation="28" result="b2"/>
+              <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="glow-a" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="16" result="b1"/>
+              <feGaussianBlur stdDeviation="32" result="b2"/>
+              <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="glow-c" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="18" result="b1"/>
+              <feGaussianBlur stdDeviation="36" result="b2"/>
+              <feMerge><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+
+          <!-- CUERPO – anillo exterior (r=287, sw=118 → de r=228 a r=346) -->
+          <circle id="rc" cx="360" cy="360" r="287" fill="none" stroke="#E8521A" stroke-width="118" stroke-opacity="0.07" style="transition:stroke-opacity 0.5s,filter 0.5s"/>
+          <circle cx="360" cy="360" r="228" fill="none" stroke="#0a0a0a" stroke-width="3"/>
+
+          <!-- ALMA – anillo medio (r=168, sw=120 → de r=108 a r=228) -->
+          <circle id="ra" cx="360" cy="360" r="168" fill="none" stroke="#8B5CF6" stroke-width="120" stroke-opacity="0.07" style="transition:stroke-opacity 0.5s,filter 0.5s"/>
+          <circle cx="360" cy="360" r="108" fill="none" stroke="#0a0a0a" stroke-width="3"/>
+
+          <!-- ESPÍRITU – círculo central -->
+          <circle id="re" cx="360" cy="360" r="106" fill="#FFD700" fill-opacity="0.09" style="transition:fill-opacity 0.5s,filter 0.5s"/>
+
+          <!-- Label CUERPO -->
+          <g id="gc" style="transition:opacity 0.4s">
+            <text x="360" y="36" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="40" fill="#E8521A" fill-opacity="0.32" letter-spacing="7">CUERPO</text>
+            <text x="360" y="66" text-anchor="middle" font-family="Poppins,sans-serif" font-size="17" fill="#E8521A" fill-opacity="0.16">sentidos · impulsos · hábitos físicos</text>
+          </g>
+          <g id="gc-sub" opacity="0.10">
+            <text x="124" y="272" text-anchor="middle" font-family="Poppins,sans-serif" font-size="15" fill="#E8521A">Visión</text>
+            <text x="596" y="272" text-anchor="middle" font-family="Poppins,sans-serif" font-size="15" fill="#E8521A">Audición</text>
+            <text x="106" y="460" text-anchor="middle" font-family="Poppins,sans-serif" font-size="15" fill="#E8521A">Tacto</text>
+            <text x="614" y="460" text-anchor="middle" font-family="Poppins,sans-serif" font-size="15" fill="#E8521A">Gusto</text>
+            <text x="360" y="668" text-anchor="middle" font-family="Poppins,sans-serif" font-size="15" fill="#E8521A">Olfato</text>
+          </g>
+
+          <!-- Label ALMA -->
+          <g id="ga" style="transition:opacity 0.4s">
+            <text x="360" y="177" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="36" fill="#A855F7" fill-opacity="0.30" letter-spacing="6">ALMA</text>
+            <text x="360" y="203" text-anchor="middle" font-family="Poppins,sans-serif" font-size="16" fill="#A855F7" fill-opacity="0.16">mente · emociones · voluntad</text>
+          </g>
+          <g id="ga-sub" opacity="0.13">
+            <text x="240" y="290" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" fill="#A855F7">Afecto</text>
+            <text x="480" y="290" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" fill="#A855F7">Razón</text>
+            <text x="220" y="445" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" fill="#A855F7">Voluntad</text>
+            <text x="500" y="445" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" fill="#A855F7">Memoria</text>
+            <text x="360" y="502" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" fill="#A855F7">Imaginación</text>
+          </g>
+
+          <!-- Label ESPÍRITU -->
+          <g id="ge" style="transition:opacity 0.4s">
+            <text x="360" y="350" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="30" fill="#FFD700" fill-opacity="0.50" letter-spacing="3">ESPÍRITU</text>
+            <text x="360" y="376" text-anchor="middle" font-family="Poppins,sans-serif" font-size="14" fill="#FFD700" fill-opacity="0.28">el hombre interior</text>
+          </g>
+        </svg>
+      </div>
+      <div class="answer-label" id="answer-label">…</div>
+      <div class="answer-expl"  id="answer-expl">…</div>
+    </div>
+    <div class="shortcut-hint">ESPACIO · revelar &nbsp;|&nbsp; ENTER · siguiente</div>
+  </div>
+
+  <!-- FINAL -->
+  <div id="scr-final" class="screen">
+    <div class="final-big">AHORA<br><em>VOS DECIDÍS</em></div>
+    <div class="final-sub">
+      Que tu espíritu tome el mando.<br>
+      Eso es lo que Dios diseñó en vos.
+    </div>
+    <button class="btn-restart" onclick="restartGame()">VOLVER AL INICIO</button>
+  </div>
+</div>
+
+<script>
+function scale(){
+  const el=document.getElementById('pres');
+  const s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  el.style.transform='scale('+s+')';
+  el.style.left=Math.max(0,(window.innerWidth-1920*s)/2)+'px';
+  el.style.top=Math.max(0,(window.innerHeight-1080*s)/2)+'px';
+}
+window.addEventListener('resize',scale);scale();
+
+const Qs=[
+  {text:"Te quedás dormido/a y no te levantás a tener tu tiempo con Dios, aunque querías hacerlo.",answer:"CUERPO",expl:"El cuerpo tomó el mando... y ganó la almohada."},
+  {text:"Reaccionás de mal modo porque algo que te dijeron hace días sigue dando vueltas en tu cabeza.",answer:"ALMA",expl:"Las emociones sin procesar gobernaron la respuesta."},
+  {text:"Elegís perdonar a alguien que te lastimó de verdad, aunque duela.",answer:"ESPÍRITU",expl:"El espíritu venció la resistencia del alma y del cuerpo."},
+  {text:"Scrolleás el celular por horas aunque habías decidido no hacerlo.",answer:"CUERPO",expl:"El hábito físico y los sentidos se adueñaron del momento."},
+  {text:"Te comparás con alguien en redes sociales y de repente ya no te sentís bien con tu vida.",answer:"ALMA",expl:"La mente y las emociones gobernaron el estado interior."},
+  {text:"Antes de responderle un mensaje difícil a alguien, cerrás el celular y orás primero.",answer:"ESPÍRITU",expl:"El espíritu frenó al alma y al cuerpo antes de reaccionar."},
+  {text:"El orgullo no te deja pedir perdón aunque sabés perfectamente que tenés que hacerlo.",answer:"ALMA",expl:"El orgullo vive en el alma y bloqueó la obediencia del espíritu."},
+  {text:"Comés de más aunque ya estás satisfecho/a… simplemente porque está rico.",answer:"CUERPO",expl:"Los sentidos y el deseo físico gobernaron la decisión."},
+  {text:"Servís en algo de la iglesia aunque nadie te lo reconoce y estás muerto/a de cansancio.",answer:"ESPÍRITU",expl:"El espíritu gobernó sobre el alma (orgullo) y el cuerpo (cansancio). Las dos."},
+  {text:"No podés tomar una decisión porque el miedo a equivocarte te paraliza.",answer:"ALMA",expl:"El miedo, una emoción del alma, tomó el control de la voluntad."},
+  {text:"El cuerpo te pide comida, sueño, pantalla… y terminás postergando todo lo demás.",answer:"CUERPO",expl:"Los impulsos físicos marcaron el ritmo del día."},
+  {text:"Dejás de ir a la célula porque ese día estás de mal humor y no tenés ganas.",answer:"ALMA",expl:"El estado emocional gobernó sobre el compromiso espiritual."},
+  {text:"Elegís leer la Biblia aunque el cuerpo quiere seguir en cama y el ánimo no acompaña.",answer:"ESPÍRITU",expl:"El espíritu gobernó sobre el cuerpo Y sobre el alma. Las dos a la vez."},
+  {text:"En una discusión acalorada, decidís callarte y no responder aunque tenías razón.",answer:"ESPÍRITU",expl:"El espíritu gobernó cuando el alma quería pelear y ganar."}
+];
+
+const COL={
+  ESPÍRITU:{primary:'#FFD700',shadow:'0 0 50px rgba(255,215,0,.8),0 0 100px rgba(255,215,0,.4)'},
+  ALMA:    {primary:'#C084FC',shadow:'0 0 50px rgba(192,132,252,.8),0 0 100px rgba(192,132,252,.4)'},
+  CUERPO:  {primary:'#FF6B3D',shadow:'0 0 50px rgba(232,82,26,.8),0 0 100px rgba(232,82,26,.4)'}
+};
+
+let cur=0,revealed=false;
+const $=id=>document.getElementById(id);
+const rc=$('rc'),ra=$('ra'),re=$('re');
+const gc=$('gc'),ga=$('ga'),ge=$('ge');
+const gcSub=$('gc-sub'),gaSub=$('ga-sub');
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+}
+function resetDiagram(){
+  rc.setAttribute('stroke-opacity','0.07');rc.style.filter='none';
+  ra.setAttribute('stroke-opacity','0.07');ra.style.filter='none';
+  re.setAttribute('fill-opacity','0.09');re.style.filter='none';
+  gc.style.opacity='1';ga.style.opacity='1';ge.style.opacity='1';
+  gcSub.style.opacity='0.10';gaSub.style.opacity='0.13';
+  $('answer-label').classList.remove('vis');
+  $('answer-expl').classList.remove('vis');
+}
+function loadQ(i){
+  const q=Qs[i];
+  $('q-num').textContent=i+1;
+  $('q-tot').textContent=Qs.length;
+  $('q-bg-num').textContent=i+1;
+  const el=$('q-text');
+  el.textContent=q.text;
+  el.classList.remove('fade-in');
+  void el.offsetWidth;
+  el.classList.add('fade-in');
+  $('progress-fill').style.width=(i/Qs.length*100)+'%';
+  resetDiagram();
+  $('btn-reveal').style.display='';
+  $('btn-next').style.display='none';
+  revealed=false;
+}
+function revealAnswer(){
+  if(revealed)return;
+  revealed=true;
+  const q=Qs[cur];
+  const col=COL[q.answer];
+  $('btn-reveal').style.display='none';
+  if(q.answer==='ESPÍRITU'){
+    rc.setAttribute('stroke-opacity','0.025');rc.style.filter='none';
+    ra.setAttribute('stroke-opacity','0.025');ra.style.filter='none';
+    gc.style.opacity='0.06';ga.style.opacity='0.06';
+    gcSub.style.opacity='0.02';gaSub.style.opacity='0.02';
+    re.setAttribute('fill-opacity','0.88');
+    re.style.filter='url(#glow-e)';
+    ge.style.opacity='1';
+  }else if(q.answer==='ALMA'){
+    rc.setAttribute('stroke-opacity','0.025');rc.style.filter='none';
+    re.setAttribute('fill-opacity','0.025');re.style.filter='none';
+    gc.style.opacity='0.06';ge.style.opacity='0.06';
+    gcSub.style.opacity='0.02';gaSub.style.opacity='0.8';
+    ra.setAttribute('stroke-opacity','1');
+    ra.style.filter='url(#glow-a)';
+    ga.style.opacity='1';
+  }else{
+    ra.setAttribute('stroke-opacity','0.025');ra.style.filter='none';
+    re.setAttribute('fill-opacity','0.025');re.style.filter='none';
+    ga.style.opacity='0.06';ge.style.opacity='0.06';
+    gaSub.style.opacity='0.02';gcSub.style.opacity='0.8';
+    rc.setAttribute('stroke-opacity','1');
+    rc.style.filter='url(#glow-c)';
+    gc.style.opacity='1';
+  }
+  const lbl=$('answer-label');
+  lbl.textContent=q.answer;
+  lbl.style.color=col.primary;
+  lbl.style.textShadow=col.shadow;
+  setTimeout(()=>lbl.classList.add('vis'),250);
+  const expl=$('answer-expl');
+  expl.textContent=q.expl;
+  setTimeout(()=>expl.classList.add('vis'),500);
+  setTimeout(()=>{$('btn-next').style.display='';},700);
+}
+function nextQuestion(){
+  cur++;
+  if(cur>=Qs.length){
+    $('progress-fill').style.width='100%';
+    setTimeout(()=>showScreen('scr-final'),200);
+  }else{loadQ(cur);}
+}
+function startGame(){cur=0;loadQ(0);showScreen('scr-question');}
+function restartGame(){showScreen('scr-title');}
+
+document.addEventListener('keydown',e=>{
+  const scr=document.querySelector('.screen.active');
+  if(!scr)return;
+  if(scr.id==='scr-title'){if(e.code==='Space'||e.code==='Enter'){e.preventDefault();startGame();}return;}
+  if(scr.id==='scr-final'){if(e.code==='Space'||e.code==='Enter'){e.preventDefault();restartGame();}return;}
+  if(e.code==='Space'){e.preventDefault();if(!revealed)revealAnswer();else nextQuestion();}
+  if(e.code==='Enter'||e.code==='ArrowRight'){if(!revealed)revealAnswer();else nextQuestion();}
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>La Balanza · Generación Selfie</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Poppins',sans-serif}
+#pres{position:fixed;width:1920px;height:1080px;transform-origin:top left;background:#0a0a0a;overflow:hidden;display:flex;flex-direction:column}
+
+/* ── HEADER ────────────────────────────────────── */
+.hdr{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:36px 80px 0;flex-shrink:0;
+}
+.hdr-tag{font-size:22px;font-weight:700;letter-spacing:7px;color:#E8521A;text-transform:uppercase}
+.hdr-title{font-family:'Bebas Neue',sans-serif;font-size:56px;color:#fff;letter-spacing:6px}
+.btn-reset{
+  background:transparent;border:2px solid #444;color:#fff;
+  border-radius:40px;padding:14px 44px;font-size:24px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;cursor:pointer;
+  font-family:'Poppins',sans-serif;transition:all 0.2s;
+}
+.btn-reset:hover{border-color:#E8521A;color:#E8521A}
+
+/* ── MAIN AREA ─────────────────────────────────── */
+.main{display:flex;flex:1;align-items:stretch;padding:0 0 20px}
+
+/* ── COLUMNS ───────────────────────────────────── */
+.col{
+  width:360px;flex-shrink:0;
+  display:flex;flex-direction:column;
+  padding:30px 0;
+  justify-content:center;gap:0;
+}
+.col-spirit{padding-left:50px;padding-right:20px}
+.col-flesh {padding-right:50px;padding-left:20px}
+
+.col-label{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:42px;letter-spacing:6px;
+  margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:2px solid;
+}
+.col-spirit .col-label{color:#FFD700;border-color:#FFD700}
+.col-flesh  .col-label{color:#E8521A;border-color:#E8521A}
+
+.col-sublabel{
+  font-size:18px;color:#555;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:28px;
+  margin-top:-18px;
+}
+
+/* Item toggle buttons */
+.item-btn{
+  display:flex;align-items:center;gap:14px;
+  background:transparent;border:2px solid #1a1a1a;
+  border-radius:14px;padding:16px 18px;
+  margin-bottom:12px;cursor:pointer;
+  text-align:left;width:100%;
+  font-family:'Poppins',sans-serif;
+  transition:all 0.22s;
+}
+.item-btn .emoji{font-size:24px;line-height:1;flex-shrink:0}
+.item-btn .lbl{font-size:20px;font-weight:700;color:#888;line-height:1.2;transition:color 0.2s}
+
+/* Spirit button active */
+.col-spirit .item-btn.active{background:#1a1400;border-color:#FFD700}
+.col-spirit .item-btn.active .lbl{color:#FFD700}
+.col-spirit .item-btn:hover:not(.active){border-color:#555;background:#111}
+.col-spirit .item-btn:hover:not(.active) .lbl{color:#ccc}
+
+/* Flesh button active */
+.col-flesh .item-btn.active{background:#1a0800;border-color:#E8521A}
+.col-flesh .item-btn.active .lbl{color:#E8521A}
+.col-flesh .item-btn:hover:not(.active){border-color:#555;background:#111}
+.col-flesh .item-btn:hover:not(.active) .lbl{color:#ccc}
+
+/* ── CENTER SCALE ──────────────────────────────── */
+.center{
+  flex:1;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:space-between;
+  padding:10px 20px 20px;
+  position:relative;
+}
+
+#scale-svg{
+  width:100%;flex:1;
+  overflow:visible;
+}
+
+/* Status message */
+.status-wrap{
+  text-align:center;
+  min-height:100px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.status-msg{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:68px;letter-spacing:5px;
+  transition:all 0.5s ease;
+  color:#fff;
+}
+.status-msg.spirit{color:#FFD700;text-shadow:0 0 40px rgba(255,215,0,0.6)}
+.status-msg.flesh {color:#E8521A;text-shadow:0 0 40px rgba(232,82,26,0.6)}
+.status-sub{
+  font-size:34px;color:#ccc;letter-spacing:2px;margin-top:8px;
+  font-style:italic;max-width:900px;text-align:center;
+}
+
+/* ── SHORTCUT HINT ─────────────────────────────── */
+.shortcut{position:absolute;bottom:14px;right:30px;font-size:18px;color:#1a1a1a;letter-spacing:2px}
+</style>
+</head>
+<body>
+<div id="pres">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-tag">Generación Selfie · Espíritu, Alma y Cuerpo</div>
+    <div class="hdr-title">LA BALANZA</div>
+    <button class="btn-reset" onclick="resetAll()">↺ REINICIAR</button>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- COLUMNA ESPÍRITU -->
+    <div class="col col-spirit">
+      <div class="col-label">ESPÍRITU</div>
+      <div class="col-sublabel">Alimenta el espíritu</div>
+      <button class="item-btn" data-side="spirit" data-id="palabra"     onclick="toggle(this)"><span class="emoji">📖</span><span class="lbl">Palabra</span></button>
+      <button class="item-btn" data-side="spirit" data-id="oracion"     onclick="toggle(this)"><span class="emoji">🙏</span><span class="lbl">Oración</span></button>
+      <button class="item-btn" data-side="spirit" data-id="adoracion"   onclick="toggle(this)"><span class="emoji">🎵</span><span class="lbl">Adoración</span></button>
+      <button class="item-btn" data-side="spirit" data-id="obediencia"  onclick="toggle(this)"><span class="emoji">✅</span><span class="lbl">Obediencia</span></button>
+      <button class="item-btn" data-side="spirit" data-id="comunion"    onclick="toggle(this)"><span class="emoji">🤝</span><span class="lbl">Comunión sana</span></button>
+    </div>
+
+    <!-- BALANZA CENTRAL -->
+    <div class="center">
+      <svg id="scale-svg" viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="glow-spirit" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="glow-flesh" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="12" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <linearGradient id="pillar-grad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1a1a1a"/>
+            <stop offset="40%" stop-color="#333"/>
+            <stop offset="60%" stop-color="#333"/>
+            <stop offset="100%" stop-color="#1a1a1a"/>
+          </linearGradient>
+        </defs>
+
+        <!-- SOPORTE / PILLAR -->
+        <rect x="490" y="60" width="20" height="420" fill="url(#pillar-grad)" rx="4"/>
+        <!-- Base -->
+        <polygon points="340,480 660,480 630,500 370,500" fill="#222"/>
+        <rect x="320" y="496" width="360" height="12" fill="#1a1a1a" rx="4"/>
+        <!-- Pivot decoration -->
+        <circle cx="500" cy="62" r="22" fill="#333" stroke="#555" stroke-width="3"/>
+        <circle cx="500" cy="62" r="8" fill="#888"/>
+
+        <!-- BEAM GROUP — rota alrededor de (500,62) -->
+        <g id="beam-group">
+          <!-- Beam bar -->
+          <line x1="90" y1="62" x2="910" y2="62"
+            stroke="#666" stroke-width="14" stroke-linecap="round"/>
+          <!-- Decorative beam gradient overlay -->
+          <line x1="90" y1="62" x2="910" y2="62"
+            stroke="url(#pillar-grad)" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+
+          <!-- Pivot top cap -->
+          <circle cx="500" cy="62" r="14" fill="#555"/>
+
+          <!-- LEFT CHAIN + PAN (espíritu) — contra-rota alrededor de (90,62) -->
+          <g id="pan-spirit-group">
+            <!-- chain strings -->
+            <line x1="44"  y1="62" x2="44"  y2="290" stroke="#444" stroke-width="3"/>
+            <line x1="90"  y1="62" x2="90"  y2="290" stroke="#444" stroke-width="3"/>
+            <line x1="136" y1="62" x2="136" y2="290" stroke="#444" stroke-width="3"/>
+            <!-- pan platform -->
+            <ellipse cx="90" cy="292" rx="110" ry="14"
+              id="pan-spirit-ellipse"
+              fill="#FFD700" fill-opacity="0.15" stroke="#FFD700" stroke-width="2" stroke-opacity="0.3"/>
+            <!-- count display -->
+            <text id="spirit-count" x="90" y="258"
+              text-anchor="middle" font-family="'Bebas Neue',sans-serif"
+              font-size="80" fill="#FFD700" fill-opacity="0.2">0</text>
+            <!-- items list -->
+            <text id="spirit-items" x="90" y="360"
+              text-anchor="middle" font-family="Poppins,sans-serif"
+              font-size="18" fill="#FFD700" fill-opacity="0" line-spacing="28"></text>
+          </g>
+
+          <!-- RIGHT CHAIN + PAN (carne) — contra-rota alrededor de (910,62) -->
+          <g id="pan-flesh-group">
+            <line x1="864" y1="62" x2="864" y2="290" stroke="#444" stroke-width="3"/>
+            <line x1="910" y1="62" x2="910" y2="290" stroke="#444" stroke-width="3"/>
+            <line x1="956" y1="62" x2="956" y2="290" stroke="#444" stroke-width="3"/>
+            <ellipse cx="910" cy="292" rx="110" ry="14"
+              id="pan-flesh-ellipse"
+              fill="#E8521A" fill-opacity="0.15" stroke="#E8521A" stroke-width="2" stroke-opacity="0.3"/>
+            <text id="flesh-count" x="910" y="258"
+              text-anchor="middle" font-family="'Bebas Neue',sans-serif"
+              font-size="80" fill="#E8521A" fill-opacity="0.2">0</text>
+            <text id="flesh-items" x="910" y="360"
+              text-anchor="middle" font-family="Poppins,sans-serif"
+              font-size="18" fill="#E8521A" fill-opacity="0"></text>
+          </g>
+        </g>
+
+        <!-- LABELS DEBAJO (estáticos, fuera del beam) -->
+        <text x="90" y="510" text-anchor="middle"
+          font-family="'Bebas Neue',sans-serif" font-size="28"
+          fill="#FFD700" fill-opacity="0.4" letter-spacing="4">ESPÍRITU</text>
+        <text x="910" y="510" text-anchor="middle"
+          font-family="'Bebas Neue',sans-serif" font-size="28"
+          fill="#E8521A" fill-opacity="0.4" letter-spacing="4">CARNE</text>
+      </svg>
+
+      <!-- STATUS -->
+      <div class="status-wrap">
+        <div class="status-msg" id="status-msg">¿Cuál de los dos platos estás llenando más?</div>
+        <div class="status-sub" id="status-sub"></div>
+      </div>
+    </div>
+
+    <!-- COLUMNA CARNE -->
+    <div class="col col-flesh">
+      <div class="col-label">CARNE</div>
+      <div class="col-sublabel">Alimenta la carne</div>
+      <button class="item-btn" data-side="flesh" data-id="redes"      onclick="toggle(this)"><span class="emoji">📱</span><span class="lbl">Redes sin límite</span></button>
+      <button class="item-btn" data-side="flesh" data-id="comparacion" onclick="toggle(this)"><span class="emoji">👀</span><span class="lbl">Comparación</span></button>
+      <button class="item-btn" data-side="flesh" data-id="enojo"       onclick="toggle(this)"><span class="emoji">😡</span><span class="lbl">Enojo</span></button>
+      <button class="item-btn" data-side="flesh" data-id="orgullo"     onclick="toggle(this)"><span class="emoji">🏆</span><span class="lbl">Orgullo</span></button>
+      <button class="item-btn" data-side="flesh" data-id="chisme"      onclick="toggle(this)"><span class="emoji">🗣️</span><span class="lbl">Chisme</span></button>
+      <button class="item-btn" data-side="flesh" data-id="pornografia" onclick="toggle(this)"><span class="emoji">🚫</span><span class="lbl">Pornografía</span></button>
+      <button class="item-btn" data-side="flesh" data-id="impulsos"    onclick="toggle(this)"><span class="emoji">💥</span><span class="lbl">Impulsos sin control</span></button>
+    </div>
+
+  </div><!-- .main -->
+
+  <div class="shortcut">Clic en cada ítem para agregar o quitar · REINICIAR para empezar de nuevo</div>
+
+</div>
+
+<script>
+/* ── Escalado ─────────────────────────────────────── */
+function scale(){
+  var el=document.getElementById('pres');
+  var s=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+  el.style.transform='scale('+s+')';
+  el.style.left=Math.max(0,(window.innerWidth-1920*s)/2)+'px';
+  el.style.top=Math.max(0,(window.innerHeight-1080*s)/2)+'px';
+}
+window.addEventListener('resize',scale);scale();
+
+/* ── Estado ──────────────────────────────────────── */
+var spiritSet = new Set();
+var fleshSet  = new Set();
+
+/* ── Toggle ítem ─────────────────────────────────── */
+function toggle(btn){
+  var side = btn.dataset.side;
+  var id   = btn.dataset.id;
+  var set  = side==='spirit' ? spiritSet : fleshSet;
+
+  if(set.has(id)){
+    set.delete(id);
+    btn.classList.remove('active');
+  } else {
+    set.add(id);
+    btn.classList.add('active');
+  }
+  updateScale();
+}
+
+/* ── Actualizar balanza ──────────────────────────── */
+function updateScale(){
+  var ns = spiritSet.size;
+  var nf = fleshSet.size;
+  var diff = nf - ns; // positivo = carne más pesada = gira a la derecha
+
+  // Ángulo máx 34°, 7° por ítem de diferencia
+  var angle = Math.min(Math.abs(diff)*7, 34) * (diff >= 0 ? 1 : -1);
+
+  // Rotar beam
+  document.getElementById('beam-group').setAttribute('transform',
+    'rotate('+angle+', 500, 62)');
+
+  // Contra-rotar pans para que queden horizontales
+  document.getElementById('pan-spirit-group').setAttribute('transform',
+    'rotate('+(-angle)+', 90, 62)');
+  document.getElementById('pan-flesh-group').setAttribute('transform',
+    'rotate('+(-angle)+', 910, 62)');
+
+  // Contadores en los platos
+  var sc = document.getElementById('spirit-count');
+  var fc = document.getElementById('flesh-count');
+  sc.textContent = ns;
+  fc.textContent = nf;
+  sc.setAttribute('fill-opacity', ns>0 ? '0.9' : '0.15');
+  fc.setAttribute('fill-opacity', nf>0 ? '0.9' : '0.15');
+
+  // Intensidad visual de los platos según peso
+  var sPlatOpacity = Math.min(0.1 + ns*0.12, 0.7);
+  var fPlatOpacity = Math.min(0.1 + nf*0.12, 0.7);
+  document.getElementById('pan-spirit-ellipse').setAttribute('fill-opacity', sPlatOpacity);
+  document.getElementById('pan-flesh-ellipse').setAttribute('fill-opacity',  fPlatOpacity);
+
+  // Glow en el lado más pesado
+  if(ns > nf){
+    document.getElementById('pan-spirit-ellipse').style.filter='url(#glow-spirit)';
+    document.getElementById('pan-flesh-ellipse').style.filter='none';
+  } else if(nf > ns){
+    document.getElementById('pan-flesh-ellipse').style.filter='url(#glow-flesh)';
+    document.getElementById('pan-spirit-ellipse').style.filter='none';
+  } else {
+    document.getElementById('pan-spirit-ellipse').style.filter='none';
+    document.getElementById('pan-flesh-ellipse').style.filter='none';
+  }
+
+  // Mensaje de estado
+  updateStatus(ns, nf, diff);
+}
+
+function updateStatus(ns, nf, diff){
+  var msg  = document.getElementById('status-msg');
+  var sub  = document.getElementById('status-sub');
+
+  if(ns===0 && nf===0){
+    msg.textContent = '¿Cuál de los dos platos estás llenando más?';
+    msg.className='status-msg';
+    sub.textContent='';
+    return;
+  }
+
+  if(diff===0){
+    msg.textContent = 'La balanza está equilibrada';
+    msg.className='status-msg';
+    sub.textContent = 'Ninguno de los dos lados domina… por ahora.';
+    return;
+  }
+
+  var absDiff = Math.abs(diff);
+
+  if(diff > 0){
+    // Carne más pesada
+    if(absDiff===1){
+      msg.textContent = 'La carne empieza a ganar terreno';
+      msg.className='status-msg flesh';
+      sub.textContent = '¿Qué vas a agregar del otro lado?';
+    } else if(absDiff<=3){
+      msg.textContent = 'La carne está dominando';
+      msg.className='status-msg flesh';
+      sub.textContent = '"No podemos esperar hambre espiritual si toda la semana alimentamos otra cosa."';
+    } else {
+      msg.textContent = 'La carne está tomando el control';
+      msg.className='status-msg flesh';
+      sub.textContent = '"Porque si vivís conforme a la carne, moriréis." — Romanos 8:13';
+    }
+  } else {
+    // Espíritu más pesado
+    if(absDiff===1){
+      msg.textContent = 'El espíritu empieza a gobernar';
+      msg.className='status-msg spirit';
+      sub.textContent = 'Seguí alimentando lo correcto.';
+    } else if(absDiff<=3){
+      msg.textContent = 'El espíritu está gobernando';
+      msg.className='status-msg spirit';
+      sub.textContent = '"Si vivís por el Espíritu, viviréis." — Romanos 8:13';
+    } else {
+      msg.textContent = '¡El espíritu está en control!';
+      msg.className='status-msg spirit';
+      sub.textContent = '"Los que son del Espíritu, en las cosas del Espíritu." — Romanos 8:5';
+    }
+  }
+}
+
+/* ── Reset ───────────────────────────────────────── */
+function resetAll(){
+  spiritSet.clear();
+  fleshSet.clear();
+  document.querySelectorAll('.item-btn').forEach(function(b){
+    b.classList.remove('active');
+  });
+  updateScale();
+}
+</script>
+</body>
+</html>

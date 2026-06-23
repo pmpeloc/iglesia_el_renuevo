@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Reto 7 Días</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #0a0a0a;
+        color: #fff;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        min-height: 100vh;
+        padding: 32px 24px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .header-left .tag {
+        font-size: 11px;
+        letter-spacing: 5px;
+        color: #e8521a;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      h1 {
+        font-size: 28px;
+        font-weight: 900;
+        color: #fff;
+      }
+      .stats {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .stat {
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 12px;
+        padding: 16px 22px;
+        text-align: center;
+      }
+      .stat-num {
+        font-size: 36px;
+        font-weight: 900;
+        color: #e8521a;
+      }
+      .stat-lbl {
+        font-size: 12px;
+        color: #888;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 2px;
+      }
+      .reto-hoy {
+        background: #1a1a1a;
+        border-left: 4px solid #e8521a;
+        border-radius: 12px;
+        padding: 18px 22px;
+        margin-bottom: 28px;
+        font-size: 18px;
+        color: #fff;
+        line-height: 1.5;
+      }
+      .reto-hoy .lbl {
+        font-size: 11px;
+        letter-spacing: 4px;
+        color: #e8521a;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #111;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid #222;
+      }
+      thead tr {
+        background: #161616;
+      }
+      th {
+        padding: 14px 16px;
+        font-size: 12px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: #888;
+        font-weight: 700;
+        text-align: left;
+      }
+      th.day-th {
+        text-align: center;
+        color: #e8521a;
+        width: 52px;
+      }
+      td {
+        padding: 12px 16px;
+        border-top: 1px solid #1a1a1a;
+      }
+      td.name {
+        font-size: 17px;
+        color: #fff;
+        font-weight: 600;
+      }
+      td.day-td {
+        text-align: center;
+      }
+      .dot-done {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #4ade80;
+        font-size: 14px;
+        line-height: 26px;
+        text-align: center;
+      }
+      .dot-miss {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #1f1f1f;
+        border: 1.5px solid #2a2a2a;
+      }
+      .dot-future {
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: transparent;
+        border: 1.5px dashed #2a2a2a;
+      }
+      .btn-reload {
+        background: #1a1a1a;
+        color: #ccc;
+        border: 1px solid #333;
+        border-radius: 50px;
+        padding: 10px 24px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .btn-reload:hover {
+        background: #222;
+        color: #fff;
+      }
+      #loading {
+        text-align: center;
+        padding: 60px;
+        font-size: 18px;
+        color: #888;
+      }
+      .empty {
+        text-align: center;
+        padding: 48px;
+        color: #888;
+        font-size: 16px;
+      }
+      .pct-bar-wrap {
+        background: #1a1a1a;
+        border-radius: 4px;
+        height: 6px;
+        width: 80px;
+        margin: 0 auto 4px;
+      }
+      .pct-bar-fill {
+        background: #4ade80;
+        border-radius: 4px;
+        height: 6px;
+        transition: width 0.5s;
+      }
+      .pct-txt {
+        font-size: 12px;
+        color: #888;
+      }
+      tr:hover td {
+        background: #141414;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-left">
+        <div class="tag">Líder · Red de Jóvenes</div>
+        <h1>Reto 7 Días</h1>
+      </div>
+      <div
+        style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap"
+      >
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num" id="stat-total">–</div>
+            <div class="stat-lbl">Inscritos</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" id="stat-dia">–</div>
+            <div class="stat-lbl">Día actual</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" id="stat-hoy">–</div>
+            <div class="stat-lbl">Completaron hoy</div>
+          </div>
+        </div>
+        <button class="btn-reload" onclick="cargar()">↺ Actualizar</button>
+      </div>
+    </header>
+
+    <div class="reto-hoy" id="reto-hoy" style="display: none">
+      <div class="lbl">Reto de hoy</div>
+      <div id="reto-hoy-txt"></div>
+    </div>
+
+    <div id="loading">Cargando...</div>
+    <table id="tabla" style="display: none">
+      <thead>
+        <tr>
+          <th>Participante</th>
+          <th class="day-th">D1</th>
+          <th class="day-th">D2</th>
+          <th class="day-th">D3</th>
+          <th class="day-th">D4</th>
+          <th class="day-th">D5</th>
+          <th class="day-th">D6</th>
+          <th class="day-th">D7</th>
+          <th class="day-th" style="width: 100px; color: #888">Total</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <div class="empty" id="empty" style="display: none">
+      Todavía no hay inscritos.
+    </div>
+
+    <script>
+      const SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbwRaieH24Ioke9EMXQLukdb0MQ7qVfsX1TCoAu9XZJe15N97V3MrvjWY8fof3abBVaH/exec';
+
+      var diaActual = 1;
+
+      function cargar() {
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('tabla').style.display = 'none';
+        document.getElementById('empty').style.display = 'none';
+
+        fetch(SCRIPT_URL + '?action=dashboard', { redirect: 'follow' })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            document.getElementById('loading').style.display = 'none';
+            diaActual = data.dia || 1;
+
+            document.getElementById('stat-total').textContent = data.total || 0;
+            document.getElementById('stat-dia').textContent = diaActual + '/7';
+
+            var hoyCount = 0;
+            var participantes = data.participantes || [];
+            participantes.forEach(function (p) {
+              if (p.completados.indexOf(diaActual) !== -1) hoyCount++;
+            });
+            document.getElementById('stat-hoy').textContent = hoyCount;
+
+            if (data.reto) {
+              document.getElementById('reto-hoy-txt').textContent = data.reto;
+              document.getElementById('reto-hoy').style.display = 'block';
+            }
+
+            if (participantes.length === 0) {
+              document.getElementById('empty').style.display = 'block';
+              return;
+            }
+
+            // Ordenar: más completados primero
+            participantes.sort(function (a, b) {
+              return b.completados.length - a.completados.length;
+            });
+
+            var tbody = document.getElementById('tbody');
+            tbody.innerHTML = '';
+            participantes.forEach(function (p) {
+              var tr = document.createElement('tr');
+              var html = '<td class="name">' + escHtml(p.nombre) + '</td>';
+              for (var d = 1; d <= 7; d++) {
+                var done = p.completados.indexOf(d) !== -1;
+                var future = d > diaActual;
+                if (done) {
+                  html +=
+                    '<td class="day-td"><span class="dot-done">✓</span></td>';
+                } else if (future) {
+                  html +=
+                    '<td class="day-td"><span class="dot-future"></span></td>';
+                } else {
+                  html +=
+                    '<td class="day-td"><span class="dot-miss"></span></td>';
+                }
+              }
+              var total = p.completados.length;
+              var pct =
+                diaActual > 0 ? Math.round((total / diaActual) * 100) : 0;
+              html +=
+                '<td class="day-td">' +
+                '<div class="pct-bar-wrap"><div class="pct-bar-fill" style="width:' +
+                pct +
+                '%"></div></div>' +
+                '<div class="pct-txt">' +
+                total +
+                '/' +
+                diaActual +
+                '</div>' +
+                '</td>';
+              tr.innerHTML = html;
+              tbody.appendChild(tr);
+            });
+
+            document.getElementById('tabla').style.display = 'table';
+          })
+          .catch(function (err) {
+            document.getElementById('loading').textContent =
+              'Error al cargar. Revisá tu conexión.';
+          });
+      }
+
+      function escHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+
+      cargar();
+      // Auto-refresh cada 60 segundos
+      setInterval(cargar, 60000);
+    </script>
+  </body>
+</html>
