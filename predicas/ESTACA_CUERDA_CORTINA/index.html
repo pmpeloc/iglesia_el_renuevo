@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estaca, Cuerda y Cortina — Isaías 54:2</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0f0f0f;
+    --bg2:      #1a1a1a;
+    --text:     #f0f0f0;
+    --muted:    #999;
+    --red:      #e05555;
+    --red-bg:   #2a1212;
+    --green:    #5DBE2C;
+    --green-bg: #0e1f09;
+    --gold:     #f0c040;
+    --gold-bg:  #1e1800;
+    --accent:   #5DBE2C;
+    --border:   #333;
+    --nav-h:    64px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: #111;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    z-index: 100;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: #222;
+    color: #ccc;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid #333;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+
+  /* ── HEADER CARD ── */
+  .header-card {
+    background: var(--bg2);
+    border-left: 6px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .header-card .label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .header-card h1 {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-card .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── VERSE BOX ── */
+  .verse {
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #f5d0d0;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* ── IDEA CENTRAL ── */
+  .idea {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 26px;
+    margin: 24px 0;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #cdf0b8;
+  }
+  .idea .idea-label {
+    font-family: Arial, sans-serif;
+    font-size: .6em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+    font-style: normal;
+  }
+
+  /* ── term ── */
+  .term {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #ddd;
+  }
+  .term-def {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── PUNTO TITLE ── */
+  .punto-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 32px 0 20px;
+    padding: 14px 20px;
+    background: #222;
+    border-radius: 6px;
+    border-left: 5px solid var(--accent);
+  }
+  .punto-num {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  /* ── SUBPOINTS ── */
+  .sub {
+    margin: 18px 0 18px 16px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+  }
+  .sub-label {
+    font-family: Arial, sans-serif;
+    font-size: .85em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .sub p {
+    font-size: 1.1em;
+    color: #e8e8e8;
+  }
+
+  /* ── APPLICATION BOX ── */
+  .aplicacion {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 28px 0 8px;
+    font-size: 1.1em;
+    color: #c8f0b0;
+  }
+  .aplicacion .apl-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* ── QUESTION ── */
+  .pregunta {
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #f5e8a0;
+    font-style: italic;
+  }
+
+  /* ── INTRO / CONCLUSION plain text ── */
+  .plain {
+    font-size: 1.1em;
+    color: #ddd;
+    margin: 14px 0;
+  }
+
+  /* ── LLAMADO ── */
+  .llamado {
+    background: #1e0a2a;
+    border-left: 5px solid #b060e0;
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: #e0c0ff;
+  }
+  .llamado .ll-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b060e0;
+    margin-bottom: 8px;
+  }
+
+  /* ── NOTA ── */
+  .nota {
+    font-family: Arial, sans-serif;
+    font-size: .55em;
+    color: #666;
+    font-style: italic;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .nav-hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#intro"     class="active">Intro</a>
+  <a href="#punto1">1 · Estaca</a>
+  <a href="#punto2">2 · Cuerda</a>
+  <a href="#punto3">3 · Cortina</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Isaías 54:2 — Reunión General · 40-45 min</div>
+    <h1>Estaca, Cuerda y Cortina</h1>
+    <div class="meta">Tono: práctico y directo &nbsp;·&nbsp; Ilustración: campamento de 14 días, tormenta, carpa mal armada</div>
+  </div>
+
+  <div class="sec-title">Introducción</div>
+
+  <p class="plain">
+    Hace un tiempo fuimos con mi esposa a un campamento de catorce días, en una zona conocida por sus tormentas fuertes. Y yo armé nuestra carpa con toda la confianza del mundo — pero no llevé todo lo necesario para que aguantara ese clima. No reforcé las estacas como correspondía. Y llegó la tormenta.
+  </p>
+  <p class="plain">
+    Esa noche tuve que improvisar de todo: piedras para sostener, cuerdas atadas donde no correspondía, zanjas cavadas a las apuradas para que el agua no entrara. Mientras tanto, mi esposa miraba las carpas de al lado. Carpas bien armadas. Estacas bien clavadas, cuerdas bien tensas, lonas bien ancladas al viento. Esas carpas ni se movían. Y ella, con toda razón, me miraba y me decía: "¿por qué la nuestra no está así?"
+  </p>
+  <p class="plain">
+    Esa noche aprendí algo que después volví a encontrar leyendo Isaías 54:2: no hay improvisación de último momento que reemplace una estaca bien clavada de antemano. Podés atar sogas para todos lados cuando ya está lloviendo, pero si no reforzaste antes de que llegue la tormenta, vas a pasar la noche remendando en vez de descansando.
+  </p>
+
+  <div class="verse">
+    "Ensancha el sitio de tu tienda, y las cortinas de tus habitaciones sean extendidas; no seas escasa; alarga tus cuerdas, y refuerza tus estacas."
+    <span class="ref">Isaías 54:2 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    Dios le dice a su pueblo dos cosas al mismo tiempo, en la misma frase: alargá la cuerda y reforzá la estaca. No le dice "soltá lo viejo para hacer lugar a lo nuevo". Crecer y afirmarse no son opuestos — son la misma orden.
+  </p>
+
+  <div class="idea">
+    <div class="idea-label">Idea central</div>
+    No crecemos soltando lo firme — crecemos exigiéndole más a lo firme.
+  </div>
+
+  <p class="plain">
+    Esta noche no vamos a hablar de que los jóvenes son la cuerda y los grandes son la estaca. Vamos a hablar de que cada uno de nosotros —sin importar la edad— necesita las tres cosas de este versículo funcionando al mismo tiempo: una estaca (en qué me afirmo), una cuerda (hacia dónde me proyecto) y una cortina (qué comunidad se forma cuando las primeras dos funcionan bien).
+  </p>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">1.</span>La Estaca — en qué me afirmo
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a) Lo que no se ve, sostiene todo</div>
+    <p>
+      <span class="term">Yeted</span> <span class="term-def">(יתד) — la estaca clavada en tierra.</span> Nadie mira una carpa armada y aplaude la estaca — aplauden la lona, el espacio. Pero si la estaca falla, no queda nada para aplaudir. Isaías 54 le habla a alguien que venía de la escasez (v.1, "la estéril"); antes de prometerle expansión, el texto asume que hay algo estable desde donde expandirse. Nuestra estaca no es una emoción del momento ni una buena racha: es lo que Dios ya dijo de nosotros.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) Reforzar, no reinventar</div>
+    <p>
+      <span class="term">Chazaq</span> <span class="term-def">(חזק) — ser fuerte, reforzar.</span> El texto no dice "clavá una estaca nueva", dice "reforzá la que ya está". Toda carpa se afloja con el viento y el tiempo. La pregunta no es si tenemos fe — es si esa fe está gastada de tanto uso y necesita revisión antes de la próxima tormenta.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c) Se nota en la tormenta, no en la calma</div>
+    <p>
+      Mateo 7:24-27 — la casa sobre la roca y la casa sobre la arena. Las dos se veían exactamente igual hasta que llegó la lluvia. Lo que sostiene no se nota mientras todo está tranquilo — se nota cuando aprieta.
+    </p>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿En qué estamos parados hoy que resistiría una tormenta de verdad, y no solo un día despejado?
+    </div>
+  </div>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">2.</span>La Cuerda — en qué me proyecto
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a) La cuerda no decide sola</div>
+    <p>
+      <span class="term">Arak</span> <span class="term-def">(ארך) — alargar, prolongar.</span> Una cuerda suelta de la estaca no estira nada — se arrastra por el piso. Proyectarnos no es desconectarnos de lo que creemos: es extender eso mismo hacia un espacio que todavía no existe.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) La dirección no es al azar</div>
+    <p>
+      Dios no dice "estírate a ver qué pasa". Le da dirección concreta: generación, territorio, gente que todavía no conocemos.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Porque te extenderás a la mano derecha y a la mano izquierda; y tu descendencia heredará naciones."
+      <span class="ref">Isaías 54:3 — RVR1960</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c) El estiramiento no es para algunos</div>
+    <p>
+      No es un llamado solo para "los que tienen el don" de alcanzar gente nueva. Es el estiramiento normal de una estaca bien clavada.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Por tanto, id, y haced discípulos a todas las naciones."
+      <span class="ref">Mateo 28:19 — RVR1960</span>
+    </div>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿Hacia dónde nos está estirando Dios hoy que todavía no vemos con claridad?
+    </div>
+  </div>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">3.</span>La Cortina — el resultado que construimos
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a) El objetivo nunca fue la lona</div>
+    <p>
+      <span class="term">Mishkenot</span> <span class="term-def">(de shakhan, morar — misma raíz de "Shekiná").</span> Nadie arma una carpa para tener una lona bien estirada; la arma para que alguien viva ahí adentro. Estaca y cuerda son el medio. La cortina es el objetivo.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) Escasear no es tener pocos — es cerrarse</div>
+    <p>
+      <span class="term">Al tachsokhi</span> <span class="term-def">(אל תחשכי) — no retengas, no escatimes.</span> Lo opuesto a una carpa ensanchada no es una carpa chica: es una carpa que decidió no ensancharse por miedo. Cerrarnos a una sola generación o una sola forma de servir es escatimarnos a nosotros mismos.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c) La comunidad no aparece sola</div>
+    <p>
+      Hechos 2:42-46 — esa iglesia primitiva no apareció de la nada. Apareció porque hubo estacas firmes (v.42, perseveraban en la doctrina) y cuerdas que se estiraron hacia todos (v.44-46, compartían todo, comían juntos, crecían en número cada día).
+      <span class="nota">(Nota: el pasaje no habla de edades específicamente; se usa como ilustración de comunidad amplia y unida, no como prueba textual de multigeneracionalidad.)</span>
+    </p>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿Qué clase de comunidad estamos construyendo con lo que afirmamos y hacia dónde nos proyectamos?
+    </div>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión</div>
+
+  <p class="plain">
+    Una estaca sola es un monumento: firme, pero no alcanza a nadie.
+  </p>
+  <p class="plain">
+    Una cuerda sola es una soga tirada en el piso: se estira, pero no sostiene nada.
+  </p>
+  <p class="plain">
+    Las dos juntas son lo único que arma una cortina: un lugar real donde vivir en comunidad.
+  </p>
+</section>
+
+<!-- LLAMADO -->
+<section id="llamado">
+  <div class="sec-title">Llamado Final</div>
+
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    Podemos hacernos esta pregunta esta noche, cada uno para sí mismo: ¿cuál es mi estaca, lo que no negocio? ¿Cuál es mi cuerda, hacia dónde me estoy dejando estirar?
+  </div>
+
+  <div class="pregunta" style="margin-top:24px;">
+    Y como iglesia, todos juntos: ¿qué cortina estamos construyendo entre todos?
+  </div>
+
+  <div class="nav-hint" style="margin-top:60px;">
+    ↑ usá los botones del menú para navegar entre secciones mientras predicás
+  </div>
+</section>
+
+<script>
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+  const navH  = 64 + 30;
+
+  function updateNav() {
+    let cur = '';
+    secs.forEach(s => {
+      if (window.scrollY >= s.offsetTop - navH) cur = s.id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>

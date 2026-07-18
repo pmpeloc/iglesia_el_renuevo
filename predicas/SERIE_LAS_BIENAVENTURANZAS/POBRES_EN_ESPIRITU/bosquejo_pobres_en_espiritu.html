@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pobres en espíritu — Mateo 5:3</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0f0f0f;
+    --bg2:      #1a1a1a;
+    --text:     #f0f0f0;
+    --muted:    #999;
+    --red:      #e05555;
+    --red-bg:   #2a1212;
+    --green:    #5DBE2C;
+    --green-bg: #0e1f09;
+    --gold:     #f0c040;
+    --gold-bg:  #1e1800;
+    --accent:   #5DBE2C;
+    --border:   #333;
+    --nav-h:    64px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: #111;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    z-index: 100;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: #222;
+    color: #ccc;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid #333;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+
+  /* ── HEADER CARD ── */
+  .header-card {
+    background: var(--bg2);
+    border-left: 6px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .header-card .label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .header-card h1 {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-card .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── VERSE BOX ── */
+  .verse {
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #f5d0d0;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* ── GREEK term ── */
+  .term {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #ddd;
+  }
+  .term-def {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── PUNTO TITLE ── */
+  .punto-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 32px 0 20px;
+    padding: 14px 20px;
+    background: #222;
+    border-radius: 6px;
+    border-left: 5px solid var(--accent);
+  }
+  .punto-num {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  /* ── SUBPOINTS ── */
+  .sub {
+    margin: 18px 0 18px 16px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+  }
+  .sub-label {
+    font-family: Arial, sans-serif;
+    font-size: .85em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .sub p {
+    font-size: 1.1em;
+    color: #e8e8e8;
+  }
+
+  /* ── APPLICATION BOX ── */
+  .aplicacion {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 28px 0 8px;
+    font-size: 1.1em;
+    color: #c8f0b0;
+  }
+  .aplicacion .apl-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* ── QUESTION ── */
+  .pregunta {
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #f5e8a0;
+    font-style: italic;
+  }
+
+  /* ── INTRO / CONCLUSION plain text ── */
+  .plain {
+    font-size: 1.1em;
+    color: #ddd;
+    margin: 14px 0;
+  }
+
+  /* ── LLAMADO ── */
+  .llamado {
+    background: #1e0a2a;
+    border-left: 5px solid #b060e0;
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: #e0c0ff;
+  }
+  .llamado .ll-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b060e0;
+    margin-bottom: 8px;
+  }
+
+  /* ── EJEMPLOS ── */
+  .ejemplos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .ejemplo {
+    flex: 1 1 240px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: .85em;
+    color: #ccc;
+  }
+  .ejemplo .ref {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .nav-hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#intro"     class="active">Intro</a>
+  <a href="#punto1">1 · Diagnóstico</a>
+  <a href="#punto2">2 · Autosuficiencia</a>
+  <a href="#punto3">3 · Cultivarla</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Mateo 5:3 — Reunión General · 30-35 min</div>
+    <h1>Pobres en espíritu</h1>
+    <div class="meta">Tono: comunicación directa y cotidiana &nbsp;·&nbsp; Ilustración: vacío interior detrás de una vida "resuelta"</div>
+  </div>
+
+  <div class="sec-title">Introducción</div>
+
+  <p class="plain">
+    Hoy vivimos rodeados de vidas que se ven resueltas: redes sociales llenas de logros, de "todo bajo control", de gente que nunca muestra el vacío. Pero por dentro, muchos sabemos que hay algo que no cierra, aunque por fuera todo parezca en orden.
+  </p>
+  <p class="plain">
+    Justo ahí, en la primera frase del Sermón del Monte, Jesús no bendice a los que "la tienen resuelta" — bendice a los que reconocen que les falta todo.
+  </p>
+
+  <div class="verse">
+    "Bienaventurados los pobres en espíritu, porque el reino de los cielos les pertenece."
+    <span class="ref">Mateo 5:3 — NVI</span>
+  </div>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">1.</span>El diagnóstico honesto
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a)</div>
+    <p>
+      <span class="term">Bienaventurados</span> <span class="term-def">(makarios) —</span> no es solo "feliz"; describe a alguien en un estado de plenitud que no depende de las circunstancias, digno de ser felicitado.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b)</div>
+    <p>
+      <span class="term">Pobre</span> <span class="term-def">(ptōchos) —</span> no describe una necesidad general; describe a un mendigo, alguien completamente desamparado, sin nada con qué sostenerse. Es pobreza total, y pública — no se puede disimular.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c)</div>
+    <p>
+      <strong>Pobre en espíritu</strong> es reconocer delante de Dios que estamos en bancarrota espiritual — no que "nos falta un poco más de Dios", sino que sin Él no tenemos con qué sostenernos.
+    </p>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿Qué parte de nuestra vida mostramos resuelta por fuera, aunque por dentro sepamos que estamos en bancarrota espiritual?
+    </div>
+  </div>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">2.</span>El error que confundimos
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a)</div>
+    <p>
+      No es baja autoestima, ni tristeza, ni sufrimiento — eso también lo vive cualquiera, tenga o no tenga a Dios. Jesús no está alabando la miseria; está alabando el reconocimiento de una miseria específica: la espiritual.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b)</div>
+    <p>
+      El contra-modelo está en Laodicea: una iglesia que se sentía rica y no se daba cuenta de que estaba pobre, ciega y desnuda espiritualmente.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Porque tú dices: Yo soy rico... y no sabes que tú eres un desventurado, miserable, pobre, ciego y desnudo."
+      <span class="ref">Apocalipsis 3:17</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c)</div>
+    <p>
+      Cuanto más resolvemos solos, más fácil se nos olvida que necesitamos a Dios — no solo para lo material, sino para sostener lo esencial de nuestra vida espiritual.
+    </p>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿Nos hemos acostumbrado tanto a resolver todo solos que dejamos de sentir que necesitamos a Dios?
+    </div>
+  </div>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3</div>
+
+  <div class="punto-title">
+    <span class="punto-num">3.</span>El camino para cultivarla
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a)</div>
+    <p>
+      Vernos como realmente somos, sin maquillaje.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "¡Miserable de mí! ¿Quién me librará de este cuerpo de muerte?"
+      <span class="ref">Romanos 7:24</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b)</div>
+    <p>
+      Reconocer que no producimos vida espiritual con esfuerzo propio.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Porque Dios es el que en vosotros produce así el querer como el hacer, por su buena voluntad."
+      <span class="ref">Filipenses 2:13</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c)</div>
+    <p>
+      Buscar ser llenos continuamente: la cercanía con Dios no nos sacia de una vez — nos da más hambre de Él.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Mi carne y mi corazón desfallecen; mas la roca de mi corazón y mi porción es Dios para siempre."
+      <span class="ref">Salmos 73:26</span>
+    </div>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    Necesitamos dejar de fingir que estamos completos, y empezar a acercarnos a Dios reconociendo lo que nos falta.
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión</div>
+
+  <p class="plain">
+    La pobreza en espíritu no es debilidad — es la puerta de entrada al reino de los cielos.
+  </p>
+  <p class="plain">
+    Los que menos tienen para ofrecerle a Dios son, paradójicamente, los que más reciben de Él.
+  </p>
+
+  <div class="sec-title" style="margin-top:40px;">Ejemplos bíblicos (referencia rápida)</div>
+  <div class="ejemplos">
+    <div class="ejemplo">
+      <span class="ref">Éxodo 33:15</span>
+      Moisés se niega a avanzar sin la presencia de Dios: sabe que sin Él no tiene con qué sostenerse.
+    </div>
+    <div class="ejemplo">
+      <span class="ref">Isaías 6:5</span>
+      El profeta, frente a la santidad de Dios, reconoce su propia ruina: "¡Ay de mí! Soy un hombre de labios inmundos."
+    </div>
+    <div class="ejemplo">
+      <span class="ref">Lucas 5:8</span>
+      Pedro, frente al poder de Jesús, cae y le pide que se aparte de él por ser hombre pecador.
+    </div>
+  </div>
+</section>
+
+<!-- LLAMADO -->
+<section id="llamado">
+  <div class="sec-title">Llamado Final</div>
+
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    Propongo un momento breve de reflexión en silencio: cada uno delante de Dios, sin performance, reconociendo en qué área estamos viviendo como si no necesitáramos nada de Él.
+  </div>
+
+  <div class="pregunta" style="margin-top:24px;">
+    Señor, reconocemos que sin vos no tenemos con qué sostenernos.
+  </div>
+
+  <div class="nav-hint" style="margin-top:60px;">
+    ↑ usá los botones del menú para navegar entre secciones mientras predicás
+  </div>
+</section>
+
+<script>
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+  const navH  = 64 + 30;
+
+  function updateNav() {
+    let cur = '';
+    secs.forEach(s => {
+      if (window.scrollY >= s.offsetTop - navH) cur = s.id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>
