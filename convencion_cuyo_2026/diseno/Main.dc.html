@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Menú de hoy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Figtree:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#6E1A37}a:hover{color:#4A0F24}
+</style>
+</helmet>
+<div style="width: 390px; height: 1080px; box-sizing: border-box; background: #F3F5F7; color: #23303C; font-family: 'Figtree', 'Segoe UI', sans-serif; display: flex; flex-direction: column">
+  <div style="background: {{accent}}; color: #FFFFFF; padding: 28px 22px 0; display: flex; flex-direction: column; gap: 6px">
+    <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; opacity: 0.9">Convención Regional Cuyo · Mendoza 2026</div>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.02">Menú de hoy</h1>
+    <div style="font-size: 17px; font-weight: 500">Viernes 13 de noviembre</div>
+    <svg viewBox="0 0 390 56" width="390" height="56" style="margin: 10px -22px 0; display: block" aria-hidden="true">
+      <polygon points="0,56 0,40 40,22 70,34 115,6 150,30 185,16 225,38 262,12 300,32 335,20 390,40 390,56" fill="#F3F5F7" opacity="0.18"></polygon>
+      <polygon points="0,56 0,48 55,34 95,44 140,26 190,46 240,30 290,46 340,34 390,48 390,56" fill="#F3F5F7"></polygon>
+    </svg>
+  </div>
+
+  <nav style="display: flex; gap: 6px; margin: 4px 16px 0; padding: 4px; background: #FFFFFF; border: 1px solid #D5DCE2; border-radius: 12px">
+    <a href="Main.dc.html" style="flex: 1; text-align: center; padding: 11px 8px; border-radius: 9px; background: #23303C; color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none">Menú de hoy</a>
+    <a href="Bienvenida.dc.html" style="flex: 1; text-align: center; padding: 11px 8px; border-radius: 9px; color: #23303C; font-weight: 700; font-size: 15px; text-decoration: none">Bienvenida</a>
+  </nav>
+
+  <div style="margin: 16px 16px 0; padding: 12px 14px; border-radius: 12px; background: #FBEBC8; font-size: 15px; line-height: 1.45"><b style="color: #7A4E00">Aviso:</b> el almuerzo se sirve en el salón B por el ensayo del coro.</div>
+
+  <section style="padding: 22px 20px 0; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px">Almuerzo</h2>
+      <span style="color: #5A6875; font-size: 15px; font-weight: 500">13:00 h</span>
+    </div>
+    <div style="display: flex; flex-direction: column">
+      <div style="padding: 12px 0; border-bottom: 1px solid #D5DCE2; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Plato principal</span>
+        <span style="font-size: 18px; font-weight: 500">Carne al horno</span>
+      </div>
+      <div style="padding: 12px 0; border-bottom: 1px solid #D5DCE2; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Guarnición <span style="margin-left: 6px; padding: 2px 9px; border-radius: 99px; background: #FBEBC8; color: #7A4E00; letter-spacing: 0.03em">Cambió</span></span>
+        <span style="font-size: 18px; font-weight: 500">Arroz primavera</span>
+        <span style="font-size: 14px; color: #5A6875">Antes: <s>Puré mixto</s></span>
+      </div>
+      <div style="padding: 12px 0; border-bottom: 1px solid #D5DCE2; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Postre</span>
+        <span style="font-size: 18px; font-weight: 500">Duraznos en almíbar</span>
+      </div>
+      <div style="padding: 12px 0; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Bebida</span>
+        <span style="font-size: 18px; font-weight: 500">Agua y jugo</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 22px 20px 0; display: flex; flex-direction: column; gap: 4px">
+    <div style="display: flex; justify-content: space-between; align-items: baseline">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px">Cena</h2>
+      <span style="color: #5A6875; font-size: 15px; font-weight: 500">21:30 h</span>
+    </div>
+    <div style="display: flex; flex-direction: column">
+      <div style="padding: 12px 0; border-bottom: 1px solid #D5DCE2; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Plato principal</span>
+        <span style="font-size: 18px; font-weight: 500">Empanadas mendocinas (3 por persona)</span>
+      </div>
+      <div style="padding: 12px 0; border-bottom: 1px solid #D5DCE2; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Guarnición</span>
+        <span style="font-size: 18px; font-weight: 500">Ensalada criolla</span>
+      </div>
+      <div style="padding: 12px 0; border-bottom: 1px solid #D5DCE2; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Postre</span>
+        <span style="font-size: 18px; font-weight: 500">Pastelitos de membrillo</span>
+      </div>
+      <div style="padding: 12px 0; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Extra <span style="margin-left: 6px; padding: 2px 9px; border-radius: 99px; background: #DDF0E1; color: #22663A; letter-spacing: 0.03em">Nuevo</span></span>
+        <span style="font-size: 18px; font-weight: 500">Opción sin TACC: tarta de verduras</span>
+      </div>
+    </div>
+  </section>
+
+  <div style="margin-top: auto; padding: 18px 20px 26px; text-align: center; color: #5A6875; font-size: 13px">Actualizado hoy a las 12:40 h · Equipo de cocina</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#6E1A37","options":["#6E1A37","#23303C","#2F5D50"]},"$preview":{"width":390,"height":1080}}'>
+class Component extends DCLogic {
+renderVals() {
+return { accent: this.props.accent ?? '#6E1A37' };
+}
+}
+</script>
+</body>
+</html>

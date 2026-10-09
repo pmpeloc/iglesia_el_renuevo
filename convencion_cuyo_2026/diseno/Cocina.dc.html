@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Panel de cocina</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Figtree:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#6E1A37}a:hover{color:#4A0F24}
+</style>
+</helmet>
+<div style="width: 390px; height: 1300px; box-sizing: border-box; background: #F3F5F7; color: #23303C; font-family: 'Figtree', 'Segoe UI', sans-serif; display: flex; flex-direction: column">
+  <div style="background: #23303C; color: #FFFFFF; padding: 26px 20px 20px; display: flex; flex-direction: column; gap: 4px">
+    <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; opacity: 0.85">Solo organizadores</div>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 32px">Panel de cocina</h1>
+  </div>
+
+  <div style="display: flex; gap: 8px; padding: 16px 16px 0">
+    <button style="flex: 1; min-height: 44px; border: 1px solid #D5DCE2; background: #FFFFFF; color: #23303C; border-radius: 99px; font: 700 15px 'Figtree', sans-serif">Jueves</button>
+    <button aria-pressed="true" style="flex: 1; min-height: 44px; border: 1px solid #23303C; background: #23303C; color: #FFFFFF; border-radius: 99px; font: 700 15px 'Figtree', sans-serif">Viernes · hoy</button>
+    <button style="flex: 1; min-height: 44px; border: 1px solid #D5DCE2; background: #FFFFFF; color: #23303C; border-radius: 99px; font: 700 15px 'Figtree', sans-serif">Sábado</button>
+  </div>
+
+  <div style="margin: 16px 16px 0; display: flex; flex-direction: column; gap: 6px">
+    <label for="aviso" style="font-weight: 700; font-size: 14px">Aviso del día</label>
+    <textarea id="aviso" style="min-height: 64px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 10px 12px; font: 400 15px/1.4 'Figtree', sans-serif; color: #23303C; resize: none">El almuerzo se sirve en el salón B por el ensayo del coro.</textarea>
+  </div>
+
+  <section style="margin: 20px 16px 0; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">Almuerzo · 13:00 h</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label for="a1" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Plato principal</label>
+      <div style="display: flex; gap: 8px"><input id="a1" value="Carne al horno" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #D5DCE2; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #23303C">Quitar hoy</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #FBEBC8; margin: 0 -8px; padding: 8px; border-radius: 12px">
+      <label for="a2" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #7A4E00; font-weight: 700">Guarnición · cambiada (antes: Puré mixto)</label>
+      <div style="display: flex; gap: 8px"><input id="a2" value="Arroz primavera" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 2px solid #B87A12; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #B87A12; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #7A4E00">Volver al original</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label for="a3" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Postre</label>
+      <div style="display: flex; gap: 8px"><input id="a3" value="Duraznos en almíbar" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #D5DCE2; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #23303C">Quitar hoy</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label for="a4" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Bebida</label>
+      <div style="display: flex; gap: 8px"><input id="a4" value="Agua y jugo" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #D5DCE2; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #23303C">Quitar hoy</button></div>
+    </div>
+    <button style="align-self: flex-start; min-height: 44px; padding: 0 14px; border: 1px dashed #9AA6B1; background: transparent; border-radius: 10px; font: 700 15px 'Figtree', sans-serif; color: #6E1A37">+ Agregar algo</button>
+  </section>
+
+  <section style="margin: 24px 16px 0; display: flex; flex-direction: column; gap: 10px">
+    <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">Cena · 21:30 h</h2>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label for="c1" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Plato principal</label>
+      <div style="display: flex; gap: 8px"><input id="c1" value="Empanadas mendocinas (3 por persona)" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #D5DCE2; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #23303C">Quitar hoy</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label for="c2" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Guarnición</label>
+      <div style="display: flex; gap: 8px"><input id="c2" value="Ensalada criolla" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #D5DCE2; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #23303C">Quitar hoy</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <label for="c3" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #5A6875; font-weight: 700">Postre</label>
+      <div style="display: flex; gap: 8px"><input id="c3" value="Pastelitos de membrillo" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #D5DCE2; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #23303C">Quitar hoy</button></div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px; background: #DDF0E1; margin: 0 -8px; padding: 8px; border-radius: 12px">
+      <label for="c4" style="font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: #22663A; font-weight: 700">Extra · nuevo</label>
+      <div style="display: flex; gap: 8px"><input id="c4" value="Opción sin TACC: tarta de verduras" style="flex: 1; min-width: 0; min-height: 44px; box-sizing: border-box; border: 1px solid #D5DCE2; border-radius: 10px; background: #FFFFFF; padding: 0 12px; font: 500 16px 'Figtree', sans-serif; color: #23303C"><button style="min-height: 44px; padding: 0 12px; border: 1px solid #D5DCE2; background: #FFFFFF; border-radius: 10px; font: 500 14px 'Figtree', sans-serif; color: #23303C">Borrar</button></div>
+    </div>
+    <button style="align-self: flex-start; min-height: 44px; padding: 0 14px; border: 1px dashed #9AA6B1; background: transparent; border-radius: 10px; font: 700 15px 'Figtree', sans-serif; color: #6E1A37">+ Agregar algo</button>
+  </section>
+
+  <div style="margin-top: auto; padding: 16px 20px 24px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #D5DCE2; font-size: 14px; color: #22663A; font-weight: 700">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+    Guardado 12:40 h · Los asistentes ya lo ven
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1300}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

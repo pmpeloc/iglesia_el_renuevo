@@ -1,0 +1,350 @@
+<title>Menú Convención Cuyo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;700&display=swap">
+<style>
+/* Layout: barra de demo arriba; a la izquierda el celular del asistente (lo que ve al escanear el QR), a la derecha el panel de cocina. En celular, pestañas. */
+:root {
+  --bg: #e9eef0; --surface: #ffffff; --fg: #1b2430; --muted: #5d6b78; --line: #d3dbe0;
+  --accent: #7a1f3d; --accent-fg: #ffffff; --sun: #b86e00; --sun-bg: #fdf0d9;
+  --ok: #2f7a3e; --ok-bg: #e2f2e5; --frame: #1b2430; --mute-bg: #f1f4f6;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12171d; --surface: #1b222a; --fg: #e8ecef; --muted: #9aa7b3; --line: #2c3540;
+  --accent: #e27a9b; --accent-fg: #12171d; --sun: #f0b85a; --sun-bg: #3a2c14;
+  --ok: #7fd18f; --ok-bg: #18301d; --frame: #3a4552; --mute-bg: #222a33; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12171d; --surface: #1b222a; --fg: #e8ecef; --muted: #9aa7b3; --line: #2c3540;
+  --accent: #e27a9b; --accent-fg: #12171d; --sun: #f0b85a; --sun-bg: #3a2c14;
+  --ok: #7fd18f; --ok-bg: #18301d; --frame: #3a4552; --mute-bg: #222a33; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font: 16px/1.5 var(--body); padding: 20px 16px 48px }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0 }
+button, input, select, textarea { font: inherit; color: inherit }
+button { cursor: pointer }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 20px }
+
+.demo { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; justify-content: space-between;
+  background: var(--surface); border: 1px dashed var(--line); border-radius: 12px; padding: 12px 16px }
+.demo h1 { font-size: 1.25rem }
+.demo p { margin: 0; color: var(--muted); font-size: .9rem }
+.demo label { display: flex; gap: 8px; align-items: center; font-weight: 700; font-size: .9rem }
+.demo select { padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg) }
+.tag { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--sun); font-weight: 700 }
+
+.tabs { display: none; gap: 6px; background: var(--surface); padding: 4px; border-radius: 10px; border: 1px solid var(--line) }
+.tabs button { flex: 1; border: 0; background: none; padding: 8px; border-radius: 8px; font-weight: 700 }
+.tabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-fg) }
+
+.stage { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 28px; align-items: start }
+.col-title { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 10px }
+
+/* ---------- Celular del asistente ---------- */
+.phone { border: 10px solid var(--frame); border-radius: 38px; background: var(--surface); overflow: hidden; max-width: 100% }
+.screen { min-height: 640px; max-height: 720px; overflow-y: auto }
+.hero { background: var(--accent); color: var(--accent-fg); padding: 26px 20px 20px }
+.hero small { display: block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; opacity: .85 }
+.hero h2 { font-size: 1.7rem; line-height: 1.1; margin-top: 6px }
+.hero .date { margin-top: 4px; font-weight: 500 }
+.aviso { margin: 14px 16px 0; padding: 10px 12px; border-radius: 10px; background: var(--sun-bg); color: var(--fg); font-size: .92rem }
+.aviso b { color: var(--sun) }
+.meal { padding: 18px 16px 4px }
+.meal h3 { font-size: 1.15rem; display: flex; justify-content: space-between; align-items: baseline; gap: 8px }
+.meal h3 span { font-family: var(--body); font-size: .85rem; color: var(--muted); font-weight: 500 }
+.items { list-style: none; margin: 8px 0 0; padding: 0 }
+.items li { display: grid; gap: 1px; padding: 10px 0; border-bottom: 1px solid var(--line) }
+.items li:last-child { border-bottom: 0 }
+.items .k { font-size: .74rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700 }
+.items .v { font-size: 1.08rem; font-weight: 500 }
+.items .was { font-size: .85rem; color: var(--muted) }
+.items .was s { text-decoration-thickness: 1.5px }
+.items li.off .v { text-decoration: line-through; color: var(--muted) }
+.chip { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 99px; font-size: .7rem; font-weight: 700; vertical-align: 2px; letter-spacing: .03em }
+.chip.cambio { background: var(--sun-bg); color: var(--sun) }
+.chip.nuevo { background: var(--ok-bg); color: var(--ok) }
+.chip.off { background: var(--mute-bg); color: var(--muted) }
+.pnav { display: flex; gap: 6px; margin: 12px 16px 0; padding: 4px; border: 1px solid var(--line); border-radius: 12px }
+.pnav button { flex: 1; border: 0; background: none; padding: 10px 6px; border-radius: 9px; font-weight: 700 }
+.pnav button[aria-pressed="true"] { background: var(--fg); color: var(--surface) }
+.verse { margin: 18px 16px 6px; font-family: var(--display); font-weight: 600; font-size: 1.15rem; line-height: 1.3 }
+.verse small { display: block; margin-top: 4px; font-family: var(--body); font-size: .82rem; color: var(--muted); font-weight: 700 }
+.pastores { display: grid; gap: 10px; padding: 10px 14px 0 }
+.pastor { border: 1px solid var(--line); border-radius: 14px; padding: 14px; display: grid; gap: 10px }
+.pastor header { display: flex; gap: 12px; align-items: center }
+.foto { width: 64px; height: 64px; flex: none; border-radius: 12px; background: var(--mute-bg); color: var(--accent); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 1.2rem }
+.pastor b { font-family: var(--display); font-size: 1.05rem; line-height: 1.15; display: block }
+.pastor span { color: var(--muted); font-size: .85rem }
+.pastor p { margin: 0; line-height: 1.5 }
+.foot { padding: 14px 16px 22px; color: var(--muted); font-size: .8rem; text-align: center }
+.empty { padding: 60px 24px; text-align: center; display: grid; gap: 10px }
+.empty h2 { font-size: 1.4rem }
+.empty p { margin: 0; color: var(--muted) }
+
+/* ---------- Panel de cocina ---------- */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 18px; min-width: 0 }
+.panel-head { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center }
+.panel-head h2 { font-size: 1.3rem }
+.days { display: flex; flex-wrap: wrap; gap: 6px }
+.days button { border: 1px solid var(--line); background: var(--bg); padding: 6px 14px; border-radius: 99px; font-weight: 700 }
+.days button[aria-pressed="true"] { background: var(--fg); color: var(--surface); border-color: var(--fg) }
+.days button .live { color: var(--ok); margin-left: 4px }
+.field { display: grid; gap: 4px }
+.field label { font-weight: 700; font-size: .85rem }
+.field textarea { border: 1px solid var(--line); border-radius: 8px; background: var(--bg); padding: 8px 10px; resize: vertical; min-height: 44px }
+.edit-meal { display: grid; gap: 8px }
+.edit-meal h3 { font-size: 1.05rem }
+.row { display: grid; grid-template-columns: 150px minmax(0, 1fr) auto; gap: 8px; align-items: center }
+.row input { width: 100%; min-width: 0; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); padding: 8px 10px }
+.row input.lbl { font-size: .85rem; color: var(--muted) }
+.row.changed input.val { border-color: var(--sun); box-shadow: inset 3px 0 0 var(--sun) }
+.row.off input { text-decoration: line-through; opacity: .6 }
+.row .acts { display: flex; gap: 4px }
+.mini { border: 1px solid var(--line); background: var(--surface); border-radius: 8px; padding: 6px 10px; font-size: .82rem; font-weight: 500; white-space: nowrap }
+.mini:hover { border-color: var(--fg) }
+.add { justify-self: start; border: 1px dashed var(--line); background: none; border-radius: 8px; padding: 6px 12px; font-weight: 700; color: var(--accent) }
+.panel-foot { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 14px }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--fg); color: var(--surface);
+  padding: 10px 16px; border-radius: 10px; font-weight: 500; font-size: .9rem; max-width: calc(100% - 32px) }
+.notes { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; font-size: .92rem }
+.notes h2 { font-size: 1.05rem; margin-bottom: 6px }
+.notes ul { margin: 0; padding-left: 20px; display: grid; gap: 4px }
+
+@media (max-width: 860px) {
+  .tabs { display: flex }
+  .stage { grid-template-columns: minmax(0, 1fr) }
+  body[data-view="asistente"] #colPanel, body[data-view="panel"] #colPhone { display: none }
+  .phone { max-width: 400px; margin: 0 auto }
+}
+@media (max-width: 520px) {
+  .row { grid-template-columns: minmax(0, 1fr) auto }
+  .row input.lbl { grid-column: 1 / -1 }
+}
+@media (prefers-reduced-motion: no-preference) { .items li { transition: background .3s } }
+</style>
+
+<div class="wrap">
+  <div class="demo">
+    <div>
+      <span class="tag">Prototipo · datos ficticios</span>
+      <h1>Menú del día — Convención Regional Cuyo</h1>
+      <p>Probá cambiar el día y editar el menú desde el panel de cocina.</p>
+    </div>
+    <label for="sim">Simular que hoy es
+      <select id="sim"></select>
+    </label>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button id="tabA" role="tab" aria-selected="true" data-view="asistente">Lo que ve el asistente</button>
+    <button id="tabP" role="tab" aria-selected="false" data-view="panel">Panel de cocina</button>
+  </div>
+
+  <div class="stage">
+    <section id="colPhone">
+      <div class="col-title">Al escanear el QR</div>
+      <div class="phone"><div class="screen" id="screen"></div></div>
+    </section>
+
+    <section id="colPanel">
+      <div class="col-title">Panel de cocina (solo organizadores)</div>
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Editar menú</h2>
+          <div class="days" id="days"></div>
+        </div>
+        <div class="field">
+          <label for="aviso">Aviso del día (opcional)</label>
+          <textarea id="aviso" placeholder="Ej.: El almuerzo se sirve a las 13:30 en el salón B"></textarea>
+        </div>
+        <div id="editor" style="display:grid;gap:22px"></div>
+        <div class="panel-foot">
+          <span id="saved">Los cambios se publican al instante.</span>
+          <button class="mini" id="reset">Restaurar datos de ejemplo</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="notes">
+    <h2>Para dar feedback</h2>
+    <ul>
+      <li>El asistente solo ve el menú del día en curso. Los días siguientes no se muestran.</li>
+      <li>Si cocina cambia algo (por ejemplo, la guarnición), el asistente ve el plato nuevo y el anterior tachado. Probalo en el viernes.</li>
+      <li>En la pestaña "Bienvenida" están los 18 mensajes de los pastores, todos juntos y siempre visibles. ¿Los prefieren así o uno distinto por comida?</li>
+      <li>¿Qué comidas sirven por día? ¿Hace falta desayuno, merienda u opciones sin TACC / vegetarianas?</li>
+    </ul>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+// ponytail: estado en localStorage del navegador; la versión real necesita una base compartida para que cocina publique y todos vean.
+const DAYS = [
+  { id: 'jue', name: 'Jueves', date: '12 de noviembre' },
+  { id: 'vie', name: 'Viernes', date: '13 de noviembre' },
+  { id: 'sab', name: 'Sábado', date: '14 de noviembre' },
+];
+const it = (k, v) => ({ k, v, orig: v });
+function sample() {
+  const m = {
+    jue: { aviso: '', meals: [
+      { name: 'Almuerzo', time: '13:00', items: [it('Plato principal', 'Pollo al horno con hierbas'), it('Guarnición', 'Papas rústicas'), it('Postre', 'Ensalada de frutas'), it('Bebida', 'Agua y jugo')] },
+      { name: 'Cena', time: '21:30', items: [it('Plato principal', 'Fideos con salsa bolognesa'), it('Acompañamiento', 'Pan casero'), it('Postre', 'Flan con dulce de leche'), it('Bebida', 'Agua y gaseosa')] } ] },
+    vie: { aviso: 'El almuerzo se sirve en el salón B por el ensayo del coro.', meals: [
+      { name: 'Almuerzo', time: '13:00', items: [it('Plato principal', 'Carne al horno'), it('Guarnición', 'Puré mixto'), it('Postre', 'Duraznos en almíbar'), it('Bebida', 'Agua y jugo')] },
+      { name: 'Cena', time: '21:30', items: [it('Plato principal', 'Empanadas mendocinas (3 por persona)'), it('Guarnición', 'Ensalada criolla'), it('Postre', 'Pastelitos de membrillo'), it('Bebida', 'Agua y gaseosa')] } ] },
+    sab: { aviso: '', meals: [
+      { name: 'Almuerzo', time: '13:00', items: [it('Plato principal', 'Asado de despedida'), it('Guarnición', 'Ensalada mixta'), it('Postre', 'Helado'), it('Bebida', 'Agua y gaseosa')] },
+      { name: 'Cena', time: '21:00', items: [it('Plato principal', 'Milanesas al horno'), it('Guarnición', 'Papas al natural'), it('Postre', 'Budín de pan'), it('Bebida', 'Agua y jugo')] } ] },
+  };
+  // Cambios de ejemplo en el viernes, para mostrar cómo se ve
+  m.vie.meals[0].items[1].v = 'Arroz primavera';
+  m.vie.meals[1].items.push({ k: 'Extra', v: 'Opción sin TACC: tarta de verduras' });
+  m.vie.updated = '12:40';
+  return m;
+}
+
+const KEY = 'menu-cuyo-v1';
+let menu;
+try { menu = JSON.parse(localStorage.getItem(KEY)) } catch (e) {}
+if (!menu) menu = sample();
+let today = 'vie', editing = 'vie';
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(menu)) } catch (e) {} };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const $ = id => document.getElementById(id);
+
+// ---------- selector de "hoy" ----------
+$('sim').innerHTML = '<option value="antes">Antes de la convención</option>' +
+  DAYS.map(d => `<option value="${d.id}">${d.name} ${d.date}</option>`).join('') +
+  '<option value="despues">Después de la convención</option>';
+$('sim').value = today;
+$('sim').onchange = e => { today = e.target.value; if (menu[today]) editing = today; renderPhone(); renderPanel() };
+
+// ---------- bienvenida de los pastores (nombres y textos ficticios) ----------
+const PASTORES = [
+  ['Daniel y Romina Quiroga', 'Godoy Cruz', 'Qué alegría tenerlos en Mendoza. Oramos durante meses por cada uno de ustedes. Que estos días sean de descanso, de encuentro y de una palabra fresca de parte de Dios.'],
+  ['Marcelo y Andrea Funes', 'Guaymallén', 'Bienvenidos a casa. Sabemos el esfuerzo que hicieron para llegar. Nuestro deseo es que vuelvan a sus iglesias renovados y con el corazón encendido.'],
+  ['Hugo y Silvia Ortiz', 'Las Heras', 'Desde Las Heras les damos un abrazo grande. Pedimos al Señor que cada reunión sea un tiempo de reencuentro con Él y entre hermanos.'],
+  ['Gustavo y Carina Lucero', 'Maipú', 'Esta es tierra de viñedos y de cosecha. Que la convención sea también un tiempo de cosecha para sus vidas y sus familias.'],
+  ['Sergio y Mónica Videla', 'Luján de Cuyo', 'Bienvenidos, hermanos. Cualquier cosa que necesiten durante estos días, cuenten con nosotros. Estamos para servirles.'],
+  ['Raúl y Patricia Correa', 'San Martín', 'Queremos que se sientan en familia. Los esperamos en cada reunión con expectativa por lo que Dios va a hacer.'],
+  ['Javier y Lorena Pérez', 'Rivadavia', 'Gracias por venir desde tan lejos. Que el Señor bendiga cada kilómetro que recorrieron para estar acá.'],
+  ['Oscar y Beatriz Gómez', 'Junín', 'Nos alegra recibirlos. Oramos para que se lleven amistades nuevas y una fe fortalecida.'],
+  ['Fernando y Natalia Arce', 'Tunuyán', 'Desde el Valle de Uco les mandamos nuestra bienvenida. Que la presencia de Dios llene cada encuentro.'],
+  ['Ricardo y Gabriela Sosa', 'Tupungato', 'Hace tiempo esperábamos este momento. Bienvenidos a la convención: disfruten, descansen y escuchen a Dios.'],
+  ['Luis y Verónica Molina', 'San Carlos', 'Con mucho cariño los recibimos. Que estos días sean un refugio para el alma y un impulso para el ministerio.'],
+  ['Alberto y Claudia Díaz', 'San Rafael', 'Desde el sur mendocino, bienvenidos. Que vuelvan a casa con nuevas fuerzas y una visión clara.'],
+  ['Martín y Paola Herrera', 'General Alvear', 'Es un honor compartir estos días con ustedes. Oramos por cada iglesia representada en esta convención.'],
+  ['Rubén y Elena Castro', 'Malargüe', 'Bienvenidos, hermanos. Que el frío de la montaña nunca alcance al fuego que Dios quiere encender en estos días.'],
+  ['Diego y Soledad Ríos', 'Lavalle', 'Gracias por sumarse. Creemos que Dios tiene algo preparado para cada uno de ustedes.'],
+  ['Pablo y Mariela Navarro', 'Santa Rosa', 'Los recibimos con los brazos abiertos. Que encuentren en Mendoza un hogar durante estos días.'],
+  ['Walter y Susana Aguilar', 'La Paz', 'Bienvenidos a la convención. Que la paz de Dios los acompañe en cada reunión y en el viaje de regreso.'],
+  ['Carlos y Laura Rivero', 'Ciudad de Mendoza', 'Qué bueno es estar juntos otra vez. Bienvenidos, y gracias por traer a sus iglesias en el corazón.'],
+];
+let phoneTab = 'menu';
+const pnav = () => `<div class="pnav"><button data-tab="menu" aria-pressed="${phoneTab === 'menu'}">Menú de hoy</button><button data-tab="bienvenida" aria-pressed="${phoneTab === 'bienvenida'}">Bienvenida</button></div>`;
+$('screen').onclick = e => { const b = e.target.closest('[data-tab]'); if (b) { phoneTab = b.dataset.tab; renderPhone(); $('screen').scrollTop = 0 } };
+
+// ---------- vista del asistente ----------
+function renderPhone() {
+  const day = DAYS.find(d => d.id === today);
+  if (phoneTab === 'bienvenida') {
+    $('screen').innerHTML = `<div class="hero"><small>Convención Regional Cuyo · Mendoza</small><h2>Bienvenidos a Mendoza</h2><div class="date">Los 18 matrimonios pastorales de la zona</div></div>
+      ${pnav()}
+      <div class="verse">“¡Mirad cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!”<small>Salmos 133:1 · RVR1960</small></div>
+      <div class="pastores">${PASTORES.map(([n, dep, t]) => {
+        const [a, b] = n.split(' y ');
+        return `<article class="pastor"><header><div class="foto" aria-label="Foto del matrimonio (pendiente)">${a[0]}${b[0]}</div>
+          <div><b>Pastores ${esc(n)}</b><span>Iglesia de ${esc(dep)}</span></div></header><p>${esc(t)}</p></article>`;
+      }).join('')}</div>
+      <div class="foot">Nombres, fotos y textos de ejemplo</div>`;
+    return;
+  }
+  if (!day) {
+    const before = today === 'antes';
+    $('screen').innerHTML = `<div class="hero"><small>Convención Regional Cuyo · Mendoza</small><h2>Menú del día</h2></div>
+      ${pnav()}
+      <div class="empty"><h2>${before ? 'Todavía no empezó' : '¡Gracias por venir!'}</h2>
+      <p>${before ? 'El jueves 12 de noviembre vas a ver acá el menú de ese día.' : 'La convención terminó. Nos vemos el año que viene.'}</p></div>`;
+    return;
+  }
+  const d = menu[today];
+  $('screen').innerHTML = `
+    <div class="hero"><small>Convención Regional Cuyo · Mendoza</small><h2>Menú de hoy</h2><div class="date">${day.name} ${day.date}</div></div>
+    ${pnav()}
+    ${d.aviso.trim() ? `<div class="aviso"><b>Aviso:</b> ${esc(d.aviso)}</div>` : ''}
+    ${d.meals.map(m => `<div class="meal"><h3>${esc(m.name)} <span>${esc(m.time)} h</span></h3><ul class="items">
+      ${m.items.map(i => {
+        if (i.off) return `<li class="off"><span class="k">${esc(i.k)}<span class="chip off">Hoy no hay</span></span><span class="v">${esc(i.orig)}</span></li>`;
+        const nuevo = i.orig === undefined, cambio = !nuevo && i.v !== i.orig;
+        return `<li><span class="k">${esc(i.k)}${nuevo ? '<span class="chip nuevo">Nuevo</span>' : cambio ? '<span class="chip cambio">Cambió</span>' : ''}</span>
+          <span class="v">${esc(i.v)}</span>${cambio ? `<span class="was">Antes: <s>${esc(i.orig)}</s></span>` : ''}</li>`;
+      }).join('')}</ul></div>`).join('')}
+    <div class="foot">${d.updated ? `Actualizado hoy a las ${d.updated} h` : 'Menú publicado por el equipo de cocina'}</div>`;
+}
+
+// ---------- panel de cocina ----------
+function renderPanel() {
+  $('days').innerHTML = DAYS.map(d => `<button aria-pressed="${d.id === editing}" data-day="${d.id}">${d.name}${d.id === today ? '<span class="live">● hoy</span>' : ''}</button>`).join('');
+  const d = menu[editing];
+  $('aviso').value = d.aviso;
+  $('editor').innerHTML = d.meals.map((m, mi) => `<div class="edit-meal"><h3>${esc(m.name)} · ${esc(m.time)} h</h3>
+    ${m.items.map((i, ii) => {
+      const nuevo = i.orig === undefined, cambio = !nuevo && !i.off && i.v !== i.orig;
+      return `<div class="row ${cambio ? 'changed' : ''} ${i.off ? 'off' : ''}">
+        <input class="lbl" id="l-${editing}-${mi}-${ii}" data-m="${mi}" data-i="${ii}" data-f="k" value="${esc(i.k)}" aria-label="Tipo" ${i.off ? 'disabled' : ''}>
+        <input class="val" id="v-${editing}-${mi}-${ii}" data-m="${mi}" data-i="${ii}" data-f="v" value="${esc(i.off ? i.orig : i.v)}" aria-label="${esc(i.k)}" ${i.off ? 'disabled' : ''}>
+        <div class="acts">
+          ${cambio || i.off ? `<button class="mini" data-act="undo" data-m="${mi}" data-i="${ii}">Volver al original</button>`
+            : `<button class="mini" data-act="del" data-m="${mi}" data-i="${ii}">${nuevo ? 'Borrar' : 'Quitar hoy'}</button>`}
+        </div></div>`;
+    }).join('')}
+    <button class="add" data-act="add" data-m="${mi}">+ Agregar algo</button></div>`).join('');
+}
+
+function touched(msg) {
+  const now = new Date();
+  if (editing === today) menu[editing].updated = now.toTimeString().slice(0, 5);
+  save(); renderPhone();
+  $('saved').textContent = `Guardado ${now.toTimeString().slice(0, 5)} h.` + (editing === today ? ' Los asistentes ya lo ven.' : ` Se verá el ${DAYS.find(x => x.id === editing).name.toLowerCase()}.`);
+  if (msg) toast(msg);
+}
+let tt;
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.hidden = false; clearTimeout(tt); tt = setTimeout(() => t.hidden = true, 2200) }
+
+$('days').onclick = e => { const b = e.target.closest('[data-day]'); if (b) { editing = b.dataset.day; renderPanel() } };
+$('aviso').oninput = e => { menu[editing].aviso = e.target.value; touched() };
+$('editor').oninput = e => {
+  const { m, i, f } = e.target.dataset; if (!f) return;
+  menu[editing].meals[m].items[i][f] = e.target.value;
+  e.target.closest('.row').classList.toggle('changed', f === 'v' && menu[editing].meals[m].items[i].orig !== undefined && e.target.value !== menu[editing].meals[m].items[i].orig);
+  touched();
+};
+// al salir del campo, actualiza los botones de la fila sin perder el foco del siguiente campo
+$('editor').onchange = () => setTimeout(() => { const id = document.activeElement?.id; renderPanel(); if (id && $(id)) $(id).focus() });
+$('editor').onclick = e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const items = menu[editing].meals[b.dataset.m].items, i = +b.dataset.i;
+  if (b.dataset.act === 'add') { items.push({ k: 'Extra', v: '' }); renderPanel(); touched(); $('editor').querySelectorAll(`[data-m="${b.dataset.m}"].val`).forEach((x, n, all) => n === all.length - 1 && x.focus()); return }
+  if (b.dataset.act === 'del') {
+    if (items[i].orig === undefined) { items.splice(i, 1); touched('Borrado') }
+    else { items[i].off = true; touched('Marcado como "Hoy no hay"') }
+  }
+  if (b.dataset.act === 'undo') { items[i].v = items[i].orig; delete items[i].off; touched('Volvió al menú original') }
+  renderPanel();
+};
+$('reset').onclick = () => { menu = sample(); save(); renderPanel(); renderPhone(); toast('Datos de ejemplo restaurados') };
+
+// ---------- pestañas en celular ----------
+document.body.dataset.view = 'asistente';
+document.querySelector('.tabs').onclick = e => {
+  const b = e.target.closest('[data-view]'); if (!b) return;
+  document.body.dataset.view = b.dataset.view;
+  document.querySelectorAll('.tabs button').forEach(x => x.setAttribute('aria-selected', x === b));
+};
+
+renderPhone(); renderPanel();
+</script>

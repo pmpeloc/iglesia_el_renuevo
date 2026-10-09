@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cartel de mesa con QR</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Figtree:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#6E1A37}a:hover{color:#4A0F24}
+</style>
+</helmet>
+<div style="width: 600px; height: 900px; box-sizing: border-box; background: #F3F5F7; color: #23303C; font-family: 'Figtree', 'Segoe UI', sans-serif; display: flex; flex-direction: column">
+  <div style="background: {{accent}}; color: #FFFFFF; padding: 40px 44px 0; display: flex; flex-direction: column; gap: 10px">
+    <div style="font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; opacity: 0.9">Convención Regional Cuyo · Mendoza 2026</div>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 58px; line-height: 0.98">Escaneá y mirá el menú de hoy</h1>
+    <svg viewBox="0 0 600 80" width="600" height="80" style="margin: 14px -44px 0; display: block" aria-hidden="true">
+      <polygon points="0,80 0,56 60,30 105,48 175,8 230,42 285,22 345,54 400,16 460,46 515,28 600,56 600,80" fill="#F3F5F7" opacity="0.18"></polygon>
+      <polygon points="0,80 0,68 85,48 145,62 215,38 290,64 365,42 445,64 520,48 600,68 600,80" fill="#F3F5F7"></polygon>
+    </svg>
+  </div>
+
+  <div style="display: flex; gap: 32px; align-items: center; padding: 20px 44px 0">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+      <div role="img" aria-label="Código QR de ejemplo" style="background: #FFFFFF; padding: 18px; border-radius: 18px; border: 1px solid #D5DCE2">
+        <div style="display: grid; grid-template-columns: repeat(25, 10px); grid-auto-rows: 10px">
+          <sc-for list="{{qr}}" as="c" hint-placeholder-count="625">
+            <div style="background: {{c.bg}}"></div>
+          </sc-for>
+        </div>
+      </div>
+      <span style="font-size: 13px; color: #5A6875; font-weight: 700">QR de ejemplo</span>
+    </div>
+    <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; font-size: 19px; line-height: 1.3">
+      <li style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; color: #6E1A37">1</span>Abrí la cámara del celular</li>
+      <li style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; color: #6E1A37">2</span>Apuntá al código</li>
+      <li style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; color: #6E1A37">3</span>Tocá el enlace que aparece</li>
+    </ol>
+  </div>
+
+  <div style="margin: auto 44px 40px; padding: 18px 20px; border-radius: 14px; background: #FFFFFF; border: 1px solid #D5DCE2; display: flex; flex-direction: column; gap: 4px">
+    <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">También vas a encontrar</span>
+    <span style="font-size: 17px; line-height: 1.4; color: #3B4956">La bienvenida de los 18 matrimonios pastorales de Mendoza y los cambios del menú en el momento.</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#6E1A37","options":["#6E1A37","#23303C","#2F5D50"]},"$preview":{"width":600,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+const N = 25, qr = [];
+const finder = (x, y) => {
+  for (const [ox, oy] of [[0, 0], [N - 7, 0], [0, N - 7]]) {
+    const dx = x - ox, dy = y - oy;
+    if (dx >= 0 && dx < 7 && dy >= 0 && dy < 7) {
+      const edge = dx === 0 || dx === 6 || dy === 0 || dy === 6;
+      const core = dx >= 2 && dx <= 4 && dy >= 2 && dy <= 4;
+      return edge || core ? 1 : 0;
+    }
+    if (dx >= -1 && dx <= 7 && dy >= -1 && dy <= 7) return 0;
+  }
+  return null;
+};
+for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+  const f = finder(x, y);
+  const on = f !== null ? f : ((x * 7 + y * 13 + x * y * 3) % 5) < 2;
+  qr.push({ bg: on ? '#23303C' : '#FFFFFF' });
+}
+return { accent: this.props.accent ?? '#6E1A37', qr };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Bienvenida de los pastores</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Figtree:wght@400;500;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#6E1A37}a:hover{color:#4A0F24}
+</style>
+</helmet>
+<div style="width: 390px; height: 3900px; box-sizing: border-box; background: #F3F5F7; color: #23303C; font-family: 'Figtree', 'Segoe UI', sans-serif; display: flex; flex-direction: column">
+  <div style="background: {{accent}}; color: #FFFFFF; padding: 28px 22px 0; display: flex; flex-direction: column; gap: 6px">
+    <div style="font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; opacity: 0.9">Convención Regional Cuyo · Mendoza 2026</div>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 40px; line-height: 1.02">Bienvenidos a Mendoza</h1>
+    <div style="font-size: 16px; line-height: 1.45; margin-top: 4px">Los 18 matrimonios pastorales de la zona les dan la bienvenida.</div>
+    <svg viewBox="0 0 390 56" width="390" height="56" style="margin: 10px -22px 0; display: block" aria-hidden="true">
+      <polygon points="0,56 0,40 40,22 70,34 115,6 150,30 185,16 225,38 262,12 300,32 335,20 390,40 390,56" fill="#F3F5F7" opacity="0.18"></polygon>
+      <polygon points="0,56 0,48 55,34 95,44 140,26 190,46 240,30 290,46 340,34 390,48 390,56" fill="#F3F5F7"></polygon>
+    </svg>
+  </div>
+
+  <nav style="display: flex; gap: 6px; margin: 4px 16px 0; padding: 4px; background: #FFFFFF; border: 1px solid #D5DCE2; border-radius: 12px">
+    <a href="Main.dc.html" style="flex: 1; text-align: center; padding: 11px 8px; border-radius: 9px; color: #23303C; font-weight: 700; font-size: 15px; text-decoration: none">Menú de hoy</a>
+    <a href="Bienvenida.dc.html" style="flex: 1; text-align: center; padding: 11px 8px; border-radius: 9px; background: #23303C; color: #FFFFFF; font-weight: 700; font-size: 15px; text-decoration: none">Bienvenida</a>
+  </nav>
+
+  <figure style="margin: 20px 20px 4px; display: flex; flex-direction: column; gap: 6px">
+    <blockquote style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 21px; line-height: 1.3">“¡Mirad cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!”</blockquote>
+    <figcaption style="font-size: 14px; color: #5A6875; font-weight: 700">Salmos 133:1 · RVR1960</figcaption>
+  </figure>
+
+  <div style="display: flex; flex-direction: column; gap: 12px; padding: 16px 16px 0">
+    <sc-for list="{{pastores}}" as="p" hint-placeholder-count="18">
+      <article style="background: #FFFFFF; border: 1px solid #D5DCE2; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 14px; align-items: center">
+          <div role="img" aria-label="Foto del matrimonio pastoral (pendiente)" style="width: 76px; height: 76px; flex: none; border-radius: 14px; background: #E7DDE1; color: #6E1A37; display: flex; align-items: center; justify-content: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px">{{p.ini}}</div>
+          <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 19px; line-height: 1.15">{{p.nombre}}</span>
+            <span style="font-size: 14px; color: #5A6875; font-weight: 500">{{p.lugar}}</span>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5">{{p.texto}}</p>
+      </article>
+    </sc-for>
+  </div>
+
+  <div style="margin-top: auto; padding: 22px 20px 28px; text-align: center; color: #5A6875; font-size: 13px">Nombres, fotos y textos de ejemplo</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#6E1A37","options":["#6E1A37","#23303C","#2F5D50"]},"$preview":{"width":390,"height":3900}}'>
+class Component extends DCLogic {
+renderVals() {
+const P = [
+['Daniel y Romina Quiroga', 'Godoy Cruz', 'Qué alegría tenerlos en Mendoza. Oramos durante meses por cada uno de ustedes. Que estos días sean de descanso, de encuentro y de una palabra fresca de parte de Dios.'],
+['Marcelo y Andrea Funes', 'Guaymallén', 'Bienvenidos a casa. Sabemos el esfuerzo que hicieron para llegar. Nuestro deseo es que vuelvan a sus iglesias renovados y con el corazón encendido.'],
+['Hugo y Silvia Ortiz', 'Las Heras', 'Desde Las Heras les damos un abrazo grande. Pedimos al Señor que cada reunión sea un tiempo de reencuentro con Él y entre hermanos.'],
+['Gustavo y Carina Lucero', 'Maipú', 'Esta es tierra de viñedos y de cosecha. Que la convención sea también un tiempo de cosecha para sus vidas y sus familias.'],
+['Sergio y Mónica Videla', 'Luján de Cuyo', 'Bienvenidos, hermanos. Cualquier cosa que necesiten durante estos días, cuenten con nosotros. Estamos para servirles.'],
+['Raúl y Patricia Correa', 'San Martín', 'Queremos que se sientan en familia. Los esperamos en cada reunión con expectativa por lo que Dios va a hacer.'],
+['Javier y Lorena Pérez', 'Rivadavia', 'Gracias por venir desde tan lejos. Que el Señor bendiga cada kilómetro que recorrieron para estar acá.'],
+['Oscar y Beatriz Gómez', 'Junín', 'Nos alegra recibirlos. Oramos para que se lleven amistades nuevas y una fe fortalecida.'],
+['Fernando y Natalia Arce', 'Tunuyán', 'Desde el Valle de Uco les mandamos nuestra bienvenida. Que la presencia de Dios llene cada encuentro.'],
+['Ricardo y Gabriela Sosa', 'Tupungato', 'Hace tiempo esperábamos este momento. Bienvenidos a la convención: disfruten, descansen y escuchen a Dios.'],
+['Luis y Verónica Molina', 'San Carlos', 'Con mucho cariño los recibimos. Que estos días sean un refugio para el alma y un impulso para el ministerio.'],
+['Alberto y Claudia Díaz', 'San Rafael', 'Desde el sur mendocino, bienvenidos. Que vuelvan a casa con nuevas fuerzas y una visión clara.'],
+['Martín y Paola Herrera', 'General Alvear', 'Es un honor compartir estos días con ustedes. Oramos por cada iglesia representada en esta convención.'],
+['Rubén y Elena Castro', 'Malargüe', 'Bienvenidos, hermanos. Que el frío de la montaña nunca alcance al fuego que Dios quiere encender en estos días.'],
+['Diego y Soledad Ríos', 'Lavalle', 'Gracias por sumarse. Creemos que Dios tiene algo preparado para cada uno de ustedes.'],
+['Pablo y Mariela Navarro', 'Santa Rosa', 'Los recibimos con los brazos abiertos. Que encuentren en Mendoza un hogar durante estos días.'],
+['Walter y Susana Aguilar', 'La Paz', 'Bienvenidos a la convención. Que la paz de Dios los acompañe en cada reunión y en el viaje de regreso.'],
+['Carlos y Laura Rivero', 'Ciudad de Mendoza', 'Qué bueno es estar juntos otra vez. Bienvenidos, y gracias por traer a sus iglesias en el corazón.'],
+];
+const pastores = P.map(([nombre, dep, texto]) => ({
+  nombre: 'Pastores ' + nombre,
+  lugar: 'Iglesia de ' + dep,
+  texto,
+  ini: nombre.split(' y ')[0][0] + nombre.split(' y ')[1][0],
+}));
+return { accent: this.props.accent ?? '#6E1A37', pastores };
+}
+}
+</script>
+</body>
+</html>
