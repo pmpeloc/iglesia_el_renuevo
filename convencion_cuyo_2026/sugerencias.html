@@ -1,0 +1,132 @@
+<title>Ideas para la Convención Cuyo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;700&display=swap">
+<style>
+/* Layout: propuesta de lectura, una columna; arriba lo que se propone primero, abajo el resto agrupado por para quién sirve. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --fg: #23303c; --muted: #56636f; --line: #d5dce2;
+  --accent: #6e1a37; --accent-soft: #f3e6eb; --b: #22663a; --b-bg: #ddf0e1; --m: #7a4e00; --m-bg: #fbebc8; --a: #6e1a37; --a-bg: #f3e6eb;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12171d; --surface: #1b222a; --fg: #e8ecef; --muted: #9aa7b3; --line: #2c3540;
+  --accent: #e27a9b; --accent-soft: #3a1c27; --b: #7fd18f; --b-bg: #18301d; --m: #f0b85a; --m-bg: #3a2c14; --a: #e27a9b; --a-bg: #3a1c27; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12171d; --surface: #1b222a; --fg: #e8ecef; --muted: #9aa7b3; --line: #2c3540;
+  --accent: #e27a9b; --accent-soft: #3a1c27; --b: #7fd18f; --b-bg: #18301d; --m: #f0b85a; --m-bg: #3a2c14; --a: #e27a9b; --a-bg: #3a1c27; color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font: 17px/1.55 var(--body); padding: 0 16px 64px }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0 }
+a { color: var(--accent) }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px }
+.wrap { max-width: 760px; margin: 0 auto; display: grid; gap: 40px }
+
+header { padding-top: 48px; display: grid; gap: 12px }
+.eyebrow { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--accent) }
+header h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.02; font-weight: 800 }
+header p { margin: 0; color: var(--muted); max-width: 62ch }
+.mount { display: block; width: 100%; height: auto; color: var(--accent); margin-top: 8px }
+
+.first { background: var(--accent-soft); border-radius: 18px; padding: 24px; display: grid; gap: 16px }
+.first h2 { font-size: 1.5rem }
+.first ol { margin: 0; padding-left: 1.4em; display: grid; gap: 12px }
+.first li::marker { font-family: var(--display); font-weight: 800; color: var(--accent) }
+.first li b { display: block }
+.first li span { color: var(--muted) }
+
+section.group { display: grid; gap: 14px }
+.group h2 { font-size: 1.35rem }
+.group > p { margin: 0; color: var(--muted) }
+.list { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--line) }
+.list li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: start }
+.list b { font-size: 1.05rem }
+.list p { margin: 0; color: var(--muted); grid-column: 1 }
+.chip { grid-column: 2; grid-row: 1; font-size: .74rem; font-weight: 700; padding: 3px 10px; border-radius: 99px; white-space: nowrap; letter-spacing: .02em }
+.chip.b { background: var(--b-bg); color: var(--b) }
+.chip.m { background: var(--m-bg); color: var(--m) }
+.chip.a { background: var(--a-bg); color: var(--a) }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: .88rem; color: var(--muted) }
+.legend .chip { grid-column: auto; grid-row: auto }
+
+.notes { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; display: grid; gap: 10px }
+.notes h2 { font-size: 1.2rem }
+.notes ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px }
+footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 18px }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Convención Regional Cuyo · Mendoza 2026</span>
+    <h1>Qué más podemos sumar al QR de la convención</h1>
+    <p>El menú del día y la bienvenida de los pastores ya están en el prototipo. Con la misma página y el mismo QR se pueden agregar otras cosas. Estas son ideas para charlar: ustedes eligen cuáles sirven.</p>
+    <p><a href="https://claude.ai/artifact/L5C3BLcuE5finWyxL6wUUu" target="_blank" rel="noopener">Ver el prototipo del menú y la bienvenida</a></p>
+    <svg class="mount" viewBox="0 0 760 40" aria-hidden="true">
+      <polyline points="0,38 60,22 100,30 170,6 220,26 270,14 330,32 380,10 440,28 490,18 560,34 610,12 680,28 760,20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></polyline>
+    </svg>
+  </header>
+
+  <section class="first" aria-labelledby="t-first">
+    <h2 id="t-first">Lo que proponemos primero</h2>
+    <ol>
+      <li><b>Programa del día y avisos en vivo</b><span>Horarios, predicadores y salones de hoy, y un aviso arriba de todo para los cambios de último momento.</span></li>
+      <li><b>Información práctica</b><span>Mapa de salones, baños, enfermería, estacionamiento, WiFi y teléfonos útiles.</span></li>
+      <li><b>Comidas especiales y "¿Venís a comer?"</b><span>Cocina sabe cuántas porciones preparar y cuántas sin TACC, para diabéticos o vegetarianas.</span></li>
+      <li><b>Modo pantalla</b><span>Una TV en el comedor o en el hall muestra el menú, los avisos y las bienvenidas.</span></li>
+    </ol>
+  </section>
+
+  <div class="legend"><span>Trabajo que lleva:</span><span class="chip b">Poco</span><span class="chip m">Algunos días</span><span class="chip a">Bastante</span></div>
+
+  <section class="group" aria-labelledby="t-asis">
+    <h2 id="t-asis">Para los asistentes</h2>
+    <p>Funcionan igual que el menú: se ve lo de hoy y se puede cambiar en el momento.</p>
+    <ul class="list">
+      <li><b>Programa del día</b><span class="chip b">Poco</span><p>Horarios, predicadores y salón de cada reunión.</p></li>
+      <li><b>Avisos en vivo</b><span class="chip b">Poco</span><p>Cambios de salón, objetos perdidos, demoras del transporte.</p></li>
+      <li><b>Información práctica</b><span class="chip b">Poco</span><p>Dirección, mapa, baños, enfermería, estacionamiento, WiFi.</p></li>
+      <li><b>Apuntes de las prédicas</b><span class="chip b">Poco</span><p>El resumen de cada mensaje en PDF para seguirlo desde el celular.</p></li>
+      <li><b>Letras de las canciones</b><span class="chip b">Poco</span><p>Para quienes no llegan a ver bien la pantalla del salón.</p></li>
+    </ul>
+  </section>
+
+  <section class="group" aria-labelledby="t-org">
+    <h2 id="t-org">Para la organización y la cocina</h2>
+    <ul class="list">
+      <li><b>Comidas especiales en la inscripción</b><span class="chip m">Algunos días</span><p>Cocina sabe de antemano cuántas porciones sin TACC, para diabéticos o vegetarianas preparar.</p></li>
+      <li><b>"¿Venís a comer?"</b><span class="chip m">Algunos días</span><p>Cada asistente confirma si almuerza o cena. Cocina ve el número de raciones y se desperdicia menos.</p></li>
+      <li><b>Turnos de comedor</b><span class="chip m">Algunos días</span><p>Si son muchos, cada iglesia tiene su horario y lo ve en el celular. Menos filas.</p></li>
+      <li><b>Turnos de servidores</b><span class="chip m">Algunos días</span><p>Cada servidor ve dónde le toca estar: cocina, limpieza, recepción o ujieres.</p></li>
+      <li><b>Acreditación con QR</b><span class="chip a">Bastante</span><p>Cada inscripto tiene su código, se escanea en la entrada y hay una lista en vivo de quién llegó.</p></li>
+    </ul>
+  </section>
+
+  <section class="group" aria-labelledby="t-com">
+    <h2 id="t-com">Para la comunidad</h2>
+    <ul class="list">
+      <li><b>Pedidos de oración</b><span class="chip m">Algunos días</span><p>Un formulario, que puede ser anónimo, que le llega al equipo de intercesión.</p></li>
+      <li><b>Testimonios</b><span class="chip m">Algunos días</span><p>Quien quiera cuenta qué hizo Dios en estos días. El equipo los revisa antes de mostrarlos.</p></li>
+      <li><b>Fotos compartidas</b><span class="chip m">Algunos días</span><p>Los asistentes suben fotos a una galería común de la convención.</p></li>
+      <li><b>Encuesta de cierre</b><span class="chip b">Poco</span><p>Opiniones sobre comida, reuniones y logística para mejorar la próxima.</p></li>
+    </ul>
+  </section>
+
+  <section class="group" aria-labelledby="t-pan">
+    <h2 id="t-pan">En las pantallas del lugar</h2>
+    <ul class="list">
+      <li><b>Modo pantalla</b><span class="chip b">Poco</span><p>La misma información en una TV o un proyector del comedor o del hall, sin que nadie tenga que tocar nada.</p></li>
+    </ul>
+  </section>
+
+  <div class="notes">
+    <h2>Lo que tenemos en cuenta en todas</h2>
+    <ul>
+      <li>Se abre desde el QR en el navegador. Nadie tiene que instalar una app.</li>
+      <li>Si la señal es débil en los salones, la página sigue mostrando lo último que cargó.</li>
+      <li>Solo los organizadores pueden editar, con clave.</li>
+      <li>Si se piden datos personales (acreditación, pedidos de oración), guardamos lo mínimo y lo borramos después de la convención.</li>
+    </ul>
+  </div>
+
+  <footer>Propuesta de Misael Peloc · Iglesia El Renuevo, Jujuy. Contenido y diseño provisorios hasta tener la identidad oficial de la convención.</footer>
+</div>

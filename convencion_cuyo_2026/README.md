@@ -9,8 +9,9 @@ Estado: **prototipo con datos ficticios**, esperando feedback. Después se refin
 |---|---|---|
 | Prototipo funcional (menú + bienvenida + panel de cocina) | https://claude.ai/artifact/L5C3BLcuE5finWyxL6wUUu | `prototipo/menu_convencion_prototipo.html` |
 | Lienzo de diseño (pantallas, cartel QR, historia) | https://claude.ai/artifact/MJipHLNJJSdBjQEdWrgpiH | `diseno/` |
+| Sugerencias para los organizadores | https://claude.ai/artifact/Ji41mHCk12NwzkEox2Qaeu | `sugerencias.html` (detalle en `sugerencias.md`) |
 
-Los dos links son privados: hay que compartirlos desde el menú **Compartir** de cada página.
+Los links son privados: hay que compartirlos desde el menú **Compartir** de cada página.
 
 ## Pedido 1 — Menú del día por QR (audio 1)
 
