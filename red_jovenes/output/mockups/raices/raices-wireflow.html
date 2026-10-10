@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Raíces - Wireflow de experiencia</title>
+  <style>
+    :root {
+      --ink: #173b35;
+      --muted: #58706c;
+      --paper: #f4f1e6;
+      --card: #fffdf6;
+      --green: #246b54;
+      --lime: #cfe58a;
+      --sky: #a9d8d4;
+      --lav: #c9bce8;
+      --coral: #ef765f;
+      --line: #8ea39d;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: #dbe4df; }
+    body { font-family: "Segoe UI", Arial, sans-serif; color: var(--ink); }
+    .board {
+      position: relative;
+      width: 2180px;
+      height: 1860px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 10% 6%, rgba(207,229,138,.52), transparent 22%),
+        radial-gradient(circle at 90% 7%, rgba(169,216,212,.58), transparent 21%),
+        var(--paper);
+    }
+    .header {
+      position: absolute;
+      top: 54px;
+      left: 70px;
+      right: 70px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+    .eyebrow {
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 5px 0 0; font-size: 52px; letter-spacing: -.03em; }
+    .header p { width: 720px; margin: 0; color: var(--muted); font-size: 20px; line-height: 1.4; }
+    .lane-label {
+      position: absolute;
+      left: 70px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--green);
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .lane-label::before { content: ""; width: 38px; height: 5px; border-radius: 9px; background: var(--green); }
+    .lane-label.primary { top: 150px; }
+    .lane-label.daily { top: 792px; }
+    .node {
+      position: absolute;
+      z-index: 2;
+      border: 1px solid rgba(36,107,84,.14);
+      border-radius: 28px;
+      background: rgba(255,253,246,.97);
+      box-shadow: 0 16px 34px rgba(23,59,53,.11);
+    }
+    .node-number {
+      position: absolute;
+      top: -18px;
+      left: 22px;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 4px solid var(--paper);
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .entry-node {
+      top: 210px;
+      width: 420px;
+      height: 545px;
+      padding: 28px 24px;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 21px;
+      align-items: center;
+    }
+    .entry-1 { left: 100px; }
+    .entry-2 { left: 775px; }
+    .entry-3 { left: 1450px; border: 3px solid var(--green); }
+    .phone-thumb {
+      width: 160px;
+      height: 347px;
+      object-fit: cover;
+      border-radius: 22px;
+      box-shadow: 0 10px 24px rgba(23,59,53,.15);
+    }
+    .entry-node h2, .feature-node h2 { margin: 7px 0 10px; font-size: 27px; line-height: 1.08; }
+    .entry-node p, .feature-node p { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.45; }
+    .tag {
+      display: inline-block;
+      padding: 7px 10px;
+      border-radius: 99px;
+      background: #e7efe9;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .functions { display: grid; gap: 9px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .functions li {
+      position: relative;
+      padding-left: 19px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.3;
+    }
+    .functions li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-weight: 900;
+    }
+    .hub-badge {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      padding: 8px 12px;
+      border-radius: 99px;
+      background: var(--green);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .feature-node {
+      top: 930px;
+      width: 380px;
+      height: 800px;
+      padding: 24px;
+    }
+    .feature-node img {
+      display: block;
+      width: 210px;
+      height: 454px;
+      margin: 0 auto 18px;
+      object-fit: cover;
+      border-radius: 24px;
+      box-shadow: 0 11px 25px rgba(23,59,53,.14);
+    }
+    .feature-1 { left: 40px; }
+    .feature-2 { left: 470px; }
+    .feature-3 { left: 900px; }
+    .feature-4 { left: 1330px; }
+    .feature-5 { left: 1760px; }
+    .mini-flow {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 14px 0;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .mini-flow span {
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: #edf4ee;
+    }
+    .note {
+      margin-top: 14px;
+      padding: 12px 13px;
+      border-left: 4px solid var(--green);
+      background: #eef5e9;
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .flow-lines {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .flow-lines > path {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 4;
+    }
+    .flow-lines .main {
+      stroke: var(--green);
+      stroke-width: 6;
+    }
+    .flow-lines .soft {
+      stroke-dasharray: 10 10;
+      stroke: #87a596;
+    }
+    .legend {
+      position: absolute;
+      left: 70px;
+      bottom: 50px;
+      right: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 25px;
+      border-top: 1px solid rgba(36,107,84,.18);
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .legend-items { display: flex; gap: 28px; }
+    .legend-item { display: flex; align-items: center; gap: 9px; }
+    .line-swatch { width: 42px; height: 5px; border-radius: 9px; background: var(--green); }
+    .line-swatch.soft { background: repeating-linear-gradient(90deg,#87a596 0 9px,transparent 9px 16px); }
+    .future {
+      padding: 9px 14px;
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <main class="board">
+    <header class="header">
+      <div>
+        <div class="eyebrow">Raíces · Wireflow conceptual</div>
+        <h1>Cómo se conectan las pantallas</h1>
+      </div>
+      <p>El inicio funciona como centro de la experiencia. Desde allí la persona entra a su misión, comunidad, colecciones, biblioteca y acompañamiento; siempre puede volver sin perder progreso.</p>
+    </header>
+
+    <div class="lane-label primary">Entrada y personalización</div>
+    <div class="lane-label daily">Ciclo de uso cotidiano</div>
+
+    <svg class="flow-lines" width="2180" height="1860" aria-label="Conexiones del flujo de Raíces">
+      <defs>
+        <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="6" orient="auto">
+          <path d="M0,0 L12,6 L0,12 z" fill="#246b54"></path>
+        </marker>
+        <marker id="arrow-soft" markerWidth="14" markerHeight="14" refX="11" refY="6" orient="auto">
+          <path d="M0,0 L12,6 L0,12 z" fill="#87a596"></path>
+        </marker>
+      </defs>
+      <path class="main" d="M520 485 H775" marker-end="url(#arrow)"></path>
+      <path class="main" d="M1195 485 H1450" marker-end="url(#arrow)"></path>
+
+      <path class="main" d="M1660 755 V840 H230 V930" marker-end="url(#arrow)"></path>
+      <path class="main" d="M1660 840 H660 V930" marker-end="url(#arrow)"></path>
+      <path class="main" d="M1660 840 H1090 V930" marker-end="url(#arrow)"></path>
+      <path class="main" d="M1660 840 H1520 V930" marker-end="url(#arrow)"></path>
+      <path class="main" d="M1660 840 H1950 V930" marker-end="url(#arrow)"></path>
+
+    </svg>
+
+    <article class="node entry-node entry-1">
+      <span class="node-number">1</span>
+      <img class="phone-thumb" src="png/01-acceso.png" alt="Pantalla de acceso">
+      <div>
+        <span class="tag">Primera visita</span>
+        <h2>Acceso</h2>
+        <p>Ingreso obligatorio para conservar el recorrido personal.</p>
+        <ul class="functions">
+          <li>Google</li>
+          <li>Correo y contraseña</li>
+          <li>Solo mayores de 18 años</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="node entry-node entry-2">
+      <span class="node-number">2</span>
+      <img class="phone-thumb" src="png/02-onboarding.png" alt="Pantalla de onboarding">
+      <div>
+        <span class="tag">Solo al comenzar</span>
+        <h2>Onboarding</h2>
+        <p>Recomienda un camino sin diagnosticar a la persona.</p>
+        <ul class="functions">
+          <li>Área de crecimiento</li>
+          <li>Tiempo disponible</li>
+          <li>Ritmo e intensidad</li>
+          <li>Usuario confirma o ajusta</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="node entry-node entry-3">
+      <span class="node-number">3</span>
+      <span class="hub-badge">Centro</span>
+      <img class="phone-thumb" src="png/03-inicio.png" alt="Pantalla de inicio">
+      <div>
+        <span class="tag">Cada ingreso</span>
+        <h2>Inicio</h2>
+        <p>Resume el estado actual y ofrece una sola acción principal.</p>
+        <ul class="functions">
+          <li>Planta personal</li>
+          <li>Misión del día</li>
+          <li>Necesidades: Palabra, oración y acción</li>
+          <li>Colección activa</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="node feature-node feature-1">
+      <span class="node-number">4</span>
+      <img src="png/04-mision-y-recuperacion.png" alt="Pantalla de misión y recuperación">
+      <span class="tag">Camino</span>
+      <h2>Misión diaria</h2>
+      <p>Lectura, oración, acción o reflexión. Completarla nutre la planta y puede desbloquear una carta.</p>
+      <div class="mini-flow"><span>Misión</span>→<span>Puntos</span>→<span>Carta</span></div>
+      <div class="note"><b>Recuperación:</b> si hoy cuesta, ofrece una versión de dos minutos. No rompe rachas ni borra progreso.</div>
+    </article>
+
+    <article class="node feature-node feature-2">
+      <span class="node-number">5</span>
+      <img src="png/05-muro-oracion.png" alt="Pantalla de muro de oración">
+      <span class="tag">Oración</span>
+      <h2>Muro comunitario</h2>
+      <p>Peticiones visuales tipo post-it. Cada persona decide su nivel de privacidad antes de publicar.</p>
+      <ul class="functions">
+        <li>Con nombre</li>
+        <li>Anónima para la Red</li>
+        <li>Solo para líderes</li>
+        <li>“Oré por esto” y “Respondida”</li>
+      </ul>
+    </article>
+
+    <article class="node feature-node feature-3">
+      <span class="node-number">6</span>
+      <img src="png/06-cartas-y-verdad.png" alt="Pantalla de colecciones">
+      <span class="tag">Cartas</span>
+      <h2>Colecciones</h2>
+      <p>Los descubrimientos permanecen. Incluyen verdades bíblicas, insignias, desafíos y humor aplicado.</p>
+      <div class="mini-flow"><span>Desbloquear</span>→<span>Explorar</span>→<span>Aplicar</span></div>
+      <div class="note"><b>Verdad en dibujo:</b> historietas breves generadas por IA y aprobadas por administradores.</div>
+    </article>
+
+    <article class="node feature-node feature-4">
+      <span class="node-number">7</span>
+      <img src="png/07-biblioteca.png" alt="Pantalla de biblioteca">
+      <span class="tag">Más</span>
+      <h2>Biblioteca</h2>
+      <p>Libros subidos por administradores. La persona conserva su última lectura y elige cómo leer.</p>
+      <ul class="functions">
+        <li>PDF original</li>
+        <li>Lectura adaptable</li>
+        <li>Progreso y marcador</li>
+        <li>Retorno al PDF si falla la conversión</li>
+      </ul>
+    </article>
+
+    <article class="node feature-node feature-5">
+      <span class="node-number">8</span>
+      <img src="png/08-comunidad-y-acompanamiento.png" alt="Pantalla de comunidad y acompañamiento">
+      <span class="tag">Comunidad</span>
+      <h2>Red y acompañamiento</h2>
+      <p>El grupo celebra resultados colectivos. El recorrido individual sigue siendo privado.</p>
+      <ul class="functions">
+        <li>Planta comunitaria</li>
+        <li>Métricas sin nombres</li>
+        <li>Líder acompañante asignado</li>
+        <li>Señal privada cuando cuesta avanzar</li>
+      </ul>
+    </article>
+
+    <footer class="legend">
+      <div class="legend-items">
+        <div class="legend-item"><span class="line-swatch"></span> Navegación principal</div>
+        <div class="legend-item">La barra inferior permite volver al inicio o cambiar de sección.</div>
+      </div>
+      <div class="future"><b>Fase posterior:</b> versículo en pantalla de bloqueo + análisis profundo con especialista.</div>
+    </footer>
+  </main>
+</body>
+</html>

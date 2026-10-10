@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Raíces - Mockups conceptuales</title>
+  <style>
+    :root {
+      --ink: #173b35;
+      --ink-soft: #58706c;
+      --paper: #f6f3e8;
+      --surface: #fffdf6;
+      --green: #246b54;
+      --green-2: #5e9c77;
+      --lime: #cfe58a;
+      --sun: #f5c65d;
+      --coral: #ef765f;
+      --lav: #c9bce8;
+      --sky: #a9d8d4;
+      --line: #dce3d9;
+      --shadow: 0 14px 36px rgba(23, 59, 53, .12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #dbe4df;
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 390px);
+      justify-content: center;
+      gap: 32px;
+      padding: 32px;
+    }
+    .screen {
+      position: relative;
+      width: 390px;
+      height: 844px;
+      overflow: hidden;
+      background: var(--paper);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+    }
+    .status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 36px;
+      padding: 0 22px;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .content {
+      height: calc(100% - 36px);
+      overflow: hidden;
+      padding: 12px 20px 92px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      color: #fff;
+      border-radius: 12px 12px 16px 16px;
+      background: var(--green);
+      font-size: 18px;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 30px; line-height: 1.05; letter-spacing: -.03em; }
+    h2 { font-size: 22px; line-height: 1.15; letter-spacing: -.02em; }
+    h3 { font-size: 15px; }
+    p { color: var(--ink-soft); line-height: 1.45; }
+    .eyebrow {
+      margin: 0 0 5px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .muted { color: var(--ink-soft); }
+    .small { font-size: 12px; }
+    .tiny { font-size: 10px; }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .stack { display: grid; gap: 12px; }
+    .card {
+      padding: 16px;
+      border: 1px solid rgba(36, 107, 84, .10);
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: 0 7px 18px rgba(23, 59, 53, .06);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #e7efe9;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 16px;
+      border: 0;
+      border-radius: 16px;
+      background: var(--green);
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+    }
+    .btn.secondary {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+    }
+    .btn.soft {
+      background: #e5eee8;
+      color: var(--green);
+    }
+    .field {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--surface);
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+    .progress {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e3e9e2;
+    }
+    .progress > i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--green);
+    }
+    .bottom-nav {
+      position: absolute;
+      right: 14px;
+      bottom: 12px;
+      left: 14px;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: 64px;
+      padding: 8px 6px;
+      border: 1px solid rgba(36, 107, 84, .12);
+      border-radius: 22px;
+      background: rgba(255, 253, 246, .97);
+      box-shadow: 0 12px 26px rgba(23, 59, 53, .14);
+    }
+    .nav-item {
+      display: grid;
+      place-items: center;
+      align-content: center;
+      gap: 2px;
+      color: #7b8f8a;
+      font-size: 9px;
+      font-weight: 700;
+    }
+    .nav-item b { font-size: 18px; line-height: 1; }
+    .nav-item.active { color: var(--green); }
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--sun);
+      color: var(--ink);
+      font-weight: 900;
+    }
+    .divider {
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* 01 access */
+    .access {
+      background:
+        radial-gradient(circle at 18% 12%, rgba(207, 229, 138, .75), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(169, 216, 212, .75), transparent 25%),
+        var(--paper);
+    }
+    .access-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+      height: 270px;
+      margin: 24px 0 8px;
+    }
+    .access-orbit {
+      position: absolute;
+      width: 235px;
+      height: 235px;
+      border: 2px dashed rgba(36, 107, 84, .22);
+      border-radius: 50%;
+    }
+    .access-plant {
+      position: relative;
+      z-index: 2;
+      font-size: 116px;
+      filter: drop-shadow(0 16px 12px rgba(36, 107, 84, .18));
+    }
+    .float-card {
+      position: absolute;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 82px;
+      border: 2px solid rgba(255,255,255,.8);
+      border-radius: 15px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      font-size: 28px;
+      transform: rotate(-8deg);
+    }
+    .float-card.one { left: 29px; top: 38px; }
+    .float-card.two { right: 21px; bottom: 37px; transform: rotate(9deg); }
+    .access-copy { text-align: center; }
+    .access-copy h1 { margin-bottom: 10px; }
+    .or {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 10px;
+      align-items: center;
+      margin: 11px 0;
+      color: var(--ink-soft);
+      font-size: 11px;
+    }
+    .or::before, .or::after { content: ""; height: 1px; background: var(--line); }
+
+    /* 02 onboarding */
+    .stepper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin: 20px 0 26px;
+    }
+    .stepper i { height: 5px; border-radius: 99px; background: #dfe6df; }
+    .stepper i.done { background: var(--green); }
+    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .choice {
+      min-height: 93px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      background: var(--surface);
+    }
+    .choice.selected {
+      border: 2px solid var(--green);
+      background: #eef5e9;
+    }
+    .choice .icon { margin-bottom: 8px; font-size: 24px; }
+    .recommend {
+      margin-top: 18px;
+      background:
+        linear-gradient(140deg, rgba(207, 229, 138, .38), rgba(169, 216, 212, .30)),
+        var(--surface);
+    }
+
+    /* 03 home */
+    .home-head { margin-bottom: 12px; }
+    .habitat {
+      position: relative;
+      display: grid;
+      place-items: center;
+      height: 245px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(207, 229, 138, .78), transparent 33%),
+        linear-gradient(180deg, #d8ece5, #eef1d8);
+    }
+    .habitat::after {
+      content: "";
+      position: absolute;
+      right: -25px;
+      bottom: -28px;
+      left: -25px;
+      height: 88px;
+      border-radius: 50%;
+      background: #b9c98c;
+    }
+    .plant {
+      position: relative;
+      z-index: 2;
+      margin-top: -8px;
+      text-align: center;
+    }
+    .plant .emoji {
+      font-size: 98px;
+      filter: drop-shadow(0 15px 10px rgba(23, 59, 53, .15));
+    }
+    .plant-name {
+      position: relative;
+      z-index: 3;
+      margin-top: -8px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .habitat .stage {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 3;
+    }
+    .needs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 9px 0 12px; }
+    .need {
+      padding: 9px;
+      border-radius: 14px;
+      background: var(--surface);
+      text-align: center;
+      font-size: 10px;
+    }
+    .need b { display: block; margin-top: 3px; color: var(--ink); font-size: 11px; }
+    .mission-card {
+      background: var(--green);
+      color: #fff;
+    }
+    .mission-card p, .mission-card .eyebrow { color: rgba(255,255,255,.78); }
+    .reward {
+      display: grid;
+      place-items: center;
+      min-width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      background: rgba(255,255,255,.16);
+      font-weight: 900;
+    }
+
+    /* 04 mission */
+    .mission-hero {
+      padding: 18px;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 83% 12%, rgba(245, 198, 93, .7), transparent 27%),
+        var(--green);
+      color: #fff;
+    }
+    .mission-hero p, .mission-hero .eyebrow { color: rgba(255,255,255,.8); }
+    .scripture {
+      margin: 15px 0;
+      padding: 18px;
+      border-left: 4px solid var(--sun);
+      border-radius: 4px 18px 18px 4px;
+      background: var(--surface);
+      font-family: Georgia, serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .unlock {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+    .unlock-card {
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 94px;
+      border: 2px solid #fff;
+      border-radius: 17px;
+      background: var(--lime);
+      box-shadow: var(--shadow);
+      font-size: 34px;
+      transform: rotate(-4deg);
+    }
+    .gentle {
+      margin-top: 12px;
+      border: 1px dashed var(--green-2);
+      background: #edf5ef;
+    }
+
+    /* 05 prayer */
+    .filter-row { display: flex; gap: 7px; margin: 14px 0; }
+    .filter {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #e5ebe5;
+      color: var(--ink-soft);
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .filter.active { background: var(--green); color: #fff; }
+    .wall {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .note {
+      position: relative;
+      min-height: 175px;
+      padding: 17px 15px 13px;
+      border-radius: 5px 5px 18px 5px;
+      box-shadow: 0 10px 16px rgba(23, 59, 53, .11);
+    }
+    .note::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      border-width: 0 0 21px 21px;
+      border-style: solid;
+      border-color: transparent transparent rgba(255,255,255,.45) transparent;
+    }
+    .note.yellow { background: #f9e5a8; transform: rotate(-1deg); }
+    .note.green { background: #cee3b6; transform: rotate(1.2deg); }
+    .note.pink { background: #f5c1b6; transform: rotate(.6deg); }
+    .note.blue { background: #bfe2df; transform: rotate(-1.1deg); }
+    .note p { color: var(--ink); font-size: 13px; line-height: 1.35; }
+    .pray {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 7px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.5);
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .fab {
+      position: absolute;
+      right: 22px;
+      bottom: 90px;
+      z-index: 6;
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: var(--green);
+      color: #fff;
+      box-shadow: var(--shadow);
+      font-size: 27px;
+      font-weight: 300;
+    }
+
+    /* 06 collection */
+    .collection-head {
+      padding: 17px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--lav), #eadff4);
+    }
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin: 13px 0 18px;
+    }
+    .collect-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 142px;
+      padding: 11px;
+      border: 2px solid rgba(255,255,255,.8);
+      border-radius: 18px;
+      background: var(--sky);
+      box-shadow: 0 8px 15px rgba(23,59,53,.10);
+    }
+    .collect-card:nth-child(2) { background: var(--lime); transform: translateY(-7px); }
+    .collect-card.locked {
+      align-items: center;
+      justify-content: center;
+      background: #e0e4df;
+      color: var(--ink-soft);
+    }
+    .collect-card .art { flex: 1; display: grid; place-items: center; font-size: 36px; }
+    .collect-card b { font-size: 11px; }
+    .comic {
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--surface);
+      box-shadow: 0 8px 18px rgba(23,59,53,.07);
+    }
+    .comic-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 190px;
+      padding: 10px;
+      border-right: 2px solid var(--ink);
+      background: #fff7d6;
+      text-align: center;
+    }
+    .panel:last-child { border-right: 0; background: #d9ecdf; }
+    .panel:nth-child(2) { background: #f7d1c6; }
+    .bubble {
+      padding: 7px;
+      border: 1.5px solid var(--ink);
+      border-radius: 50%;
+      background: #fff;
+      font-size: 9px;
+      font-weight: 700;
+    }
+    .character { font-size: 40px; }
+    .caption { font-size: 9px; font-weight: 800; }
+
+    /* 07 library */
+    .book-feature {
+      display: grid;
+      grid-template-columns: 105px 1fr;
+      gap: 16px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 24px;
+      background: var(--green);
+      color: #fff;
+    }
+    .book-feature p { color: rgba(255,255,255,.78); }
+    .cover {
+      display: grid;
+      place-items: end start;
+      height: 145px;
+      padding: 12px;
+      border: 3px solid rgba(255,255,255,.75);
+      border-radius: 7px 15px 15px 7px;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(245,198,93,.8), transparent 22%),
+        #df765d;
+      box-shadow: 7px 9px 0 rgba(0,0,0,.12);
+      color: #fff;
+      font-family: Georgia, serif;
+      font-weight: 800;
+      line-height: 1.05;
+    }
+    .book-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 14px; }
+    .book-mini {
+      height: 134px;
+      padding: 10px;
+      border-radius: 6px 13px 13px 6px;
+      background: var(--lav);
+      box-shadow: 4px 5px 0 rgba(23,59,53,.12);
+      font-family: Georgia, serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .book-mini:nth-child(2) { background: var(--sky); }
+    .book-mini:nth-child(3) { background: var(--lime); }
+    .reader {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 20px;
+      background: var(--surface);
+    }
+    .toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 4px;
+      border-radius: 12px;
+      background: #e8ede8;
+    }
+    .toggle span { padding: 8px; border-radius: 9px; text-align: center; font-size: 10px; font-weight: 800; }
+    .toggle .active { background: var(--surface); box-shadow: 0 3px 8px rgba(23,59,53,.09); }
+    .reader-copy {
+      max-height: 190px;
+      overflow: hidden;
+      margin-top: 14px;
+      font-family: Georgia, serif;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    /* 08 community */
+    .community-tree {
+      display: grid;
+      place-items: center;
+      height: 230px;
+      margin: 12px 0;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(207,229,138,.9), transparent 32%),
+        linear-gradient(180deg, #cce8e2, #eef1d8);
+      text-align: center;
+    }
+    .community-tree .emoji { font-size: 92px; }
+    .community-tree b { display: block; margin-top: -7px; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+    .metric { padding: 12px 7px; border-radius: 16px; background: var(--surface); text-align: center; }
+    .metric strong { display: block; color: var(--green); font-size: 21px; }
+    .mentor {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      margin-top: 13px;
+    }
+    .mentor .avatar { width: 52px; height: 52px; background: var(--lav); }
+    .resume {
+      margin-top: 13px;
+      background: #eef5e9;
+      border-color: #d7e8cd;
+    }
+    .resume .btn { margin-top: 10px; min-height: 43px; }
+
+    @media print {
+      @page { size: 390px 844px; margin: 0; }
+      body { background: #fff; }
+      .gallery { display: block; padding: 0; }
+      .screen {
+        break-after: page;
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="gallery">
+    <section class="screen access" data-name="01-acceso">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="brand"><span class="brand-mark">♧</span> RAÍCES</div>
+        <div class="access-art">
+          <div class="access-orbit"></div>
+          <div class="float-card one">☀</div>
+          <div class="access-plant">🌱</div>
+          <div class="float-card two">📖</div>
+        </div>
+        <div class="access-copy">
+          <p class="eyebrow">Una fe que crece cada día</p>
+          <h1>Cuidá tus raíces.<br>Descubrí tu camino.</h1>
+          <p>Misiones breves, comunidad y acompañamiento para crecer sin competir.</p>
+        </div>
+        <div class="stack">
+          <button class="btn secondary">G&nbsp; Continuar con Google</button>
+          <div class="or">o ingresá con tu correo</div>
+          <div class="field">✉ &nbsp; correo@ejemplo.com</div>
+          <button class="btn">Crear mi cuenta</button>
+          <div class="tiny muted" style="text-align:center">Raíces está pensada para mayores de 18 años.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen" data-name="02-onboarding">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="row"><span class="pill">← Volver</span><span class="small muted">Paso 3 de 4</span></div>
+        <div class="stepper"><i class="done"></i><i class="done"></i><i class="done"></i><i></i></div>
+        <p class="eyebrow">Armemos tu primer camino</p>
+        <h1>¿Dónde querés poner atención?</h1>
+        <p>Podés cambiarlo después. Esto orienta tu plan, no define tu fe.</p>
+        <div class="choice-grid">
+          <div class="choice selected"><div class="icon">📖</div><b>Entender la Biblia</b><div class="tiny muted">Lecturas guiadas y breves</div></div>
+          <div class="choice"><div class="icon">🙏</div><b>Orar con constancia</b><div class="tiny muted">Ritmos simples y recordatorios</div></div>
+          <div class="choice"><div class="icon">🌿</div><b>Volver a empezar</b><div class="tiny muted">Un camino sin presión</div></div>
+          <div class="choice"><div class="icon">🤝</div><b>Vivir mi fe</b><div class="tiny muted">Acciones para cada día</div></div>
+        </div>
+        <div class="card recommend">
+          <div class="row"><span class="pill">Recomendado</span><span>5 min/día</span></div>
+          <h2 style="margin:13px 0 6px">Volver a lo esencial</h2>
+          <p class="small">Un plan de 4 semanas con Palabra, oración y una acción posible.</p>
+          <div class="progress"><i style="width:75%"></i></div>
+          <div class="row tiny muted" style="margin-top:7px"><span>Suave</span><span>Intenso</span></div>
+        </div>
+        <button class="btn" style="margin-top:15px">Usar este camino</button>
+      </div>
+    </section>
+
+    <section class="screen" data-name="03-inicio">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="row home-head">
+          <div><p class="eyebrow">Lunes 27</p><h2 style="margin:0">Hola, Dani</h2></div>
+          <div class="avatar">D</div>
+        </div>
+        <div class="habitat">
+          <span class="pill stage">Etapa 3 · Brote</span>
+          <div class="plant">
+            <div class="emoji">🌿</div>
+            <div class="plant-name">Oliva está creciendo con vos</div>
+            <div class="tiny muted">Hoy necesita un momento de Palabra</div>
+          </div>
+        </div>
+        <div class="needs">
+          <div class="need">💧<b>Oración 3/5</b></div>
+          <div class="need">☀️<b>Palabra 4/5</b></div>
+          <div class="need">🌱<b>Acción 2/5</b></div>
+        </div>
+        <div class="card mission-card">
+          <div class="row">
+            <div>
+              <p class="eyebrow">Misión de hoy · 6 min</p>
+              <h2 style="margin-bottom:6px">¿Qué terreno cuidás?</h2>
+              <p class="small" style="margin:0">Marcos 4:1-20 + una reflexión corta</p>
+            </div>
+            <div class="reward">+20</div>
+          </div>
+          <button class="btn" style="margin-top:14px;background:#fff;color:var(--green)">Comenzar misión</button>
+        </div>
+        <div class="row" style="margin-top:14px">
+          <div><p class="eyebrow">Colección actual</p><b>Parábolas del Reino</b></div>
+          <span class="pill">8/13 cartas</span>
+        </div>
+      </div>
+      <nav class="bottom-nav">
+        <span class="nav-item active"><b>⌂</b>Inicio</span><span class="nav-item"><b>◆</b>Camino</span><span class="nav-item"><b>♧</b>Oración</span><span class="nav-item"><b>▣</b>Cartas</span><span class="nav-item"><b>☰</b>Más</span>
+      </nav>
+    </section>
+
+    <section class="screen" data-name="04-mision-y-recuperacion">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="row"><span class="pill">← Misión</span><span class="pill">Día flexible</span></div>
+        <div class="mission-hero" style="margin-top:14px">
+          <p class="eyebrow">Palabra · 6 minutos</p>
+          <h1 style="margin-bottom:9px">La semilla y el terreno</h1>
+          <p style="margin:0">Leé el pasaje, elegí una frase y respondé con honestidad.</p>
+        </div>
+        <div class="scripture">“El que tiene oídos para oír, oiga.”<br><span class="small">Marcos 4:9</span></div>
+        <div class="field">✎ &nbsp; La frase que quiero guardar...</div>
+        <div class="card unlock" style="margin-top:13px">
+          <div class="unlock-card">🌾</div>
+          <div><p class="eyebrow">Al completar descubrís</p><h3 style="margin:0 0 5px">Carta: El sembrador</h3><div class="small muted">Se suma para siempre a tu colección.</div></div>
+        </div>
+        <button class="btn" style="margin-top:13px">Terminé por hoy · +20</button>
+        <div class="card gentle">
+          <div class="row">
+            <div><b>¿Hoy se te hace difícil?</b><div class="small muted">Elegí una versión de 2 minutos. Tu progreso no se pierde.</div></div>
+            <span style="font-size:26px">🌱</span>
+          </div>
+          <button class="btn soft">Necesito un paso más breve</button>
+        </div>
+      </div>
+      <nav class="bottom-nav">
+        <span class="nav-item"><b>⌂</b>Inicio</span><span class="nav-item active"><b>◆</b>Camino</span><span class="nav-item"><b>♧</b>Oración</span><span class="nav-item"><b>▣</b>Cartas</span><span class="nav-item"><b>☰</b>Más</span>
+      </nav>
+    </section>
+
+    <section class="screen" data-name="05-muro-oracion">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="row"><div><p class="eyebrow">Nos acompañamos</p><h1 style="margin:0">Muro de oración</h1></div><span class="pill">12 esta semana</span></div>
+        <div class="filter-row"><span class="filter active">Todas</span><span class="filter">Mi grupo</span><span class="filter">Respondidas</span></div>
+        <div class="wall">
+          <article class="note yellow">
+            <div class="tiny muted">Anónima · hace 2 h</div>
+            <p>Por una decisión importante que tengo que tomar esta semana.</p>
+            <span class="pray">♡ Oré · 8</span>
+          </article>
+          <article class="note green">
+            <div class="tiny muted">Luz · hace 4 h</div>
+            <p>Por mi familia y para que podamos hablar con paciencia.</p>
+            <span class="pray">♡ Oré · 12</span>
+          </article>
+          <article class="note blue">
+            <div class="tiny muted">Anónima · ayer</div>
+            <p>Gracias a Dios: conseguí el trabajo por el que veníamos orando.</p>
+            <span class="pray">✓ Respondida</span>
+          </article>
+          <article class="note pink">
+            <div class="tiny muted">Tomás · ayer</div>
+            <p>Por mis exámenes. Quiero atravesarlos con paz y responsabilidad.</p>
+            <span class="pray">♡ Oré · 6</span>
+          </article>
+        </div>
+      </div>
+      <div class="fab">+</div>
+      <nav class="bottom-nav">
+        <span class="nav-item"><b>⌂</b>Inicio</span><span class="nav-item"><b>◆</b>Camino</span><span class="nav-item active"><b>♧</b>Oración</span><span class="nav-item"><b>▣</b>Cartas</span><span class="nav-item"><b>☰</b>Más</span>
+      </nav>
+    </section>
+
+    <section class="screen" data-name="06-cartas-y-verdad">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="row"><div><p class="eyebrow">Tus descubrimientos</p><h1 style="margin:0">Colecciones</h1></div><span class="pill">24 cartas</span></div>
+        <div class="collection-head" style="margin-top:14px">
+          <div class="row"><div><p class="eyebrow">Colección activa</p><h2 style="margin:0">Parábolas del Reino</h2></div><b>8/13</b></div>
+          <div class="progress" style="margin-top:12px"><i style="width:62%"></i></div>
+        </div>
+        <div class="cards-row">
+          <div class="collect-card"><div class="art">🌾</div><b>El sembrador</b><span class="tiny">Común</span></div>
+          <div class="collect-card"><div class="art">🪙</div><b>El gran valor</b><span class="tiny">Especial</span></div>
+          <div class="collect-card locked"><div style="font-size:28px">🔒</div><b>Por descubrir</b></div>
+        </div>
+        <div class="row"><div><p class="eyebrow">Verdad en dibujo</p><h2 style="margin:0">“Cinco minutos”</h2></div><span class="pill">Nueva</span></div>
+        <div class="comic" style="margin-top:10px">
+          <div class="comic-grid">
+            <div class="panel"><div class="bubble">“No tengo tiempo para orar...”</div><div class="character">😵📱</div><div class="caption">Pantalla: 3 h 47 min</div></div>
+            <div class="panel"><div class="bubble">“Bueno... cinco minutos.”</div><div class="character">🙂🙏</div><div class="caption">Silencio inesperado</div></div>
+            <div class="panel"><div class="bubble">“¿Ya pasaron veinte?”</div><div class="character">😌🌤️</div><div class="caption">Empezar también cuenta</div></div>
+          </div>
+          <div class="small" style="padding:12px"><b>Verdad:</b> la oración no empieza cuando te sentís listo, sino cuando decidís hacer espacio.</div>
+        </div>
+      </div>
+      <nav class="bottom-nav">
+        <span class="nav-item"><b>⌂</b>Inicio</span><span class="nav-item"><b>◆</b>Camino</span><span class="nav-item"><b>♧</b>Oración</span><span class="nav-item active"><b>▣</b>Cartas</span><span class="nav-item"><b>☰</b>Más</span>
+      </nav>
+    </section>
+
+    <section class="screen" data-name="07-biblioteca">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="row"><div><p class="eyebrow">Para seguir creciendo</p><h1 style="margin:0">Biblioteca</h1></div><span class="pill">⌕ Buscar</span></div>
+        <div class="book-feature" style="margin-top:14px">
+          <div class="cover">Una fe con raíces</div>
+          <div><p class="eyebrow" style="color:#d9efb0">Seguí leyendo</p><h2 style="margin-bottom:7px">Capítulo 3</h2><p class="small">La práctica que sostiene lo que creemos.</p><div class="progress"><i style="width:42%;background:var(--sun)"></i></div><div class="tiny" style="margin-top:6px">42% completado</div></div>
+        </div>
+        <div class="row" style="margin-top:15px"><b>Recomendados</b><span class="small muted">Ver todos</span></div>
+        <div class="book-list">
+          <div class="book-mini">Orar<br>sin<br>fórmulas</div>
+          <div class="book-mini">El ritmo<br>de la<br>gracia</div>
+          <div class="book-mini">Historias<br>que Jesús<br>contó</div>
+        </div>
+        <div class="reader">
+          <div class="row"><b>Vista de lectura</b><span class="small muted">Aa</span></div>
+          <div class="toggle" style="margin-top:10px"><span>PDF original</span><span class="active">Adaptable</span></div>
+          <div class="reader-copy"><b>La fe se forma en lo cotidiano</b><br><br>No todos los días tienen la misma fuerza. Algunos llegan llenos de entusiasmo; otros apenas permiten un paso pequeño. La constancia no consiste en no detenerse nunca, sino en aprender a volver.</div>
+        </div>
+      </div>
+      <nav class="bottom-nav">
+        <span class="nav-item"><b>⌂</b>Inicio</span><span class="nav-item"><b>◆</b>Camino</span><span class="nav-item"><b>♧</b>Oración</span><span class="nav-item"><b>▣</b>Cartas</span><span class="nav-item active"><b>☰</b>Más</span>
+      </nav>
+    </section>
+
+    <section class="screen" data-name="08-comunidad-y-acompanamiento">
+      <div class="status"><span>9:41</span><span>●●●  Wi-Fi  ▰</span></div>
+      <div class="content">
+        <div class="row"><div><p class="eyebrow">Crecemos juntos</p><h1 style="margin:0">Nuestra Red</h1></div><span class="pill">Semana 6</span></div>
+        <div class="community-tree">
+          <div><div class="emoji">🌳</div><b>La planta comunitaria floreció</b><div class="small muted">Cada aporte de la Red sumó vida</div></div>
+        </div>
+        <div class="metric-grid">
+          <div class="metric"><strong>187</strong><span class="tiny">misiones</span></div>
+          <div class="metric"><strong>96</strong><span class="tiny">oraciones</span></div>
+          <div class="metric"><strong>41</strong><span class="tiny">cartas</span></div>
+        </div>
+        <div class="card mentor">
+          <div class="avatar">M</div>
+          <div><p class="eyebrow">Tu acompañante</p><b>Marcos</b><div class="small muted">Está para caminar con vos.</div></div>
+          <span class="pill">Asignado</span>
+        </div>
+        <div class="card resume">
+          <div class="row"><div><p class="eyebrow">Volver también es avanzar</p><h2 style="margin:0">Te preparamos un paso breve</h2></div><span style="font-size:35px">🌱</span></div>
+          <p class="small" style="margin:8px 0">Una oración guiada de dos minutos. Sin recuperar todo hoy ni perder lo recorrido.</p>
+          <button class="btn">Retomar con calma</button>
+        </div>
+        <p class="tiny muted" style="margin-top:12px;text-align:center">Tu progreso personal solo es visible para vos y tu acompañante.</p>
+      </div>
+      <nav class="bottom-nav">
+        <span class="nav-item"><b>⌂</b>Inicio</span><span class="nav-item"><b>◆</b>Camino</span><span class="nav-item"><b>♧</b>Oración</span><span class="nav-item"><b>▣</b>Cartas</span><span class="nav-item active"><b>☰</b>Más</span>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

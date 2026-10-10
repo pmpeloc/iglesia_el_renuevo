@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hambre y sed de justicia - Mateo 5:6</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg: #0f0f0f;
+    --panel: #1a1a1a;
+    --text: #f1f1f1;
+    --muted: #aaa;
+    --green: #5DBE2C;
+    --green-bg: #10220b;
+    --red: #e35c5c;
+    --red-bg: #2a1212;
+    --gold: #efc24d;
+    --gold-bg: #241d05;
+    --purple: #b978e6;
+    --purple-bg: #21102d;
+    --border: #343434;
+    --nav-h: 68px;
+  }
+  body {
+    margin: 0;
+    padding-top: calc(var(--nav-h) + 18px);
+    background: var(--bg);
+    color: var(--text);
+    font: 22px/1.65 Georgia, serif;
+  }
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    min-height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    background: #111;
+    border-bottom: 2px solid var(--green);
+  }
+  nav a {
+    flex: 0 0 auto;
+    padding: 8px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #222;
+    color: #ddd;
+    font: 700 15px/1 Arial, sans-serif;
+    text-decoration: none;
+  }
+  nav a:hover, nav a.active {
+    color: #081005;
+    background: var(--green);
+    border-color: var(--green);
+  }
+  main { padding-bottom: 80px; }
+  section {
+    max-width: 940px;
+    margin: 0 auto 70px;
+    padding: 0 26px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .hero {
+    position: relative;
+    margin-bottom: 34px;
+    padding: 28px 32px;
+    overflow: hidden;
+    background: var(--panel);
+    border-left: 6px solid var(--green);
+    border-radius: 8px;
+  }
+  .hero img {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+  }
+  .kicker, .section-label, .box-label {
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .kicker { margin-bottom: 12px; color: var(--green); }
+  h1 {
+    max-width: 760px;
+    margin: 0 0 8px;
+    padding-right: 60px;
+    color: #fff;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.08;
+  }
+  .meta { color: var(--muted); font: 15px/1.45 Arial, sans-serif; }
+  .section-label {
+    margin-bottom: 26px;
+    padding-bottom: 10px;
+    color: var(--green);
+    border-bottom: 1px solid var(--border);
+  }
+  .point-title {
+    margin: 0 0 26px;
+    padding: 15px 20px;
+    background: #222;
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    color: #fff;
+    font: 700 28px/1.2 Arial, sans-serif;
+  }
+  .point-title span { margin-right: 10px; color: var(--green); }
+  .plain { margin: 14px 0; color: #e6e6e6; font-size: 1.06em; }
+  .key-line {
+    margin: 22px 0;
+    padding: 16px 20px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font-style: italic;
+  }
+  .sub {
+    margin: 30px 0;
+    padding: 0 0 0 20px;
+    border-left: 2px solid var(--border);
+  }
+  .sub h3 {
+    margin: 0 0 12px;
+    color: #fff;
+    font: 700 23px/1.3 Arial, sans-serif;
+  }
+  .sub h3 .letter { margin-right: 8px; color: var(--green); }
+  .sub p { margin: 12px 0; color: #e9e9e9; font-size: 1.04em; }
+  .verse {
+    margin: 14px 0 18px;
+    padding: 18px 22px;
+    color: #f7d4d4;
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    font-size: 1.12em;
+    font-style: italic;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 9px;
+    color: var(--red);
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .application {
+    margin: 30px 0 0;
+    padding: 20px 24px;
+    color: #cef1bb;
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    font-size: 1.08em;
+  }
+  .application .box-label { margin-bottom: 10px; color: var(--green); }
+  .call {
+    padding: 22px 26px;
+    color: #ead5f8;
+    background: var(--purple-bg);
+    border-left: 5px solid var(--purple);
+    border-radius: 6px;
+  }
+  .call .box-label { margin-bottom: 10px; color: var(--purple); }
+  .prayer {
+    margin-top: 20px;
+    padding: 18px 22px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font-style: italic;
+  }
+  strong { color: #fff; }
+  @media (max-width: 640px) {
+    body { font-size: 19px; }
+    section { padding: 0 16px; }
+    .hero { padding: 22px 20px; }
+    .hero img { width: 46px; height: 46px; }
+    h1 { padding-right: 44px; }
+    .point-title { font-size: 24px; }
+    .sub { padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+<nav aria-label="Navegación del bosquejo">
+  <a class="active" href="#intro">Intro</a>
+  <a href="#punto1">1 · Hambre</a>
+  <a href="#punto2">2 · Apetito</a>
+  <a href="#punto3">3 · Saciedad</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<main>
+<section id="intro">
+  <div class="hero">
+    <img src="../../../logos/LOGO-EL RENUEVO-R-4.png" alt="Iglesia El Renuevo">
+    <div class="kicker">Las Bienaventuranzas · Reunión General · 40-45 min</div>
+    <h1>Hambre y sed de justicia</h1>
+    <div class="meta">Mateo 5:6 · Mapa de predicación</div>
+  </div>
+
+  <div class="section-label">Introducción</div>
+  <div class="verse">
+    “Bienaventurados los que tienen hambre y sed de justicia, porque ellos serán saciados”.
+    <span class="ref">Mateo 5:6</span>
+  </div>
+  <p class="plain">Abrimos la heladera, miramos, cerramos y a los pocos minutos volvemos. Nada cambió, pero sentimos que queremos algo y no sabemos qué. También podemos intentar llenar el alma con entretenimiento, trabajo, compras, reconocimiento o actividad.</p>
+  <p class="plain">La falta prolongada de apetito físico puede revelar una enfermedad. La falta de apetito espiritual también puede mostrar que algo nos está llenando o enfriando.</p>
+  <p class="plain"><strong>Progresión pastoral:</strong> el pobre reconoce su necesidad; el que llora se quebranta; el manso rinde el control; el hambriento desea ser lleno por Dios. Mateo no dice que sean etapas sucesivas; esta es una forma de relacionarlas.</p>
+  <div class="key-line">¿Qué estamos deseando con mayor intensidad?</div>
+</section>
+
+<section id="punto1">
+  <div class="section-label">Punto 1 de 3</div>
+  <h2 class="point-title"><span>1.</span>Un hambre que no se puede fingir</h2>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Una necesidad, no un gusto</h3>
+    <div class="verse">
+      “Bienaventurados los que tienen hambre y sed de justicia, porque ellos serán saciados”.
+      <span class="ref">Mateo 5:6</span>
+    </div>
+    <p><strong>Hambre:</strong> proviene del latín vulgar <em>famen, -ĭnis</em>, y este del latín <em>fames</em>. Significa necesidad de comer y también deseo ardiente de algo. <strong>Sed:</strong> necesidad urgente de agua.</p>
+    <p>Jesús no habla de una preferencia religiosa, sino de una necesidad vital. La voluntad de Dios deja de ser un complemento cuando reconocemos: <strong>no solo queremos más de Dios; lo necesitamos para vivir como Él quiere.</strong></p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Una vida alineada con Dios</h3>
+    <div class="verse">
+      “Mi alma tiene sed de Dios, del Dios vivo; ¿Cuándo vendré, y me presentaré delante de Dios?”
+      <span class="ref">Salmo 42:2</span>
+    </div>
+    <p>La sed espiritual no busca solamente emociones o experiencias: busca al Dios vivo. Tener hambre de justicia es desear una vida alineada con lo que Dios dice que es correcto: relación con Él, corazón transformado, conducta coherente y relaciones sanas.</p>
+    <p>Esta amplitud se observa en el desarrollo del Sermón del Monte, donde Jesús lleva la justicia desde lo externo hasta el corazón y la manera de tratar a los demás.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>El hambre produce prioridad</h3>
+    <div class="verse">
+      “Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas”.
+      <span class="ref">Mateo 6:33</span>
+    </div>
+    <p>Lo que deseamos de verdad termina ordenando nuestras decisiones. Buscar primero el Reino significa permitir que la voluntad de Dios ordene la familia, el trabajo, el dinero y los vínculos.</p>
+    <p><strong>Nuestros horarios y decisiones revelan el apetito que gobierna el corazón.</strong></p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿Tenemos hambre de la justicia de Dios o solamente queremos que Dios satisfaga nuestros deseos?
+  </div>
+</section>
+
+<section id="punto2">
+  <div class="section-label">Punto 2 de 3</div>
+  <h2 class="point-title"><span>2.</span>Lo que mata nuestro apetito</h2>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Llenos, pero no saciados</h3>
+    <div class="verse">
+      “¿Por qué gastáis el dinero en lo que no es pan, y vuestro trabajo en lo que no sacia?”
+      <span class="ref">Isaías 55:2</span>
+    </div>
+    <p>Podemos consumir mucho y seguir espiritualmente desnutridos. Como los snacks antes de una comida, algunas cosas llenan el espacio, pero no alimentan: entretenimiento constante, comparación, compras, trabajo sin límite, reconocimiento o actividad ministerial.</p>
+    <p>Podemos estar llenos de información y vacíos de sabiduría; llenos de actividad y vacíos de comunión. <strong>No todo lo que nos llena puede alimentarnos.</strong></p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>La autosuficiencia engaña</h3>
+    <div class="verse">
+      “Porque tú dices: Yo soy rico, y me he enriquecido, y de ninguna cosa tengo necesidad...”
+      <span class="ref">Apocalipsis 3:17</span>
+    </div>
+    <p>Laodicea tenía abundancia exterior, pero no podía ver su pobreza interior. También podemos conocer el lenguaje cristiano, servir y resolver problemas sin depender realmente de Dios.</p>
+    <p>La señal aparece cuando servimos sin oración, escuchamos la Palabra sin permitir que nos confronte y hacemos todo por experiencia. <strong>Podemos funcionar en la iglesia y dejar de depender de Dios.</strong></p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>La costumbre oculta el enfriamiento</h3>
+    <div class="verse">
+      “Pero tengo contra ti, que has dejado tu primer amor. Recuerda, por tanto, de dónde has caído, y arrepiéntete...”
+      <span class="ref">Apocalipsis 2:4-5</span>
+    </div>
+    <p>Éfeso tenía obras, trabajo y perseverancia, pero había dejado su primer amor. La pérdida de hambre no siempre elimina la actividad; puede vaciarla por dentro.</p>
+    <p>El peligro aparece cuando la Palabra deja de hablarnos, la oración desaparece, el pecado deja de incomodarnos y ya nada de eso nos preocupa. <strong>La falta de hambre es un síntoma que debemos atender.</strong></p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿Con qué estamos llenando tanto nuestra vida que ya no sentimos necesidad de buscar a Dios?
+  </div>
+</section>
+
+<section id="punto3">
+  <div class="section-label">Punto 3 de 3</div>
+  <h2 class="point-title"><span>3.</span>Dios sacia al que lo busca</h2>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Reconocer y volver</h3>
+    <div class="verse">
+      “Yo reprendo y castigo a todos los que amo; sé, pues, celoso, y arrepiéntete”.
+      <span class="ref">Apocalipsis 3:19</span>
+    </div>
+    <p>La confrontación de Jesús nace de su amor y busca devolvernos a la comunión. No necesitamos fingir un hambre que no tenemos; podemos reconocer que nuestro corazón se distrajo.</p>
+    <p>El arrepentimiento identifica qué desplazó a Dios y cambia nuestra dirección. <strong>No nos aleja de la mesa; nos vuelve hacia ella.</strong></p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Volver al alimento</h3>
+    <div class="verse">
+      “Fueron halladas tus palabras, y yo las comí; y tu palabra me fue por gozo y por alegría de mi corazón”.
+      <span class="ref">Jeremías 15:16</span>
+    </div>
+    <p>El hambre espiritual se cultiva mediante tres movimientos sencillos: la Palabra reeduca nuestros deseos, la oración reconoce nuestra dependencia y la obediencia convierte la verdad en camino.</p>
+    <p><strong>No esperamos pasivamente a tener hambre: volvemos al alimento que Dios usa para despertarla.</strong></p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>Cristo es quien sacia</h3>
+    <div class="verse">
+      “Yo soy el pan de vida; el que a mí viene, nunca tendrá hambre; y el que en mí cree, no tendrá sed jamás”.
+      <span class="ref">Juan 6:35</span>
+    </div>
+    <p>Saciar significa llenar una necesidad hasta satisfacerla. Mateo 5:6 dice “serán saciados”: la respuesta viene de Dios.</p>
+    <p>La respuesta final al hambre del alma no es una práctica, sino Cristo. <strong>Las disciplinas nos llevan a la mesa; solamente Cristo puede alimentar el alma.</strong></p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    Necesitamos pedirle a Dios no solo que nos sacie, sino también que despierte nuevamente nuestra hambre: reconocer qué apagó nuestro apetito, volver a la Palabra y dar el paso de obediencia que ya conocemos.
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="section-label">Conclusión</div>
+  <p class="plain">El hambre de justicia es una necesidad vital. Las falsas saciedades pueden llenarnos sin alimentarnos. Cristo es la fuente y la respuesta.</p>
+  <div class="key-line"><strong>El mayor peligro no es sentir hambre;</strong> es habernos acostumbrado a vivir sin ella.</div>
+  <div class="verse">
+    “Bienaventurados los que tienen hambre y sed de justicia, porque ellos serán saciados”.
+    <span class="ref">Mateo 5:6</span>
+  </div>
+  <p class="plain">No llegamos a la mesa de Dios demostrando que estamos llenos. Llegamos reconociendo que lo necesitamos.</p>
+</section>
+
+<section id="llamado">
+  <div class="section-label">Llamado final</div>
+  <div class="call">
+    <div class="box-label">→ Tres preguntas</div>
+    ¿Qué estamos buscando con mayor intensidad?<br>
+    ¿Con qué estamos intentando llenar el alma?<br>
+    ¿Qué paso de obediencia seguimos postergando?
+  </div>
+  <div class="prayer">Señor, reconocemos que muchas veces buscamos saciarnos lejos de vos. Despertá en nosotros hambre y sed de tu justicia. Ordená nuestros deseos y formá el carácter de Cristo en nosotros. Danos amor por tu Palabra, perseverancia en la oración y valentía para obedecer. Confiamos en tu promesa: seremos saciados. Amén.</div>
+</section>
+</main>
+
+<script>
+  const sections = [...document.querySelectorAll("section[id]")];
+  const links = [...document.querySelectorAll("nav a")];
+  const updateNav = () => {
+    let current = sections[0].id;
+    for (const section of sections) {
+      if (window.scrollY >= section.offsetTop - 110) current = section.id;
+    }
+    for (const link of links) {
+      link.classList.toggle("active", link.hash === `#${current}`);
+    }
+  };
+  addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+</script>
+</body>
+</html>

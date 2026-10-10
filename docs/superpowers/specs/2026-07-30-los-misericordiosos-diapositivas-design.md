@@ -12,22 +12,22 @@ La entrega tendrá 20 diapositivas:
 
 1. Portada.
 2. Introducción.
-3. Punto 1: Una compasión que se mueve.
-4. Compasión que se convierte en acción.
-5. Un carácter que se viste, no un impulso ocasional.
-6. El espejo del siervo que no entendió su perdón.
+3. Punto 1: Amor en movimiento.
+4. a) Compasión y acción.
+5. b) Vestidos de misericordia.
+6. c) Sin entender la misericordia.
 7. Punto 2: Hacia dónde nos dirige la misericordia.
-8. Nos lleva a la humildad que sirve, no a la grandeza que busca aplausos.
-9. Nos hace parecernos al Padre y a Cristo.
-10. Nos mantiene en temor de Dios y gratitud permanente.
+8. a) Nos lleva a servir.
+9. b) Nos lleva a imitar a Dios.
+10. c) Nos recuerda que fuimos perdonados.
 11. Punto 3: Cómo la cultivamos.
-12. Con los que nos maltratan.
-13. Con los que sufren.
-14. Con los que tropiezan en pecado.
+12. a) Estando con los que maltratan.
+13. b) Estando con los que sufren.
+14. c) Estando con los que tropiezan.
 15. Punto 4: La recompensa.
-16. Una promesa que se cumple hoy.
-17. Una promesa que se cumple en el día final.
-18. Una promesa que nos hace bien a nosotros mismos.
+16. a) Una promesa para hoy.
+17. b) Una promesa para mañana.
+18. c) Una promesa que hace bien.
 19. Conclusión.
 20. Llamado final.
 
@@ -46,6 +46,8 @@ La entrega tendrá 20 diapositivas:
 - El texto visible formará parte de cada imagen y no será editable.
 - Cada diapositiva comunicará una sola idea.
 - Se conservará el sentido y la terminología del bosquejo.
+- Solo las diapositivas de punto principal usarán «PUNTO PRINCIPAL» y su número.
+- Los subpuntos se identificarán únicamente con `a)`, `b)` o `c)`; nunca repetirán el número del punto.
 - Cuando un título sea demasiado largo, se distribuirá en varias líneas sin reducir su legibilidad.
 - Las referencias bíblicas se incluirán cuando ayuden a identificar el fundamento del subpunto.
 - No se mostrarán párrafos completos del desarrollo.

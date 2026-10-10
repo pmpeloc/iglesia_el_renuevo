@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Persiste - 2 Reyes 13 · Génesis 26 · Gálatas 6:9</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg: #0f0f0f;
+    --panel: #1a1a1a;
+    --text: #f1f1f1;
+    --muted: #aaa;
+    --green: #5DBE2C;
+    --green-bg: #10220b;
+    --red: #e35c5c;
+    --red-bg: #2a1212;
+    --gold: #efc24d;
+    --gold-bg: #241d05;
+    --purple: #b978e6;
+    --purple-bg: #21102d;
+    --blue: #6db3f2;
+    --blue-bg: #0e1a26;
+    --border: #343434;
+    --nav-h: 68px;
+  }
+  body {
+    margin: 0;
+    padding-top: calc(var(--nav-h) + 18px);
+    background: var(--bg);
+    color: var(--text);
+    font: 22px/1.65 Georgia, serif;
+  }
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    min-height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    background: #111;
+    border-bottom: 2px solid var(--green);
+  }
+  nav a {
+    flex: 0 0 auto;
+    padding: 8px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #222;
+    color: #ddd;
+    font: 700 15px/1 Arial, sans-serif;
+    text-decoration: none;
+  }
+  nav a:hover, nav a.active {
+    color: #081005;
+    background: var(--green);
+    border-color: var(--green);
+  }
+  main { padding-bottom: 80px; }
+  section {
+    max-width: 940px;
+    margin: 0 auto 70px;
+    padding: 0 26px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .hero {
+    position: relative;
+    margin-bottom: 34px;
+    padding: 28px 32px;
+    overflow: hidden;
+    background: var(--panel);
+    border-left: 6px solid var(--green);
+    border-radius: 8px;
+  }
+  .hero img {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+  }
+  .kicker, .section-label, .box-label {
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .kicker { margin-bottom: 12px; color: var(--green); }
+  h1 {
+    max-width: 760px;
+    margin: 0 0 8px;
+    padding-right: 60px;
+    color: #fff;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.08;
+  }
+  .meta { color: var(--muted); font: 15px/1.45 Arial, sans-serif; }
+  .section-label {
+    margin-bottom: 26px;
+    padding-bottom: 10px;
+    color: var(--green);
+    border-bottom: 1px solid var(--border);
+  }
+  .point-title {
+    margin: 0 0 26px;
+    padding: 15px 20px;
+    background: #222;
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    color: #fff;
+    font: 700 28px/1.2 Arial, sans-serif;
+  }
+  .point-title span { margin-right: 10px; color: var(--green); }
+  .plain { margin: 14px 0; color: #e6e6e6; font-size: 1.06em; }
+  .plain li { margin: 8px 0; }
+  .key-line {
+    margin: 22px 0;
+    padding: 16px 20px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font-style: italic;
+  }
+  .sub {
+    margin: 30px 0;
+    padding: 0 0 0 20px;
+    border-left: 2px solid var(--border);
+  }
+  .sub h3 {
+    margin: 0 0 12px;
+    color: #fff;
+    font: 700 23px/1.3 Arial, sans-serif;
+  }
+  .sub h3 .letter { margin-right: 8px; color: var(--green); }
+  .sub p { margin: 12px 0; color: #e9e9e9; font-size: 1.04em; }
+  .verse {
+    margin: 14px 0 18px;
+    padding: 18px 22px;
+    color: #f7d4d4;
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    font-size: 1.12em;
+    font-style: italic;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 9px;
+    color: var(--red);
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .word {
+    margin: 12px 0;
+    padding: 12px 18px;
+    background: #1c1c1c;
+    border-left: 4px solid var(--muted);
+    border-radius: 6px;
+    font-size: 0.98em;
+  }
+  .word b { color: var(--gold); }
+  .story {
+    margin: 22px 0;
+    padding: 18px 22px;
+    color: #cfe5f8;
+    background: var(--blue-bg);
+    border-left: 5px solid var(--blue);
+    border-radius: 6px;
+    font-size: 1.02em;
+  }
+  .story .box-label { margin-bottom: 8px; color: var(--blue); }
+  .application {
+    margin: 30px 0 0;
+    padding: 20px 24px;
+    color: #cef1bb;
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    font-size: 1.08em;
+  }
+  .application .box-label { margin-bottom: 10px; color: var(--green); }
+  .call {
+    padding: 22px 26px;
+    color: #ead5f8;
+    background: var(--purple-bg);
+    border-left: 5px solid var(--purple);
+    border-radius: 6px;
+  }
+  .call .box-label { margin-bottom: 10px; color: var(--purple); }
+  .call p { margin: 10px 0; }
+  .prayer {
+    margin-top: 20px;
+    padding: 18px 22px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font-style: italic;
+  }
+  strong { color: #fff; }
+  @media (max-width: 640px) {
+    body { font-size: 19px; }
+    section { padding: 0 16px; }
+    .hero { padding: 22px 20px; }
+    .hero img { width: 46px; height: 46px; }
+    h1 { padding-right: 44px; }
+    .point-title { font-size: 24px; }
+    .sub { padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+<nav aria-label="Navegación del bosquejo">
+  <a class="active" href="#intro">Intro</a>
+  <a href="#punto1">1 · Saetas</a>
+  <a href="#punto2">2 · Pozos</a>
+  <a href="#punto3">3 · Raíces</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<main>
+<section id="intro">
+  <div class="hero">
+    <img src="../../logos/LOGO-EL RENUEVO-R-4.png" alt="Iglesia El Renuevo">
+    <div class="kicker">Reunión General de Jueves · 40 min · Reflexivo y pastoral</div>
+    <h1>Persiste</h1>
+    <div class="meta">La fidelidad inquebrantable en medio de los procesos de Dios · 2 Reyes 13 · Génesis 26 · Gálatas 6:9</div>
+  </div>
+
+  <div class="key-line"><strong>Idea central:</strong> la constancia no es ausencia de cansancio, sino negarnos a abandonar el propósito de Dios. Para Dios, la bendición no es ausencia de problemas, sino persistencia y fruto en medio de ellos.</div>
+
+  <div class="section-label">Introducción · La tentación de aflojar a mitad de camino</div>
+  <p class="plain">Vivimos en la cultura de lo inmediato: internet rápido, entrega instantánea, solución al toque. Sin darnos cuenta trasladamos esa expectativa a nuestra relación con Dios.</p>
+  <p class="plain">Pero en el Reino no hay atajos ni microondas espiritual. Dios trabaja con <strong>procesos largos</strong>.</p>
+  <p class="plain">Casi nunca fracasamos por falta de entusiasmo inicial. Empezamos bien: proyectos, metas de oración, cambios en casa. La batalla real llega cuando pasan las semanas, se apaga la emoción y los resultados tardan.</p>
+  <div class="key-line">¿Somos personas que perseveran o personas que abandonan cuando el camino se pone empinado?</div>
+  <p class="plain">Tres historias, tres dimensiones de la constancia.</p>
+</section>
+
+<section id="punto1">
+  <div class="section-label">Punto 1 de 3</div>
+  <h2 class="point-title"><span>1.</span>El peligro de abandonar antes de tiempo</h2>
+
+  <div class="verse">
+    “Saeta de salvación de Jehová, y saeta de salvación contra Siria; porque herirás a los sirios en Afec hasta consumirlos”.
+    <span class="ref">2 Reyes 13:17</span>
+  </div>
+  <p class="plain">Eliseo está en su lecho de muerte. El rey Joás baja llorando. El profeta le hace abrir la ventana y tirar una flecha: la promesa de victoria total ya está dada.</p>
+  <p class="plain">Luego: <em>“Toma las saetas… golpea la tierra”</em>.</p>
+  <div class="verse">
+    “Y él la golpeó tres veces, y se detuvo. Entonces el varón de Dios, enojado contra él, le dijo: Al dar cinco o seis golpes, hubieras derrotado a Siria hasta no quedar ninguno; pero ahora sólo tres veces derrotarás a Siria”.
+    <span class="ref">2 Reyes 13:18-19</span>
+  </div>
+  <p class="plain">¿Por qué se enojó el profeta? Joás no falló por puntería ni por falta de flechas. Falló por <strong>conformismo y falta de intensidad interior</strong>. Golpeó por cumplir y se detuvo antes de tiempo.</p>
+  <p class="plain"><strong>Achicó la victoria que Dios ya le había puesto en las manos.</strong> Se conformó con un alivio temporario cuando Dios quería una liberación definitiva.</p>
+
+  <div class="story">
+    <div class="box-label">Ilustración · El picapedrero (Jacob Riis)</div>
+    Cien golpes a la roca y ni una grieta. Al golpe ciento uno, la roca se parte. No fue el último golpe: fueron los cien anteriores que nadie celebró.
+  </div>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿Cuántas veces nos detuvimos en el golpe número tres? Orando por un familiar, reconstruyendo el matrimonio, en un emprendimiento honesto… aflojamos a pocos golpes de la victoria. Debemos renunciar a orar a medias y servir a medias. Necesitamos pedirle al Espíritu Santo fuerzas para seguir golpeando la tierra hasta ver la victoria completa.
+  </div>
+</section>
+
+<section id="punto2">
+  <div class="section-label">Punto 2 de 3</div>
+  <h2 class="point-title"><span>2.</span>Seguir cavando sin amargarnos ante la oposición</h2>
+
+  <p class="plain"><strong>Génesis 26:15-22.</strong> Isaac en tierra extranjera. Los filisteos, por envidia de su prosperidad (v. 14), tapan con tierra los pozos de Abraham. En el desierto, tapar un pozo es atentar contra la vida de la familia y los rebaños.</p>
+  <p class="plain">Lo natural sería confrontar, litigar o amargarse. Isaac muestra la madurez del que persevera:</p>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Esek · Contienda</h3>
+    <div class="word"><b>עֵשֶׂק (Esek)</b> — “contienda, disputa, litigio”.</div>
+    <p>Cavan y encuentran agua viva. Los pastores de Gerar reclaman: “el agua es nuestra”. Isaac no se desgasta en una pelea estéril: deja el pozo y sigue.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Sitna · Enemistad</h3>
+    <div class="word"><b>שִׂטְנָה (Sitna)</b> — “enemistad, hostilidad” (misma raíz que <em>Satán</em>, el adversario).</div>
+    <p>Vuelven a cavar, y vuelve la oposición, con más fuerza. Cualquiera diría: “esto no es para mí, renuncio”. Isaac decide <strong>no envenenar su corazón</strong>.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>Rehobot · Ensanche</h3>
+    <div class="word"><b>רְחֹבוֹת (Rehobot)</b> — “lugares amplios, ensanche, fructificación”.</div>
+    <div class="verse">
+      “Porque ahora Jehová nos ha prosperado, y fructificaremos en la tierra”.
+      <span class="ref">Génesis 26:22</span>
+    </div>
+    <p>Se aparta, cava otro pozo y ya nadie pelea. Del litigio y la hostilidad, Dios lo lleva al espacio amplio.</p>
+  </article>
+
+  <div class="story">
+    <div class="box-label">Ilustración · El águila y el cuervo</div>
+    El cuervo es el único que se atreve a picotear el lomo del águila en vuelo. El águila no pelea: abre las alas y sube. A esa altura falta oxígeno, y el cuervo cae por su propio peso.
+  </div>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿Cuánta energía se nos va discutiendo en nuestros propios Esek y Sitna? En el trabajo nos “tapan el pozo”, en la familia hay roces, en el servicio hay incomprensiones. Si nos quedamos peleando con quien nos tapa el pozo, nos quedamos sin agua y llenos de rencor. Debemos sacudirnos la ofensa, cuidar el corazón y seguir cavando. Nos toca elevarnos en madurez hasta que Dios nos lleve a nuestro Rehobot.
+  </div>
+</section>
+
+<section id="punto3">
+  <div class="section-label">Punto 3 de 3</div>
+  <h2 class="point-title"><span>3.</span>La constancia silenciosa que echa raíces profundas</h2>
+
+  <div class="verse">
+    “No nos cansemos, pues, de hacer bien; porque a su tiempo segaremos, si no desmayamos”.
+    <span class="ref">Gálatas 6:9</span>
+  </div>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Desmayar</h3>
+    <div class="word"><b>ἐκκακέω (ekkakeō)</b> — “perder el valor interno”, rendirse en el corazón antes de que se note afuera.</div>
+    <p>Es el desgaste sutil: “¿para qué sigo orando si nada cambia? ¿para qué sigo siendo honesto si a otros les va mejor?”</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Perseverancia</h3>
+    <div class="verse">
+      “Porque os es necesaria la paciencia, para que habiendo hecho la voluntad de Dios, obtengáis la promesa”.
+      <span class="ref">Hebreos 10:36</span>
+    </div>
+    <div class="word"><b>ὑπομονή (hypomonē)</b> — <em>hypo</em> (debajo) + <em>menō</em> (permanecer). Mantenerse en pie bajo un peso enorme sin quebrarse ni retroceder. No es resignación pasiva.</div>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>“A su tiempo”</h3>
+    <p>La cosecha tiene un momento garantizado: el tiempo de Dios (<em>kairós</em>), no el de nuestra ansiedad. Entre la siembra y la cosecha siempre hay una <strong>temporada silenciosa</strong> donde la semilla trabaja bajo tierra.</p>
+  </article>
+
+  <div class="story">
+    <div class="box-label">Ilustración · El bambú japonés</div>
+    Siete años de regar sin que brote nada. Al séptimo año, en seis semanas, crece más de 30 metros. ¿Creció en seis semanas o en siete años? En siete: todo ese tiempo tejió las raíces que sostienen la altura.
+  </div>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿En qué área sentimos hoy que el esfuerzo es estéril? Crianza de los hijos, constancia en congregarnos, trabajo bien hecho sin frutos visibles. Necesitamos recordar que cuando Dios calla afuera, está consolidando raíces adentro. Ninguna oración, lágrima ni siembra en el Señor queda en el olvido.
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="section-label">Conclusión · Fructificar en medio de nuestras angustias</div>
+  <div class="key-line"><strong>Para Dios, el éxito y la bendición no significan ausencia de problemas, sino persistencia y fruto en medio de ellos.</strong></div>
+  <p class="plain">La trampa: “cuando se resuelvan mis problemas, cuando mejore la economía, cuando nadie me critique… entonces sí voy a servir a Dios”. Si esperamos la ausencia de dificultades, jamás seremos constantes.</p>
+  <p class="plain">Tres testimonios:</p>
+  <ol class="plain">
+    <li><strong>Isaac</strong> no necesitó que los filisteos se convirtieran. Halló Rehobot en la misma tierra de su peregrinación (Gn 26:22).</li>
+    <li><strong>José</strong> llamó a su hijo Efraín: Dios no lo sacó de Egipto para bendecirlo; lo hizo fructificar ahí mismo.</li>
+    <li><strong>David</strong>: Dios no exterminó a los adversarios para servir el banquete; puso la mesa en su presencia.</li>
+  </ol>
+  <div class="verse">
+    “Dios me hizo fructificar en la tierra de mi aflicción”.
+    <span class="ref">Génesis 41:52</span>
+  </div>
+  <div class="verse">
+    “Aderezas mesa delante de mí en presencia de mis angustiadores”.
+    <span class="ref">Salmo 23:5</span>
+  </div>
+  <div class="verse">
+    “Cuando estaba en angustia, tú me hiciste ensanchar”.
+    <span class="ref">Salmo 4:1</span>
+  </div>
+</section>
+
+<section id="llamado">
+  <div class="section-label">Llamado final</div>
+  <div class="call">
+    <div class="box-label">→ Tres llamados</div>
+    <p><strong>No soltemos las saetas.</strong> Si nos detuvimos al tercer golpe, volvamos a tomar las flechas de la fe.</p>
+    <p><strong>Dejemos atrás Esek y Sitna.</strong> Renunciemos a la queja y el resentimiento; perdonemos y sigamos cavando hacia Rehobot.</p>
+    <p><strong>Sigamos regando con fidelidad.</strong> Aunque nada se mueva en la superficie, a su tiempo segaremos si no desmayamos.</p>
+  </div>
+  <div class="prayer">Padre, perdón por las veces en que nos rendimos antes de tiempo, cuando el cansancio o la oposición apagaron nuestra perseverancia. Fortalécenos con tu Espíritu Santo. Enséñanos a no buscar una vida sin dificultades, sino a dar fruto abundante aun en medio de nuestras mayores tensiones. En el nombre de Jesús, amén.</div>
+</section>
+</main>
+
+<script>
+  const sections = [...document.querySelectorAll("section[id]")];
+  const links = [...document.querySelectorAll("nav a")];
+  const updateNav = () => {
+    let current = sections[0].id;
+    for (const section of sections) {
+      if (window.scrollY >= section.offsetTop - 110) current = section.id;
+    }
+    for (const link of links) {
+      link.classList.toggle("active", link.hash === `#${current}`);
+    }
+  };
+  addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+</script>
+</body>
+</html>

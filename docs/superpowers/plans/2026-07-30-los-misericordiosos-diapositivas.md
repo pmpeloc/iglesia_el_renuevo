@@ -19,6 +19,8 @@
 - Una escena dominante a la derecha.
 - Logo `logos/LOGO-EL RENUEVO-R-4.png` pequeño y discreto.
 - Una idea por diapositiva; sin párrafos.
+- Solo los puntos principales usarán `PUNTO PRINCIPAL` y su número.
+- Los subpuntos usarán únicamente `a)`, `b)` o `c)` y nunca `PUNTO 1`, `PUNTO 2`, `PUNTO 3` o `PUNTO 4`.
 - No aceptar palabras deformadas, inventadas, cortadas ni errores ortográficos.
 
 ---
@@ -92,8 +94,8 @@ git commit -m "feat: agregar apertura de los misericordiosos"
 ```text
 PUNTO PRINCIPAL
 1.
-UNA COMPASIÓN
-QUE SE MUEVE
+AMOR EN
+MOVIMIENTO
 ```
 
 Escena: Jesús avanzando decididamente hacia una persona caída mientras otros observan desde lejos.
@@ -101,10 +103,8 @@ Escena: Jesús avanzando decididamente hacia una persona caída mientras otros o
 - [ ] **Step 2: Generar el subpunto 1a**
 
 ```text
-PUNTO 1
-COMPASIÓN QUE
-SE CONVIERTE
-EN ACCIÓN
+a)
+COMPASIÓN Y ACCIÓN
 EFESIOS 2:1, 4–5
 ```
 
@@ -113,10 +113,9 @@ Escena: Cristo extendiendo su mano hacia una persona que sale de oscuridad y rui
 - [ ] **Step 3: Generar el subpunto 1b**
 
 ```text
-PUNTO 1
-UN CARÁCTER QUE
-SE VISTE, NO UN
-IMPULSO OCASIONAL
+b)
+VESTIDOS DE
+MISERICORDIA
 COLOSENSES 3:12–13
 ```
 
@@ -125,10 +124,9 @@ Escena: una persona colocando un manto sobre los hombros de otra que tiene frío
 - [ ] **Step 4: Generar el subpunto 1c**
 
 ```text
-PUNTO 1
-EL ESPEJO DEL SIERVO
-QUE NO ENTENDIÓ
-SU PERDÓN
+c)
+SIN ENTENDER
+LA MISERICORDIA
 MATEO 18:23–35
 ```
 
@@ -174,11 +172,9 @@ Escena: Cristo guiando a varias personas por un camino hacia alguien que necesit
 - [ ] **Step 2: Generar el subpunto 2a**
 
 ```text
-PUNTO 2
-NOS LLEVA A LA
-HUMILDAD QUE SIRVE,
-NO A LA GRANDEZA
-QUE BUSCA APLAUSOS
+a)
+NOS LLEVA
+A SERVIR
 FILIPENSES 2:3
 ```
 
@@ -187,10 +183,9 @@ Escena: Jesús lavando los pies de un discípulo; servidores en segundo plano; s
 - [ ] **Step 3: Generar el subpunto 2b**
 
 ```text
-PUNTO 2
-NOS HACE
-PARECERNOS AL
-PADRE Y A CRISTO
+b)
+NOS LLEVA A
+IMITAR A DIOS
 LUCAS 6:36
 ```
 
@@ -199,10 +194,9 @@ Escena: el padre abrazando al hijo pródigo mientras Cristo aparece como referen
 - [ ] **Step 4: Generar el subpunto 2c**
 
 ```text
-PUNTO 2
-NOS MANTIENE EN
-TEMOR DE DIOS Y
-GRATITUD PERMANENTE
+c)
+NOS RECUERDA QUE
+FUIMOS PERDONADOS
 1 SAMUEL 12:24
 ```
 
@@ -247,9 +241,9 @@ Escena: manos sembrando y regando una planta de olivo que comienza a crecer en t
 - [ ] **Step 2: Generar el subpunto 3a**
 
 ```text
-PUNTO 3
-CON LOS QUE
-NOS MALTRATAN
+a)
+ESTANDO CON LOS
+QUE MALTRATAN
 MATEO 5:44
 ```
 
@@ -258,9 +252,9 @@ Escena: una persona bendiciendo y orando por quienes la hostigan, con postura fi
 - [ ] **Step 3: Generar el subpunto 3b**
 
 ```text
-PUNTO 3
-CON LOS QUE
-SUFREN
+b)
+ESTANDO CON LOS
+QUE SUFREN
 1 JUAN 3:17
 ```
 
@@ -269,10 +263,9 @@ Escena: el buen samaritano atendiendo las heridas del hombre caído junto al cam
 - [ ] **Step 4: Generar el subpunto 3c**
 
 ```text
-PUNTO 3
-CON LOS QUE
-TROPIEZAN
-EN PECADO
+c)
+ESTANDO CON LOS
+QUE TROPIEZAN
 FILIPENSES 1:9–10
 ```
 
@@ -316,9 +309,9 @@ Escena: una persona que sembró misericordia contempla un campo iluminado al ama
 - [ ] **Step 2: Generar el subpunto 4a**
 
 ```text
-PUNTO 4
+a)
 UNA PROMESA
-QUE SE CUMPLE HOY
+PARA HOY
 MATEO 6:14–15
 ```
 
@@ -327,10 +320,9 @@ Escena: dos personas reconciliándose y abrazándose después de un conflicto, c
 - [ ] **Step 3: Generar el subpunto 4b**
 
 ```text
-PUNTO 4
+b)
 UNA PROMESA
-QUE SE CUMPLE
-EN EL DÍA FINAL
+PARA MAÑANA
 SANTIAGO 2:13
 ```
 
@@ -339,10 +331,9 @@ Escena simbólica: la luz de la misericordia vence a la sombra del juicio; una b
 - [ ] **Step 4: Generar el subpunto 4c**
 
 ```text
-PUNTO 4
-UNA PROMESA QUE
-NOS HACE BIEN A
-NOSOTROS MISMOS
+c)
+UNA PROMESA
+QUE HACE BIEN
 PROVERBIOS 11:17
 ```
 

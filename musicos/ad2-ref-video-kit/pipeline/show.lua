@@ -1,0 +1,3 @@
+local tr,fx=...
+reaper.TrackFX_Show(tr,fx,3)
+return "shown "..fx

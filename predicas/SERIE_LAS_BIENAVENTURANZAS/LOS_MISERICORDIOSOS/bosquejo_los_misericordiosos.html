@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bienaventurados los misericordiosos - Mateo 5:7</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg: #0f0f0f;
+    --panel: #1a1a1a;
+    --text: #f1f1f1;
+    --muted: #aaa;
+    --green: #5DBE2C;
+    --green-bg: #10220b;
+    --red: #e35c5c;
+    --red-bg: #2a1212;
+    --gold: #efc24d;
+    --gold-bg: #241d05;
+    --purple: #b978e6;
+    --purple-bg: #21102d;
+    --border: #343434;
+    --nav-h: 68px;
+  }
+  body {
+    margin: 0;
+    padding-top: calc(var(--nav-h) + 18px);
+    background: var(--bg);
+    color: var(--text);
+    font: 22px/1.65 Georgia, serif;
+  }
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    min-height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    background: #111;
+    border-bottom: 2px solid var(--green);
+  }
+  nav a {
+    flex: 0 0 auto;
+    padding: 8px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #222;
+    color: #ddd;
+    font: 700 15px/1 Arial, sans-serif;
+    text-decoration: none;
+  }
+  nav a:hover, nav a.active {
+    color: #081005;
+    background: var(--green);
+    border-color: var(--green);
+  }
+  main { padding-bottom: 80px; }
+  section {
+    max-width: 940px;
+    margin: 0 auto 70px;
+    padding: 0 26px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .hero {
+    position: relative;
+    margin-bottom: 34px;
+    padding: 28px 32px;
+    overflow: hidden;
+    background: var(--panel);
+    border-left: 6px solid var(--green);
+    border-radius: 8px;
+  }
+  .hero img {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+  }
+  .kicker, .section-label, .box-label {
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .kicker { margin-bottom: 12px; color: var(--green); }
+  h1 {
+    max-width: 760px;
+    margin: 0 0 8px;
+    padding-right: 60px;
+    color: #fff;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.08;
+  }
+  .meta { color: var(--muted); font: 15px/1.45 Arial, sans-serif; }
+  .section-label {
+    margin-bottom: 26px;
+    padding-bottom: 10px;
+    color: var(--green);
+    border-bottom: 1px solid var(--border);
+  }
+  .point-title {
+    margin: 0 0 26px;
+    padding: 15px 20px;
+    background: #222;
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    color: #fff;
+    font: 700 28px/1.2 Arial, sans-serif;
+  }
+  .point-title span { margin-right: 10px; color: var(--green); }
+  .plain { margin: 14px 0; color: #e6e6e6; font-size: 1.06em; }
+  .key-line {
+    margin: 22px 0;
+    padding: 16px 20px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font-style: italic;
+  }
+  .sub {
+    margin: 30px 0;
+    padding: 0 0 0 20px;
+    border-left: 2px solid var(--border);
+  }
+  .sub h3 {
+    margin: 0 0 12px;
+    color: #fff;
+    font: 700 23px/1.3 Arial, sans-serif;
+  }
+  .sub h3 .letter { margin-right: 8px; color: var(--green); }
+  .sub p { margin: 12px 0; color: #e9e9e9; font-size: 1.04em; }
+  .verse {
+    margin: 14px 0 18px;
+    padding: 18px 22px;
+    color: #f7d4d4;
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    font-size: 1.12em;
+    font-style: italic;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 9px;
+    color: var(--red);
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .greek {
+    margin: 14px 0 18px;
+    padding: 14px 18px;
+    color: #cfe8ff;
+    background: #0c1c2a;
+    border-left: 5px solid #4f9ddb;
+    border-radius: 6px;
+    font-size: 1.0em;
+  }
+  .greek strong { color: #9fd3ff; }
+  .application {
+    margin: 30px 0 0;
+    padding: 20px 24px;
+    color: #cef1bb;
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    font-size: 1.08em;
+  }
+  .application .box-label { margin-bottom: 10px; color: var(--green); }
+  .call {
+    padding: 22px 26px;
+    color: #ead5f8;
+    background: var(--purple-bg);
+    border-left: 5px solid var(--purple);
+    border-radius: 6px;
+  }
+  .call .box-label { margin-bottom: 10px; color: var(--purple); }
+  strong { color: #fff; }
+  @media (max-width: 640px) {
+    body { font-size: 19px; }
+    section { padding: 0 16px; }
+    .hero { padding: 22px 20px; }
+    .hero img { width: 46px; height: 46px; }
+    h1 { padding-right: 44px; }
+    .point-title { font-size: 24px; }
+    .sub { padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+<nav aria-label="Navegación del bosquejo">
+  <a class="active" href="#punto1">1 · Amor</a>
+  <a href="#punto2">2 · Dirección</a>
+  <a href="#punto3">3 · Cultivo</a>
+  <a href="#punto4">4 · Recompensa</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<main>
+<section id="punto1">
+  <div class="hero">
+    <img src="../../../logos/LOGO-EL RENUEVO-R-4.png" alt="Iglesia El Renuevo">
+    <div class="kicker">Las Bienaventuranzas · Reunión General · 35 min · Celebratorio</div>
+    <h1>Bienaventurados los misericordiosos</h1>
+    <div class="meta">Mateo 5:7 · Mapa de predicación</div>
+  </div>
+
+  <div class="verse">
+    “Bienaventurados los misericordiosos, porque ellos alcanzarán misericordia”.
+    <span class="ref">Mateo 5:7</span>
+  </div>
+
+  <div class="section-label">Punto 1 de 4</div>
+  <h2 class="point-title"><span>1.</span>Amor en movimiento</h2>
+  <p class="plain">La misericordia no es un sentimiento pasajero: es compasión que se mueve a la acción.</p>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Compasión y acción</h3>
+    <div class="verse">
+      “…cuando estabais muertos en vuestros delitos y pecados… Dios, que es rico en misericordia, por su gran amor con que nos amó, aun estando nosotros muertos en pecados, nos dio vida juntamente con Cristo (por gracia sois salvos)”.
+      <span class="ref">Efesios 2:1, 4-5</span>
+    </div>
+    <p>“Mas Dios muestra su amor para con nosotros, en que siendo aún pecadores, Cristo murió por nosotros” <em>(Romanos 5:8)</em>. Cuando estábamos muertos en pecado, Dios no solo sintió compasión: actuó para rescatarnos. La misericordia se distingue de la lástima porque hace algo.</p>
+    <div class="greek"><strong>ἐλεήμων (eleḗmōn)</strong>: misericordioso — de <strong>ἔλεος (eleos)</strong>, la compasión que actúa, no la que solo mira.</div>
+    <p><em>Aclaración conceptual (no es cita directa):</em> la gracia es recibir lo que no merecíamos; la misericordia es no recibir el castigo que sí merecíamos. Ambas nos costaron la sangre de Jesús.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Vestidos de misericordia</h3>
+    <div class="verse">
+      “Vestíos, pues, como escogidos de Dios, santos y amados, de entrañable misericordia… soportándoos unos a otros, y perdonándoos unos a otros… De la manera que Cristo os perdonó, así también hacedlo vosotros”.
+      <span class="ref">Colosenses 3:12-13</span>
+    </div>
+    <p>No nacemos con esta cualidad. Cuanto más entendemos lo que se nos perdonó, más natural se vuelve perdonar a otros.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>Sin entender la misericordia</h3>
+    <p><em>Parábola de los dos deudores — Mateo 18:23-35.</em> Un siervo perdonado de una deuda impagable se niega a perdonar una deuda menor a su consiervo. Su ceguera no era maldad al azar: era no haber comprendido la magnitud de lo que había recibido.</p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿Entendemos realmente la medida de la misericordia que recibimos, o vivimos como si no la hubiéramos necesitado?
+  </div>
+</section>
+
+<section id="punto2">
+  <div class="section-label">Punto 2 de 4</div>
+  <h2 class="point-title"><span>2.</span>Hacia dónde nos dirige la misericordia</h2>
+  <p class="plain">Cultivar la misericordia no nos deja igual: nos direcciona.</p>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Nos lleva a servir</h3>
+    <div class="verse">
+      “Nada hagáis por contienda o por vanagloria; antes bien con humildad, estimando cada uno a los demás como superiores a él mismo”.
+      <span class="ref">Filipenses 2:3</span>
+    </div>
+    <p>“El que quiera hacerse grande entre vosotros será vuestro servidor” <em>(Mateo 20:26)</em>. Cuando entendemos cuánto recibimos, desaparece la autosuficiencia. En vez de buscar ser servidos, aprendemos a servir.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Nos lleva a imitar a Dios</h3>
+    <div class="verse">
+      “Sed, pues, misericordiosos, como también vuestro Padre es misericordioso”.
+      <span class="ref">Lucas 6:36</span>
+    </div>
+    <p>“Antes sed benignos unos con otros, misericordiosos, perdonándoos unos a otros, como Dios también os perdonó a vosotros en Cristo” <em>(Efesios 4:32)</em>. No es solo una obra buena: es el carácter de Dios formándose en nosotros. Cada vez que mostramos compasión, revelamos cómo es nuestro Padre.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>Nos recuerda que fuimos perdonados</h3>
+    <div class="verse">
+      “Solamente temed al Señor y servidle en verdad con todo vuestro corazón; pues habéis visto cuán grandes cosas ha hecho por vosotros”.
+      <span class="ref">1 Samuel 12:24, LBLA</span>
+    </div>
+    <p>“La misericordia de Jehová es desde la eternidad y hasta la eternidad sobre los que le temen” <em>(Salmo 103:17)</em>. Recordar lo que Dios hizo produce reverencia, no liviandad.</p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿Hacia dónde nos está llevando la misericordia recibida: hacia la humildad y la gratitud, o seguimos buscando nuestro propio lugar?
+  </div>
+</section>
+
+<section id="punto3">
+  <div class="section-label">Punto 3 de 4</div>
+  <h2 class="point-title"><span>3.</span>Cómo la cultivamos</h2>
+  <p class="plain">La misericordia se cultiva mostrándola justo donde más cuesta mostrarla.</p>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Estando con los que maltratan</h3>
+    <div class="verse">
+      “Pero yo os digo: Amad a vuestros enemigos, bendecid a los que os maldicen, haced bien a los que os aborrecen, y orad por los que os ultrajan y os persiguen”.
+      <span class="ref">Mateo 5:44</span>
+    </div>
+    <p>Renunciar a la venganza y responder con amor a quien nos hiere requiere una gracia sobrenatural: una obra del Espíritu, no de nuestra fuerza de voluntad.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Estando con los que sufren</h3>
+    <div class="verse">
+      “Pero el que tiene bienes de este mundo y ve a su hermano tener necesidad, y cierra contra él su corazón, ¿cómo mora el amor de Dios en él?”
+      <span class="ref">1 Juan 3:17</span>
+    </div>
+    <p>La misericordia se mueve hacia el necesitado aunque implique sacrificio personal, como el buen samaritano <em>(Lucas 10:30-37)</em>. Cerrar el corazón ante quien sufre contradice el amor de Dios en nosotros.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>Estando con los que tropiezan</h3>
+    <div class="verse">
+      “Y esto pido en oración, que vuestro amor abunde aún más y más en ciencia y en todo conocimiento, para que aprobéis lo mejor, a fin de que seáis sinceros e irreprensibles para el día de Cristo”.
+      <span class="ref">Filipenses 1:9-10</span>
+    </div>
+    <p>No se trata de tolerar el pecado, sino de tratar con ternura a quien cayó: cubrir su vergüenza y ayudarlo a restaurarse, con gracia y discernimiento juntos.</p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    ¿Hay alguien que nos maltrató, que sufre, o que tropezó, y con quien todavía no elegimos la misericordia?
+  </div>
+</section>
+
+<section id="punto4">
+  <div class="section-label">Punto 4 de 4</div>
+  <h2 class="point-title"><span>4.</span>La recompensa</h2>
+  <p class="plain">La promesa de Jesús es clara: quienes siembran misericordia, la cosecharán.</p>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Una promesa para hoy</h3>
+    <div class="verse">
+      “Porque si perdonáis a los hombres sus transgresiones, también vuestro Padre celestial os perdonará a vosotros. Pero si no perdonáis a los hombres, tampoco vuestro Padre perdonará vuestras transgresiones”.
+      <span class="ref">Mateo 6:14-15, LBLA</span>
+    </div>
+    <p>No es solo una realidad futura: si perdonamos, somos perdonados. La misericordia que damos y la que recibimos están conectadas ahora mismo.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Una promesa para mañana</h3>
+    <div class="verse">
+      “Porque el juicio será sin misericordia para el que no ha mostrado misericordia; la misericordia triunfa sobre el juicio”.
+      <span class="ref">Santiago 2:13, LBLA</span>
+    </div>
+    <p>Cuando comparezcamos ante el tribunal de Cristo <em>(2 Corintios 5:10)</em>, no querremos justicia: querremos misericordia.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">c)</span>Una promesa que hace bien</h3>
+    <div class="verse">
+      “A su alma hace bien el hombre misericordioso; mas el cruel se atormenta a sí mismo”.
+      <span class="ref">Proverbios 11:17</span>
+    </div>
+    <p>La misericordia no es debilidad, es siembra de eternidad. El que da misericordia no queda en desventaja: se hace bien a su propia alma.</p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    Necesitamos preguntarnos, ante cada oportunidad de mostrar misericordia hoy, si preferimos la justicia que exigimos o la misericordia que ya recibimos.
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="section-label">Conclusión</div>
+  <div class="verse">
+    “Bienaventurados los misericordiosos, porque ellos alcanzarán misericordia”.
+    <span class="ref">Mateo 5:7</span>
+  </div>
+  <div class="key-line">No llegamos ante Dios mostrando que fuimos justos: llegamos <strong>celebrando</strong> que fuimos perdonados.</div>
+</section>
+
+<section id="llamado">
+  <div class="section-label">Llamado final</div>
+  <div class="call">
+    <div class="box-label">→ Para llevar</div>
+    Esa misma celebración es la que podemos extender hoy a quien tenemos al lado.<br><br>
+    ¿A quién podemos mostrarle hoy la misericordia que nosotros ya recibimos?
+  </div>
+</section>
+</main>
+
+<script>
+  const sections = [...document.querySelectorAll("section[id]")];
+  const links = [...document.querySelectorAll("nav a")];
+  const updateNav = () => {
+    let current = sections[0].id;
+    for (const section of sections) {
+      if (window.scrollY >= section.offsetTop - 110) current = section.id;
+    }
+    for (const link of links) {
+      link.classList.toggle("active", link.hash === `#${current}`);
+    }
+  };
+  addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+</script>
+</body>
+</html>

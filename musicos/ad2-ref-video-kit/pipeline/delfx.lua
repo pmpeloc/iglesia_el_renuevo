@@ -1,0 +1,3 @@
+local tr=...
+for i=reaper.TrackFX_GetCount(tr)-1,0,-1 do reaper.TrackFX_Delete(tr,i) end
+return "fx left "..reaper.TrackFX_GetCount(tr)

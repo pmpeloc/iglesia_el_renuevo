@@ -55,27 +55,24 @@ Misael usa un formato fijo para sus prédicas, desarrollado iterativamente con C
 ```
 Introducción
 Punto 1
-  a) Título | Versículo/s | Desarrollo
-  b) Título | Versículo/s | Desarrollo
-  c) Título | Versículo/s | Desarrollo
+  (Subpuntos a/b/c optativos: 0, 2 o máx 3 según la necesidad del punto)
   → Aplicación (pregunta o desafío directo a la congregación)
 Punto 2
-  a/b/c (igual estructura)
+  (Subpuntos optativos si aplica)
   → Aplicación
 Punto 3
-  a/b/c (igual estructura)
+  (Subpuntos optativos si aplica)
   → Aplicación
 Conclusión
 Llamado Final
 ```
 
 **Reglas estrictas**:
-- Exactamente **3 puntos**. No más, no menos — "más de 3 confunde a la congregación"
-- Cada punto: exactamente **3 subpuntos** ordenados en progresión lógica
-- Los subpuntos deben llevar uno al siguiente hasta alcanzar el resultado del punto
-- Títulos de puntos: **cortos y directos**
-- El desarrollo de cada subpunto: **concreto y específico**, nunca genérico ni abstracto
-- Cada punto cierra con **aplicación práctica**: pregunta directa o desafío a la congregación
+- Exactamente **3 puntos principales**. No más, no menos — "más de 3 confunde a la congregación".
+- **Subpuntos optativos (0, 2 o máximo 3 por punto)**: No son obligatorios. Discernir cuándo usarlos y cuándo no de acuerdo a la naturaleza del punto principal. Forzar siempre 3 subpuntos produce confusión más que claridad. Si el punto es directo, se desarrolla de forma corrida sin subpuntos; si requiere desglose o progresión analítica, usar 2 o máximo 3 subpuntos.
+- Títulos de puntos: **cortos y directos**.
+- El desarrollo de cada subpunto (cuando se use): **concreto y específico**, nunca genérico ni abstracto.
+- Cada punto cierra con **aplicación práctica**: pregunta directa o desafío a la congregación (en primera persona del plural).
 
 ### 4.2 Preguntas que Claude debe hacer ANTES de armar un bosquejo
 
@@ -246,6 +243,7 @@ Cada vez que se pida un apunte para la congregación, se generan automáticament
 
 **C) Bosquejo en texto limpio** (para revisión antes de generar el HTML/PDF)
 - Se hace primero en texto, Misael lo revisa (a veces con checkboxes para confirmar cada elemento), luego se genera el archivo final
+- **Revisión obligatoria de nombres de puntos y subpuntos**: al presentar el bosquejo en texto limpio, Claude debe pedirle explícitamente a Misael que revise a conciencia los **nombres/títulos** de cada punto principal y cada subpunto (no solo el contenido/desarrollo). Estos nombres son el elemento que Misael usa para ubicarse rápidamente mientras predica ("vamos al punto 2", "letra b"), así que un nombre poco claro o que no representa bien el contenido le genera problemas al predicar en vivo. Esta revisión de nombres es un paso propio, distinto de la revisión general de contenido — no alcanza con preguntar "¿está bien así?" en general, hay que señalar puntualmente los títulos elegidos para que los confirme o los corrija antes de generar HTML/DOCX/PDF.
 
 ---
 

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reformados para ser renovados</title>
+<!-- Fuentes: Barlow (todo el contenido), IBM Plex Mono (metadatos), Noto Serif Display (solo palabras griegas) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500&family=Noto+Serif+Display:wght@800&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   TEMA (Studio): binario negro cálido / amarillo ácido.
+   Cambiar estos valores cambia todo el mazo.
+   =========================================== */
+:root {
+    --black: #1C1C1C;
+    --black-alt: #242422;
+    --yellow: #F5D200;
+    --stage-bg: #0f0f0e;
+    --f-display: 'Barlow', sans-serif;
+    --f-mono: 'IBM Plex Mono', monospace;
+    --f-greek: 'Noto Serif Display', serif;
+    --pad-x: 96px;
+    --pad-y: 56px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===========================================
+   FIXED 16:9 STAGE: MANDATORY BASE STYLES (viewport-base.css)
+   =========================================== */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--stage-bg, #000); }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: var(--stage-bg, #000); }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--slide-bg, #fff); }
+.slide { position: absolute; inset: 0; width: 1920px; height: 1080px; overflow: hidden; display: block; visibility: hidden; opacity: 0; pointer-events: none; background: var(--slide-bg, #fff); }
+.slide.active, .slide.visible { visibility: visible; opacity: 1; pointer-events: auto; z-index: 1; }
+img, video, canvas, svg { max-width: 100%; max-height: 100%; }
+.deck-controls { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 1000; }
+@media print {
+    html, body { width: 1920px; height: auto; overflow: visible; background: #fff; }
+    .deck-viewport { position: static; overflow: visible; background: #fff; }
+    .deck-stage { position: static; width: auto; height: auto; transform: none !important; background: none; }
+    .slide { position: relative; display: block !important; visibility: visible !important; opacity: 1 !important; pointer-events: auto !important; width: 1920px; height: 1080px; break-after: page; page-break-after: always; }
+    .slide:last-child { break-after: auto; page-break-after: auto; }
+    .deck-controls { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+}
+
+/* ===========================================
+   SUPERFICIES: .dark (amarillo sobre negro) / .light (negro sobre amarillo)
+   El color secundario es solo opacidad, nunca gris.
+   =========================================== */
+.slide { font-family: var(--f-display); }
+.dark  { --slide-bg: var(--black);  --fg: var(--yellow); --fg2: rgba(245,210,0,.85); --fg3: rgba(245,210,0,.32); --bd: #2E2E2C; --bg: var(--black); }
+.light { --slide-bg: var(--yellow); --fg: var(--black);  --fg2: rgba(28,28,28,.82); --fg3: rgba(28,28,28,.35); --bd: rgba(28,28,28,.18); --bg: var(--yellow); }
+.slide { color: var(--fg); }
+
+/* ===========================================
+   TIPOGRAFÍA
+   =========================================== */
+.mono { font-family: var(--f-mono); font-weight: 500; font-size: 30px; letter-spacing: .03em; text-transform: uppercase; }
+.display { font-weight: 900; text-transform: uppercase; font-size: 236px; line-height: .84; letter-spacing: -.025em; }
+.h1 { font-weight: 900; text-transform: uppercase; font-size: 150px; line-height: .9; letter-spacing: -.02em; }
+.h2 { font-weight: 900; text-transform: uppercase; font-size: 96px; line-height: .94; letter-spacing: -.015em; }
+.h3 { font-weight: 900; text-transform: uppercase; font-size: 54px; line-height: 1; letter-spacing: -.01em; }
+.quote { font-weight: 900; text-transform: uppercase; font-size: 80px; line-height: 1.02; letter-spacing: -.02em; }
+.lead { font-weight: 500; font-size: 52px; line-height: 1.25; }
+.body { font-weight: 500; font-size: 46px; line-height: 1.3; }
+.muted { color: var(--fg2); }
+.faint { color: var(--fg3); }
+/* Griego: el único elemento serif del sistema, protagonista visual */
+.greek { font-family: var(--f-greek); font-weight: 800; line-height: 1; letter-spacing: -.01em; padding-bottom: .16em; }
+.ghost { color: transparent; -webkit-text-stroke: 2px var(--fg3); }
+
+/* ===========================================
+   MARCO: barra superior e inferior (diapositivas estándar)
+   =========================================== */
+.chrome, .foot { position: absolute; left: var(--pad-x); right: var(--pad-x); display: flex; justify-content: space-between; align-items: center; }
+.chrome { top: 40px; padding-bottom: 16px; border-bottom: 1px solid var(--bd); }
+.foot { bottom: var(--pad-y); padding-top: 18px; border-top: 1px solid var(--bd); }
+.body-area { position: absolute; left: var(--pad-x); right: var(--pad-x); top: 150px; bottom: 150px; }
+
+/* ===========================================
+   PORTADA: titular masivo + firma de 3 columnas mono
+   =========================================== */
+.cover-meta { position: absolute; left: var(--pad-x); right: var(--pad-x); bottom: var(--pad-y); display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid rgba(245,210,0,.25); padding-top: 22px; }
+.cover-meta > :nth-child(2) { text-align: center; }
+.cover-meta > :nth-child(3) { text-align: right; }
+.logo { height: 120px; width: auto; }
+.logo-tile { background: var(--yellow); padding: 10px; display: inline-block; line-height: 0; }
+.logo-tile .logo { mix-blend-mode: multiply; }
+
+/* ===========================================
+   CAPÍTULO / DECLARACIÓN: sin marco, titular abajo
+   =========================================== */
+.bottom-left { position: absolute; left: var(--pad-x); right: var(--pad-x); bottom: 84px; }
+.top-left { position: absolute; left: var(--pad-x); top: 72px; }
+.chapter-num { font-weight: 900; font-size: 420px; line-height: .8; letter-spacing: -.04em; position: absolute; right: 60px; top: 40px; color: var(--fg3); }
+
+/* ===========================================
+   VERSÍCULO: texto legible (Barlow 500) + referencia en 900
+   =========================================== */
+.verse { font-weight: 500; font-size: 58px; line-height: 1.3; max-width: 1560px; }
+.verse-ref { margin-top: 44px; display: flex; align-items: baseline; gap: 28px; }
+.verse-ref .h3 { font-size: 76px; }
+.verse-ref .mono { font-size: 34px; }
+.verse.fit { max-width: none; line-height: 1.22; }
+.body-area:has(> .verse.fit) { top: 120px; bottom: 70px; }
+.body-area:has(> .verse.fit) .mark { margin-bottom: 28px; }
+.body-area:has(> .verse.fit) .verse-ref { margin-top: 32px; }
+.ref { font-family: var(--f-mono); font-weight: 500; font-size: 42px; letter-spacing: .02em; text-transform: uppercase; color: var(--fg); }
+.item-num { position: absolute; right: 70px; top: 100px; font-weight: 900; font-size: 420px; line-height: .8; letter-spacing: -.04em; color: var(--fg3); }
+/* ÍTEMS DEL PUNTO 3: tamaños base (s=1); fitItems() los reduce si no entran */
+.item-block { position: absolute; left: var(--pad-x); right: var(--pad-x); top: 120px; bottom: 60px; display: flex; flex-direction: column; justify-content: center; --s: 1; }
+.item-n { font-weight: 900; font-size: calc(var(--s) * 200px); line-height: .8; letter-spacing: -.04em; color: var(--fg3); margin-bottom: calc(var(--s) * 30px); }
+.item-t { font-weight: 900; text-transform: uppercase; font-size: calc(var(--s) * 210px); line-height: .9; letter-spacing: -.025em; }
+.item-d { font-weight: 500; font-size: calc(var(--s) * 104px); line-height: 1.15; margin-top: calc(var(--s) * 40px); }
+.item-note { font-family: var(--f-mono); font-size: calc(var(--s) * 48px); text-transform: uppercase; color: var(--fg2); margin-top: calc(var(--s) * 24px); }
+.item-r { font-family: var(--f-mono); font-weight: 500; font-size: calc(var(--s) * 72px); text-transform: uppercase; letter-spacing: .02em; margin-top: calc(var(--s) * 36px); }
+.sub-letter { position: absolute; right: 70px; top: 90px; font-weight: 900; font-size: 640px; line-height: .8; letter-spacing: -.04em; color: var(--fg3); }
+.mark { display: inline-block; width: 64px; height: 8px; background: var(--fg); margin-bottom: 40px; }
+
+/* ===========================================
+   GRILLA DE 3 COLUMNAS (Punto 1, Punto 3, llamado)
+   Cada columna: regla de 2px arriba, letra gigante, título, línea.
+   =========================================== */
+.cols3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; height: 100%; }
+.col { border-top: 2px solid var(--fg); padding: 36px 48px 0 0; display: flex; flex-direction: column; gap: 26px; }
+.col + .col { padding-left: 48px; border-left: 2px solid var(--fg3); }
+.col .letter { font-weight: 900; font-size: 190px; line-height: .78; letter-spacing: -.04em; }
+.col .h3 { font-size: 58px; }
+.col .body { font-size: 44px; line-height: 1.25; }
+.col .mono { margin-top: auto; color: var(--fg); font-size: 34px; }
+
+/* ===========================================
+   PANTALLA DIVIDIDA (Punto 2): izquierda negra / derecha amarilla
+   =========================================== */
+.split { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.half { position: relative; padding: 64px var(--pad-x); display: flex; flex-direction: column; }
+.half.l { background: var(--black); color: var(--yellow); --fg2: rgba(245,210,0,.85); --fg3: rgba(245,210,0,.32); --bd: #2E2E2C; border-right: 2px solid var(--yellow); }
+.half.r { background: var(--yellow); color: var(--black); --fg2: rgba(28,28,28,.82); --fg3: rgba(28,28,28,.35); --bd: rgba(28,28,28,.18); }
+.half .row { border-top: 2px solid currentColor; padding-top: 28px; margin-top: auto; }
+.half .row + .row { margin-top: 44px; }
+.half .tag { font-weight: 900; font-size: 68px; line-height: .98; letter-spacing: -.015em; text-transform: uppercase; }
+.half .big { font-weight: 900; font-size: 128px; line-height: .88; letter-spacing: -.025em; text-transform: uppercase; margin-top: 20px; }
+
+/* ===========================================
+   FILAS NUMERADAS (listado final): sin viñetas, número masivo
+   =========================================== */
+.rows { display: flex; flex-direction: column; }
+.rowi { display: grid; grid-template-columns: 110px 1fr auto; align-items: baseline; gap: 28px; padding: 18px 0; border-top: 1px solid var(--bd); }
+.rowi:last-child { border-bottom: 1px solid var(--bd); }
+.rowi .n { font-weight: 900; font-size: 64px; line-height: .9; letter-spacing: -.03em; }
+.rowi .t { font-weight: 900; text-transform: uppercase; font-size: 54px; line-height: 1.02; letter-spacing: -.01em; }
+.rowi .t small { display: block; font-weight: 500; text-transform: none; font-size: 40px; letter-spacing: 0; color: var(--fg2); margin-top: 8px; }
+.rowi .mono { color: var(--fg); white-space: nowrap; font-size: 36px; }
+.rows.tight .rowi { padding: 13px 0; }
+.rows.tight .rowi .t { font-size: 40px; }
+.rows.tight .rowi .t small { font-size: 25px; margin-top: 4px; }
+.rows.tight .rowi .n { font-size: 52px; }
+
+/* ===========================================
+   DATO (stat): número gigante + regla de 2px
+   =========================================== */
+.stat { border-top: 2px solid var(--fg); padding-top: 28px; }
+.stat .v { font-weight: 900; font-size: 260px; line-height: .8; letter-spacing: -.04em; }
+
+/* ===========================================
+   ANIMACIONES: entran al activarse la diapositiva.
+   Usar class="rv" y style="--d:2" para escalonar.
+   =========================================== */
+.rv { opacity: 0; transform: translateY(36px); }
+.slide.active .rv { animation: up .55s var(--ease) forwards; animation-delay: calc(var(--d, 0) * 90ms + 60ms); }
+.rv.fade { transform: none; }
+.slide.active .rv.fade { animation-name: fade; }
+.rv.left { transform: translateX(-60px); }
+.slide.active .rv.left { animation-name: fromleft; }
+@keyframes up { to { opacity: 1; transform: none; } }
+@keyframes fade { to { opacity: 1; } }
+@keyframes fromleft { to { opacity: 1; transform: none; } }
+@media print { .rv { opacity: 1 !important; transform: none !important; animation: none !important; } }
+
+/* ===========================================
+   CONTROLES FUERA DEL ESCENARIO: barra de progreso + edición
+   =========================================== */
+.progress { position: fixed; left: 0; bottom: 0; height: 4px; background: var(--yellow); z-index: 1000; transition: width .3s var(--ease); }
+.edit-hotzone { position: fixed; top: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
+.edit-toggle { position: fixed; top: 16px; left: 16px; z-index: 10001; font: 500 14px var(--f-mono); padding: 10px 14px; border: 1px solid var(--yellow); background: var(--black); color: var(--yellow); opacity: 0; pointer-events: none; transition: opacity .3s; cursor: pointer; }
+.edit-toggle.show, .edit-toggle.active { opacity: 1; pointer-events: auto; }
+body.editing [contenteditable="true"]:hover { outline: 2px dashed rgba(245,210,0,.6); }
+</style>
+</head>
+<body>
+<div class="edit-hotzone"></div>
+<button class="edit-toggle" id="editToggle" title="Modo edición (E)">EDITAR</button>
+<div class="progress" id="progress"></div>
+
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- =========== 01 · PORTADA =========== -->
+<section class="slide dark">
+    <div class="top-left" style="top:120px">
+        <div class="display rv" style="--d:0">Reformados</div>
+        <div class="display rv" style="--d:1">para ser</div>
+        <div class="display rv" style="--d:2">renovados</div>
+    </div>
+    <div class="rv fade" style="--d:5;position:absolute;right:var(--pad-x);top:120px;text-align:right">
+        <span class="logo-tile"><img class="logo" src="assets/logo-r6.png" alt="Iglesia El Renuevo"></span>
+    </div>
+    <div class="rv" style="--d:4;position:absolute;right:var(--pad-x);bottom:150px;text-align:right">
+        <div class="greek ghost" style="font-size:132px;-webkit-text-stroke:2px var(--fg)">ἀνακαίνωσις</div>
+        <div class="mono muted" style="margin-top:14px">anakaínōsis · renovación · Romanos 12:2</div>
+    </div>
+    <div class="cover-meta mono rv fade" style="--d:6">
+        <span>El Renuevo · 31.10.1517</span>
+        <span>Romanos 1:16–17</span>
+        <span>Reunión General</span>
+    </div>
+</section>
+
+<!-- =========== 02 · TEXTO BASE =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Texto base</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="mark rv" style="--d:1"></span>
+        <p class="verse fit rv" style="--d:2">“Porque no me avergüenzo del evangelio, porque es poder de Dios para salvación a todo aquel que cree; al judío primeramente, y también al griego. Porque en el evangelio la justicia de Dios se revela por fe y para fe, como está escrito: <b style="font-weight:900">Mas el justo por la fe vivirá.</b>”</p>
+        <div class="verse-ref rv" style="--d:3"><span class="h3">Romanos 1:16–17</span><span class="mono muted">RVR1960</span></div>
+    </div>
+</section>
+
+<!-- =========== 03 · INTRODUCCIÓN (capítulo) =========== -->
+<section class="slide dark">
+    <div class="top-left mono muted rv fade">Introducción</div>
+    <div class="bottom-left">
+        <div class="h1 rv" style="--d:1">El libro</div>
+        <div class="h1 rv" style="--d:2">perdido en la</div>
+        <div class="h1 rv" style="--d:3">casa de Dios</div>
+    </div>
+</section>
+
+<!-- =========== 04 · 2 REYES 22:8 =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Introducción</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="mark rv" style="--d:1"></span>
+        <p class="verse fit rv" style="--d:2">“Entonces dijo el sumo sacerdote Hilcías al escriba Safán: <b style="font-weight:900">He hallado el libro de la ley en la casa de Jehová.</b>”</p>
+        <div class="verse-ref rv" style="--d:3"><span class="h3">2 Reyes 22:8</span><span class="mono muted">RVR1960</span></div>
+    </div>
+</section>
+
+<!-- =========== 05 · DECLARACIÓN: no se perdió afuera =========== -->
+<section class="slide dark">
+    <div class="top-left mono muted rv fade">El detalle clave</div>
+    <div class="bottom-left">
+        <div class="h2 muted rv" style="--d:1">No se perdió en Babilonia.</div>
+        <div class="h2 muted rv" style="--d:2;margin-top:8px">No se perdió en la calle.</div>
+        <div class="h1 rv" style="--d:4;margin-top:40px;font-size:170px">Se perdió<br>dentro del templo.</div>
+    </div>
+</section>
+
+<!-- =========== 06 · 2 REYES 22:11 =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Introducción</span><span class="num"></span></div>
+    <div class="body-area" style="display:grid;grid-template-columns:1.1fr 1fr;gap:96px;align-items:center">
+        <div>
+            <span class="mark rv" style="--d:1"></span>
+            <p class="verse rv" style="--d:2;font-size:76px">“Y cuando el rey hubo oído las palabras del libro de la ley, <b style="font-weight:900">rasgó sus vestidos.</b>”</p>
+            <div class="verse-ref rv" style="--d:3"><span class="h3">2 Reyes 22:11</span></div>
+        </div>
+        <div class="stat rv" style="--d:4">
+            <div class="h2">Josías no organizó un evento.</div>
+            <div class="lead muted" style="margin-top:28px">Antes de reformar al pueblo, se quebró él.</div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 07 · DATO: 31.10.1517 =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>El puente</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="stat rv" style="--d:1"><div class="v">31·10·1517</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:96px;margin-top:48px">
+            <div class="h3 rv" style="--d:2">95 tesis · Wittenberg</div>
+            <div class="lead muted rv" style="--d:3">Según la tradición, Martín Lutero las clavó en la puerta de una iglesia. Alguien volvió a encontrar el libro dentro de la casa de Dios.</div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 08 · TRES PREGUNTAS (mapa del mensaje) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>No es una clase de historia</span><span class="num"></span></div>
+    <div class="body-area" style="top:190px;bottom:170px">
+        <div class="cols3">
+            <div class="col rv" style="--d:1"><span class="letter">1</span><span class="h3" style="font-size:76px">¿Qué necesidad había?</span><span class="mono">Una iglesia sin Palabra</span></div>
+            <div class="col rv" style="--d:2"><span class="letter">2</span><span class="h3" style="font-size:76px">¿Qué habría pasado si no ocurría?</span><span class="mono">¿Y si no hubiera pasado?</span></div>
+            <div class="col rv" style="--d:3"><span class="letter">3</span><span class="h3" style="font-size:76px">¿Nos está pasando lo mismo?</span><span class="mono">Reformados, pero no terminados</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 09 · PREGUNTA PARA ABRIR =========== -->
+<section class="slide dark">
+    <div class="top-left mono muted rv fade">Pregunta para abrir</div>
+    <div class="bottom-left">
+        <div class="quote rv" style="--d:1;font-size:104px;max-width:1650px">¿Puede una iglesia llena de actividad haber perdido el libro sin darse cuenta?</div>
+    </div>
+</section>
+
+<!-- =========== 10 · PUNTO 1 (capítulo) =========== -->
+<section class="slide light">
+    <div class="chapter-num rv fade">01</div>
+    <div class="top-left mono rv fade">Punto 1 · La necesidad espiritual</div>
+    <div class="bottom-left">
+        <div class="display rv" style="--d:1;font-size:200px">Una iglesia</div>
+        <div class="display rv" style="--d:2;font-size:200px">sin Palabra</div>
+    </div>
+</section>
+
+
+
+<!-- =========== SUBPUNTO 1A =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Punto 1 · Una iglesia sin Palabra</span><span class="num"></span></div>
+    <div class="sub-letter rv fade">A</div>
+    <div class="bottom-left" style="bottom:120px;right:auto;width:1220px">
+        <div class="mono muted rv" style="--d:1;margin-bottom:24px">Subpunto 1A</div>
+        <div class="h1 rv" style="--d:2;font-size:136px">Sin la Palabra en su idioma</div>
+        <div class="lead rv" style="--d:3;margin-top:36px;font-size:58px">La Biblia estaba en latín. El pueblo escuchaba sin entender.</div>
+        <div class="ref rv" style="--d:4;margin-top:32px">Salmo 119:105</div>
+    </div>
+</section>
+
+<!-- =========== 12 · 1A: Sin la Palabra en su idioma =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>1A · Sin la Palabra en su idioma</span><span class="num"></span></div>
+    <div class="body-area" style="display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center">
+        <div class="stat rv" style="--d:1">
+            <div class="v" style="font-size:220px">1522</div>
+            <div class="lead muted" style="margin-top:28px">Lutero traduce el Nuevo Testamento al alemán. Por primera vez, un campesino podía leer a Dios sin intermediarios.</div>
+        </div>
+        <div>
+            <span class="mark rv" style="--d:2"></span>
+            <p class="verse rv" style="--d:3;font-size:80px">“Lámpara es a mis pies tu palabra, y lumbrera a mi camino.”</p>
+            <div class="verse-ref rv" style="--d:4"><span class="h3">Salmo 119:105</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== SUBPUNTO 1B =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Punto 1 · Una iglesia sin Palabra</span><span class="num"></span></div>
+    <div class="sub-letter rv fade">B</div>
+    <div class="bottom-left" style="bottom:120px;right:auto;width:1220px">
+        <div class="mono muted rv" style="--d:1;margin-bottom:24px">Subpunto 1B</div>
+        <div class="h1 rv" style="--d:2;font-size:136px">Sin Palabra,<br>sin certeza</div>
+        <div class="lead rv" style="--d:3;margin-top:36px;font-size:58px">Obras, penitencias y pagos. Nadie sabía si había hecho lo suficiente.</div>
+        <div class="ref rv" style="--d:4;margin-top:32px">Romanos 1:17 · Efesios 2:8–9</div>
+    </div>
+</section>
+
+<!-- =========== 13 · GRIEGO: δικαιοσύνη =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>1B · Sin Palabra, sin certeza</span><span class="num"></span></div>
+    <div class="bottom-left" style="bottom:150px">
+        <div class="greek rv" style="--d:1;font-size:280px">δικαιοσύνη</div>
+        <div class="mono muted rv" style="--d:2;margin:22px 0 34px">dikaiosýnē · justicia · Romanos 1:17</div>
+        <div class="h2 rv" style="--d:3">No la que yo produzco.<br>La que Dios me da.</div>
+    </div>
+</section>
+
+<!-- =========== 14 · GRIEGO: πίστις =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>1B · Sin Palabra, sin certeza</span><span class="num"></span></div>
+    <div class="body-area" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center">
+        <div class="rv" style="--d:1">
+            <div class="greek" style="font-size:300px">πίστις</div>
+            <div class="mono muted" style="margin-top:20px">pístis · fe</div>
+        </div>
+        <div class="stat rv" style="--d:2">
+            <div class="h2">No es un esfuerzo religioso.</div>
+            <div class="lead" style="margin-top:28px;font-weight:700">Es apoyar todo mi peso sobre Otro.</div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 15 · EFESIOS 2:8-9 =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>1B · Sin Palabra, sin certeza</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="mark rv" style="--d:1"></span>
+        <p class="verse fit rv" style="--d:2">“Porque <b style="font-weight:900">por gracia sois salvos</b> por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe.”</p>
+        <div class="verse-ref rv" style="--d:3"><span class="h3">Efesios 2:8–9</span><span class="mono muted">RVR1960</span></div>
+    </div>
+</section>
+
+<!-- =========== SUBPUNTO 1C =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Punto 1 · Una iglesia sin Palabra</span><span class="num"></span></div>
+    <div class="sub-letter rv fade">C</div>
+    <div class="bottom-left" style="bottom:120px;right:auto;width:1220px">
+        <div class="mono muted rv" style="--d:1;margin-bottom:24px">Subpunto 1C</div>
+        <div class="h1 rv" style="--d:2;font-size:136px">Sin Palabra,<br>sin acceso</div>
+        <div class="lead rv" style="--d:3;margin-top:36px;font-size:58px">Una cadena de mediadores entre el creyente y Dios.</div>
+        <div class="ref rv" style="--d:4;margin-top:32px">1 Timoteo 2:5 · Hebreos 4:16</div>
+    </div>
+</section>
+
+<!-- =========== 16 · 1C: un solo mediador =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>1C · Sin Palabra, sin acceso</span><span class="num"></span></div>
+    <div class="body-area" style="display:grid;grid-template-columns:1.15fr 1fr;gap:96px;align-items:center">
+        <div>
+            <div class="h1 rv" style="--d:1;font-size:140px">Un solo mediador</div>
+            <p class="verse rv" style="--d:2;font-size:58px;margin-top:36px">“Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre.”</p>
+            <div class="ref rv" style="--d:3;margin-top:20px">1 Timoteo 2:5</div>
+        </div>
+        <div class="stat rv" style="--d:4">
+            <p class="verse" style="font-size:60px">“Acerquémonos, pues, confiadamente al trono de la gracia…”</p>
+            <div class="ref" style="margin-top:20px">Hebreos 4:16</div>
+            <div class="h3" style="margin-top:44px">El camino ya está abierto. No hace falta pedir turno.</div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 17 · APLICACIÓN 1 =========== -->
+<section class="slide dark">
+    <div class="top-left mono muted rv fade">Aplicación · Punto 1</div>
+    <div class="bottom-left">
+        <div class="lead muted rv" style="--d:1;max-width:1300px;margin-bottom:44px">Tenemos lo que ellos no tenían: la Biblia en nuestro idioma, en el celular, en tres versiones.</div>
+        <div class="quote rv" style="--d:2;font-size:96px">¿Vivimos como quienes tienen la Biblia abierta, o como quienes todavía no la tuvieran?</div>
+    </div>
+</section>
+
+<!-- =========== 18 · PUNTO 2 (capítulo) =========== -->
+<section class="slide light">
+    <div class="chapter-num rv fade">02</div>
+    <div class="top-left mono rv fade">Punto 2 · Un ejercicio hipotético</div>
+    <div class="bottom-left">
+        <div class="display rv" style="--d:1;font-size:200px">¿Y si no</div>
+        <div class="display rv" style="--d:2;font-size:200px">hubiera pasado?</div>
+        <div class="lead muted rv" style="--d:3;margin-top:36px;max-width:1300px">No sabemos con certeza qué habría pasado. Sí sabemos qué se estaba viviendo.</div>
+    </div>
+</section>
+
+<!-- =========== 19 · PUNTO 2: pantalla dividida =========== -->
+<section class="slide dark">
+    <div class="split">
+        <div class="half l">
+            <div class="mono rv fade" style="color:var(--fg2)">Punto 2 · Un ejercicio hipotético</div><div class="big rv left">Sin<br>Reforma</div>
+            <div class="row rv left" style="--d:1"><span class="mono" style="color:var(--fg2)">2A</span><div class="tag" style="margin-top:12px">Una fe que se compra</div><div class="body" style="color:var(--fg2);margin-top:14px">La gracia tiene precio. El pobre tiene menos esperanza que el rico.</div></div>
+            <div class="row rv left" style="--d:2"><span class="mono" style="color:var(--fg2)">2B</span><div class="tag" style="margin-top:12px">Una fe de espectadores</div><div class="body" style="color:var(--fg2);margin-top:14px">El pueblo mira. Unos pocos ministran.</div></div>
+        </div>
+        <div class="half r">
+            <div class="mono rv fade" style="color:var(--fg2)">Lo que se redescubrió</div><div class="big rv" style="--d:2">Lo que dice la Palabra</div>
+            <div class="row rv" style="--d:3"><span class="mono" style="color:var(--fg2)">Hechos 8:20</span><div class="tag" style="margin-top:12px">El don de Dios no se compra</div><div class="body" style="color:var(--fg2);margin-top:14px">La gracia es gratuita.</div></div>
+            <div class="row rv" style="--d:4"><span class="mono" style="color:var(--fg2)">1 Pedro 2:9</span><div class="tag" style="margin-top:12px">Real sacerdocio</div><div class="body" style="color:var(--fg2);margin-top:14px">Todo el pueblo de Dios anuncia sus virtudes.</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 20 · 2A: la frase de Tetzel =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>2A · Una fe que se compra</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="mono muted rv" style="--d:1;margin-bottom:30px">Las indulgencias · frase atribuida a Johann Tetzel</div>
+        <div class="quote rv" style="--d:2;font-size:110px">“Cuando la moneda en el cofre suena, el alma del purgatorio sale.”</div>
+    </div>
+</section>
+
+<!-- =========== 21 · HECHOS 8:20 =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>2A · Una fe que se compra</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="mark rv" style="--d:1"></span>
+        <p class="verse fit rv" style="--d:2">“Tu dinero perezca contigo, porque has pensado que <b style="font-weight:900">el don de Dios se obtiene con dinero.</b>”</p>
+        <div class="verse-ref rv" style="--d:3"><span class="h3">Hechos 8:20</span><span class="mono muted">Pedro a Simón el mago</span></div>
+    </div>
+</section>
+
+<!-- =========== 22 · 1 PEDRO 2:9 =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>2B · Una fe de espectadores</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="mark rv" style="--d:1"></span>
+        <p class="verse fit rv" style="--d:2">“Mas vosotros sois linaje escogido, <b style="font-weight:900">real sacerdocio</b>, nación santa, pueblo adquirido por Dios, para que anunciéis las virtudes de aquel que os llamó de las tinieblas a su luz admirable.”</p>
+        <div class="verse-ref rv" style="--d:3"><span class="h3">1 Pedro 2:9</span><span class="mono muted">RVR1960</span></div>
+    </div>
+</section>
+
+<!-- =========== 23 · DATO: Biblia del Oso =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Un dato que nos toca de cerca</span><span class="num"></span></div>
+    <div class="body-area" style="display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:end">
+        <div class="stat rv" style="--d:1">
+            <div class="v">1569</div>
+            <div class="h3" style="margin-top:28px">Biblia del Oso</div>
+            <div class="body muted" style="margin-top:14px">Casiodoro de Reina, un monje español que tuvo que huir, publica la Biblia completa en castellano.</div>
+        </div>
+        <div class="stat rv" style="--d:2">
+            <div class="v" style="color:var(--fg2)">1602</div>
+            <div class="h3" style="margin-top:28px">Revisión de Cipriano de Valera</div>
+            <div class="body muted" style="margin-top:14px">La Reina-Valera que tenemos en la mano nació en ese contexto.</div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 24 · APLICACIÓN 2 =========== -->
+<section class="slide light">
+    <div class="top-left mono rv fade">Aplicación · Punto 2</div>
+    <div class="bottom-left">
+        <div class="lead muted rv" style="--d:1;max-width:1300px;margin-bottom:44px">Lo que tenemos en las manos costó persecución, exilio y vidas. ¿Lo valoramos, o lo tratamos como algo que siempre estuvo ahí?</div>
+        <div class="quote rv" style="--d:2;font-size:100px">Una Biblia que nadie abre vale lo mismo que el libro perdido en el templo.</div>
+    </div>
+</section>
+
+<!-- =========== 25 · PUNTO 3 (capítulo) =========== -->
+<section class="slide dark">
+    <div class="chapter-num rv fade">03</div>
+    <div class="top-left mono muted rv fade">Punto 3 · La iglesia de hoy</div>
+    <div class="bottom-left">
+        <div class="display rv" style="--d:1;font-size:200px">Reformados,</div>
+        <div class="display rv" style="--d:2;font-size:200px">pero no</div>
+        <div class="display rv" style="--d:3;font-size:200px">terminados</div>
+    </div>
+</section>
+
+<!-- =========== 26 · APOCALIPSIS 2:4-5 =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Punto 3 · Éfeso: ortodoxa y trabajadora (Ap 2:2)</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="mark rv" style="--d:1"></span>
+        <p class="verse fit rv" style="--d:2">“Pero tengo contra ti, que <b style="font-weight:900">has dejado tu primer amor.</b> Recuerda, por tanto, de dónde has caído, y arrepiéntete, y haz las primeras obras…”</p>
+        <div class="verse-ref rv" style="--d:3"><span class="h3">Apocalipsis 2:4–5</span><span class="mono muted">RVR1960</span></div>
+    </div>
+</section>
+
+<!-- =========== 27 · 1 PEDRO 4:17 =========== -->
+<section class="slide dark">
+    <div class="top-left mono muted rv fade">1 Pedro 4:17</div>
+    <div class="bottom-left">
+        <div class="lead muted rv" style="--d:1;margin-bottom:24px">“Porque es tiempo de que…”</div>
+        <div class="h1 rv" style="--d:2;font-size:160px">El juicio comience por la casa de Dios</div>
+    </div>
+</section>
+
+<!-- =========== 28 · GRIEGO: μετανοέω =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Punto 3 · Reformados, pero no terminados</span><span class="num"></span></div>
+    <div class="bottom-left" style="bottom:150px">
+        <div class="greek rv" style="--d:1;font-size:290px">μετανοέω</div>
+        <div class="mono muted rv" style="--d:2;margin:22px 0 34px">metanoéō · arrepentirse · Apocalipsis 2:5</div>
+        <div class="h2 rv" style="--d:3;font-size:84px">Cambiar la manera de pensar y dar vuelta el rumbo.</div>
+        <div class="lead muted rv" style="--d:4;margin-top:20px">No se reduce a sentir culpa.</div>
+    </div>
+</section>
+
+<!-- =========== 29 · LEMA: siempre reformándose =========== -->
+<section class="slide dark">
+    <div class="top-left mono muted rv fade">Lema de la tradición reformada · siglo XVII · no es un versículo</div>
+    <div class="bottom-left">
+        <div class="h1 rv" style="--d:1;font-size:150px">Iglesia reformada,</div>
+        <div class="h1 rv" style="--d:2;font-size:150px;color:var(--fg2)">siempre reformándose</div>
+        <div class="lead muted rv" style="--d:3;margin-top:40px;max-width:1400px">Quinientos años después, como iglesias protestantes, repetimos muchas de las cosas que la Reforma denunció.</div>
+    </div>
+</section>
+
+
+
+<!-- =========== SUBPUNTO 3A =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Punto 3 · Reformados, pero no terminados</span><span class="num"></span></div>
+    <div class="sub-letter rv fade">A</div>
+    <div class="bottom-left" style="bottom:120px;right:auto;width:1220px">
+        <div class="mono muted rv" style="--d:1;margin-bottom:24px">Subpunto 3A · Dónde hemos fallado</div>
+        <div class="h1 rv" style="--d:2;font-size:150px">Con la Palabra</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 01 (3A) =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>3A · Con la Palabra</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">01</div>
+        <div class="item-t rv" style="--d:1">Analfabetismo bíblico</div>
+        <div class="item-d rv" style="--d:2">Peleamos por tener la Biblia y hoy no la leemos.</div>
+        <div class="item-r rv" style="--d:4">Oseas 4:6</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 02 (3A) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3A · Con la Palabra</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">02</div>
+        <div class="item-t rv" style="--d:1">Predicación de autoayuda</div>
+        <div class="item-d rv" style="--d:2">Mensajes motivacionales en lugar de exponer la Escritura.</div>
+        <div class="item-r rv" style="--d:4">2 Timoteo 4:3</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 03 (3A) =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>3A · Con la Palabra</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">03</div>
+        <div class="item-t rv" style="--d:1">La experiencia por encima de la Escritura</div>
+        <div class="item-d rv" style="--d:2">“Dios me dijo” sin examinarlo como hacían los de Berea.</div>
+        <div class="item-r rv" style="--d:4">Hechos 17:11</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 04 (3A) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3A · Con la Palabra</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">04</div>
+        <div class="item-t rv" style="--d:1">Pragmatismo</div>
+        <div class="item-d rv" style="--d:2">Elegimos lo que funciona antes que lo que es fiel.</div>
+        <div class="item-r rv" style="--d:4">Proverbios 14:12</div>
+    </div>
+</section>
+
+<!-- =========== SUBPUNTO 3B =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Punto 3 · Reformados, pero no terminados</span><span class="num"></span></div>
+    <div class="sub-letter rv fade">B</div>
+    <div class="bottom-left" style="bottom:120px;right:auto;width:1220px">
+        <div class="mono muted rv" style="--d:1;margin-bottom:24px">Subpunto 3B · Dónde hemos fallado</div>
+        <div class="h1 rv" style="--d:2;font-size:150px">Con el dinero y el poder</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 05 (3B) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3B · Con el dinero y el poder</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">05</div>
+        <div class="item-t rv" style="--d:1">Evangelio de la prosperidad</div>
+        <div class="item-d rv" style="--d:2">“Sembrá para recibir tu milagro.” Las indulgencias modernas.</div>
+        <div class="item-r rv" style="--d:4">1 Timoteo 6:5</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 06 (3B) =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>3B · Con el dinero y el poder</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">06</div>
+        <div class="item-t rv" style="--d:1">Caudillismo</div>
+        <div class="item-d rv" style="--d:2">Rechazamos un papa y creamos muchos “pequeños papas”.</div>
+        <div class="item-r rv" style="--d:4">1 Pedro 5:3</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 07 (3B) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3B · Con el dinero y el poder</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">07</div>
+        <div class="item-t rv" style="--d:1">Falta de rendición de cuentas</div>
+        <div class="item-d rv" style="--d:2">Y escándalos morales de líderes.</div>
+        <div class="item-r rv" style="--d:4">2 Corintios 8:21</div>
+    </div>
+</section>
+
+<!-- =========== SUBPUNTO 3C =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Punto 3 · Reformados, pero no terminados</span><span class="num"></span></div>
+    <div class="sub-letter rv fade">C</div>
+    <div class="bottom-left" style="bottom:120px;right:auto;width:1220px">
+        <div class="mono muted rv" style="--d:1;margin-bottom:24px">Subpunto 3C · Dónde hemos fallado</div>
+        <div class="h1 rv" style="--d:2;font-size:150px">Con el cuerpo y el testimonio</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 08 (3C) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3C · Con el cuerpo y el testimonio</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">08</div>
+        <div class="item-t rv" style="--d:1">Una iglesia de espectadores</div>
+        <div class="item-d rv" style="--d:2">Pocos sirven y la mayoría mira.</div>
+        <div class="item-r rv" style="--d:4">Efesios 4:11–12</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 09 (3C) =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>3C · Con el cuerpo y el testimonio</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">09</div>
+        <div class="item-t rv" style="--d:1">El culto convertido en show</div>
+        <div class="item-d rv" style="--d:2">Consumimos reuniones en lugar de adorar.</div>
+        <div class="item-r rv" style="--d:4">Juan 4:23–24</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 10 (3C) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3C · Con el cuerpo y el testimonio</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">10</div>
+        <div class="item-t rv" style="--d:1">Divisiones y fragmentación</div>
+        <div class="item-d rv" style="--d:2">Nos dividimos por orgullo, no por doctrina.</div>
+        <div class="item-r rv" style="--d:4">Juan 17:21</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 11 (3C) =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>3C · Con el cuerpo y el testimonio</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">11</div>
+        <div class="item-t rv" style="--d:1">Gracia barata</div>
+        <div class="item-d rv" style="--d:2">Perdón sin arrepentimiento.</div>
+        <div class="item-note rv" style="--d:3">Dietrich Bonhoeffer · El precio de la gracia (1937)</div>
+        <div class="item-r rv" style="--d:4">Romanos 6:1–2</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 12 (3C) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3C · Con el cuerpo y el testimonio</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">12</div>
+        <div class="item-t rv" style="--d:1">Evangelismo sin discipulado</div>
+        <div class="item-d rv" style="--d:2">Convertidos, pero no formados.</div>
+        <div class="item-r rv" style="--d:4">Mateo 28:19–20</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 13 (3C) =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>3C · Con el cuerpo y el testimonio</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">13</div>
+        <div class="item-t rv" style="--d:1">Indiferencia ante el prójimo y la sociedad</div>
+        <div class="item-d rv" style="--d:2">Nos encerramos en el templo.</div>
+        <div class="item-r rv" style="--d:4">Mateo 5:16</div>
+    </div>
+</section>
+
+<!-- =========== ÍTEM 14 (3C) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>3C · Con el cuerpo y el testimonio</span><span class="num"></span></div>
+    <div class="item-block">
+        <div class="item-n rv fade">14</div>
+        <div class="item-t rv" style="--d:1">Nuestro propio tradicionalismo</div>
+        <div class="item-d rv" style="--d:2">“Siempre se hizo así.” Terminamos siendo lo que criticábamos.</div>
+        <div class="item-r rv" style="--d:4">Marcos 7:8</div>
+    </div>
+</section>
+
+<!-- =========== 34 · APLICACIÓN 3 =========== -->
+<section class="slide light">
+    <div class="top-left mono rv fade">Aplicación · Punto 3</div>
+    <div class="bottom-left">
+        <div class="lead muted rv" style="--d:1;max-width:1400px;margin-bottom:44px">La Reforma no es un museo para visitar cada 31 de octubre. El juicio empieza por casa: por El Renuevo, por nuestro equipo de servidores, por mí como pastor.</div>
+        <div class="quote rv" style="--d:2;font-size:116px">¿Cuál de estas cosas está pasando entre nosotros?</div>
+    </div>
+</section>
+
+<!-- =========== 35 · CONCLUSIÓN: Romanos 12:2 =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Conclusión · Reformados para ser renovados</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <span class="mark rv" style="--d:1"></span>
+        <p class="verse fit rv" style="--d:2">“No os conforméis a este siglo, sino <b style="font-weight:900">transformaos por medio de la renovación</b> de vuestro entendimiento, para que comprobéis cuál sea la buena voluntad de Dios, agradable y perfecta.”</p>
+        <div class="verse-ref rv" style="--d:3"><span class="h3">Romanos 12:2</span><span class="mono muted">RVR1960</span></div>
+    </div>
+</section>
+
+<!-- =========== 36 · GRIEGO: μεταμορφόω =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Conclusión</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:flex-end">
+        <div class="greek rv" style="--d:1;font-size:250px">μεταμορφόω</div>
+        <div class="mono muted rv" style="--d:2;margin:22px 0 34px">metamorphóō · transformarse · Romanos 12:2</div>
+        <div class="h2 rv" style="--d:3;font-size:88px">Un cambio de adentro hacia afuera.</div>
+        <div class="lead muted rv" style="--d:4;margin-top:16px">Como la oruga que se convierte en mariposa.</div>
+    </div>
+</section>
+
+<!-- =========== 37 · GRIEGO: ἀνακαίνωσις =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Conclusión</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:flex-end">
+        <div class="greek rv" style="--d:1;font-size:230px">ἀνακαίνωσις</div>
+        <div class="mono muted rv" style="--d:2;margin:22px 0 34px">anakaínōsis · renovación · Romanos 12:2</div>
+        <div class="h2 rv" style="--d:3;font-size:88px">Volver a hacer nuevo.</div>
+    </div>
+</section>
+
+<!-- =========== 38 · DECLARACIÓN: El Renuevo =========== -->
+<section class="slide light">
+    <div class="top-left mono rv fade">Nos llamamos El Renuevo</div>
+    <div class="bottom-left">
+        <div class="h2 muted rv" style="--d:1;max-width:1500px">Una iglesia con ese nombre no puede conformarse con haber sido reformada en 1517.</div>
+        <div class="display rv" style="--d:2;margin-top:40px;font-size:190px">Necesitamos ser renovados hoy</div>
+    </div>
+</section>
+
+<!-- =========== 39 · LLAMADO FINAL: Josías =========== -->
+<section class="slide dark">
+    <div class="top-left mono muted rv fade">Llamado final</div>
+    <div class="bottom-left">
+        <div class="lead muted rv" style="--d:1;max-width:1400px;margin-bottom:40px">Josías no empezó reformando el templo: primero escuchó el libro y rasgó sus vestidos.</div>
+        <div class="quote rv" style="--d:2;font-size:112px">¿Dónde se nos perdió el libro dentro de nuestra propia casa?</div>
+    </div>
+</section>
+
+<!-- =========== 40 · LLAMADO: dónde se perdió (filas) =========== -->
+<section class="slide light">
+    <div class="chrome mono rv fade"><span>Llamado final</span><span class="num"></span></div>
+    <div class="body-area" style="display:flex;flex-direction:column;justify-content:center">
+        <div class="rows">
+            <div class="rowi rv" style="--d:1"><span class="n">01</span><span class="t" style="font-size:64px">En la oración que abandonamos</span><span></span></div>
+            <div class="rowi rv" style="--d:2"><span class="n">02</span><span class="t" style="font-size:64px">En la Biblia que ya no abrimos</span><span></span></div>
+            <div class="rowi rv" style="--d:3"><span class="n">03</span><span class="t" style="font-size:64px">En el servicio que hacemos para que nos vean</span><span></span></div>
+            <div class="rowi rv" style="--d:4"><span class="n">04</span><span class="t" style="font-size:64px">En la gracia que damos por sentada</span><span></span></div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 41 · LLAMADO: respuesta (3 columnas) =========== -->
+<section class="slide dark">
+    <div class="chrome mono rv fade"><span>Llamado final · Lo que hizo Josías</span><span class="num"></span></div>
+    <div class="body-area" style="top:170px;bottom:150px">
+        <div class="cols3">
+            <div class="col rv" style="--d:1"><span class="letter">1</span><span class="h3" style="font-size:76px">Reconocer</span></div>
+            <div class="col rv" style="--d:3"><span class="letter">2</span><span class="h3" style="font-size:76px">Arrepentirnos</span></div>
+            <div class="col rv" style="--d:5"><span class="letter">3</span><span class="h3" style="font-size:76px">Volver a la Palabra</span><span class="body muted">No por culpa, sino porque la gracia que recibimos gratis merece una vida entera.</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- =========== 45 · CIERRE =========== -->
+<section class="slide dark">
+    <div class="top-left" style="top:120px">
+        <div class="display rv" style="--d:0">Reformados</div>
+        <div class="display rv" style="--d:1">para ser</div>
+        <div class="display rv" style="--d:2">renovados</div>
+    </div>
+    <div class="rv fade" style="--d:4;position:absolute;right:var(--pad-x);top:120px">
+        <span class="logo-tile"><img class="logo" src="assets/logo-r6.png" alt="Iglesia El Renuevo"></span>
+    </div>
+    <div class="cover-meta mono rv fade" style="--d:5">
+        <span>Iglesia El Renuevo</span>
+        <span>Mas el justo por la fe vivirá</span>
+        <span>Romanos 1:17</span>
+    </div>
+</section>
+
+</main>
+</div>
+
+<script>
+/* ===========================================
+   CONTROLADOR DE LA PRESENTACIÓN
+   Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic.
+   =========================================== */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.current = 0;
+        // Numera automáticamente los contadores ".num" (NN / total)
+        const total = String(this.slides.length).padStart(2, '0');
+        this.slides.forEach((s, i) => s.querySelectorAll('.num').forEach(n => n.textContent = String(i + 1).padStart(2, '0') + ' / ' + total));
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (editor.isActive) return;
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || editor.isActive || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => {
+            if (editor.isActive) return;
+            this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1));
+        });
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.slides.forEach((s, j) => { s.classList.toggle('active', j === this.current); s.classList.toggle('visible', j === this.current); });
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+
+/* ===========================================
+   EDICIÓN EN LÍNEA: E o esquina superior izquierda.
+   Guarda en localStorage; Ctrl+S descarga el HTML editado.
+   =========================================== */
+const editor = {
+    isActive: false,
+    key: 'reformados-deck-edits',
+    targets: () => document.querySelectorAll('.slide :is(div,p,span,b,small):not(:has(*:not(b,br,small,span)))'),
+    toggleEditMode() {
+        this.isActive = !this.isActive;
+        document.body.classList.toggle('editing', this.isActive);
+        document.getElementById('editToggle').classList.toggle('active', this.isActive);
+        document.getElementById('editToggle').textContent = this.isActive ? 'GUARDAR' : 'EDITAR';
+        this.targets().forEach(el => el.setAttribute('contenteditable', this.isActive));
+        if (!this.isActive) this.save();
+    },
+    save() {
+        try { localStorage.setItem(this.key, document.getElementById('deckStage').innerHTML); } catch (e) {}
+    },
+    load() {
+        try { const h = localStorage.getItem(this.key); if (h) document.getElementById('deckStage').innerHTML = h; } catch (e) {}
+    },
+    download() {
+        this.targets().forEach(el => el.removeAttribute('contenteditable'));
+        const blob = new Blob(['<!DOCTYPE html>\n' + document.documentElement.outerHTML], { type: 'text/html' });
+        const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'reformados_para_ser_renovados_diapositivas.html' });
+        a.click();
+        if (this.isActive) this.targets().forEach(el => el.setAttribute('contenteditable', true));
+    }
+};
+/* Ajuste automático: cada .verse.fit toma el mayor tamaño que entra en su diapositiva */
+function fitVerses() {
+    document.querySelectorAll('.verse.fit').forEach(v => {
+        const box = v.parentElement, avail = box.clientHeight;
+        const used = () => [...box.children].reduce((s, c) => { const cs = getComputedStyle(c); return s + c.offsetHeight + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom); }, 0);
+        let size = 120;
+        v.style.fontSize = size + 'px';
+        while (used() > avail && size > 40) { size -= 2; v.style.fontSize = size + 'px'; }
+    });
+}
+function fitItems() {
+    document.querySelectorAll('.item-block').forEach(b => {
+        const used = () => [...b.children].reduce((s, c) => { const cs = getComputedStyle(c); return s + c.offsetHeight + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom); }, 0);
+        let s = 1; b.style.setProperty('--s', s);
+        while (used() > b.clientHeight && s > .4) { s -= .02; b.style.setProperty('--s', s.toFixed(2)); }
+    });
+}
+editor.load();
+fitVerses();
+fitItems();
+if (document.fonts) document.fonts.ready.then(() => { fitVerses(); fitItems(); });
+const deck = new SlidePresentation();
+
+const hotzone = document.querySelector('.edit-hotzone');
+const editToggle = document.getElementById('editToggle');
+let hideTimeout = null;
+editToggle.addEventListener('click', e => { e.stopPropagation(); editor.toggleEditMode(); });
+hotzone.addEventListener('click', e => { e.stopPropagation(); editor.toggleEditMode(); });
+hotzone.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); editToggle.classList.add('show'); });
+hotzone.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (!editor.isActive) editToggle.classList.remove('show'); }, 400); });
+editToggle.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+editToggle.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (!editor.isActive) editToggle.classList.remove('show'); }, 400); });
+document.addEventListener('keydown', e => {
+    if ((e.key === 'e' || e.key === 'E') && !e.target.isContentEditable) editor.toggleEditMode();
+    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); editor.save(); editor.download(); }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proseguir de verdad - Oseas 6:1-6</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg: #0f0f0f;
+    --panel: #1a1a1a;
+    --text: #f1f1f1;
+    --muted: #aaa;
+    --green: #5DBE2C;
+    --green-bg: #10220b;
+    --red: #e35c5c;
+    --red-bg: #2a1212;
+    --gold: #efc24d;
+    --gold-bg: #241d05;
+    --purple: #b978e6;
+    --purple-bg: #21102d;
+    --border: #343434;
+    --nav-h: 68px;
+  }
+  body {
+    margin: 0;
+    padding-top: calc(var(--nav-h) + 18px);
+    background: var(--bg);
+    color: var(--text);
+    font: 22px/1.65 Georgia, serif;
+  }
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    min-height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    background: #111;
+    border-bottom: 2px solid var(--green);
+  }
+  nav a {
+    flex: 0 0 auto;
+    padding: 8px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #222;
+    color: #ddd;
+    font: 700 15px/1 Arial, sans-serif;
+    text-decoration: none;
+  }
+  nav a:hover, nav a.active {
+    color: #081005;
+    background: var(--green);
+    border-color: var(--green);
+  }
+  main { padding-bottom: 80px; }
+  section {
+    max-width: 940px;
+    margin: 0 auto 70px;
+    padding: 0 26px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .hero {
+    position: relative;
+    margin-bottom: 34px;
+    padding: 28px 32px;
+    overflow: hidden;
+    background: var(--panel);
+    border-left: 6px solid var(--green);
+    border-radius: 8px;
+  }
+  .hero img {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+  }
+  .kicker, .section-label, .box-label {
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .kicker { margin-bottom: 12px; color: var(--green); }
+  h1 {
+    max-width: 760px;
+    margin: 0 0 8px;
+    padding-right: 60px;
+    color: #fff;
+    font-size: clamp(34px, 5vw, 54px);
+    line-height: 1.08;
+  }
+  .meta { color: var(--muted); font: 15px/1.45 Arial, sans-serif; }
+  .section-label {
+    margin-bottom: 26px;
+    padding-bottom: 10px;
+    color: var(--green);
+    border-bottom: 1px solid var(--border);
+  }
+  .point-title {
+    margin: 0 0 26px;
+    padding: 15px 20px;
+    background: #222;
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    color: #fff;
+    font: 700 28px/1.2 Arial, sans-serif;
+  }
+  .point-title span { margin-right: 10px; color: var(--green); }
+  .plain { margin: 14px 0; color: #e6e6e6; font-size: 1.06em; }
+  .key-line {
+    margin: 22px 0;
+    padding: 16px 20px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font-style: italic;
+  }
+  .sub {
+    margin: 30px 0;
+    padding: 0 0 0 20px;
+    border-left: 2px solid var(--border);
+  }
+  .sub h3 {
+    margin: 0 0 12px;
+    color: #fff;
+    font: 700 23px/1.3 Arial, sans-serif;
+  }
+  .sub h3 .letter { margin-right: 8px; color: var(--green); }
+  .sub p { margin: 12px 0; color: #e9e9e9; font-size: 1.04em; }
+  .verse {
+    margin: 14px 0 18px;
+    padding: 18px 22px;
+    color: #f7d4d4;
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    font-size: 1.12em;
+    font-style: italic;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 9px;
+    color: var(--red);
+    font: 700 13px/1.2 Arial, sans-serif;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .greek {
+    margin: 14px 0 18px;
+    padding: 14px 18px;
+    color: #cfe8ff;
+    background: #0c1c2a;
+    border-left: 5px solid #4f9ddb;
+    border-radius: 6px;
+    font-size: 1.0em;
+  }
+  .greek strong { color: #9fd3ff; }
+  .application {
+    margin: 30px 0 0;
+    padding: 20px 24px;
+    color: #cef1bb;
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    font-size: 1.08em;
+  }
+  .application .box-label { margin-bottom: 10px; color: var(--green); }
+  .call {
+    padding: 22px 26px;
+    color: #ead5f8;
+    background: var(--purple-bg);
+    border-left: 5px solid var(--purple);
+    border-radius: 6px;
+  }
+  .call .box-label { margin-bottom: 10px; color: var(--purple); }
+  strong { color: #fff; }
+  @media (max-width: 640px) {
+    body { font-size: 19px; }
+    section { padding: 0 16px; }
+    .hero { padding: 22px 20px; }
+    .hero img { width: 46px; height: 46px; }
+    h1 { padding-right: 44px; }
+    .point-title { font-size: 24px; }
+    .sub { padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+<nav aria-label="Navegación del bosquejo">
+  <a class="active" href="#intro">Intro</a>
+  <a href="#punto1">1 · Palabras vacías</a>
+  <a href="#punto2">2 · Fe de rocío</a>
+  <a href="#punto3">3 · Lo que Dios quiere</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<main>
+<section id="intro">
+  <div class="hero">
+    <img src="../../logos/LOGO-EL RENUEVO-R-4.png" alt="Iglesia El Renuevo">
+    <div class="kicker">Reunión General · Jueves · 40 min · Desafiante</div>
+    <h1>Proseguir de verdad</h1>
+    <div class="meta">Oseas 6:1-6 · RVR1960 · Mapa de predicación</div>
+  </div>
+
+  <div class="section-label">Introducción · ~5 min</div>
+  <p class="plain">A veces las palabras correctas esconden un corazón equivocado. Podemos aprender el "lenguaje de Sion", saber qué decir en una oración y qué cantar en la alabanza… y aun así tener el corazón lejos de Dios.</p>
+
+  <p class="plain"><strong>Contexto:</strong> Efraín (el reino del norte) estaba en crisis. En vez de volverse a Dios, buscó ayuda en Asiria <em>(Oseas 5:13)</em>. Entonces Dios dice:</p>
+  <div class="verse">
+    “Andaré y volveré a mi lugar, hasta que reconozcan su pecado y busquen mi rostro. En su angustia me buscarán”.
+    <span class="ref">Oseas 5:15</span>
+  </div>
+
+  <p class="plain">La respuesta del pueblo parece perfecta:</p>
+  <div class="verse">
+    “Venid y volvamos a Jehová; porque él arrebató, y nos curará; hirió, y nos vendará”.
+    <span class="ref">Oseas 6:1</span>
+  </div>
+  <div class="verse">
+    “Y conoceremos, y proseguiremos en conocer a Jehová; como el alba está dispuesta su salida, y vendrá a nosotros como la lluvia, como la lluvia tardía y temprana a la tierra”.
+    <span class="ref">Oseas 6:3</span>
+  </div>
+  <div class="greek"><strong>נִרְדְּפָה (nirdefá)</strong> — "proseguiremos", del verbo <strong>radaf</strong>: perseguir, ir detrás de algo con todas las fuerzas. Es el mismo verbo que se usa para perseguir a un enemigo. El pueblo prometía ir tras Dios con esa intensidad.</div>
+
+  <p class="plain"><strong>La sorpresa:</strong> cualquiera diría "¡qué avivamiento!". Pero en el versículo 4 el diagnóstico de Dios es demoledor. Las palabras eran hermosas; el corazón no había cambiado. Querían los beneficios de Dios, no al Dios del pacto.</p>
+
+  <div class="key-line">Dijeron "proseguiremos"… pero no prosiguieron de verdad. Hoy vamos a ver cómo es una búsqueda falsa, qué pasa con una fe que se evapora, y qué es lo que Dios realmente quiere de nosotros.</div>
+</section>
+
+<section id="punto1">
+  <div class="section-label">Punto 1 de 3 · Oseas 6:1-3 · ~9 min</div>
+  <h2 class="point-title"><span>1.</span>Palabras vacías</h2>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Alivio sin arrepentimiento</h3>
+    <p>En los versículos 1 al 3 no se menciona ni un solo pecado. El pueblo habla de la herida, pero no de la causa. Buscaban sanidad para la crisis, no santidad.</p>
+    <div class="verse">
+      “Porque la tristeza que es según Dios produce arrepentimiento para salvación, de que no hay que arrepentirse; pero la tristeza del mundo produce muerte”.
+      <span class="ref">2 Corintios 7:10</span>
+    </div>
+    <div class="key-line">El <strong>remordimiento</strong> lamenta las consecuencias. El <strong>arrepentimiento</strong> abandona el pecado.</div>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Perdón automático</h3>
+    <div class="verse">
+      “Nos dará vida después de dos días; en el tercer día nos resucitará, y viviremos delante de él”.
+      <span class="ref">Oseas 6:2</span>
+    </div>
+    <p>Daban por hecho un perdón rápido, sin cambio de vida. Dios denuncia lo mismo en Judá:</p>
+    <div class="verse">
+      “…no se volvió a mí de todo corazón, sino fingidamente, dice Jehová”.
+      <span class="ref">Jeremías 3:10</span>
+    </div>
+    <p>Dietrich Bonhoeffer lo llamó <strong>"gracia barata"</strong>: perdón sin arrepentimiento, comunión sin confesión <em>(El precio de la gracia)</em>.</p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    Como servidores, conocemos el lenguaje correcto mejor que nadie. ¿Buscamos a Dios solo cuando las papas queman, o lo buscamos por quién es Él? Debemos preguntarnos si nuestras oraciones de crisis vienen acompañadas de un cambio real.
+  </div>
+</section>
+
+<section id="punto2">
+  <div class="section-label">Punto 2 de 3 · Oseas 6:4-5 · ~9 min</div>
+  <h2 class="point-title"><span>2.</span>Fe de rocío</h2>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>La nube y el rocío</h3>
+    <div class="verse">
+      “¿Qué haré a ti, Efraín? ¿Qué haré a ti, oh Judá? La piedad vuestra es como nube de la mañana, y como el rocío de la madrugada, que se desvanece”.
+      <span class="ref">Oseas 6:4</span>
+    </div>
+    <div class="greek"><strong>טַל (tal)</strong> — rocío. En el verano seco de Israel, la niebla de la mañana promete frescura, pero desaparece con el primer sol sin mojar la tierra.</div>
+    <div class="greek"><strong>חֶסֶד (jésed)</strong> — "piedad" en este versículo: amor leal, fidelidad al pacto. El jésed del pueblo no llegaba al mediodía.</div>
+    <p>"¿Qué haré a ti?" es el dolor de un Padre, no solo el enojo de un juez <em>(comparar Oseas 11:8)</em>.</p>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>La Palabra que corta</h3>
+    <div class="verse">
+      “Por esta causa los corté por medio de los profetas, con las palabras de mi boca los maté; y tus juicios serán como luz que sale”.
+      <span class="ref">Oseas 6:5</span>
+    </div>
+    <p>Ante una devoción superficial, Dios no manda palabras que acaricien: manda una Palabra que corta.</p>
+    <p><em>Conexión (no está en Oseas en estas palabras):</em> Hebreos 4:12 describe la Palabra como más cortante que toda espada de dos filos.</p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    La fe real se mide por la constancia, no por la emoción. Todos corremos el riesgo de ser cristianos de rocío: encendidos en el campamento, quebrantados en el altar… y apagados el lunes ante la primera tentación.<br><br>
+    ¿Nuestra consagración del domingo sigue en pie el lunes a la tarde? Necesitamos raíces que aguanten el calor del día a día.
+  </div>
+</section>
+
+<section id="punto3">
+  <div class="section-label">Punto 3 de 3 · Oseas 6:6 · ~10 min</div>
+  <h2 class="point-title"><span>3.</span>Lo que Dios quiere</h2>
+  <div class="verse">
+    “Porque misericordia quiero, y no sacrificio, y conocimiento de Dios más que holocaustos”.
+    <span class="ref">Oseas 6:6</span>
+  </div>
+  <p class="plain">Dios no anulaba los sacrificios que Él mismo ordenó: denunciaba el culto separado de la vida. El pueblo iba al altar sin que su vida cambiara:</p>
+  <div class="verse">
+    “…porque no hay verdad, ni misericordia, ni conocimiento de Dios en la tierra. Perjurar, mentir, matar, hurtar y adulterar prevalecen…”
+    <span class="ref">Oseas 4:1-2</span>
+  </div>
+
+  <article class="sub">
+    <h3><span class="letter">a)</span>Jésed: amor leal</h3>
+    <div class="greek"><strong>חֶסֶד (jésed)</strong> — la <strong>misma palabra</strong> del versículo 4. El jésed del pueblo se evaporaba; Dios pide un jésed que permanezca. No pide más actividad: pide fidelidad.</div>
+    <div class="verse">
+      “Ciertamente el obedecer es mejor que los sacrificios”.
+      <span class="ref">1 Samuel 15:22</span>
+    </div>
+  </article>
+
+  <article class="sub">
+    <h3><span class="letter">b)</span>Dáat: conocer a Dios</h3>
+    <div class="greek"><strong>דַּעַת (dáat)</strong> — conocimiento relacional, no solo intelectual. Viene del verbo <strong>yadá</strong>, usado para el vínculo más íntimo <em>(Génesis 4:1)</em>.</div>
+    <p><strong>La clave del título:</strong> en el v. 3 el pueblo prometió <em>"conoceremos, y proseguiremos en conocer a Jehová"</em>. En el v. 6 Dios responde que eso es justamente lo que quiere: <em>"conocimiento de Dios"</em>. Es la misma raíz. Dios les reclama lo mismo que ellos prometieron. Las palabras eran correctas; faltaba cumplirlas.</p>
+    <div class="verse">
+      “Id, pues, y aprended lo que significa: Misericordia quiero, y no sacrificio”.
+      <span class="ref">Mateo 9:13 · ver también 12:7</span>
+    </div>
+    <p>Jesús se lo cita a los fariseos: se puede ser un experto impecable en las reglas y estar vacío del amor de Dios.</p>
+  </article>
+
+  <div class="application">
+    <div class="box-label">→ Aplicación</div>
+    Dios no se impresiona con nuestro activismo si nuestras relaciones están rotas o si guardamos rencor. Servir mucho no reemplaza obedecer.<br><br>
+    Como líderes, ¿estamos ofreciendo sacrificios de servicio para no tener que entregarle el corazón? Debemos volver a conocerlo, no solo a servirlo.
+  </div>
+</section>
+
+<section id="conclusion">
+  <div class="section-label">Conclusión · ~3 min</div>
+  <p class="plain">El pueblo de Oseas confundió:</p>
+  <p class="plain"><strong>1.</strong> el remordimiento con el arrepentimiento,<br>
+  <strong>2.</strong> la emoción con la entrega,<br>
+  <strong>3.</strong> el ritual con la relación.</p>
+  <p class="plain">Sus labios decían "proseguiremos", pero sus vidas caminaban en reversa.</p>
+  <div class="verse">
+    “…este pueblo se acerca a mí con su boca, y con sus labios me honra, pero su corazón está lejos de mí…”
+    <span class="ref">Isaías 29:13</span>
+  </div>
+  <div class="key-line">El llamado no es a dejar de venir ni de servir: es a que nuestro corazón coincida con nuestras canciones.</div>
+</section>
+
+<section id="llamado">
+  <div class="section-label">Llamado final · ~4 min</div>
+  <div class="call">
+    <div class="box-label">→ Para llevar</div>
+    Dios sigue haciendo la pregunta del versículo 4: <em>"¿Qué haré a ti?"</em><br><br>
+    Hoy necesitamos dejar de buscar a Dios como alivio rápido para la crisis. Nos toca reconocer nuestro pecado sin excusas y rendirle la vida entera, confiando en que su fidelidad no se evapora como la nuestra.
+  </div>
+  <div class="verse">
+    “Por la misericordia de Jehová no hemos sido consumidos, porque nunca decayeron sus misericordias. Nuevas son cada mañana; grande es tu fidelidad”.
+    <span class="ref">Lamentaciones 3:22-23</span>
+  </div>
+  <div class="key-line">Ellos dijeron <em>"proseguiremos en conocer a Jehová"</em> y se evaporaron. Nos toca a nosotros ir tras Dios con esa misma intensidad, pero no solo con los labios: con la vida.<br><br><strong>Proseguir de verdad.</strong></div>
+</section>
+</main>
+
+<script>
+  const sections = [...document.querySelectorAll("section[id]")];
+  const links = [...document.querySelectorAll("nav a")];
+  const updateNav = () => {
+    let current = sections[0].id;
+    for (const section of sections) {
+      if (window.scrollY >= section.offsetTop - 110) current = section.id;
+    }
+    for (const link of links) {
+      link.classList.toggle("active", link.hash === `#${current}`);
+    }
+  };
+  addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+</script>
+</body>
+</html>
