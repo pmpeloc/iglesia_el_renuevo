@@ -63,12 +63,24 @@ Cómo lo resuelve el prototipo:
 - Nombres, iglesias, textos y fotos de los 18 matrimonios pastorales (se usaron los 18 departamentos de Mendoza).
 - El QR del cartel es decorativo.
 
+## Versión real — stack y decisiones (12/10/2026)
+
+Stack: **Next.js en Vercel Hobby** + **Supabase Free** (Postgres, Auth y Storage).
+
+| Tema | Decisión |
+|---|---|
+| Apuntes | Solo en el celular (localStorage) + botón "Compartir". Nunca pasan por el servidor. |
+| Identidad del asistente | Ingreso anónimo de Supabase + nombre e iglesia. No hay acceso a la lista de inscriptos. |
+| Cierre de confirmaciones | 20:00 (hora de Mendoza) del día anterior, controlado por la base (RLS). |
+| Escala | ~200 asistentes y ~50 de cocina/organización. Menú por consulta periódica, sin Realtime (límite de 200 conexiones). |
+| Supabase | Plan gratis. Un cron diario de Vercel lo consulta para que no se pause. |
+| Dominio | Gratuito de Vercel (`*.vercel.app`). Ese es el link del QR. |
+| Fotos de pastores | Consentimiento confirmado. Bucket público, escritura solo staff. |
+
 ## Pendiente para la versión real
 
-- Las confirmaciones de comida necesitan una base compartida (ej. Supabase) para que cocina sume las de todos: los asistentes no tienen cuenta de Claude y el link debe ser público.
+- Plazo para borrar nombres y confirmaciones después del evento (propuesta: 30 días).
+- Quiénes de los 50 entran al panel y con qué rol (cocina u organización).
 - Logos vectoriales (los SVG de Canva traen las texturas como imágenes).
-
-- Base de datos compartida, para que cocina edite y todos vean el cambio al instante (hoy el prototipo guarda en el navegador).
-- Clave o acceso restringido al panel de cocina.
 - QR real apuntando al link definitivo.
-- Preguntas para los organizadores: qué comidas hay por día (¿desayuno, merienda?), opciones sin TACC o vegetarianas, si confirman que la bienvenida va toda junta.
+- Preguntas para los organizadores: qué comidas hay por día (¿desayuno, merienda?), opciones sin TACC o vegetarianas.
