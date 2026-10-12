@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 verdades que cambiaron el mundo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&family=Cormorant+Garamond:ital,wght@1,600&family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --orange: #E8521A;
+    --gold: #F2C14E;
+    --cream: #FFF4E2;
+    --ink: #0b0908;
+    --green: #5DBE2C;
+    --f-sans: 'Montserrat', Arial, sans-serif;
+    --f-serif: 'Cormorant Garamond', Georgia, serif;
+    --f-greek: 'Noto Serif Display', Georgia, serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; cursor: none; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--ink); }
+.slide { position: absolute; inset: 0; overflow: hidden; visibility: hidden; opacity: 0; transition: opacity .7s ease, visibility 0s .7s; background: var(--ink); color: var(--cream); font-family: var(--f-sans); }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .7s ease; z-index: 1; }
+
+/* Fondo ilustrado con zoom lento (Ken Burns) */
+.bg { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.02); }
+.slide.active .bg { animation: kb 18s ease-out forwards; }
+@keyframes kb { to { transform: scale(1.1); } }
+.bg.dim { filter: brightness(.32) blur(3px); }
+.bg.dim.deep { filter: brightness(.5) blur(10px) saturate(.9); }
+.shade { position: absolute; inset: 0; }
+.shade.left   { background: linear-gradient(90deg, rgba(8,6,5,.94) 0%, rgba(8,6,5,.82) 38%, rgba(8,6,5,.15) 68%, rgba(8,6,5,0) 100%); }
+.shade.right  { background: linear-gradient(270deg, rgba(8,6,5,.94) 0%, rgba(8,6,5,.82) 38%, rgba(8,6,5,.15) 68%, rgba(8,6,5,0) 100%); }
+.shade.bottom { background: linear-gradient(0deg, rgba(8,6,5,.95) 0%, rgba(8,6,5,.7) 35%, rgba(8,6,5,0) 65%); }
+.shade.full   { background: rgba(8,6,5,.55); }
+
+/* Bloques de texto */
+.content { position: absolute; top: 140px; bottom: 90px; display: flex; flex-direction: column; justify-content: center; gap: 30px; }
+.content.l { left: 110px; width: 900px; }
+.content.r { right: 110px; width: 900px; }
+.content.c { left: 160px; right: 160px; align-items: center; text-align: center; }
+.content.b { left: 110px; right: 110px; top: auto; bottom: 110px; }
+.slide.active .content > * { animation: up .9s var(--ease) both; }
+.slide.active .content > *:nth-child(2) { animation-delay: .15s; }
+.slide.active .content > *:nth-child(3) { animation-delay: .3s; }
+.slide.active .content > *:nth-child(4) { animation-delay: .45s; }
+@keyframes up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+
+.kicker { color: var(--orange); font: 700 38px/1.1 var(--f-sans); letter-spacing: .14em; text-transform: uppercase; }
+.title { font: 900 112px/1 var(--f-sans); letter-spacing: -.02em; text-shadow: 0 6px 40px rgba(0,0,0,.6); }
+.title em { font-style: normal; color: var(--orange); }
+.sub { color: var(--gold); font: 700 64px/1.15 var(--f-sans); }
+.body { font: 500 54px/1.3 var(--f-sans); text-shadow: 0 3px 20px rgba(0,0,0,.7); }
+.body b { color: var(--gold); font-weight: 900; }
+.big-date { font: 900 230px/.9 var(--f-sans); color: var(--orange); letter-spacing: -.03em; }
+
+/* Barra superior: en qué sola estamos */
+.topbar { position: absolute; z-index: 5; left: 0; right: 0; top: 0; height: 92px; display: flex; align-items: center; justify-content: space-between; padding: 0 70px; background: linear-gradient(180deg, rgba(0,0,0,.75), rgba(0,0,0,0)); font: 700 32px/1 var(--f-sans); letter-spacing: .1em; color: rgba(255,244,226,.9); pointer-events: none; transition: opacity .5s; }
+.topbar.hide { opacity: 0; }
+.dots { display: flex; gap: 18px; }
+.dots span { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; border: 3px solid rgba(255,244,226,.55); font: 900 30px/1 var(--f-sans); color: rgba(255,244,226,.85); transition: all .5s var(--ease); }
+.dots span.done { border-color: var(--orange); color: var(--orange); }
+.dots span.on { background: var(--orange); border-color: var(--orange); color: #fff; transform: scale(1.18); }
+
+/* Portada de cada sola */
+.sola-num { position: absolute; right: 90px; top: 50%; transform: translateY(-50%); font: 900 760px/1 var(--f-sans); color: rgba(232,82,26,.3); text-shadow: 0 0 80px rgba(232,82,26,.35); }
+.slide.active .sola-num { animation: num 1.4s var(--ease) both; }
+@keyframes num { from { opacity: 0; transform: translateY(-50%) scale(.85); } to { opacity: 1; transform: translateY(-50%) scale(1); } }
+.qbox { border-left: 12px solid var(--gold); padding: 10px 0 10px 36px; }
+.qbox .lbl { color: var(--gold); font: 700 36px/1.2 var(--f-sans); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 10px; }
+.qbox .q { font: 900 76px/1.1 var(--f-sans); }
+
+/* Etiquetas antes / qué pasó */
+.tag { display: inline-flex; align-self: flex-start; gap: 16px; align-items: center; padding: 14px 28px; border-radius: 999px; font: 900 38px/1 var(--f-sans); letter-spacing: .06em; text-transform: uppercase; }
+.tag.antes { background: rgba(255,244,226,.12); border: 3px solid rgba(255,244,226,.6); }
+.tag.paso { background: var(--orange); color: #fff; }
+.place { font: 900 84px/1.05 var(--f-sans); }
+.place small { display: block; color: var(--gold); font-size: 52px; margin-top: 8px; }
+
+/* Versículo */
+.verse { font: 600 italic 76px/1.2 var(--f-serif); color: var(--cream); text-shadow: 0 4px 30px rgba(0,0,0,.8); max-width: 1500px; }
+.verse::before { content: "“"; color: var(--orange); }
+.verse::after { content: "”"; color: var(--orange); }
+.ref { font: 900 44px/1 var(--f-sans); color: var(--orange); letter-spacing: .12em; text-transform: uppercase; }
+
+/* Palabra griega */
+.greek { font: 700 170px/1 var(--f-greek); color: var(--gold); text-shadow: 0 0 60px rgba(242,193,78,.35); }
+.translit { font: 700 56px/1 var(--f-sans); letter-spacing: .1em; color: rgba(255,244,226,.9); }
+.meaning { font: 900 80px/1.1 var(--f-sans); }
+.mural { margin-top: 20px; padding: 30px 48px; border: 4px dashed rgba(255,244,226,.7); border-radius: 22px; font: 700 56px/1.25 var(--f-sans); background: rgba(255,244,226,.06); }
+.mural .lbl { display: block; color: var(--orange); font-size: 36px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+
+/* Pregunta para pensar */
+.think .lbl { color: var(--green); font: 900 40px/1 var(--f-sans); letter-spacing: .14em; text-transform: uppercase; }
+.think .q { font: 900 84px/1.15 var(--f-sans); }
+
+/* Regalo vs sueldo / repaso */
+.versus { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 1500px; }
+.versus div { padding: 50px; border-radius: 28px; text-align: left; }
+.versus .no { background: rgba(12,10,8,.82); border: 3px solid rgba(255,244,226,.35); }
+.versus .si { background: rgba(60,20,6,.85); border: 3px solid var(--orange); }
+.versus h3 { font: 900 80px/1 var(--f-sans); margin-bottom: 24px; }
+.versus .no h3 { text-decoration: line-through; text-decoration-color: var(--orange); text-decoration-thickness: 8px; }
+.versus p { font: 500 50px/1.3 var(--f-sans); }
+.recap { display: grid; gap: 22px; width: 1560px; }
+.recap div { display: grid; grid-template-columns: 90px 1fr 1fr; align-items: center; gap: 30px; padding: 18px 34px; border-radius: 20px; background: rgba(255,255,255,.07); text-align: left; }
+.recap .n { font: 900 64px/1 var(--f-sans); color: var(--orange); }
+.recap .qq { font: 700 46px/1.2 var(--f-sans); color: rgba(255,244,226,.9); }
+.recap .aa { font: 900 54px/1.1 var(--f-sans); color: var(--gold); }
+.slide.active .recap > div { animation: up .8s var(--ease) both; }
+.slide.active .recap > div:nth-child(2) { animation-delay: .2s; }
+.slide.active .recap > div:nth-child(3) { animation-delay: .4s; }
+.slide.active .recap > div:nth-child(4) { animation-delay: .6s; }
+.slide.active .recap > div:nth-child(5) { animation-delay: .8s; }
+.logos { position: absolute; right: 70px; bottom: 50px; display: flex; gap: 30px; align-items: center; }
+.logos { padding: 16px 26px; background: rgba(255,255,255,.92); border-radius: 18px; }
+.logos img { height: 100px; }
+.notes { display: none; }
+.progress { position: fixed; left: 0; bottom: 0; height: 6px; background: var(--orange); z-index: 1000; transition: width .5s var(--ease); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<div class="topbar" id="topbar">
+  <div>LAS 5 SOLAS · ¿QUÉ SIGNIFICAN?</div>
+  <div class="dots" id="dots"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+</div>
+
+<!-- ============ INTRO ============ -->
+<section class="slide" data-sola="0" data-nobar>
+  <div class="bg" style="background-image:url(img/01_puerta.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="kicker">Encuentro 1 · ¿Qué significan?</div>
+    <div class="title">5 verdades<br>que <em>cambiaron</em><br>el mundo</div>
+  </div>
+  <div class="logos"><img src="img/logo_vastagos.png" alt="Vástagos"><img src="img/logo_raices.png" alt="Raíces"></div>
+  <aside class="notes"><h3>Introducción · La puerta (≈3 min)</h3><p>Las 5 Solas · Encuentro 1 de 3 · Texto base: Efesios 2:8-9</p><p>Mostramos la imagen de la puerta con el papel clavado.</p></aside>
+</section>
+
+<section class="slide" data-sola="0" data-nobar>
+  <div class="bg" style="background-image:url(img/01_puerta.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="title" style="font-size:96px">La iglesia no siempre fue como hoy la conocemos.</div>
+  </div>
+  <aside class="notes"><p><strong>"La iglesia no siempre fue como hoy la conocemos."</strong></p><p><em>Hablamos de "la iglesia de ese tiempo", sin burla: puede haber chicos de familias católicas.</em></p></aside>
+</section>
+
+<section class="slide" data-sola="0" data-nobar>
+  <div class="bg" style="background-image:url(img/01_puerta.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="kicker">Wittenberg, Alemania</div>
+    <div class="big-date">31·10<br>1517</div>
+    <div class="body">Martín Lutero publica <b>95 tesis</b>. Empieza la <b>Reforma</b>.</div>
+  </div>
+  <aside class="notes"><p><strong>31 de octubre de 1517</strong>: Martín Lutero, un monje, publica 95 tesis contra lo que enseñaba la iglesia de su tiempo. Ahí empieza la Reforma.</p></aside>
+</section>
+
+<section class="slide" data-sola="0">
+  <div class="bg dim deep" style="background-image:url(img/01_puerta.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="kicker">Volvieron a la Biblia y encontraron</div>
+    <div class="title" style="font-size:100px">5 verdades,<br><em>una por una y en orden</em></div>
+  </div>
+  <aside class="notes"><p>Los reformadores volvieron a la Biblia y encontraron 5 verdades. Hoy las vemos <strong>una por una y en orden</strong>.</p></aside>
+</section>
+
+<!-- ============ SOLA 1 ============ -->
+<section class="slide" data-sola="1">
+  <div class="bg dim" style="background-image:url(img/02_biblia_encadenada.jpg)"></div>
+  <div class="sola-num">1</div>
+  <div class="content l">
+    <div class="title">Solo la<br><em>Escritura</em></div>
+    <div class="qbox"><div class="lbl">Pregunta guía</div><div class="q">¿Quién tiene la última palabra?</div></div>
+  </div>
+  <aside class="notes"><h3>Sola 1 · Solo la Escritura (≈5 min)</h3><p><strong>Pregunta guía:</strong> ¿Quién tiene la última palabra?</p></aside>
+</section>
+
+<section class="slide" data-sola="1">
+  <div class="bg" style="background-image:url(img/02_biblia_encadenada.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag antes">⏳ Antes</div>
+    <div class="body">La última palabra la tenían <b>el Papa y la tradición</b>.</div>
+    <div class="body">La Biblia estaba en <b>latín</b>: nadie podía comprobar nada.</div>
+  </div>
+  <aside class="notes"><h3>1. ¿Cómo funcionaba antes?</h3><p>La última palabra la tenían <strong>el Papa y la tradición</strong>. Y la gente no podía comprobar si era bíblico: la Biblia estaba en <strong>latín</strong> y casi nadie la tenía.</p></aside>
+</section>
+
+<section class="slide" data-sola="1">
+  <div class="bg" style="background-image:url(img/03_worms.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag paso">🔗 Qué pasó</div>
+    <div class="place">Worms<small>1521 · Lutero ante el emperador</small></div>
+    <div class="body">"Mi conciencia está <b>cautiva de la Palabra de Dios</b>."</div>
+  </div>
+  <aside class="notes"><h3>2. ¿Qué se descubrió?</h3><p><strong>🔗 Qué pasó · Worms, 1521</strong></p><p>Llevan a Lutero ante el emperador para que se retracte. Responde (resumen, no cita textual) que si no lo convencen con la Escritura, no puede: su conciencia está <strong>"cautiva de la Palabra de Dios"</strong>.</p></aside>
+</section>
+
+<section class="slide" data-sola="1">
+  <div class="bg dim" style="background-image:url(img/03_worms.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="verse">Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia, a fin de que el hombre de Dios sea perfecto, enteramente preparado para toda buena obra.</div>
+    <div class="ref">2 Timoteo 3:16-17 · RVR1960</div>
+  </div>
+  <aside class="notes"><p>"Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia, a fin de que el hombre de Dios sea perfecto, enteramente preparado para toda buena obra."</p><p><strong>2 Timoteo 3:16-17 · RVR1960</strong></p></aside>
+</section>
+
+<section class="slide" data-sola="1">
+  <div class="bg dim deep" style="background-image:url(img/03_worms.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="greek">θεόπνευστος</div>
+    <div class="translit">THEÓPNEUSTOS</div>
+    <div class="meaning">"Soplada por Dios"</div>
+  </div>
+  <aside class="notes"><p><strong>θεόπνευστος (theópneustos)</strong>: "soplada por Dios". Si salió de Dios, está por encima de cualquier persona.</p></aside>
+</section>
+
+<section class="slide" data-sola="1">
+  <div class="bg" style="background-image:url(img/04_wartburg.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="kicker">Si la Biblia es la autoridad…</div>
+    <div class="title" style="font-size:84px">todos tienen que poder <em>leerla</em></div>
+    <div class="body"><b>1522</b> · Lutero la traduce al alemán<br><b>1569</b> · llega al español: la Biblia del Oso</div>
+  </div>
+  <aside class="notes"><p><strong>La consecuencia:</strong> si la Biblia es la autoridad, todos tienen que poder leerla. Lutero la traduce al alemán en Wartburg (NT, 1522), y en 1569 llega al español: la <strong>Biblia del Oso</strong> (Casiodoro de Reina).</p><p><strong>Ilustración, el VAR:</strong> todos opinan, pero cuando hay duda se va al VAR y eso define.</p></aside>
+</section>
+
+<section class="slide" data-sola="1">
+  <div class="bg dim deep" style="background-image:url(img/04_wartburg.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="mural"><span class="lbl">✏️ Para el mural</span>"La Biblia tiene la última palabra."</div>
+    <div class="think" style="margin-top:50px"><div class="lbl">Para pensar</div><div class="q">¿La Biblia es nuestra última palabra… o una opinión más?</div></div>
+  </div>
+  <aside class="notes"><p>✏️ <strong>Mural:</strong> "La Biblia tiene la última palabra."</p><p><strong>Aplicación:</strong> Muchas veces decimos que creemos en la Biblia, pero decidimos según lo que opinan los demás o lo que sentimos. ¿La Biblia es de verdad nuestra última palabra, o es una opinión más?</p></aside>
+</section>
+
+<!-- ============ SOLA 2 ============ -->
+<section class="slide" data-sola="2">
+  <div class="bg dim" style="background-image:url(img/05_intermediarios.jpg)"></div>
+  <div class="sola-num">2</div>
+  <div class="content l">
+    <div class="title">Solo<br><em>Cristo</em></div>
+    <div class="qbox"><div class="lbl">Pregunta guía</div><div class="q">¿Cómo llegamos a Dios?</div></div>
+  </div>
+  <aside class="notes"><h3>Sola 2 · Solo Cristo (≈5 min)</h3><p><strong>Pregunta guía:</strong> ¿Cómo llegamos a Dios?</p></aside>
+</section>
+
+<section class="slide" data-sola="2">
+  <div class="bg" style="background-image:url(img/05_intermediarios.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag antes">⏳ Antes</div>
+    <div class="body">A través de <b>intermediarios</b>: el sacerdote, los santos, María.</div>
+    <div class="body">Nadie se acercaba a Dios <b>directamente</b>.</div>
+  </div>
+  <aside class="notes"><h3>1. ¿Cómo funcionaba antes?</h3><p>A través de <strong>intermediarios</strong>: el sacerdote para el perdón; los santos y María para que intercedieran. Uno no se acercaba a Dios directamente.</p></aside>
+</section>
+
+<section class="slide" data-sola="2">
+  <div class="bg" style="background-image:url(img/06_puente.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag paso">🔗 Qué pasó</div>
+    <div class="place">Zúrich<small>1519–1523 · Ulrico Zuinglio</small></div>
+    <div class="body">Predica la Biblia de corrido y enseña: <b>Cristo es el único mediador</b>.</div>
+  </div>
+  <aside class="notes"><h3>2. ¿Qué se descubrió?</h3><p><strong>🔗 Qué pasó · Zúrich, 1519–1523</strong></p><p>Ulrico Zuinglio empieza a predicar la Biblia de corrido, desde Mateo. En 1523, en sus 67 artículos, enseña públicamente que <strong>Cristo es el único mediador</strong>.</p></aside>
+</section>
+
+<section class="slide" data-sola="2">
+  <div class="bg dim" style="background-image:url(img/06_puente.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="verse" style="font-size:92px">Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre.</div>
+    <div class="ref">1 Timoteo 2:5 · RVR1960</div>
+  </div>
+  <aside class="notes"><p>"Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre."</p><p><strong>1 Timoteo 2:5 · RVR1960</strong></p></aside>
+</section>
+
+<section class="slide" data-sola="2">
+  <div class="bg dim deep" style="background-image:url(img/06_puente.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="greek">μεσίτης</div>
+    <div class="translit">MESÍTĒS</div>
+    <div class="meaning">"Mediador": el que une<br>a dos partes separadas</div>
+  </div>
+  <aside class="notes"><p><strong>μεσίτης (mesítēs)</strong>: "mediador", el que se pone en el medio para unir a dos partes separadas. Hay <strong>uno solo</strong>.</p><p>Si Jesús es el puente, cualquier creyente puede ir a Dios por medio de Él. Sin intermediarios humanos.</p></aside>
+</section>
+
+<section class="slide" data-sola="2">
+  <div class="bg dim deep" style="background-image:url(img/06_puente.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="mural"><span class="lbl">✏️ Para el mural</span>"Solo Jesús nos lleva a Dios."</div>
+    <div class="think" style="margin-top:50px"><div class="lbl">Para pensar</div><div class="q">¿Nos acercamos a Dios por nosotros mismos… o dependemos de que otro ore por nosotros?</div></div>
+  </div>
+  <aside class="notes"><p>✏️ <strong>Mural:</strong> "Solo Jesús nos lleva a Dios."</p><p><strong>Aplicación:</strong> Tenemos acceso directo a Dios por Jesús… y a veces lo usamos menos que cualquier otra cosa. ¿Nos acercamos a Dios por nosotros mismos, o dependemos de que otro ore por nosotros?</p></aside>
+</section>
+
+<!-- ============ SOLA 3 ============ -->
+<section class="slide" data-sola="3">
+  <div class="bg dim" style="background-image:url(img/07_indulgencias.jpg)"></div>
+  <div class="sola-num">3</div>
+  <div class="content l">
+    <div class="title">Solo por<br><em>gracia</em></div>
+    <div class="qbox"><div class="lbl">Pregunta guía</div><div class="q">¿De dónde viene la salvación?</div></div>
+  </div>
+  <aside class="notes"><h3>Sola 3 · Solo por gracia (≈5 min)</h3><p><strong>Pregunta guía:</strong> ¿De dónde viene la salvación?</p></aside>
+</section>
+
+<section class="slide" data-sola="3">
+  <div class="bg" style="background-image:url(img/07_indulgencias.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag antes">⏳ Antes</div>
+    <div class="body">De nuestros <b>méritos</b>: penitencias, peregrinaciones…</div>
+    <div class="body">Y hasta se <b>pagaba</b>: Tetzel vendía <b>indulgencias</b>.</div>
+  </div>
+  <aside class="notes"><h3>1. ¿Cómo funcionaba antes?</h3><p>En parte, de <strong>nuestros méritos</strong>: penitencias, peregrinaciones, buenas obras. Y hasta se podía <strong>pagar</strong>: Johann Tetzel vendía <strong>indulgencias</strong>, papeles que prometían reducir el castigo de los pecados.</p></aside>
+</section>
+
+<section class="slide" data-sola="3">
+  <div class="bg" style="background-image:url(img/01_puerta.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag paso">🔗 Qué pasó</div>
+    <div class="place">31·10·1517<small>Las 95 tesis</small></div>
+    <div class="body">Apuntan contra la venta de indulgencias: <b>la salvación no se compra</b>.</div>
+  </div>
+  <aside class="notes"><h3>2. ¿Qué se descubrió?</h3><p><strong>🔗 Qué pasó · 31/10/1517</strong></p><p>Las 95 tesis de Lutero apuntan justamente contra la venta de indulgencias. <strong>La salvación no se compra.</strong></p></aside>
+</section>
+
+<section class="slide" data-sola="3">
+  <div class="bg dim" style="background-image:url(img/08_regalo.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="verse" style="font-size:88px">Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe.</div>
+    <div class="ref">Efesios 2:8-9 · RVR1960</div>
+  </div>
+  <aside class="notes"><p>"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe."</p><p><strong>Efesios 2:8-9 · RVR1960 · Texto base</strong></p></aside>
+</section>
+
+<section class="slide" data-sola="3">
+  <div class="bg dim deep" style="background-image:url(img/08_regalo.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="greek">χάρις</div>
+    <div class="translit">CHÁRIS</div>
+    <div class="meaning">"Favor que no merecemos"</div>
+  </div>
+  <aside class="notes"><p><strong>χάρις (cháris)</strong>: "favor que no merecemos". La salvación viene de Dios como un <strong>regalo</strong>.</p></aside>
+</section>
+
+<section class="slide" data-sola="3">
+  <div class="bg" style="background-image:url(img/08_regalo.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="versus">
+      <div class="no"><h3>Sueldo</h3><p>Se cobra porque trabajaste.</p></div>
+      <div class="si"><h3>Regalo</h3><p>Se recibe porque alguien te ama.</p></div>
+    </div>
+  </div>
+  <aside class="notes"><p><strong>Ilustración:</strong> un sueldo se cobra porque trabajaste; un regalo se recibe porque alguien te ama. La salvación no es un sueldo.</p></aside>
+</section>
+
+<section class="slide" data-sola="3">
+  <div class="bg dim deep" style="background-image:url(img/08_regalo.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="mural"><span class="lbl">✏️ Para el mural</span>"Dios nos salva porque nos ama,<br>no porque lo merezcamos."</div>
+    <div class="think" style="margin-top:50px"><div class="lbl">Para pensar</div><div class="q">¿Vivimos la salvación como un regalo… o todavía intentamos ganárnosla?</div></div>
+  </div>
+  <aside class="notes"><p>✏️ <strong>Mural:</strong> "Dios nos salva porque nos ama, no porque lo merezcamos."</p><p><strong>Aplicación:</strong> Hoy nadie vende indulgencias, pero seguimos queriendo "pagar": portarnos bien para que Dios nos quiera más. ¿Vivimos la salvación como un regalo, o todavía intentamos ganárnosla?</p></aside>
+</section>
+
+<!-- ============ SOLA 4 ============ -->
+<section class="slide" data-sola="4">
+  <div class="bg dim" style="background-image:url(img/09_miedo.jpg)"></div>
+  <div class="sola-num">4</div>
+  <div class="content l">
+    <div class="title">Solo por<br><em>fe</em></div>
+    <div class="qbox"><div class="lbl">Pregunta guía</div><div class="q">¿Cómo recibimos la salvación?</div></div>
+  </div>
+  <aside class="notes"><h3>Sola 4 · Solo por fe (≈5 min)</h3><p><strong>Pregunta guía:</strong> ¿Cómo recibimos la salvación?</p></aside>
+</section>
+
+<section class="slide" data-sola="4">
+  <div class="bg" style="background-image:url(img/09_miedo.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag antes">⏳ Antes</div>
+    <div class="body">Fe <b>más</b> obras y ritos: nadie sabía si alcanzaba.</div>
+    <div class="body">Lutero, monje ejemplar, vivía <b>aterrado de Dios</b>.</div>
+  </div>
+  <aside class="notes"><h3>1. ¿Cómo funcionaba antes?</h3><p>Con fe <strong>más</strong> obras y ritos, así que nadie sabía si había hecho lo suficiente. Lutero era un monje ejemplar, se confesaba durante horas… y aun así vivía <strong>aterrado de Dios</strong>.</p></aside>
+</section>
+
+<section class="slide" data-sola="4">
+  <div class="bg" style="background-image:url(img/10_torre.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag paso">🔗 Qué pasó</div>
+    <div class="place">Romanos 1:17<small>Lutero estudiando la carta</small></div>
+    <div class="body">"Mas el justo <b>por la fe</b> vivirá."</div>
+  </div>
+  <aside class="notes"><h3>2. ¿Qué se descubrió?</h3><p><strong>🔗 Qué pasó · Lutero estudiando Romanos</strong></p><p>Lee Romanos 1:17: <em>"Mas el justo por la fe vivirá."</em> Entiende que Dios declara justo al que <strong>confía en Cristo</strong>, no al que acumula obras.</p></aside>
+</section>
+
+<section class="slide" data-sola="4">
+  <div class="bg dim" style="background-image:url(img/10_torre.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="verse" style="font-size:92px">Justificados, pues, por la fe, tenemos paz para con Dios por medio de nuestro Señor Jesucristo.</div>
+    <div class="ref">Romanos 5:1 · RVR1960</div>
+  </div>
+  <aside class="notes"><p>"Justificados, pues, por la fe, tenemos paz para con Dios por medio de nuestro Señor Jesucristo."</p><p><strong>Romanos 5:1 · RVR1960</strong></p></aside>
+</section>
+
+<section class="slide" data-sola="4">
+  <div class="bg dim deep" style="background-image:url(img/10_torre.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="greek">πίστις</div>
+    <div class="translit">PÍSTIS</div>
+    <div class="meaning">"Confianza": apoyarse en alguien</div>
+  </div>
+  <aside class="notes"><p><strong>πίστις (pístis)</strong>: "confianza", apoyarse en alguien. El resultado es <strong>paz</strong>, lo contrario del miedo.</p></aside>
+</section>
+
+<section class="slide" data-sola="4">
+  <div class="bg" style="background-image:url(img/11_silla.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="body">Creer que la silla aguanta <b>no alcanza</b>.</div>
+    <div class="title" style="font-size:110px">Fe es<br><em>sentarse.</em></div>
+  </div>
+  <aside class="notes"><p><strong>Ilustración, la silla:</strong> creer que una silla aguanta no alcanza; fe es sentarse.</p></aside>
+</section>
+
+<section class="slide" data-sola="4">
+  <div class="bg dim deep" style="background-image:url(img/11_silla.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="mural"><span class="lbl">✏️ Para el mural</span>"Recibimos la salvación confiando en Jesús."</div>
+    <div class="think" style="margin-top:50px"><div class="lbl">Para pensar</div><div class="q">¿Vivimos con la paz de sabernos aceptados… o con miedo a no alcanzar?</div></div>
+  </div>
+  <aside class="notes"><p>✏️ <strong>Mural:</strong> "Recibimos la salvación confiando en Jesús."</p><p><strong>Aplicación:</strong> Podemos saber todo sobre Jesús y nunca habernos "sentado" en Él. ¿Vivimos con la paz de sabernos aceptados, o con el miedo de no alcanzar?</p></aside>
+</section>
+
+<!-- ============ SOLA 5 ============ -->
+<section class="slide" data-sola="5">
+  <div class="bg dim" style="background-image:url(img/12_oro.jpg)"></div>
+  <div class="sola-num">5</div>
+  <div class="content l">
+    <div class="title">Solo a Dios<br>la <em>gloria</em></div>
+    <div class="qbox"><div class="lbl">Pregunta guía</div><div class="q">¿Para quién es el aplauso?</div></div>
+  </div>
+  <aside class="notes"><h3>Sola 5 · Solo a Dios la gloria (≈5 min)</h3><p><strong>Pregunta guía:</strong> ¿Para quién es el aplauso?</p></aside>
+</section>
+
+<section class="slide" data-sola="5">
+  <div class="bg" style="background-image:url(img/12_oro.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag antes">⏳ Antes</div>
+    <div class="body">El aplauso <b>se repartía</b>: el hombre, la iglesia, los santos.</div>
+    <div class="body">Solo la vida de monjes era "santa". Trabajar o estudiar era <b>de segunda</b>.</div>
+  </div>
+  <aside class="notes"><h3>1. ¿Cómo funcionaba antes?</h3><p>El aplauso <strong>se repartía</strong>: el mérito de la salvación era en parte del hombre y de la iglesia, y se veneraba a los santos. Además, solo la vida de monjes y sacerdotes se consideraba "santa"; trabajar, estudiar o comer era de segunda.</p></aside>
+</section>
+
+<section class="slide" data-sola="5">
+  <div class="bg" style="background-image:url(img/13_vida_comun.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="tag paso">🔗 Qué pasó</div>
+    <div class="place">Ginebra<small>Calvino y los reformadores</small></div>
+    <div class="body">Si <b>todo</b> lo hizo Dios, nadie más se lleva el aplauso.</div>
+  </div>
+  <aside class="notes"><h3>2. ¿Qué se descubrió?</h3><p><strong>🔗 Qué pasó · Calvino en Ginebra y los reformadores</strong></p><p>Si las 4 anteriores son ciertas, <strong>todo lo hizo Dios</strong>, y entonces nadie más se lleva el aplauso.</p></aside>
+</section>
+
+<section class="slide" data-sola="5">
+  <div class="bg dim" style="background-image:url(img/13_vida_comun.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="verse" style="font-size:92px">Si, pues, coméis o bebéis, o hacéis otra cosa, hacedlo todo para la gloria de Dios.</div>
+    <div class="ref">1 Corintios 10:31 · RVR1960</div>
+  </div>
+  <aside class="notes"><p>"Si, pues, coméis o bebéis, o hacéis otra cosa, hacedlo todo para la gloria de Dios."</p><p><strong>1 Corintios 10:31 · RVR1960</strong></p></aside>
+</section>
+
+<section class="slide" data-sola="5">
+  <div class="bg dim deep" style="background-image:url(img/13_vida_comun.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="greek">δόξα</div>
+    <div class="translit">DÓXA</div>
+    <div class="meaning">"Gloria": la honra que<br>le corresponde a Dios</div>
+    <div class="body" style="margin-top:20px">Bach firmaba sus partituras: <b>S.D.G.</b></div>
+  </div>
+  <aside class="notes"><p><strong>δόξα (dóxa)</strong>: "gloria", honra, reconocimiento de quién es Dios. "Comer o beber": la vida común también es para Dios.</p><p><strong>Dato:</strong> siglos después, Bach firmaba sus partituras con "S.D.G.", <em>Soli Deo Gloria</em>.</p></aside>
+</section>
+
+<section class="slide" data-sola="5">
+  <div class="bg dim deep" style="background-image:url(img/13_vida_comun.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="mural"><span class="lbl">✏️ Para el mural</span>"Todo es para que Dios reciba la honra."</div>
+    <div class="think" style="margin-top:50px"><div class="lbl">Para pensar</div><div class="q">¿Para quién estamos viviendo: para nuestra gloria o para la de Dios?</div></div>
+  </div>
+  <aside class="notes"><p>✏️ <strong>Mural:</strong> "Todo es para que Dios reciba la honra."</p><p><strong>Aplicación:</strong> Es fácil buscar el aplauso para nosotros: en las redes, en el colegio, hasta sirviendo en la iglesia. ¿Para quién estamos viviendo: para nuestra gloria o para la de Dios?</p></aside>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section class="slide" data-sola="6">
+  <div class="bg" style="background-image:url(img/14_mano.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="kicker">¿Cómo encajan?</div>
+    <div class="title" style="font-size:96px">No son 5 ideas sueltas.<br><em>Es una sola mano.</em></div>
+  </div>
+  <aside class="notes"><h3>Cierre · ¿Cómo encajan? (≈3 min)</h3><p>No son 5 ideas sueltas: las 5 respuestas, leídas en orden, forman <strong>una sola frase</strong>, el evangelio.</p><p><strong>Ilustración, la mano:</strong> un dedo solo no agarra nada; los 5 juntos, sí. (Conecta con la huella del logo de Raíces.)</p></aside>
+</section>
+
+<section class="slide" data-sola="6">
+  <div class="bg dim" style="background-image:url(img/14_mano.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="recap">
+      <div><span class="n">1</span><span class="qq">¿Quién tiene la última palabra?</span><span class="aa">Solo la Biblia</span></div>
+      <div><span class="n">2</span><span class="qq">¿Cómo llegamos a Dios?</span><span class="aa">Solo por Cristo</span></div>
+      <div><span class="n">3</span><span class="qq">¿De dónde viene la salvación?</span><span class="aa">Solo por gracia</span></div>
+      <div><span class="n">4</span><span class="qq">¿Cómo la recibimos?</span><span class="aa">Solo por fe</span></div>
+      <div><span class="n">5</span><span class="qq">¿Para quién es el aplauso?</span><span class="aa">Solo para Dios</span></div>
+    </div>
+  </div>
+  <aside class="notes"><p>Repasamos dedo por dedo, en orden.</p><ol><li>¿Quién tiene la última palabra? Solo la Biblia</li><li>¿Cómo llegamos a Dios? Solo por Cristo</li><li>¿De dónde viene la salvación? Solo por gracia</li><li>¿Cómo la recibimos? Solo por fe</li><li>¿Para quién es el aplauso? Solo para Dios</li></ol></aside>
+</section>
+
+<section class="slide" data-sola="6">
+  <div class="bg dim" style="background-image:url(img/14_mano.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="title" style="font-size:80px;line-height:1.2">La <em>Biblia</em> nos enseña que somos salvos solo por <em>Cristo</em>, solo por <em>gracia</em>, solo por <em>fe</em>… para la <em>gloria de Dios</em>.</div>
+  </div>
+  <aside class="notes"><p>La Biblia nos enseña que somos salvos solo por Cristo, solo por gracia, solo por fe… para la gloria de Dios.</p><p><em>Esta frase es un resumen nuestro, no un versículo.</em></p></aside>
+</section>
+
+<section class="slide" data-sola="6">
+  <div class="bg dim deep" style="background-image:url(img/14_mano.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="think"><div class="lbl">Para pensar</div><div class="q">¿Aceptamos el evangelio completo… o elegimos las piezas que nos gustan?</div></div>
+  </div>
+  <aside class="notes"><p>Cada grupo se lleva una sola, pero el mural es <strong>uno solo</strong>.</p><p><strong>Aplicación:</strong> Es tentador quedarnos con las partes del evangelio que nos convienen. ¿Lo aceptamos completo, o elegimos las piezas que nos gustan?</p></aside>
+</section>
+
+<section class="slide" data-sola="6" data-nobar>
+  <div class="bg" style="background-image:url(img/15_puerta_abierta.jpg)"></div><div class="shade left"></div>
+  <div class="content l">
+    <div class="title" style="font-size:100px">La salvación<br>no se gana.<br><em>Se recibe.</em></div>
+  </div>
+  <aside class="notes"><h3>Llamado final (≈2 min)</h3><p>Lutero vivió años con miedo, haciendo todo "bien", hasta que entendió que la salvación es un <strong>regalo</strong>. Quizás algunos de nosotros estamos igual: cumpliendo, pero sin paz. Hoy podemos dejar de intentar ganarla y recibirla confiando en Jesús. Hacemos un momento de oración para recibir o agradecer ese regalo.</p></aside>
+</section>
+
+<section class="slide" data-sola="6" data-nobar>
+  <div class="bg dim" style="background-image:url(img/15_puerta_abierta.jpg)"></div><div class="shade full"></div>
+  <div class="content c">
+    <div class="kicker">Ahora</div>
+    <div class="title" style="font-size:110px">Sorteo + <em>Taller</em></div>
+    <div class="body">Pliego 1: qué significa <b>con nuestras palabras</b> + el versículo clave</div>
+  </div>
+  <div class="logos"><img src="img/logo_vastagos.png" alt="Vástagos"><img src="img/logo_raices.png" alt="Raíces"></div>
+  <aside class="notes"><p>Después: <strong>sorteo de las solas</strong> y <strong>taller del mural</strong> (Pliego 1: significado con palabras propias + versículo clave).</p></aside>
+</section>
+
+</main>
+</div>
+<script>
+/* Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic. */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.topbar = document.getElementById('topbar');
+        this.dots = [...document.querySelectorAll('#dots span')];
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+            if (e.key === 'f') document.documentElement.requestFullscreen?.();
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        // Renuevo Presenter controla el deck cambiando #N (desde 1).
+        addEventListener('hashchange', () => {
+            const n = parseInt(location.hash.slice(1), 10);
+            if (Number.isFinite(n) && n - 1 !== this.current) this.show(n - 1);
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        const s = this.slides[this.current];
+        this.slides.forEach((x, j) => x.classList.toggle('active', j === this.current));
+        const sola = +s.dataset.sola;
+        this.topbar.classList.toggle('hide', s.hasAttribute('data-nobar'));
+        this.dots.forEach((d, j) => { d.className = j + 1 === sola ? 'on' : (j + 1 < sola ? 'done' : ''); });
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>

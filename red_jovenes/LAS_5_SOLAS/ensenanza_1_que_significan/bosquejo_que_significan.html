@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 verdades que cambiaron el mundo - ¿Qué significan?</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg: #0f0f0f;
+    --panel: #1a1a1a;
+    --text: #f1f1f1;
+    --muted: #aaa;
+    --orange: #E8521A;
+    --green: #5DBE2C;
+    --green-bg: #10220b;
+    --red: #e35c5c;
+    --red-bg: #2a1212;
+    --gold: #efc24d;
+    --gold-bg: #241d05;
+    --purple: #b978e6;
+    --purple-bg: #21102d;
+    --border: #343434;
+    --nav-h: 68px;
+  }
+  body {
+    margin: 0;
+    padding-top: calc(var(--nav-h) + 18px);
+    background: var(--bg);
+    color: var(--text);
+    font: 23px/1.65 Georgia, serif;
+  }
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    min-height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    background: #111;
+    border-bottom: 2px solid var(--orange);
+  }
+  nav a {
+    flex: 0 0 auto;
+    padding: 9px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #222;
+    color: #ddd;
+    font: 700 16px/1 Arial, sans-serif;
+    text-decoration: none;
+  }
+  nav a:hover, nav a.active { color: #fff; background: var(--orange); border-color: var(--orange); }
+  main { padding-bottom: 80px; }
+  section {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 26px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .hero {
+    position: relative;
+    margin-bottom: 34px;
+    padding: 28px 32px;
+    background: var(--panel);
+    border-left: 6px solid var(--orange);
+    border-radius: 8px;
+  }
+  .hero img { position: absolute; top: 18px; right: 22px; width: 64px; height: 64px; object-fit: contain; }
+  .kicker, .section-label, .box-label {
+    font: 700 14px/1.2 Arial, sans-serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .kicker { margin-bottom: 12px; color: var(--orange); }
+  h1 { margin: 0 0 8px; padding-right: 70px; color: #fff; font-size: clamp(34px, 5vw, 54px); line-height: 1.08; }
+  .meta { color: var(--muted); font: 16px/1.45 Arial, sans-serif; }
+  .section-label { margin-bottom: 22px; padding-bottom: 10px; color: var(--orange); border-bottom: 1px solid var(--border); }
+  .point-title {
+    margin: 0 0 20px;
+    padding: 16px 20px;
+    background: #222;
+    border-left: 5px solid var(--orange);
+    border-radius: 6px;
+    color: #fff;
+    font: 700 32px/1.2 Arial, sans-serif;
+  }
+  .point-title span { margin-right: 10px; color: var(--orange); }
+  .question {
+    margin: 0 0 30px;
+    padding: 16px 20px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font: 700 27px/1.3 Arial, sans-serif;
+  }
+  .question .box-label { display: block; margin-bottom: 6px; color: var(--gold); }
+  .sub { margin: 30px 0; padding: 0 0 0 20px; border-left: 2px solid var(--border); }
+  .sub h3 { margin: 0 0 12px; color: #fff; font: 700 25px/1.3 Arial, sans-serif; }
+  .sub h3 .letter { margin-right: 8px; color: var(--orange); }
+  .sub p, .sub li { color: #e9e9e9; }
+  .sub ul { margin: 10px 0; padding-left: 26px; }
+  .bridge {
+    margin: 14px 0 18px;
+    padding: 14px 18px;
+    color: #ffd9c7;
+    background: #2a1408;
+    border-left: 5px solid var(--orange);
+    border-radius: 6px;
+  }
+  .bridge .box-label { margin-bottom: 6px; color: var(--orange); }
+  .verse {
+    margin: 14px 0 18px;
+    padding: 18px 22px;
+    color: #f7d4d4;
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-style: italic;
+  }
+  .verse .ref { display: block; margin-top: 9px; color: var(--red); font: 700 14px/1.2 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; font-style: normal; }
+  .greek { margin: 14px 0 18px; padding: 14px 18px; color: #cfe8ff; background: #0c1c2a; border-left: 5px solid #4f9ddb; border-radius: 6px; }
+  .greek strong { color: #9fd3ff; }
+  .mural { margin: 14px 0; padding: 12px 18px; color: #fff; background: #262626; border: 1px dashed #777; border-radius: 6px; font-style: italic; }
+  .application {
+    margin: 30px 0 0;
+    padding: 20px 24px;
+    color: #cef1bb;
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    font-size: 1.08em;
+  }
+  .application .box-label { margin-bottom: 10px; color: var(--green); }
+  .call { padding: 22px 26px; color: #ead5f8; background: var(--purple-bg); border-left: 5px solid var(--purple); border-radius: 6px; }
+  .call .box-label { margin-bottom: 10px; color: var(--purple); }
+  .note { color: var(--muted); font: 16px/1.5 Arial, sans-serif; }
+  .time { float: right; color: var(--muted); font: 700 15px/2.2 Arial, sans-serif; }
+  strong { color: #fff; }
+  @media (max-width: 640px) {
+    body { font-size: 19px; }
+    section { padding: 0 16px; }
+    .hero { padding: 22px 20px; }
+    .hero img { width: 46px; height: 46px; }
+    .point-title { font-size: 25px; }
+    .question { font-size: 22px; }
+    .sub { padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+<nav aria-label="Navegación del bosquejo">
+  <a class="active" href="#intro">Intro</a>
+  <a href="#sola1">1 · Escritura</a>
+  <a href="#sola2">2 · Cristo</a>
+  <a href="#sola3">3 · Gracia</a>
+  <a href="#sola4">4 · Fe</a>
+  <a href="#sola5">5 · Gloria</a>
+  <a href="#encajan">¿Cómo encajan?</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+<main>
+
+<section id="intro">
+  <div class="hero">
+    <img src="img/logo_raices.png" alt="Raíces">
+    <div class="kicker">Las 5 Solas · Encuentro 1 de 3</div>
+    <h1>5 verdades que cambiaron el mundo</h1>
+    <div class="meta">¿Qué significan? · Texto base: Efesios 2:8-9 · 35 min · Jóvenes y adolescentes · Tono: desafiante / reflexivo</div>
+  </div>
+  <div class="section-label">Introducción · La puerta <span class="time">≈3 min</span></div>
+  <ul>
+    <li>Mostramos la imagen de la puerta con el papel clavado.</li>
+    <li><strong>"La iglesia no siempre fue como hoy la conocemos."</strong></li>
+    <li><strong>31 de octubre de 1517</strong>: Martín Lutero, un monje, publica 95 tesis contra lo que enseñaba la iglesia de su tiempo. Ahí empieza la Reforma.</li>
+    <li>Los reformadores volvieron a la Biblia y encontraron 5 verdades. Hoy las vemos <strong>una por una y en orden</strong>.</li>
+  </ul>
+  <p class="note">Hablamos de "la iglesia de ese tiempo", sin burla: puede haber chicos de familias católicas.</p>
+</section>
+
+<section id="sola1">
+  <div class="section-label">Sola 1 <span class="time">≈5 min</span></div>
+  <h2 class="point-title"><span>1</span>Solo la Escritura</h2>
+  <div class="question"><span class="box-label">Pregunta guía</span>¿Quién tiene la última palabra?</div>
+
+  <div class="sub">
+    <h3><span class="letter">1.</span>¿Cómo funcionaba antes?</h3>
+    <p>La última palabra la tenían <strong>el Papa y la tradición</strong>. Y la gente no podía comprobar si era bíblico: la Biblia estaba en <strong>latín</strong> y casi nadie la tenía.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">2.</span>¿Qué se descubrió?</h3>
+    <div class="bridge"><div class="box-label">🔗 Qué pasó · Worms, 1521</div>Llevan a Lutero ante el emperador para que se retracte. Responde (resumen, no cita textual) que si no lo convencen con la Escritura, no puede: su conciencia está <strong>"cautiva de la Palabra de Dios"</strong>.</div>
+    <div class="verse">"Toda la Escritura es inspirada por Dios, y útil para enseñar, para redargüir, para corregir, para instruir en justicia, a fin de que el hombre de Dios sea perfecto, enteramente preparado para toda buena obra."<span class="ref">2 Timoteo 3:16-17 · RVR1960</span></div>
+    <div class="greek"><strong>θεόπνευστος (theópneustos)</strong> — "soplada por Dios". Si salió de Dios, está por encima de cualquier persona.</div>
+    <p><strong>La consecuencia:</strong> si la Biblia es la autoridad, todos tienen que poder leerla. Lutero la traduce al alemán en Wartburg (NT, 1522), y en 1569 llega al español: la <strong>Biblia del Oso</strong> (Casiodoro de Reina).</p>
+    <p><strong>Ilustración, el VAR:</strong> todos opinan, pero cuando hay duda se va al VAR y eso define.</p>
+    <div class="mural">✏️ "La Biblia tiene la última palabra."</div>
+  </div>
+
+  <div class="application"><div class="box-label">Aplicación</div>Muchas veces decimos que creemos en la Biblia, pero decidimos según lo que opinan los demás o lo que sentimos. ¿La Biblia es de verdad nuestra última palabra, o es una opinión más?</div>
+</section>
+
+<section id="sola2">
+  <div class="section-label">Sola 2 <span class="time">≈5 min</span></div>
+  <h2 class="point-title"><span>2</span>Solo Cristo</h2>
+  <div class="question"><span class="box-label">Pregunta guía</span>¿Cómo llegamos a Dios?</div>
+
+  <div class="sub">
+    <h3><span class="letter">1.</span>¿Cómo funcionaba antes?</h3>
+    <p>A través de <strong>intermediarios</strong>: el sacerdote para el perdón; los santos y María para que intercedieran. Uno no se acercaba a Dios directamente.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">2.</span>¿Qué se descubrió?</h3>
+    <div class="bridge"><div class="box-label">🔗 Qué pasó · Zúrich, 1519–1523</div>Ulrico Zuinglio empieza a predicar la Biblia de corrido, desde Mateo. En 1523, en sus 67 artículos, enseña públicamente que <strong>Cristo es el único mediador</strong>.</div>
+    <div class="verse">"Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre."<span class="ref">1 Timoteo 2:5 · RVR1960</span></div>
+    <div class="greek"><strong>μεσίτης (mesítēs)</strong> — "mediador": el que se pone en el medio para unir a dos partes separadas. Hay <strong>uno solo</strong>.</div>
+    <p>Si Jesús es el puente, cualquier creyente puede ir a Dios por medio de Él. Sin intermediarios humanos.</p>
+    <div class="mural">✏️ "Solo Jesús nos lleva a Dios."</div>
+  </div>
+
+  <div class="application"><div class="box-label">Aplicación</div>Tenemos acceso directo a Dios por Jesús… y a veces lo usamos menos que cualquier otra cosa. ¿Nos acercamos a Dios por nosotros mismos, o dependemos de que otro ore por nosotros?</div>
+</section>
+
+<section id="sola3">
+  <div class="section-label">Sola 3 <span class="time">≈5 min</span></div>
+  <h2 class="point-title"><span>3</span>Solo por gracia</h2>
+  <div class="question"><span class="box-label">Pregunta guía</span>¿De dónde viene la salvación?</div>
+
+  <div class="sub">
+    <h3><span class="letter">1.</span>¿Cómo funcionaba antes?</h3>
+    <p>En parte, de <strong>nuestros méritos</strong>: penitencias, peregrinaciones, buenas obras. Y hasta se podía <strong>pagar</strong>: Johann Tetzel vendía <strong>indulgencias</strong>, papeles que prometían reducir el castigo de los pecados.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">2.</span>¿Qué se descubrió?</h3>
+    <div class="bridge"><div class="box-label">🔗 Qué pasó · 31/10/1517</div>Las 95 tesis de Lutero apuntan justamente contra la venta de indulgencias. <strong>La salvación no se compra.</strong></div>
+    <div class="verse">"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe."<span class="ref">Efesios 2:8-9 · RVR1960 · Texto base</span></div>
+    <div class="greek"><strong>χάρις (cháris)</strong> — "favor que no merecemos". La salvación viene de Dios como un <strong>regalo</strong>.</div>
+    <p><strong>Ilustración:</strong> un sueldo se cobra porque trabajaste; un regalo se recibe porque alguien te ama. La salvación no es un sueldo.</p>
+    <div class="mural">✏️ "Dios nos salva porque nos ama, no porque lo merezcamos."</div>
+  </div>
+
+  <div class="application"><div class="box-label">Aplicación</div>Hoy nadie vende indulgencias, pero seguimos queriendo "pagar": portarnos bien para que Dios nos quiera más. ¿Vivimos la salvación como un regalo, o todavía intentamos ganárnosla?</div>
+</section>
+
+<section id="sola4">
+  <div class="section-label">Sola 4 <span class="time">≈5 min</span></div>
+  <h2 class="point-title"><span>4</span>Solo por fe</h2>
+  <div class="question"><span class="box-label">Pregunta guía</span>¿Cómo recibimos la salvación?</div>
+
+  <div class="sub">
+    <h3><span class="letter">1.</span>¿Cómo funcionaba antes?</h3>
+    <p>Con fe <strong>más</strong> obras y ritos, así que nadie sabía si había hecho lo suficiente. Lutero era un monje ejemplar, se confesaba durante horas… y aun así vivía <strong>aterrado de Dios</strong>.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">2.</span>¿Qué se descubrió?</h3>
+    <div class="bridge"><div class="box-label">🔗 Qué pasó · Lutero estudiando Romanos</div>Lee Romanos 1:17: <em>"Mas el justo por la fe vivirá."</em> Entiende que Dios declara justo al que <strong>confía en Cristo</strong>, no al que acumula obras.</div>
+    <div class="verse">"Justificados, pues, por la fe, tenemos paz para con Dios por medio de nuestro Señor Jesucristo."<span class="ref">Romanos 5:1 · RVR1960</span></div>
+    <div class="greek"><strong>πίστις (pístis)</strong> — "confianza": apoyarse en alguien. El resultado es <strong>paz</strong>, lo contrario del miedo.</div>
+    <p><strong>Ilustración, la silla:</strong> creer que una silla aguanta no alcanza; fe es sentarse.</p>
+    <div class="mural">✏️ "Recibimos la salvación confiando en Jesús."</div>
+  </div>
+
+  <div class="application"><div class="box-label">Aplicación</div>Podemos saber todo sobre Jesús y nunca habernos "sentado" en Él. ¿Vivimos con la paz de sabernos aceptados, o con el miedo de no alcanzar?</div>
+</section>
+
+<section id="sola5">
+  <div class="section-label">Sola 5 <span class="time">≈5 min</span></div>
+  <h2 class="point-title"><span>5</span>Solo a Dios la gloria</h2>
+  <div class="question"><span class="box-label">Pregunta guía</span>¿Para quién es el aplauso?</div>
+
+  <div class="sub">
+    <h3><span class="letter">1.</span>¿Cómo funcionaba antes?</h3>
+    <p>El aplauso <strong>se repartía</strong>: el mérito de la salvación era en parte del hombre y de la iglesia, y se veneraba a los santos. Además, solo la vida de monjes y sacerdotes se consideraba "santa"; trabajar, estudiar o comer era de segunda.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">2.</span>¿Qué se descubrió?</h3>
+    <div class="bridge"><div class="box-label">🔗 Qué pasó · Calvino en Ginebra y los reformadores</div>Si las 4 anteriores son ciertas, <strong>todo lo hizo Dios</strong>, y entonces nadie más se lleva el aplauso.</div>
+    <div class="verse">"Si, pues, coméis o bebéis, o hacéis otra cosa, hacedlo todo para la gloria de Dios."<span class="ref">1 Corintios 10:31 · RVR1960</span></div>
+    <div class="greek"><strong>δόξα (dóxa)</strong> — "gloria": honra, reconocimiento de quién es Dios. "Comer o beber": la vida común también es para Dios.</div>
+    <p><strong>Dato:</strong> siglos después, Bach firmaba sus partituras con "S.D.G.", <em>Soli Deo Gloria</em>.</p>
+    <div class="mural">✏️ "Todo es para que Dios reciba la honra."</div>
+  </div>
+
+  <div class="application"><div class="box-label">Aplicación</div>Es fácil buscar el aplauso para nosotros: en las redes, en el colegio, hasta sirviendo en la iglesia. ¿Para quién estamos viviendo: para nuestra gloria o para la de Dios?</div>
+</section>
+
+<section id="encajan">
+  <div class="section-label">Cierre <span class="time">≈3 min</span></div>
+  <h2 class="point-title"><span>✋</span>¿Cómo encajan?</h2>
+  <p>No son 5 ideas sueltas: las 5 respuestas, leídas en orden, forman <strong>una sola frase</strong>, el evangelio:</p>
+  <div class="question">La Biblia nos enseña que somos salvos solo por Cristo, solo por gracia, solo por fe… para la gloria de Dios.</div>
+  <p class="note">Esta frase es un resumen nuestro, no un versículo.</p>
+  <p><strong>Ilustración, la mano:</strong> un dedo solo no agarra nada; los 5 juntos, sí. (Conecta con la huella del logo de Raíces.) Repasamos dedo por dedo, en orden.</p>
+  <p>Cada grupo se lleva una sola, pero el mural es <strong>uno solo</strong>.</p>
+  <div class="application"><div class="box-label">Aplicación</div>Es tentador quedarnos con las partes del evangelio que nos convienen. ¿Lo aceptamos completo, o elegimos las piezas que nos gustan?</div>
+</section>
+
+<section id="llamado">
+  <div class="section-label">Llamado final <span class="time">≈2 min</span></div>
+  <div class="call"><div class="box-label">Llamado</div>Lutero vivió años con miedo, haciendo todo "bien", hasta que entendió que la salvación es un <strong>regalo</strong>. Quizás algunos de nosotros estamos igual: cumpliendo, pero sin paz. Hoy podemos dejar de intentar ganarla y recibirla confiando en Jesús. Hacemos un momento de oración para recibir o agradecer ese regalo.</div>
+  <p>Después: <strong>sorteo de las solas</strong> y <strong>taller del mural</strong> (Pliego 1: significado con palabras propias + versículo clave).</p>
+  <p class="note">Verificación: que Lutero haya clavado las tesis es tradición discutida (la fecha es firme). La "experiencia de la torre" (Ro 1:17) tiene fecha discutida, entre 1515 y 1519. La frase "Aquí estoy, no puedo hacer otra cosa" es de autenticidad dudosa: no usarla como cita.</p>
+</section>
+
+</main>
+<script>
+  const sections = [...document.querySelectorAll("section[id]")];
+  const links = [...document.querySelectorAll("nav a")];
+  const updateNav = () => {
+    let current = sections[0].id;
+    for (const section of sections) {
+      if (window.scrollY >= section.offsetTop - 110) current = section.id;
+    }
+    for (const link of links) {
+      link.classList.toggle("active", link.hash === `#${current}`);
+    }
+  };
+  addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+</script>
+</body>
+</html>
