@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cargar bienvenidas — Mobile</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 470px; height: 3030px; background: #4b5866">
+  <p class="board-title">Cargar bienvenidas — Mobile (390)</p>
+  <p class="board-note">La foto se puede sacar o elegir directo desde el celular. Mismas reglas que escritorio: recorte cuadrado a 600 px, mensaje hasta 400 caracteres, sin foto se muestran las iniciales.</p>
+  <div class="states">
+
+    <div class="state">
+      <p class="state-label">A — Lista<small>Tarjetas compactas con estado. Tocar una abre el formulario (B).</small></p>
+      <div class="m">
+        <div class="hero" style="padding: 16px 18px"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo" style="width: 48px"><div><span class="eyebrow">Organización</span><h2 style="font-size: 26px">Bienvenidas</h2></div></div>
+        <nav class="pnav"><a class="pill" href="OrgMobile.dc.html">Menú</a><a class="pill" href="OrgMobile.dc.html">Confirmaciones</a><a class="pill" href="OrgMobile.dc.html">Wi‑Fi y objetos</a><a class="pill on" href="OrgBienvenidaMobile.dc.html">Bienvenidas</a></nav>
+        <div class="stack">
+          <div style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">14 de 18 completos</span><button class="mini" type="button">+ Agregar</button></div>
+          <div class="card" style="flex-direction: row; align-items: center; gap: 12px"><div class="foto" style="width: 48px; height: 48px; background: #3d6b97; color: #f4e7d1; font-size: 11px; font-family: var(--sans)">foto</div><div style="flex: 1; min-width: 0"><b>Daniel y Romina Quiroga</b><br><span class="note">Godoy Cruz</span></div><span class="estado abierta">Publicado</span></div>
+          <div class="card" style="flex-direction: row; align-items: center; gap: 12px"><div class="foto" style="width: 48px; height: 48px; background: #3d6b97; color: #f4e7d1; font-size: 11px; font-family: var(--sans)">foto</div><div style="flex: 1; min-width: 0"><b>Marcelo y Andrea Funes</b><br><span class="note">Guaymallén</span></div><span class="estado abierta">Publicado</span></div>
+          <div class="card" style="flex-direction: row; align-items: center; gap: 12px"><div class="foto" style="width: 48px; height: 48px; border: 1.5px dashed #d9c9ad; background: transparent; font-size: 16px">HS</div><div style="flex: 1; min-width: 0"><b>Hugo y Silvia Ortiz</b><br><span class="note">Las Heras</span></div><span class="estado" style="background: #fbecd2; color: #8a5300">Falta foto</span></div>
+          <div class="card" style="flex-direction: row; align-items: center; gap: 12px"><div class="foto" style="width: 48px; height: 48px; background: #3d6b97; color: #f4e7d1; font-size: 11px; font-family: var(--sans)">foto</div><div style="flex: 1; min-width: 0"><b>Gustavo y Carina Lucero</b><br><span class="note">Maipú</span></div><span class="estado" style="background: #fbecd2; color: #8a5300">Falta mensaje</span></div>
+          <div class="card" style="flex-direction: row; align-items: center; gap: 12px"><div class="foto" style="width: 48px; height: 48px; background: #3d6b97; color: #f4e7d1; font-size: 11px; font-family: var(--sans)">foto</div><div style="flex: 1; min-width: 0"><b>Sergio y Mónica Videla</b><br><span class="note">Luján de Cuyo</span></div><span class="estado abierta">Publicado</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">B — Cargar foto y mensaje<small>"Sacar foto" abre la cámara; "Elegir de la galería", el carrete. Vista previa de la tarjeta abajo del formulario.</small></p>
+      <div class="m">
+        <div class="hero" style="padding: 16px 18px"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo" style="width: 48px"><div><span class="eyebrow">Organización · Bienvenidas</span><h2 style="font-size: 26px">Hugo y Silvia Ortiz</h2></div></div>
+        <div class="stack">
+          <div style="display: flex; gap: 12px; align-items: center">
+            <div style="width: 96px; height: 96px; flex: none; border: 2px dashed #d9c9ad; border-radius: 4px; background: #ffffff; display: grid; place-items: center; color: #45627e"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></div>
+            <div style="display: flex; flex-direction: column; gap: 6px; flex: 1"><button class="btn" type="button" style="font-size: 15px">Sacar foto</button><button class="btn sec" type="button" style="font-size: 15px">Elegir de la galería</button></div>
+          </div>
+          <div class="field"><label for="mn">Nombres del matrimonio</label><input class="input" id="mn" value="Hugo y Silvia Ortiz"></div>
+          <div class="field"><label for="mi">Iglesia</label><input class="input" id="mi" value="Iglesia de Las Heras"></div>
+          <div class="field"><label for="mm">Mensaje de bienvenida</label><div class="apunte" id="mm" style="min-height: 120px">Desde Las Heras les damos un abrazo grande. Pedimos al Señor que cada reunión sea un tiempo de reencuentro con Él y entre hermanos.</div><span class="note" style="align-self: flex-end">131 / 400</span></div>
+          <button class="btn" type="button">Guardar y publicar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">C — Publicado<small>Vuelve a la lista con el toast. La tarjeta pasa a "Publicado" con su foto.</small></p>
+      <div class="m">
+        <div class="hero" style="padding: 16px 18px"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo" style="width: 48px"><div><span class="eyebrow">Organización</span><h2 style="font-size: 26px">Bienvenidas</h2></div></div>
+        <nav class="pnav"><a class="pill" href="OrgMobile.dc.html">Menú</a><a class="pill" href="OrgMobile.dc.html">Confirmaciones</a><a class="pill" href="OrgMobile.dc.html">Wi‑Fi y objetos</a><a class="pill on" href="OrgBienvenidaMobile.dc.html">Bienvenidas</a></nav>
+        <div class="stack">
+          <div style="display: flex; justify-content: space-between; align-items: center"><span class="lbl">15 de 18 completos</span><button class="mini" type="button">+ Agregar</button></div>
+          <div class="card" style="flex-direction: row; align-items: center; gap: 12px"><div class="foto" style="width: 48px; height: 48px; background: #3d6b97; color: #f4e7d1; font-size: 11px; font-family: var(--sans)">foto</div><div style="flex: 1; min-width: 0"><b>Hugo y Silvia Ortiz</b><br><span class="note">Las Heras</span></div><span class="estado abierta">Publicado</span></div>
+        </div>
+        <div class="toast">Bienvenida publicada</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":470,"height":3030}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

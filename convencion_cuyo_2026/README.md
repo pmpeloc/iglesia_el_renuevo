@@ -1,14 +1,18 @@
 # Convención Regional Cuyo 2026 — Mendoza
 
 Proyecto de ayuda a los organizadores de la Convención Regional Cuyo (Mendoza).
-Estado: **prototipo con datos ficticios**, esperando feedback. Después se refina con datos e identidad oficiales.
+Estado: **prototipo v2** con la identidad oficial y los pedidos de Camila (12/10/2026). Menús y pastores siguen siendo de ejemplo.
+
+Datos oficiales: **12 al 15 de noviembre de 2026**, Godoy Cruz (Mendoza). Lema: *Creciendo en su Gracia* (2 Pedro 3:18). Web: convencionregionalcuyo.com.ar
 
 ## Links
 
 | Qué | Link | Archivo local |
 |---|---|---|
-| Prototipo funcional (menú + bienvenida + panel de cocina) | https://claude.ai/artifact/L5C3BLcuE5finWyxL6wUUu | `prototipo/menu_convencion_prototipo.html` |
-| Lienzo de diseño (pantallas, cartel QR, historia) | https://claude.ai/artifact/MJipHLNJJSdBjQEdWrgpiH | `diseno/` |
+| Design System (colores, tipografías, logos, componentes) | https://claude.ai/artifact/QzDvnQvKqUZ5UqcUEDQqvu | `assets/` (SVG de Canva + `assets/png/` recortes) |
+| Lienzo de desarrollo (mobile + escritorio por página, estados, panel, impresos, UI Kit) | https://claude.ai/artifact/AH1ui7ZxBZdKqjeNwjLo6i | `desarrollo/` |
+| Prototipo funcional (menú + comidas + info + apuntes + bienvenida + panel) | https://claude.ai/artifact/L5C3BLcuE5finWyxL6wUUu | `prototipo/menu_convencion_prototipo.html` |
+| Lienzo de diseño v1 (identidad provisoria, reemplazado por el de desarrollo) | https://claude.ai/artifact/MJipHLNJJSdBjQEdWrgpiH | `diseno/` |
 | Sugerencias para los organizadores | https://claude.ai/artifact/Ji41mHCk12NwzkEox2Qaeu | `sugerencias.html` (detalle en `sugerencias.md`) |
 
 Los links son privados: hay que compartirlos desde el menú **Compartir** de cada página.
@@ -42,14 +46,27 @@ Cómo lo resuelve el prototipo:
 4. Cartel de mesa con QR, 10 × 15 cm
 5. Historia para redes, 1080 × 1920
 
+## Pedido 3 — Feedback de Camila (12/10/2026)
+
+- **Info práctica:** solo Wi‑Fi y objetos perdidos (como aviso). Hecho: pestaña "Wi‑Fi y avisos"; cocina/organización carga y marca "Entregado" desde el panel.
+- **Apuntes:** solo si son privados. Hecho: se guardan únicamente en el celular de cada persona (nadie más los ve). Se pierden si borran datos del navegador o cambian de celular.
+- **Confirmar almuerzo y cena (sí o sí):** los 4 almuerzos y 4 cenas visibles; "Voy / No voy"; cada día se confirma hasta el día anterior a las 20:00 (hora a confirmar con ellos); mensaje de confirmar con anticipación. Panel con el conteo por comida.
+
+## Identidad visual (oficial)
+
+- Colores: #083d6b azul marino · #f4e7d1 naranja claro (crema) · #b3defa celeste claro.
+- Tipografías: Tan Meringue (títulos; archivo en `assets/fonts/`, provisto por la organización) y League Spartan (Google Fonts).
+
 ## Datos ficticios a reemplazar
 
-- Fechas (12 al 14 de noviembre de 2026), horarios, menús y salones.
+- Horarios, menús y salones. Red y clave de Wi‑Fi. Conteos de confirmaciones.
 - Nombres, iglesias, textos y fotos de los 18 matrimonios pastorales (se usaron los 18 departamentos de Mendoza).
-- Colores y tipografías: provisorios (malbec + gris andino). Falta la identidad oficial de la convención.
 - El QR del cartel es decorativo.
 
 ## Pendiente para la versión real
+
+- Las confirmaciones de comida necesitan una base compartida (ej. Supabase) para que cocina sume las de todos: los asistentes no tienen cuenta de Claude y el link debe ser público.
+- Logos vectoriales (los SVG de Canva traen las texturas como imágenes).
 
 - Base de datos compartida, para que cocina edite y todos vean el cambio al instante (hoy el prototipo guarda en el navegador).
 - Clave o acceso restringido al panel de cocina.

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Menú de hoy — Escritorio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 1520px; height: 1190px; background: #4b5866">
+  <p class="board-title">Menú de hoy — Escritorio (1440)</p>
+  <p class="board-note">La misma página del QR abierta en una computadora o en la TV del comedor: menú lateral fijo con las cinco secciones y las dos comidas del día lado a lado.</p>
+  <div class="states">
+    <div class="state">
+      <p class="state-label">A — Día en curso<small>Viernes 13. Aviso del día arriba, almuerzo y cena en dos columnas. Mismos datos que el estado A mobile.</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Convención Regional Cuyo</b></div>
+          <nav><a class="on" href="MenuDesktop.dc.html">Menú de hoy</a><a href="ComidasDesktop.dc.html">Confirmar comidas</a><a href="BienvenidaDesktop.dc.html">Bienvenida</a><a href="InfoDesktop.dc.html">Wi‑Fi y avisos</a><a href="InfoDesktop.dc.html">Mis apuntes</a></nav>
+          <p class="side-foot">Movimiento Cristiano y Misionero</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><div><span class="lbl">Viernes 13 de noviembre</span><h1>Menú de hoy</h1></div><span class="note">Actualizado hoy a las 12:40 h</span></div>
+          <div class="aviso" style="margin: 0"><b>Aviso</b>El almuerzo se sirve en el salón B por el ensayo del coro.</div>
+          <div class="cols2">
+            <section class="card"><h3 style="font-size: 26px; display: flex; justify-content: space-between; align-items: baseline">Almuerzo <span class="note">13:00 h</span></h3>
+              <ul class="items">
+                <li><span class="k">Plato principal</span><span class="v">Carne al horno</span></li>
+                <li><span class="k">Guarnición<span class="chip cambio">Cambió</span></span><span class="v">Arroz primavera</span><span class="was">Antes: <s>Puré mixto</s></span></li>
+                <li><span class="k">Postre</span><span class="v">Duraznos en almíbar</span></li>
+                <li><span class="k">Bebida</span><span class="v">Agua y jugo</span></li>
+              </ul></section>
+            <section class="card"><h3 style="font-size: 26px; display: flex; justify-content: space-between; align-items: baseline">Cena <span class="note">21:30 h</span></h3>
+              <ul class="items">
+                <li><span class="k">Plato principal</span><span class="v">Empanadas mendocinas (3 por persona)</span></li>
+                <li><span class="k">Guarnición</span><span class="v">Ensalada criolla</span></li>
+                <li><span class="k">Postre</span><span class="v">Pastelitos de membrillo</span></li>
+                <li><span class="k">Bebida</span><span class="v">Agua y gaseosa</span></li>
+                <li><span class="k">Extra<span class="chip nuevo">Nuevo</span></span><span class="v">Opción sin TACC: tarta de verduras</span></li>
+              </ul></section>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1520,"height":1190}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

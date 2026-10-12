@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Panel de organización — Mobile</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 470px; height: 3030px; background: #4b5866">
+  <p class="board-title">Panel de organización — Mobile (390)</p>
+  <p class="board-note">Cocina edita desde el celular, de pie. Mismas tres secciones que escritorio como pestañas; en cada plato el tipo va arriba del valor.</p>
+  <div class="states">
+
+    <div class="state">
+      <p class="state-label">A — Editar menú<small>Guarnición cambiada (ámbar) con "Volver al original".</small></p>
+      <div class="m">
+        <div class="hero" style="padding: 16px 18px"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo" style="width: 48px"><div><span class="eyebrow">Organización</span><h2 style="font-size: 26px">Editar menú</h2></div></div>
+        <nav class="pnav"><a class="pill on" href="#">Menú</a><a class="pill" href="#">Confirmaciones</a><a class="pill" href="#">Wi‑Fi y objetos</a><a class="pill" href="OrgBienvenidaMobile.dc.html">Bienvenidas</a></nav>
+        <div class="stack">
+          <div class="days"><a href="#">Jue</a><a class="on" href="#">Vie · hoy</a><a href="#">Sáb</a><a href="#">Dom</a></div>
+          <div class="field"><label for="avm">Aviso del día (opcional)</label><input class="input" id="avm" value="El almuerzo se sirve en el salón B."></div>
+          <h3 style="font-size: 22px">Almuerzo · 13:00 h</h3>
+          <div class="field"><span class="lbl">Plato principal</span><div style="display: flex; gap: 8px"><input class="input" aria-label="Plato principal" value="Carne al horno"><button class="mini" type="button">Quitar hoy</button></div></div>
+          <div class="field"><span class="lbl">Guarnición</span><div style="display: flex; gap: 8px"><input class="input" aria-label="Guarnición" value="Arroz primavera" style="border-color: #8a5300; box-shadow: inset 3px 0 0 #8a5300"><button class="mini" type="button">Volver</button></div></div>
+          <div class="field"><span class="lbl">Postre</span><div style="display: flex; gap: 8px"><input class="input" aria-label="Postre" value="Duraznos en almíbar"><button class="mini" type="button">Quitar hoy</button></div></div>
+          <button class="add" type="button">+ Agregar algo</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">B — Confirmaciones<small>Una tarjeta por día con los dos números grandes.</small></p>
+      <div class="m">
+        <div class="hero" style="padding: 16px 18px"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo" style="width: 48px"><div><span class="eyebrow">Organización</span><h2 style="font-size: 26px">Confirmaciones</h2></div></div>
+        <nav class="pnav"><a class="pill" href="#">Menú</a><a class="pill on" href="#">Confirmaciones</a><a class="pill" href="#">Wi‑Fi y objetos</a><a class="pill" href="OrgBienvenidaMobile.dc.html">Bienvenidas</a></nav>
+        <div class="stack">
+          <div class="card"><div style="display: flex; justify-content: space-between"><span class="lbl">Viernes 13</span><span class="estado cerrada">Cerrada</span></div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px"><div><span class="note">Almuerzo</span><div style="font-family: var(--display); font-size: 36px">236</div></div><div><span class="note">Cena</span><div style="font-family: var(--display); font-size: 36px">251</div></div></div></div>
+          <div class="card"><div style="display: flex; justify-content: space-between"><span class="lbl">Sábado 14</span><span class="estado abierta">Abierta</span></div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px"><div><span class="note">Almuerzo</span><div style="font-family: var(--display); font-size: 36px">241</div></div><div><span class="note">Cena</span><div style="font-family: var(--display); font-size: 36px">230</div></div></div></div>
+          <div class="card"><div style="display: flex; justify-content: space-between"><span class="lbl">Domingo 15</span><span class="estado abierta">Abierta</span></div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px"><div><span class="note">Almuerzo</span><div style="font-family: var(--display); font-size: 36px">205</div></div><div><span class="note">Cena</span><div style="font-family: var(--display); font-size: 36px">96</div></div></div></div>
+          <p class="note">Cierra el día anterior a las 20:00. Números de ejemplo.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">C — Wi‑Fi y objetos perdidos<small>Cargar un objeto encontrado en dos toques; "Entregado" lo saca de la lista pública.</small></p>
+      <div class="m">
+        <div class="hero" style="padding: 16px 18px"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo" style="width: 48px"><div><span class="eyebrow">Organización</span><h2 style="font-size: 26px">Wi‑Fi y objetos</h2></div></div>
+        <nav class="pnav"><a class="pill" href="#">Menú</a><a class="pill" href="#">Confirmaciones</a><a class="pill on" href="#">Wi‑Fi y objetos</a><a class="pill" href="OrgBienvenidaMobile.dc.html">Bienvenidas</a></nav>
+        <div class="stack">
+          <div class="field"><label for="rm">Red de Wi‑Fi</label><input class="input" id="rm" value="Convencion-Cuyo"></div>
+          <div class="field"><label for="cm">Clave</label><input class="input" id="cm" value="creciendo2026"></div>
+          <h3 style="font-size: 22px">Objetos perdidos</h3>
+          <div class="card"><div style="display: flex; justify-content: space-between; gap: 8px; align-items: flex-start"><div><b>Campera azul talle M</b><br><span class="note">Salón principal, fila 8 · Jueves 21:45</span></div><button class="mini" type="button">Entregado</button></div></div>
+          <div class="card"><div style="display: flex; justify-content: space-between; gap: 8px; align-items: flex-start"><div><b>Biblia de tapa marrón "Ana"</b><br><span class="note">Comedor · Viernes 14:10</span></div><button class="mini" type="button">Entregado</button></div></div>
+          <button class="btn" type="button">+ Cargar objeto encontrado</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":470,"height":3030}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

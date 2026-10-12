@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cartel de mesa con QR</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div style="width: 600px; height: 900px; box-sizing: border-box; background: #f4e7d1; color: #083d6b; font-family: 'League Spartan', 'Helvetica Neue', Arial, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 40px 40px 0">
+    <img src="/_blob/d34e655a94552234f7e151acf4aaa07d" alt="Convención Cuyo 2026" style="width: 400px; height: auto">
+    <span style="font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600">12 al 15 de noviembre · Godoy Cruz</span>
+  </div>
+  <h1 style="margin: 26px 40px 0; font-family: 'Tan Meringue', Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1; text-align: center">Escaneá y mirá el menú de hoy</h1>
+  <div style="display: flex; gap: 28px; align-items: center; padding: 26px 44px 0">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; flex: none">
+      <div role="img" aria-label="Código QR de ejemplo" style="background: #FFFFFF; padding: 14px; border-radius: 4px; border: 2px solid #083d6b">
+        <div style="display: grid; grid-template-columns: repeat(25, 9px); grid-auto-rows: 9px">
+          <sc-for list="{{qr}}" as="c" hint-placeholder-count="625">
+            <div style="background: {{c.bg}}"></div>
+          </sc-for>
+        </div>
+      </div>
+      <span style="font-size: 12px; font-weight: 600; color: #45627e">QR de ejemplo</span>
+    </div>
+    <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; font-size: 19px; line-height: 1.25">
+      <li style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'Tan Meringue', Georgia, serif; font-size: 30px">1</span>Abrí la cámara del celular</li>
+      <li style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'Tan Meringue', Georgia, serif; font-size: 30px">2</span>Apuntá al código</li>
+      <li style="display: flex; gap: 12px; align-items: baseline"><span style="font-family: 'Tan Meringue', Georgia, serif; font-size: 30px">3</span>Tocá el enlace que aparece</li>
+    </ol>
+  </div>
+  <div style="margin: 26px 40px 0; display: flex; flex-direction: column; gap: 4px; text-align: center">
+    <span style="font-weight: 700; font-size: 18px">También vas a encontrar</span>
+    <span style="font-size: 16px; line-height: 1.35">Confirmar almuerzo y cena · Wi‑Fi y objetos perdidos · Tus apuntes · La bienvenida de los pastores</span>
+  </div>
+  <div style="margin-top: auto; background: #083d6b; color: #f4e7d1; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center">
+    <span style="font-family: 'Tan Meringue', Georgia, serif; font-size: 24px">Creciendo en su <span style="color: #b3defa">Gracia</span></span>
+    <span style="font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: #b3defa">Movimiento Cristiano y Misionero</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":600,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+const N = 25, qr = [];
+const finder = (x, y) => {
+  for (const [ox, oy] of [[0, 0], [N - 7, 0], [0, N - 7]]) {
+    const dx = x - ox, dy = y - oy;
+    if (dx >= 0 && dx < 7 && dy >= 0 && dy < 7) {
+      const edge = dx === 0 || dx === 6 || dy === 0 || dy === 6;
+      const core = dx >= 2 && dx <= 4 && dy >= 2 && dy <= 4;
+      return edge || core ? 1 : 0;
+    }
+    if (dx >= -1 && dx <= 7 && dy >= -1 && dy <= 7) return 0;
+  }
+  return null;
+};
+for (let y = 0; y < N; y++) for (let x = 0; x < N; x++) {
+  const f = finder(x, y);
+  const on = f !== null ? f : ((x * 7 + y * 13 + x * y * 3) % 5) < 2;
+  qr.push({ bg: on ? '#083d6b' : '#FFFFFF' });
+}
+return { qr };
+}
+}
+</script>
+</body>
+</html>

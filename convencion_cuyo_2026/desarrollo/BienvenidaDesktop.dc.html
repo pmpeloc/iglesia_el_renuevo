@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Bienvenida — Escritorio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 1520px; height: 1190px; background: #4b5866">
+  <p class="board-title">Bienvenida — Escritorio (1440)</p>
+  <p class="board-note">Grilla de 3 columnas; las 18 tarjetas siguen con scroll. Textos y nombres de ejemplo.</p>
+  <div class="states">
+    <div class="state">
+      <p class="state-label">A — Lista completa<small>Versículo arriba, tarjetas en grilla.</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Convención Regional Cuyo</b></div>
+          <nav><a href="MenuDesktop.dc.html">Menú de hoy</a><a href="ComidasDesktop.dc.html">Confirmar comidas</a><a class="on" href="BienvenidaDesktop.dc.html">Bienvenida</a><a href="InfoDesktop.dc.html">Wi‑Fi y avisos</a><a href="InfoDesktop.dc.html">Mis apuntes</a></nav>
+          <p class="side-foot">Movimiento Cristiano y Misionero</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><div><span class="lbl">Los matrimonios pastorales de la zona</span><h1>Bienvenidos a Mendoza</h1></div></div>
+          <p style="font-family: var(--display); font-size: 24px; line-height: 1.25; max-width: 760px">“¡Mirad cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!” <span class="lbl" style="font-family: var(--sans)">Salmos 133:1 · RVR1960</span></p>
+          <div class="cols3">
+            <article class="card"><div class="pastor-h"><div class="foto" aria-label="Foto del matrimonio (pendiente)">DR</div><div><b>Pastores Daniel y Romina Quiroga</b><span>Iglesia de Godoy Cruz</span></div></div>
+              <p>Qué alegría tenerlos en Mendoza. Oramos durante meses por cada uno de ustedes. Que estos días sean de descanso, de encuentro y de una palabra fresca de parte de Dios.</p></article>
+            <article class="card"><div class="pastor-h"><div class="foto" aria-label="Foto del matrimonio (pendiente)">MA</div><div><b>Pastores Marcelo y Andrea Funes</b><span>Iglesia de Guaymallén</span></div></div>
+              <p>Bienvenidos a casa. Sabemos el esfuerzo que hicieron para llegar. Nuestro deseo es que vuelvan a sus iglesias renovados y con el corazón encendido.</p></article>
+            <article class="card"><div class="pastor-h"><div class="foto" aria-label="Foto del matrimonio (pendiente)">HS</div><div><b>Pastores Hugo y Silvia Ortiz</b><span>Iglesia de Las Heras</span></div></div>
+              <p>Desde Las Heras les damos un abrazo grande. Pedimos al Señor que cada reunión sea un tiempo de reencuentro con Él y entre hermanos.</p></article>
+            <article class="card"><div class="pastor-h"><div class="foto" aria-label="Foto del matrimonio (pendiente)">GC</div><div><b>Pastores Gustavo y Carina Lucero</b><span>Iglesia de Maipú</span></div></div>
+              <p>Esta es tierra de viñedos y de cosecha. Que la convención sea también un tiempo de cosecha para sus vidas y sus familias.</p></article>
+            <article class="card"><div class="pastor-h"><div class="foto" aria-label="Foto del matrimonio (pendiente)">SM</div><div><b>Pastores Sergio y Mónica Videla</b><span>Iglesia de Luján de Cuyo</span></div></div>
+              <p>Bienvenidos, hermanos. Cualquier cosa que necesiten durante estos días, cuenten con nosotros. Estamos para servirles.</p></article>
+            <article class="card"><div class="pastor-h"><div class="foto" aria-label="Foto del matrimonio (pendiente)">RP</div><div><b>Pastores Raúl y Patricia Correa</b><span>Iglesia de San Martín</span></div></div>
+              <p>Queremos que se sientan en familia. Los esperamos en cada reunión con expectativa por lo que Dios va a hacer.</p></article>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1520,"height":1190}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cargar bienvenidas — Escritorio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 1520px; height: 3198px; background: #4b5866">
+  <p class="board-title">Cargar bienvenidas — Escritorio (1440)</p>
+  <p class="board-note">Cuarta sección del panel. La organización carga el saludo de cada matrimonio pastoral con su foto. Lo publicado aparece al instante en la pestaña "Bienvenida" del asistente, en el orden de esta lista. Foto: JPG o PNG, se recorta cuadrada y se achica a 600 × 600 px. Mensaje: hasta 400 caracteres. Sin foto se muestran las iniciales.</p>
+  <div class="states">
+
+    <div class="state">
+      <p class="state-label">A — Lista de matrimonios<small>Contador de completos arriba. Cada fila: foto (o "Sin foto"), nombres, iglesia, inicio del mensaje y estado: Publicado (foto + mensaje), Falta foto, Falta mensaje. Flechas para ordenar. "+ Agregar matrimonio" abre el formulario vacío (B).</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Organización</b></div>
+          <nav><a href="OrgDesktop.dc.html">Menú</a><a href="OrgDesktop.dc.html">Confirmaciones</a><a href="OrgDesktop.dc.html">Wi‑Fi y objetos perdidos</a><a class="on" href="OrgBienvenidaDesktop.dc.html">Bienvenidas</a></nav>
+          <p class="side-foot">Solo cocina y organizadores</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><div><span class="lbl">14 de 18 completos</span><h1>Bienvenidas de los pastores</h1></div><button class="btn" type="button">+ Agregar matrimonio</button></div>
+          <div class="card" style="padding: 4px 20px">
+            <table class="tabla">
+              <thead><tr><th style="width: 70px">Foto</th><th>Matrimonio</th><th>Mensaje</th><th>Estado</th><th style="width: 210px"></th></tr></thead>
+              <tbody>
+                <tr><td><div class="foto" style="width: 52px; height: 52px; background: #3d6b97; color: #f4e7d1; font-size: 13px; font-family: var(--sans)">foto</div></td>
+                  <td><b>Daniel y Romina Quiroga</b><br><span class="note">Iglesia de Godoy Cruz</span></td>
+                  <td class="note">Qué alegría tenerlos en Mendoza. Oramos durante meses por cada uno…</td>
+                  <td><span class="estado abierta">Publicado</span></td>
+                  <td><div class="wrapgap" style="gap: 6px"><button class="mini" type="button" aria-label="Subir">↑</button><button class="mini" type="button" aria-label="Bajar">↓</button><button class="mini" type="button">Editar</button></div></td></tr>
+                <tr><td><div class="foto" style="width: 52px; height: 52px; background: #3d6b97; color: #f4e7d1; font-size: 13px; font-family: var(--sans)">foto</div></td>
+                  <td><b>Marcelo y Andrea Funes</b><br><span class="note">Iglesia de Guaymallén</span></td>
+                  <td class="note">Bienvenidos a casa. Sabemos el esfuerzo que hicieron para llegar…</td>
+                  <td><span class="estado abierta">Publicado</span></td>
+                  <td><div class="wrapgap" style="gap: 6px"><button class="mini" type="button" aria-label="Subir">↑</button><button class="mini" type="button" aria-label="Bajar">↓</button><button class="mini" type="button">Editar</button></div></td></tr>
+                <tr><td><div class="foto" style="width: 52px; height: 52px; border: 1.5px dashed #d9c9ad; background: transparent; color: #45627e; font-size: 12px; font-family: var(--sans); text-align: center; line-height: 1.1">Sin foto</div></td>
+                  <td><b>Hugo y Silvia Ortiz</b><br><span class="note">Iglesia de Las Heras</span></td>
+                  <td class="note">Desde Las Heras les damos un abrazo grande…</td>
+                  <td><span class="estado" style="background: #fbecd2; color: #8a5300">Falta foto</span></td>
+                  <td><div class="wrapgap" style="gap: 6px"><button class="mini" type="button" aria-label="Subir">↑</button><button class="mini" type="button" aria-label="Bajar">↓</button><button class="mini" type="button">Editar</button></div></td></tr>
+                <tr><td><div class="foto" style="width: 52px; height: 52px; background: #3d6b97; color: #f4e7d1; font-size: 13px; font-family: var(--sans)">foto</div></td>
+                  <td><b>Gustavo y Carina Lucero</b><br><span class="note">Iglesia de Maipú</span></td>
+                  <td class="note" style="font-style: italic">Sin mensaje todavía</td>
+                  <td><span class="estado" style="background: #fbecd2; color: #8a5300">Falta mensaje</span></td>
+                  <td><div class="wrapgap" style="gap: 6px"><button class="mini" type="button" aria-label="Subir">↑</button><button class="mini" type="button" aria-label="Bajar">↓</button><button class="mini" type="button">Editar</button></div></td></tr>
+                <tr><td><div class="foto" style="width: 52px; height: 52px; background: #3d6b97; color: #f4e7d1; font-size: 13px; font-family: var(--sans)">foto</div></td>
+                  <td><b>Sergio y Mónica Videla</b><br><span class="note">Iglesia de Luján de Cuyo</span></td>
+                  <td class="note">Bienvenidos, hermanos. Cualquier cosa que necesiten durante estos días…</td>
+                  <td><span class="estado abierta">Publicado</span></td>
+                  <td><div class="wrapgap" style="gap: 6px"><button class="mini" type="button" aria-label="Subir">↑</button><button class="mini" type="button" aria-label="Bajar">↓</button><button class="mini" type="button">Editar</button></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Los que tienen "Falta foto" se publican igual con las iniciales. Los que tienen "Falta mensaje" no se muestran al asistente hasta completarlos.</p>
+        </main>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">B — Editar / cargar un matrimonio<small>Foto: tocar o arrastrar; se ve recortada cuadrada al instante, con "Cambiar" y "Quitar". Nombres e iglesia obligatorios. Contador de caracteres del mensaje. A la derecha, vista previa exacta de la tarjeta que ve el asistente. "Guardar y publicar" vuelve a la lista con el toast "Bienvenida publicada".</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Organización</b></div>
+          <nav><a href="OrgDesktop.dc.html">Menú</a><a href="OrgDesktop.dc.html">Confirmaciones</a><a href="OrgDesktop.dc.html">Wi‑Fi y objetos perdidos</a><a class="on" href="OrgBienvenidaDesktop.dc.html">Bienvenidas</a></nav>
+          <p class="side-foot">Solo cocina y organizadores</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><div><a href="#" class="note" style="text-decoration: none">← Volver a la lista</a><h1>Hugo y Silvia Ortiz</h1></div></div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 32px; align-items: start">
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <div class="field"><span style="font-weight: 600; font-size: 14px">Foto del matrimonio</span>
+                <div style="display: flex; gap: 16px; align-items: center">
+                  <div style="width: 140px; height: 140px; border: 2px dashed #d9c9ad; border-radius: 4px; background: #ffffff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; color: #45627e; font-size: 14px; text-align: center">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="2"></circle><path d="m21 17-5-5-8 7"></path></svg>Tocá o arrastrá una foto</div>
+                  <div style="display: flex; flex-direction: column; gap: 4px"><button class="btn sec" type="button">Elegir foto</button><span class="note">JPG o PNG. Se recorta cuadrada.</span></div>
+                </div></div>
+              <div class="cols2">
+                <div class="field"><label for="bn">Nombres del matrimonio</label><input class="input" id="bn" value="Hugo y Silvia Ortiz"></div>
+                <div class="field"><label for="bi">Iglesia</label><input class="input" id="bi" value="Iglesia de Las Heras"></div>
+              </div>
+              <div class="field"><label for="bm">Mensaje de bienvenida</label>
+                <div class="apunte" id="bm" style="min-height: 160px">Desde Las Heras les damos un abrazo grande. Pedimos al Señor que cada reunión sea un tiempo de reencuentro con Él y entre hermanos.</div>
+                <span class="note" style="align-self: flex-end">131 / 400</span></div>
+              <div class="wrapgap" style="justify-content: space-between"><div class="wrapgap"><button class="btn" type="button">Guardar y publicar</button><button class="btn sec" type="button">Cancelar</button></div><button class="mini" type="button" style="color: #9a2f22">Eliminar matrimonio</button></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span class="lbl">Así lo ve el asistente</span>
+              <article class="card"><div class="pastor-h"><div class="foto" aria-label="Sin foto: iniciales">HS</div><div><b>Pastores Hugo y Silvia Ortiz</b><span>Iglesia de Las Heras</span></div></div>
+                <p>Desde Las Heras les damos un abrazo grande. Pedimos al Señor que cada reunión sea un tiempo de reencuentro con Él y entre hermanos.</p></article>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">C — Foto cargada y error de validación<small>Con foto: miniatura recortada con "Cambiar" / "Quitar". Si falta el nombre: el campo se marca y no se guarda. Foto de más de 10 MB o de otro formato: "Usá una foto JPG o PNG de menos de 10 MB".</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Organización</b></div>
+          <nav><a href="OrgDesktop.dc.html">Menú</a><a href="OrgDesktop.dc.html">Confirmaciones</a><a href="OrgDesktop.dc.html">Wi‑Fi y objetos perdidos</a><a class="on" href="OrgBienvenidaDesktop.dc.html">Bienvenidas</a></nav>
+          <p class="side-foot">Solo cocina y organizadores</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><div><a href="#" class="note" style="text-decoration: none">← Volver a la lista</a><h1>Nuevo matrimonio</h1></div></div>
+          <div style="display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 32px; align-items: start">
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <div class="field"><span style="font-weight: 600; font-size: 14px">Foto del matrimonio</span>
+                <div style="display: flex; gap: 16px; align-items: center">
+                  <div style="width: 140px; height: 140px; border-radius: 4px; background: #3d6b97; color: #f4e7d1; display: grid; place-items: center; font-size: 14px">foto recortada</div>
+                  <div style="display: flex; gap: 8px"><button class="mini" type="button">Cambiar</button><button class="mini" type="button">Quitar</button></div>
+                </div></div>
+              <div class="cols2">
+                <div class="field"><label for="cn">Nombres del matrimonio</label><input class="input focus" id="cn" placeholder="Ej.: Hugo y Silvia Ortiz"><span style="color: #9a2f22; font-size: 14px; font-weight: 600">Escribí los nombres del matrimonio.</span></div>
+                <div class="field"><label for="ci">Iglesia</label><input class="input" id="ci" value="Iglesia de Tunuyán"></div>
+              </div>
+              <div class="field"><label for="cm2">Mensaje de bienvenida</label>
+                <div class="apunte" id="cm2" style="min-height: 160px">Desde el Valle de Uco les mandamos nuestra bienvenida. Que la presencia de Dios llene cada encuentro.</div>
+                <span class="note" style="align-self: flex-end">103 / 400</span></div>
+              <div class="wrapgap"><button class="btn" type="button">Guardar y publicar</button><button class="btn sec" type="button">Cancelar</button></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <span class="lbl">Así lo ve el asistente</span>
+              <article class="card"><div class="pastor-h"><div class="foto" style="background: #3d6b97; color: #f4e7d1; font-size: 11px; font-family: var(--sans)">foto</div><div><b>Pastores [nombres]</b><span>Iglesia de Tunuyán</span></div></div>
+                <p>Desde el Valle de Uco les mandamos nuestra bienvenida. Que la presencia de Dios llene cada encuentro.</p></article>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1520,"height":3198}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

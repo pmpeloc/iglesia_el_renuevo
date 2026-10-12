@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Confirmar comidas — Escritorio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 1520px; height: 1190px; background: #4b5866">
+  <p class="board-title">Confirmar comidas — Escritorio (1440)</p>
+  <p class="board-note">Los cuatro días en una grilla de 4 columnas. Mismas reglas que mobile: cierre el día anterior a las 20:00, nombre obligatorio.</p>
+  <div class="states">
+    <div class="state">
+      <p class="state-label">A — Viernes, con respuestas<small>Jueves y viernes cerrados; sábado y domingo abiertos.</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Convención Regional Cuyo</b></div>
+          <nav><a href="MenuDesktop.dc.html">Menú de hoy</a><a class="on" href="ComidasDesktop.dc.html">Confirmar comidas</a><a href="BienvenidaDesktop.dc.html">Bienvenida</a><a href="InfoDesktop.dc.html">Wi‑Fi y avisos</a><a href="InfoDesktop.dc.html">Mis apuntes</a></nav>
+          <p class="side-foot">Movimiento Cristiano y Misionero</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><div><span class="lbl">Almuerzos y cenas</span><h1>¿Venís a comer?</h1></div></div>
+          <div class="aviso" style="margin: 0"><b>Confirmá con anticipación</b>Así cocina sabe cuántos platos preparar y puede organizar el comedor. Cada día se confirma hasta el día anterior a las 20:00.</div>
+          <div class="field" style="max-width: 460px"><label for="nD">Tu nombre e iglesia</label><input class="input" id="nD" value="Juan Pérez · Iglesia de Maipú"></div>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px">
+            <div class="card"><div style="display: flex; justify-content: space-between"><span class="lbl">Jueves 12</span><span class="cerrado">Cerrado</span></div>
+              <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino dis"><button class="si" type="button" disabled>Voy</button><button class="no on" type="button" disabled>No voy</button></span></div>
+              <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino dis"><button class="si on" type="button" disabled>Voy</button><button class="no" type="button" disabled>No voy</button></span></div></div>
+            <div class="card"><div style="display: flex; justify-content: space-between"><span class="lbl">Viernes 13</span><span class="cerrado">Cerrado</span></div>
+              <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino dis"><button class="si on" type="button" disabled>Voy</button><button class="no" type="button" disabled>No voy</button></span></div>
+              <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino dis"><button class="si on" type="button" disabled>Voy</button><button class="no" type="button" disabled>No voy</button></span></div></div>
+            <div class="card"><span class="lbl">Sábado 14</span>
+              <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si on" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+              <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no on" type="button">No voy</button></span></div></div>
+            <div class="card"><span class="lbl">Domingo 15</span>
+              <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+              <div class="meal-row"><div>Cena<small>21:00 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div></div>
+          </div>
+          <p class="note">Si cambiás de idea, podés modificar tu respuesta mientras el día siga abierto.</p>
+        </main>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1520,"height":1190}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

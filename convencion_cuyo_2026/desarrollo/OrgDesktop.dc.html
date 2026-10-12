@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Panel de organización — Escritorio</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 1520px; height: 3198px; background: #4b5866">
+  <p class="board-title">Panel de organización — Escritorio (1440)</p>
+  <p class="board-note">Solo cocina y organizadores (con clave en la versión real). Todo se guarda al escribir y el asistente lo ve al instante. Tres secciones en el menú lateral.</p>
+  <div class="states">
+
+    <div class="state">
+      <p class="state-label">A — Editar menú<small>Elegir día (el de hoy marcado). Cada plato: tipo + valor. Un cambio marca la fila en ámbar y ofrece "Volver al original"; "Quitar hoy" lo tacha para el asistente; "+ Agregar algo" crea un ítem "Nuevo". Aviso del día opcional.</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Organización</b></div>
+          <nav><a class="on" href="#">Menú</a><a href="#">Confirmaciones</a><a href="#">Wi‑Fi y objetos perdidos</a><a href="OrgBienvenidaDesktop.dc.html">Bienvenidas</a></nav>
+          <p class="side-foot">Solo cocina y organizadores</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><h1>Editar menú</h1><div class="days"><a href="#">Jueves</a><a class="on" href="#">Viernes · hoy</a><a href="#">Sábado</a><a href="#">Domingo</a></div></div>
+          <div class="field"><label for="av">Aviso del día (opcional)</label><input class="input" id="av" value="El almuerzo se sirve en el salón B por el ensayo del coro."></div>
+          <div class="cols2" style="align-items: start">
+            <div style="display: flex; flex-direction: column; gap: 8px"><h3 style="font-size: 24px">Almuerzo · 13:00 h</h3>
+              <div class="row"><input class="input tipo" aria-label="Tipo" value="Plato principal"><input class="input val" aria-label="Plato principal" value="Carne al horno"><button class="mini" type="button">Quitar hoy</button></div>
+              <div class="row changed"><input class="input tipo" aria-label="Tipo" value="Guarnición"><input class="input val" aria-label="Guarnición" value="Arroz primavera"><button class="mini" type="button">Volver al original</button></div>
+              <div class="row"><input class="input tipo" aria-label="Tipo" value="Postre"><input class="input val" aria-label="Postre" value="Duraznos en almíbar"><button class="mini" type="button">Quitar hoy</button></div>
+              <div class="row"><input class="input tipo" aria-label="Tipo" value="Bebida"><input class="input val" aria-label="Bebida" value="Agua y jugo"><button class="mini" type="button">Quitar hoy</button></div>
+              <button class="add" type="button">+ Agregar algo</button></div>
+            <div style="display: flex; flex-direction: column; gap: 8px"><h3 style="font-size: 24px">Cena · 21:30 h</h3>
+              <div class="row"><input class="input tipo" aria-label="Tipo" value="Plato principal"><input class="input val" aria-label="Plato principal" value="Empanadas mendocinas (3 por persona)"><button class="mini" type="button">Quitar hoy</button></div>
+              <div class="row off"><input class="input tipo" aria-label="Tipo" value="Postre" disabled><input class="input val" aria-label="Postre" value="Pastelitos de membrillo" disabled><button class="mini" type="button">Volver al original</button></div>
+              <div class="row"><input class="input tipo" aria-label="Tipo" value="Extra"><input class="input val" aria-label="Extra" value="Opción sin TACC: tarta de verduras"><button class="mini" type="button">Borrar</button></div>
+              <button class="add" type="button">+ Agregar algo</button></div>
+          </div>
+          <div class="panel-foot"><span>Guardado 12:40 h. Los asistentes ya lo ven.</span><button class="mini" type="button">Restaurar menú original del día</button></div>
+        </main>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">B — Confirmaciones<small>Conteo de "Voy" por comida. Una comida pasa a "Cerrada" el día anterior a las 20:00 y su número queda fijo. Lista de nombres desplegable por comida (versión real). Números de ejemplo.</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Organización</b></div>
+          <nav><a href="#">Menú</a><a class="on" href="#">Confirmaciones</a><a href="#">Wi‑Fi y objetos perdidos</a><a href="OrgBienvenidaDesktop.dc.html">Bienvenidas</a></nav>
+          <p class="side-foot">Solo cocina y organizadores</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><h1>Confirmaciones de comida</h1><span class="note">Hoy: viernes 13 · 20:00 cierra el sábado</span></div>
+          <div class="card" style="padding: 8px 20px">
+            <table class="tabla">
+              <thead><tr><th>Día</th><th>Comida</th><th>Van</th><th>No van</th><th>Estado</th><th></th></tr></thead>
+              <tbody>
+                <tr><th scope="row" rowspan="2">Jueves 12</th><td>Almuerzo</td><td class="n">212</td><td>18</td><td><span class="estado cerrada">Cerrada</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+                <tr><td>Cena</td><td class="n">248</td><td>9</td><td><span class="estado cerrada">Cerrada</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+                <tr><th scope="row" rowspan="2">Viernes 13</th><td>Almuerzo</td><td class="n">236</td><td>12</td><td><span class="estado cerrada">Cerrada</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+                <tr><td>Cena</td><td class="n">251</td><td>7</td><td><span class="estado cerrada">Cerrada</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+                <tr><th scope="row" rowspan="2">Sábado 14</th><td>Almuerzo</td><td class="n">241</td><td>15</td><td><span class="estado abierta">Abierta</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+                <tr><td>Cena</td><td class="n">230</td><td>21</td><td><span class="estado abierta">Abierta</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+                <tr><th scope="row" rowspan="2">Domingo 15</th><td>Almuerzo</td><td class="n">205</td><td>30</td><td><span class="estado abierta">Abierta</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+                <tr><td>Cena</td><td class="n">96</td><td>112</td><td><span class="estado abierta">Abierta</span></td><td><button class="mini" type="button">Ver nombres</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">C — Wi‑Fi y objetos perdidos<small>Red y clave editables. "+ Cargar objeto encontrado" agrega uno arriba con día y hora actuales; "Entregado" lo saca de la lista del asistente.</small></p>
+      <div class="app">
+        <aside class="side">
+          <div class="side-brand"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><b>Organización</b></div>
+          <nav><a href="#">Menú</a><a href="#">Confirmaciones</a><a class="on" href="#">Wi‑Fi y objetos perdidos</a><a href="OrgBienvenidaDesktop.dc.html">Bienvenidas</a></nav>
+          <p class="side-foot">Solo cocina y organizadores</p>
+        </aside>
+        <main class="main">
+          <div class="main-head"><h1>Wi‑Fi y objetos perdidos</h1></div>
+          <div class="cols2" style="max-width: 760px">
+            <div class="field"><label for="red">Red de Wi‑Fi</label><input class="input" id="red" value="Convencion-Cuyo"></div>
+            <div class="field"><label for="clave">Clave</label><input class="input" id="clave" value="creciendo2026"></div>
+          </div>
+          <h3 style="font-size: 24px">Objetos perdidos</h3>
+          <div style="display: flex; flex-direction: column; gap: 8px; max-width: 980px">
+            <div class="row"><input class="input tipo" aria-label="Cuándo" value="Jueves 21:45"><input class="input val" aria-label="Qué se encontró" value="Campera azul talle M"><button class="mini" type="button">Entregado</button></div>
+            <input class="input" aria-label="Dónde se encontró" value="Salón principal, fila 8" style="margin-left: 158px; width: auto; background: var(--bg)">
+            <div class="row"><input class="input tipo" aria-label="Cuándo" value="Viernes 14:10"><input class="input val" aria-label="Qué se encontró" value="Biblia de tapa marrón con nombre &quot;Ana&quot;"><button class="mini" type="button">Entregado</button></div>
+            <input class="input" aria-label="Dónde se encontró" value="Comedor" style="margin-left: 158px; width: auto; background: var(--bg)">
+            <button class="add" type="button">+ Cargar objeto encontrado</button>
+          </div>
+        </main>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1520,"height":3198}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

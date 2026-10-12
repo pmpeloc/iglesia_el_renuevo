@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>UI Kit — Convención Cuyo</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="kit" style="width: 1000px; height: 2300px">
+
+  <section class="kit-section">
+    <p class="kit-label">Marca</p>
+    <div class="wrapgap" style="gap: 32px">
+      <img src="/_blob/d34e655a94552234f7e151acf4aaa07d" alt="Logotipo Convención Cuyo" style="width: 360px; height: auto">
+      <img src="/_blob/e81ce4c6f289cef932c3db65679116df" alt="Isotipo CR" style="width: 82px; height: auto">
+      <div style="background: #083d6b; padding: 16px; border-radius: 4px"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Sello CR blanco" style="width: 120px; height: auto; display: block"></div>
+    </div>
+  </section>
+
+  <section class="kit-section">
+    <p class="kit-label">Color · oficiales y de interfaz</p>
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px">
+      <div class="sw"><i style="background: #083d6b"></i><b>marino</b><code>#083d6b · marca, títulos</code></div>
+      <div class="sw"><i style="background: #f4e7d1"></i><b>crema</b><code>#f4e7d1 · letra sobre marino</code></div>
+      <div class="sw"><i style="background: #b3defa"></i><b>celeste</b><code>#b3defa · acento, foco</code></div>
+      <div class="sw"><i style="background: #3d6b97"></i><b>azul-medio</b><code>#3d6b97 · relleno</code></div>
+      <div class="sw"><i style="background: #fbf6ec"></i><b>bg</b><code>#fbf6ec · fondo</code></div>
+      <div class="sw"><i style="background: #45627e"></i><b>ink-muted</b><code>#45627e · secundario</code></div>
+      <div class="sw"><i style="background: #e3f2e8"></i><b>ok-bg / ok</b><code>#e3f2e8 / #256b45</code></div>
+      <div class="sw"><i style="background: #f8e4df"></i><b>no-bg / no</b><code>#f8e4df / #9a2f22</code></div>
+      <div class="sw"><i style="background: #fbecd2"></i><b>warn-bg / warn</b><code>#fbecd2 / #8a5300</code></div>
+      <div class="sw"><i style="background: #d9c9ad"></i><b>line</b><code>#d9c9ad · bordes</code></div>
+      <div class="sw"><i style="background: #ffffff"></i><b>surface</b><code>#ffffff · tarjetas</code></div>
+      <div class="sw"><i style="background: #f3e1c7"></i><b>arena</b><code>#f3e1c7 · decorativo</code></div>
+    </div>
+  </section>
+
+  <section class="kit-section">
+    <p class="kit-label">Tipografía</p>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-family: var(--display); font-size: 44px; line-height: 1">Creciendo en su Gracia <span class="note" style="font-family: var(--sans)">display-xl · Tan Meringue 44</span></span>
+      <span style="font-family: var(--display); font-size: 30px">Menú de hoy <span class="note" style="font-family: var(--sans)">display-l · Tan Meringue 30</span></span>
+      <span style="font-size: 22px; font-weight: 700">Jueves 12 de noviembre <span class="note" style="font-weight: 400">title · League Spartan 22/700</span></span>
+      <span style="font-size: 17px">Milanesa con puré de calabaza <span class="note">body · League Spartan 17</span></span>
+      <span class="lbl">Almuerzo · 13:00 <span class="note" style="text-transform: none; letter-spacing: 0">label · 13/600 · 0.08em</span></span>
+    </div>
+  </section>
+
+  <section class="kit-section">
+    <p class="kit-label">Botones y controles</p>
+    <div class="wrapgap"><button class="btn" type="button">Guardar confirmación</button><button class="btn sec" type="button">Ver programa</button><button class="mini" type="button">Copiar</button><button class="mini" type="button">Quitar hoy</button><button class="mini" type="button">Volver al original</button><button class="add" type="button">+ Agregar algo</button></div>
+    <div class="wrapgap"><a class="pill on" href="#">Menú de hoy</a><a class="pill" href="#">Confirmar comidas</a><span class="days"><a class="on" href="#">Viernes · hoy</a><a href="#">Sábado</a></span></div>
+    <div class="wrapgap">
+      <span class="sino"><button class="si on" type="button">Voy</button><button class="no" type="button">No voy</button></span>
+      <span class="sino"><button class="si" type="button">Voy</button><button class="no on" type="button">No voy</button></span>
+      <span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span>
+      <span class="sino dis"><button class="si on" type="button" disabled>Voy</button><button class="no" type="button" disabled>No voy</button></span>
+    </div>
+  </section>
+
+  <section class="kit-section">
+    <p class="kit-label">Chips y estados</p>
+    <div class="wrapgap"><span class="chip cambio" style="margin: 0">Cambió</span><span class="chip nuevo" style="margin: 0">Nuevo</span><span class="chip gris" style="margin: 0">Hoy no hay</span><span class="estado abierta">Abierta</span><span class="estado cerrada">Cerrada</span><span class="cerrado">Cerrado</span></div>
+  </section>
+
+  <section class="kit-section">
+    <p class="kit-label">Campos</p>
+    <div class="cols2">
+      <div class="field"><label for="k1">Tu nombre e iglesia</label><input class="input" id="k1" placeholder="Ej.: Juan Pérez · Iglesia de Maipú"></div>
+      <div class="field"><label for="k2">Foco / error</label><input class="input focus" id="k2"><span style="color: #9a2f22; font-size: 14px; font-weight: 600">Escribí tu nombre e iglesia antes de confirmar.</span></div>
+    </div>
+    <div class="row changed" style="max-width: 700px"><input class="input tipo" aria-label="Tipo" value="Guarnición"><input class="input val" aria-label="Guarnición" value="Arroz primavera"><button class="mini" type="button">Volver al original</button></div>
+  </section>
+
+  <section class="kit-section">
+    <p class="kit-label">Bloques</p>
+    <div class="cols2" style="align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <div class="aviso" style="margin: 0"><b>Aviso</b>El almuerzo se sirve en el salón B por el ensayo del coro.</div>
+        <div class="candado"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><span>Tus apuntes se guardan <b>solo en este celular</b>.</span></div>
+        <div class="toast" style="margin: 0; align-self: flex-start">Confirmado. ¡Te esperamos!</div>
+      </div>
+      <div class="card"><span class="lbl">Sábado 14</span>
+        <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si on" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+        <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div></div>
+    </div>
+    <div class="cols2" style="align-items: start">
+      <div class="card"><span class="lbl">Objetos perdidos</span><div class="perdido"><b>Campera azul talle M</b><small>Salón principal, fila 8 · Jueves 21:45</small></div></div>
+      <article class="card"><div class="pastor-h"><div class="foto" aria-label="Foto del matrimonio (pendiente)">DR</div><div><b>Pastores Daniel y Romina Quiroga</b><span>Iglesia de Godoy Cruz</span></div></div></article>
+    </div>
+  </section>
+
+  <section class="kit-section">
+    <p class="kit-label">Encabezado mobile</p>
+    <div style="width: 390px; border-radius: 6px; overflow: hidden">
+      <div class="hero"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><div><span class="eyebrow">Convención Regional Cuyo · 2026</span><h2>Menú de hoy</h2><div class="date">Viernes 13 de noviembre</div></div></div>
+      <div class="franja">Movimiento Cristiano y Misionero</div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1000,"height":2300}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

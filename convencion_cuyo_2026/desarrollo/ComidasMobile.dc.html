@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Confirmar comidas — Mobile</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="cc.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&amp;display=swap">
+<style>
+@font-face { font-family: "Tan Meringue"; src: url("/_blob/23ea319227fead60243dbcba915a8e15") format("woff2"); font-weight: 400; font-display: swap }
+body{margin:0}
+a{color:#083d6b}a:hover{color:#3d6b97}
+</style>
+</helmet>
+<div class="board" style="width: 470px; height: 3030px; background: #4b5866">
+  <p class="board-title">Confirmar comidas — Mobile (390)</p>
+  <p class="board-note">Los 4 almuerzos y las 4 cenas siempre visibles. Cada persona marca Voy / No voy. Un día se confirma hasta el día anterior a las 20:00 (a confirmar); después se ve "Cerrado" y los botones quedan deshabilitados. El aviso de anticipación es fijo.</p>
+  <div class="states">
+
+    <div class="state">
+      <p class="state-label">A — Primera vez, todo abierto<small>Antes del jueves 12. Sin nombre cargado y sin respuestas: ningún botón marcado.</small></p>
+      <div class="m">
+        <div class="hero"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><div><span class="eyebrow">Convención Regional Cuyo · 2026</span><h2>¿Venís a comer?</h2><div class="date">Almuerzos y cenas de la convención</div></div></div>
+        <div class="franja">Movimiento Cristiano y Misionero</div>
+        <div class="aviso"><b>Confirmá con anticipación</b>Así cocina sabe cuántos platos preparar y puede organizar el comedor. Cada día se confirma hasta el día anterior a las 20:00.</div>
+        <div class="stack">
+          <div class="field"><label for="nA">Tu nombre e iglesia</label><input class="input" id="nA" placeholder="Ej.: Juan Pérez · Iglesia de Maipú"></div>
+          <div class="card"><span class="lbl">Jueves 12</span>
+            <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+            <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+          </div>
+          <div class="card"><span class="lbl">Viernes 13</span>
+            <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+            <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">B — Viernes, con respuestas y días cerrados<small>Hoy es viernes 13: jueves y viernes ya cerraron (botones deshabilitados, se ve lo que respondió). Sábado y domingo siguen abiertos. Toast al confirmar.</small></p>
+      <div class="m">
+        <div class="hero"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><div><span class="eyebrow">Convención Regional Cuyo · 2026</span><h2>¿Venís a comer?</h2><div class="date">Almuerzos y cenas de la convención</div></div></div>
+        <div class="franja">Movimiento Cristiano y Misionero</div>
+        <div class="stack">
+          <div class="field"><label for="nB">Tu nombre e iglesia</label><input class="input" id="nB" value="Juan Pérez · Iglesia de Maipú"></div>
+          <div class="card"><div style="display: flex; justify-content: space-between"><span class="lbl">Viernes 13</span><span class="cerrado">Cerrado</span></div>
+            <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino dis"><button class="si on" type="button" disabled>Voy</button><button class="no" type="button" disabled>No voy</button></span></div>
+            <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino dis"><button class="si on" type="button" disabled>Voy</button><button class="no" type="button" disabled>No voy</button></span></div>
+          </div>
+          <div class="card"><span class="lbl">Sábado 14</span>
+            <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si on" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+            <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no on" type="button">No voy</button></span></div>
+          </div>
+          <div class="card"><span class="lbl">Domingo 15</span>
+            <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+          </div>
+        </div>
+        <div class="toast">Confirmado. ¡Te esperamos!</div>
+      </div>
+    </div>
+
+    <div class="state">
+      <p class="state-label">C — Falta el nombre<small>Si toca Voy / No voy sin nombre: no se guarda, el campo toma foco y aparece el aviso. Validación del lado del celular.</small></p>
+      <div class="m">
+        <div class="hero"><img src="/_blob/2e1a6c7af79d2e260d1f0d66dbb8b8d9" alt="Convención Cuyo"><div><span class="eyebrow">Convención Regional Cuyo · 2026</span><h2>¿Venís a comer?</h2><div class="date">Almuerzos y cenas de la convención</div></div></div>
+        <div class="franja">Movimiento Cristiano y Misionero</div>
+        <div class="stack">
+          <div class="field"><label for="nC">Tu nombre e iglesia</label><input class="input focus" id="nC" placeholder="Ej.: Juan Pérez · Iglesia de Maipú"><span style="color: #9a2f22; font-size: 14px; font-weight: 600">Escribí tu nombre e iglesia antes de confirmar.</span></div>
+          <div class="card"><span class="lbl">Sábado 14</span>
+            <div class="meal-row"><div>Almuerzo<small>13:00 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+            <div class="meal-row"><div>Cena<small>21:30 h</small></div><span class="sino"><button class="si" type="button">Voy</button><button class="no" type="button">No voy</button></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":470,"height":3030}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
