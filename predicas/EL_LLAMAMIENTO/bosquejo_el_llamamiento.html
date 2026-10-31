@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Llamamiento — Mateo 9:35-38</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0f0f0f;
+    --bg2:      #1a1a1a;
+    --text:     #f0f0f0;
+    --muted:    #999;
+    --red:      #e05555;
+    --red-bg:   #2a1212;
+    --green:    #5DBE2C;
+    --green-bg: #0e1f09;
+    --gold:     #f0c040;
+    --gold-bg:  #1e1800;
+    --accent:   #5DBE2C;
+    --border:   #333;
+    --nav-h:    64px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: #111;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    z-index: 100;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: #222;
+    color: #ccc;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid #333;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+
+  /* ── HEADER CARD ── */
+  .header-card {
+    background: var(--bg2);
+    border-left: 6px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .header-card .label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .header-card h1 {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-card .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── VERSE BOX ── */
+  .verse {
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #f5d0d0;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* ── IDEA CENTRAL ── */
+  .idea {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 26px;
+    margin: 24px 0;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #cdf0b8;
+  }
+  .idea .idea-label {
+    font-family: Arial, sans-serif;
+    font-size: .6em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+    font-style: normal;
+  }
+
+  /* ── term ── */
+  .term {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #ddd;
+  }
+  .term-def {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── PUNTO TITLE ── */
+  .punto-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 32px 0 20px;
+    padding: 14px 20px;
+    background: #222;
+    border-radius: 6px;
+    border-left: 5px solid var(--accent);
+  }
+  .punto-num {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  /* ── SUBPOINTS ── */
+  .sub {
+    margin: 18px 0 18px 16px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+  }
+  .sub-label {
+    font-family: Arial, sans-serif;
+    font-size: .85em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .sub p {
+    font-size: 1.1em;
+    color: #e8e8e8;
+  }
+
+  /* ── APPLICATION BOX ── */
+  .aplicacion {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 28px 0 8px;
+    font-size: 1.1em;
+    color: #c8f0b0;
+  }
+  .aplicacion .apl-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* ── QUESTION ── */
+  .pregunta {
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #f5e8a0;
+    font-style: italic;
+  }
+
+  /* ── INTRO / CONCLUSION plain text ── */
+  .plain {
+    font-size: 1.1em;
+    color: #ddd;
+    margin: 14px 0;
+  }
+
+  /* ── LLAMADO ── */
+  .llamado {
+    background: #1e0a2a;
+    border-left: 5px solid #b060e0;
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: #e0c0ff;
+  }
+  .llamado .ll-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b060e0;
+    margin-bottom: 8px;
+  }
+
+  /* ── NOTA ── */
+  .nota {
+    font-family: Arial, sans-serif;
+    font-size: .55em;
+    color: #666;
+    font-style: italic;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .nav-hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#intro"     class="active">Intro</a>
+  <a href="#punto1">1 · Ver la mies</a>
+  <a href="#punto2">2 · Rogar</a>
+  <a href="#punto3">3 · Ser fieles</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Mateo 9:35-38 — Reunión especial en Tilcara · 40 min</div>
+    <h1>El Llamamiento</h1>
+    <div class="meta">Tono: equilibrado &nbsp;·&nbsp; Audiencia: mixta &nbsp;·&nbsp; RVR1960</div>
+  </div>
+
+  <div class="sec-title">Introducción · ~5 min</div>
+
+  <p class="plain">
+    En estos mismos valles, en Tilcara y en Humahuaca, se hablaba una lengua: la de los omaguacas. Hoy ya no la habla nadie. Quedó tan poco registro que los estudiosos ni siquiera se ponen de acuerdo sobre a qué familia de lenguas pertenecía.
+  </p>
+  <p class="plain">
+    No desapareció por un decreto de un día para otro. Otras voces fueron ocupando su lugar —primero el quechua, después el castellano— hasta que un día nadie la transmitió más.
+  </p>
+
+  <div class="idea">
+    <div class="idea-label">La imagen</div>
+    Lo que se deja de hablar, se pierde. Y el lugar que deja no queda vacío: otras voces lo ocupan.
+  </div>
+
+  <div class="verse">
+    "Y toda aquella generación también fue reunida a sus padres. Y se levantó después de ellos otra generación que no conocía a Jehová, ni la obra que él había hecho por Israel."
+    <span class="ref">Jueces 2:10 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    El llamamiento es un tema del que se habló mucho en nuestro movimiento. ¿Qué pasa si dejamos de hablar de él? ¿Qué voces ocupan ese lugar?
+  </p>
+  <p class="plain">
+    Hoy no vamos a discutir <em>cómo</em> llama Dios. Vamos a mirar qué nos toca a <strong>nosotros</strong> frente a Su llamado.
+  </p>
+
+  <div class="verse">
+    "Recorría Jesús todas las ciudades y aldeas, enseñando en las sinagogas de ellos, y predicando el evangelio del reino, y sanando toda enfermedad y toda dolencia en el pueblo. Y al ver las multitudes, tuvo compasión de ellas; porque estaban desamparadas y dispersas como ovejas que no tienen pastor. Entonces dijo a sus discípulos: A la verdad la mies es mucha, mas los obreros pocos. Rogad, pues, al Señor de la mies, que envíe obreros a su mies."
+    <span class="ref">Mateo 9:35-38 — RVR1960</span>
+  </div>
+
+  <div class="idea">
+    <div class="idea-label">Idea central</div>
+    Antes de preguntarnos quién es llamado, nos toca ver, rogar y ser fieles.
+  </div>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3 · ~9 min</div>
+
+  <div class="punto-title">
+    <span class="punto-num">1.</span>Ver la mies
+  </div>
+
+  <div class="sub-label">Ilustración · El pastor</div>
+  <p class="plain">
+    Cualquiera que pasa por la ruta ve un rebaño en el cerro: una mancha blanca, todas iguales. El pastor no ve un rebaño: ve a cada una. Sabe cuál renguea, cuál se aparta siempre. Y si a la tarde falta una, se da cuenta, aunque sean cien.
+  </p>
+  <p class="plain">
+    No tiene mejor vista que nosotros: tiene la mirada puesta en ellas, porque son suyas.
+  </p>
+
+  <div class="sub">
+    <div class="sub-label">a) Jesús recorría</div>
+    <p>
+      "Recorría Jesús todas las ciudades y aldeas" (v.35). No miraba la necesidad desde lejos: caminaba en medio de la gente. Y lo hizo justo después de que los fariseos lo acusaran de echar fuera demonios por el poder del príncipe de los demonios (v.34). La acusación no lo detuvo ni le quitó la compasión.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) Jesús se conmovió</div>
+    <p>
+      <span class="term">Splanchnízomai</span> <span class="term-def">(σπλαγχνίζομαι) — se le conmovieron las entrañas; un dolor visceral, no simple lástima.</span>
+      Vio a la gente "desamparada y dispersa como ovejas que no tienen pastor". La compasión vino antes que la oración, y la oración antes que el envío.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Pero un samaritano, que iba de camino, vino cerca de él, y viéndole, fue movido a misericordia."
+      <span class="ref">Lucas 10:33 — RVR1960</span>
+    </div>
+    <p>
+      El sacerdote y el levita también lo vieron. Solo uno se conmovió, y ese fue el que se detuvo.
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Pero el que tiene bienes de este mundo y ve a su hermano tener necesidad, y cierra contra él su corazón, ¿cómo mora el amor de Dios en él?"
+      <span class="ref">1 Juan 3:17 — RVR1960</span>
+    </div>
+    <p>
+      "Corazón" acá es <span class="term">splánchna</span> <span class="term-def">— entrañas</span>, la misma familia de palabras. Se puede ver la necesidad y cerrar las entrañas.
+    </p>
+  </div>
+
+  <div class="idea">
+    <div class="idea-label">Frase</div>
+    "Es más poderoso responder a una carga que a un cargo."
+    <span class="nota">(Maxi Zeravika, Congreso Reino 2025) — El cargo sin carga, tarde o temprano, se vuelve insoportable de llevar.</span>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿Todavía vemos la necesidad de nuestra iglesia y de nuestro pueblo, o ya nos acostumbramos a ella?
+    </div>
+    <p style="margin-top:10px;">Necesitamos pedirle a Dios que nos devuelva la mirada de Jesús, empezando por las personas que tenemos al lado. No necesitamos primero un cargo: necesitamos Su carga.</p>
+  </div>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3 · ~12 min</div>
+
+  <div class="punto-title">
+    <span class="punto-num">2.</span>Rogar al Señor de la mies
+  </div>
+
+  <div class="sub-label">Ilustración · El frasco que no abre</div>
+  <p class="plain">
+    ¿A quién no le pasó? Un frasco que no abre. Lo intentamos con la mano, con un repasador, lo golpeamos contra la mesada, lo ponemos bajo el agua caliente, le metemos un cuchillo por el costado… Probamos de todo antes de hacer lo más simple: darnos vuelta y decirle a alguien "¿me ayudás?".
+  </p>
+  <p class="plain">
+    ¿Por qué nos cuesta tanto pedir? Porque pedir es admitir que solos no podemos.
+  </p>
+
+  <p class="plain">
+    Jesús acaba de ver a la multitud como ovejas sin pastor. Se da vuelta hacia sus discípulos. Nosotros, en ese lugar, hubiéramos armado un plan: formar obreros, organizar, convocar. Jesús dice una sola palabra: <strong>"Rogad"</strong>.
+  </p>
+  <p class="plain">
+    <span class="term">Deomai</span> <span class="term-def">(δέομαι) — rogar como quien no tiene otra salida.</span>
+  </p>
+
+  <div class="pregunta">
+    ¿Por qué rogar, si Jesús mismo podía enviarlos?
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">a) El que envía es el Pastor</div>
+    <p>
+      <span class="term">Ekballō</span> <span class="term-def">(ἐκβάλλω) — sacar, hacer salir.</span>
+      Es el mismo verbo que usa Juan cuando habla del buen pastor:
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Y cuando ha sacado fuera todas las propias, va delante de ellas; y las ovejas le siguen, porque conocen su voz."
+      <span class="ref">Juan 10:4 — RVR1960</span>
+    </div>
+    <p>
+      La multitud estaba "como ovejas que no tienen pastor" (v.36). La respuesta no es un plan nuestro: es el Pastor que saca a los suyos y va delante de ellos. Por eso se ruega: el obrero no lo fabricamos nosotros.
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) Los que ruegan son enviados</div>
+    <p>
+      En el versículo siguiente, los mismos discípulos que recibieron la orden de rogar son la respuesta. Primero, Jesús los llama:
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Entonces llamando a sus doce discípulos, les dio autoridad sobre los espíritus inmundos, para que los echasen fuera, y para sanar toda enfermedad y toda dolencia."
+      <span class="ref">Mateo 10:1 — RVR1960</span>
+    </div>
+    <p>
+      <span class="term">Proskaléomai</span> <span class="term-def">(προσκαλέομαι) — llamar hacia sí, acercar.</span> Antes de mandarlos a ningún lado, los acerca. Y no los manda con las manos vacías: les da autoridad. Después, los envía:
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "A estos doce envió Jesús, y les dio instrucciones."
+      <span class="ref">Mateo 10:5 — RVR1960</span>
+    </div>
+    <p>
+      <span class="term">Apostéllō</span> <span class="term-def">(ἀποστέλλω) — enviar con una misión; de ahí viene "apóstol".</span>
+    </p>
+    <p>
+      Quien ruega con sinceridad por obreros, muchas veces termina siendo la respuesta a su propia oración.
+    </p>
+  </div>
+
+  <div class="idea">
+    <div class="idea-label">Clave</div>
+    El primer llamado es hacia Él; el segundo, hacia afuera.
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    No está mal planificar, pero el plan no puede ocupar el lugar del ruego. Necesitamos volver a rogar al Señor de la mies, y estar dispuestos a ser la respuesta.
+  </div>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3 · ~9 min</div>
+
+  <div class="punto-title">
+    <span class="punto-num">3.</span>Ser fieles donde estamos
+  </div>
+
+  <div class="pregunta">
+    Vemos la necesidad, rogamos por obreros… ¿y mientras tanto, qué hacemos nosotros?
+  </div>
+
+  <div class="sub-label">Ilustración · El picaflor</div>
+  <p class="plain">
+    El picaflor tiene, en proporción a su cuerpo, uno de los corazones más grandes del reino animal. Cuando vuela, le late más de mil veces por minuto. Un corazón enorme en un envase chiquito.
+  </p>
+  <p class="plain">
+    Hay una fábula que se cuenta en los Andes: se incendia el bosque y todos los animales escapan. Solo un picaflor vuela una y otra vez hasta el río, carga una gota en el pico y la tira sobre el fuego. Los demás se ríen: "¿Qué pensás hacer con una gota?". Y el picaflor responde: "Hago mi parte."
+  </p>
+  <p class="plain">
+    El picaflor no apaga el incendio solo, y nosotros tampoco: eso le toca al Señor de la mies. A nosotros nos toca ser fieles con lo que tenemos en el pico.
+  </p>
+
+  <div class="sub">
+    <div class="sub-label">a) Dios llama a gente ocupada</div>
+    <p>A ninguno lo encontró esperando sin hacer nada:</p>
+    <p>
+      Moisés pastoreaba (Éxodo 3:1) · Gedeón sacudía el trigo (Jueces 6:11) · David cuidaba ovejas y ahí aprendió a enfrentar leones y osos (1 Samuel 17:34-36) · Eliseo araba con doce yuntas (1 Reyes 19:19) · Pedro y Andrés echaban la red (Mateo 4:18).
+    </p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) De servir mesas a ser enviados</div>
+    <p>
+      Felipe fue elegido para servir las mesas (Hechos 6:2-5) y terminó siendo conocido como "Felipe el evangelista, que era uno de los siete" (Hechos 21:8). Empezó repartiendo comida.
+    </p>
+    <p>
+      Bernabé y Saulo recibieron su llamado específico mientras ya servían en su iglesia local, y fue la iglesia la que los reconoció y los envió:
+    </p>
+    <div class="verse" style="margin-top:14px; font-size:.9em;">
+      "Ministrando éstos al Señor, y ayunando, dijo el Espíritu Santo: Apartadme a Bernabé y a Saulo para la obra a que los he llamado."
+      <span class="ref">Hechos 13:2 — RVR1960</span>
+    </div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-label">Clave</div>
+    La fidelidad en lo poco no compra el llamado: es el lugar donde el llamado se escucha.
+  </div>
+
+  <div class="verse">
+    "El que es fiel en lo muy poco, también en lo más es fiel."
+    <span class="ref">Lucas 16:10 — RVR1960</span>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta" style="margin:0; border:none; padding:0; background:transparent; color:#c8f0b0;">
+      ¿En qué cosa pequeña nos está pidiendo Dios fidelidad hoy?
+    </div>
+    <p style="margin-top:10px;">Nos toca hacernos cargo de la vida de nuestra iglesia: el servicio que tenemos enfrente, la persona que necesita que la acompañemos, la tarea que nadie quiere hacer.</p>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión · ~3 min</div>
+
+  <p class="plain">
+    Herrnhut, Alemania, 27 de agosto de 1727. Una comunidad pequeña de moravos empezó una cadena de oración de 24 horas. Se turnaban, hora por hora. Esa oración siguió durante unos cien años sin cortarse.
+  </p>
+  <p class="plain">
+    En 1732 salieron los primeros misioneros.
+  </p>
+  <p class="plain">
+    No empezaron con una estrategia. Empezaron rogando. Y Dios envió.
+  </p>
+
+  <div class="idea">
+    <div class="idea-label">Cierre</div>
+    Lo que se deja de hablar, se pierde. Pero lo que una iglesia vuelve a rogar, Dios lo vuelve a encender.
+  </div>
+</section>
+
+<!-- LLAMADO -->
+<section id="llamado">
+  <div class="sec-title">Llamado Final · ~2 min</div>
+
+  <p class="plain">
+    Según algunos relatos, aquella comunidad no pasaba de unas 300 personas. Y se cree que, con los años, salieron de ahí unos 300 misioneros.
+  </p>
+  <p class="plain">
+    Una comunidad chica rogó por obreros… y de entre los que rogaban, Dios envió.
+  </p>
+
+  <div class="verse">
+    "Después oí la voz del Señor, que decía: ¿A quién enviaré, y quién irá por nosotros? Entonces respondí yo: Heme aquí, envíame a mí."
+    <span class="ref">Isaías 6:8 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    Isaías no dijo "heme aquí" porque se sintiera capaz. Un versículo antes había dicho "¡Ay de mí!". Lo dijo después de que Dios lo limpió.
+  </p>
+
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    Hoy podemos comprometernos a tres cosas: volver a ver la mies con los ojos de Jesús, volver a rogar al Señor de la mies, y ser fieles en lo que ya tenemos en las manos. Lo que Dios haga con cada uno de nosotros queda en Sus manos.
+  </div>
+
+  <div class="pregunta" style="margin-top:24px;">
+    ¿Estamos dispuestos a ser parte de la respuesta a lo que rogamos?
+  </div>
+
+  <div class="nav-hint" style="margin-top:60px;">
+    ↑ usá los botones del menú para navegar entre secciones mientras predicás
+  </div>
+</section>
+
+<script>
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+  const navH  = 64 + 30;
+
+  function updateNav() {
+    let cur = '';
+    secs.forEach(s => {
+      if (window.scrollY >= s.offsetTop - navH) cur = s.id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>
