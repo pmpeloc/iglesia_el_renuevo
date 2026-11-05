@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A la carne le gusta servir — Filipenses 3:3</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0d0d0d; --bg2: #1a1a1a; --text: #f4f4f4; --muted: #a8a8a8;
+    --red: #ff6b6b; --red-bg: #2b1111;
+    --green: #6fd63a; --green-bg: #102108;
+    --gold: #ffcc33; --gold-bg: #251d00;
+    --blue: #7cc4ff; --blue-bg: #0d1c2b;
+    --border: #333; --nav-h: 66px;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 26px; line-height: 1.6;
+    padding-top: calc(var(--nav-h) + 16px); padding-bottom: 40vh;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h);
+    background: #111; border-bottom: 3px solid var(--green);
+    display: flex; align-items: center; gap: 8px; padding: 0 16px;
+    z-index: 10; overflow-x: auto;
+  }
+  nav a {
+    padding: 8px 16px; border-radius: 6px; background: #222; color: #ddd;
+    text-decoration: none; font-size: 17px; font-weight: 700; white-space: nowrap;
+    border: 1px solid #3a3a3a;
+  }
+  nav a:hover, nav a.active { background: var(--green); color: #000; border-color: var(--green); }
+
+  section { max-width: 980px; margin: 0 auto 70px; padding: 0 28px; scroll-margin-top: calc(var(--nav-h) + 20px); }
+
+  .portada { border-left: 8px solid var(--green); background: var(--bg2); border-radius: 8px; padding: 28px 34px; margin-bottom: 40px; }
+  .portada .serie { font-size: 16px; letter-spacing: .2em; text-transform: uppercase; color: var(--green); font-weight: 700; }
+  .portada h1 { font-size: 2.3em; line-height: 1.15; margin: 8px 0; }
+  .portada .meta { font-size: 18px; color: var(--muted); }
+
+  h2 { font-size: 1.6em; line-height: 1.2; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 2px solid var(--border); }
+  h2 .num { color: var(--green); margin-right: 10px; }
+  h3 { font-size: 1.15em; margin: 34px 0 10px; color: #fff; }
+  h3 .letra { display: inline-block; min-width: 1.6em; color: var(--green); }
+
+  p { margin: 12px 0; }
+  ul { margin: 10px 0 10px 1.2em; }
+  li { margin: 8px 0; }
+  strong { color: #fff; }
+
+  .box { border-radius: 8px; padding: 18px 24px; margin: 20px 0; border-left: 7px solid; }
+  .verso { background: var(--red-bg); border-color: var(--red); font-size: 1.12em; }
+  .verso .ref { display: block; margin-top: 8px; font-size: .7em; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+  .aplica { background: var(--green-bg); border-color: var(--green); }
+  .aplica .tag, .pregunta .tag, .griego .tag, .nota .tag { display: block; font-size: 15px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: 6px; }
+  .aplica .tag { color: var(--green); }
+  .pregunta { background: var(--gold-bg); border-color: var(--gold); font-size: 1.1em; font-weight: 700; color: #ffe9a8; }
+  .pregunta .tag { color: var(--gold); }
+  .griego { background: var(--blue-bg); border-color: var(--blue); }
+  .griego .tag { color: var(--blue); }
+  .gr { color: var(--blue); font-weight: 700; }
+  .nota { background: #1c1c1c; border-color: #777; font-size: .85em; color: #cfcfcf; }
+  .nota .tag { color: #bbb; }
+  .clave { background: var(--blue-bg); border: 3px solid var(--blue); border-radius: 10px; padding: 18px 24px; margin: 22px 0; font-size: 1.1em; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: .95em; }
+  th, td { border: 1px solid #444; padding: 12px 16px; text-align: left; vertical-align: top; }
+  th { background: #222; color: var(--green); font-size: .8em; letter-spacing: .1em; text-transform: uppercase; }
+  td:first-child { font-weight: 700; color: #fff; width: 42%; }
+
+  .eje { font-size: 1.15em; font-weight: 700; text-align: center; padding: 22px; border: 2px dashed var(--green); border-radius: 10px; margin: 26px 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#intro">Intro</a>
+  <a href="#p1">1. La carne también sirve</a>
+  <a href="#p2">2. Cómo se nota</a>
+  <a href="#p3">3. Servir desde Cristo</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- ═════════ INTRODUCCIÓN ═════════ -->
+<section id="intro">
+  <div class="portada">
+    <div class="serie">Serie · El corazón del servidor</div>
+    <h1>A la carne le gusta servir</h1>
+    <div class="meta">Filipenses 3:3 · RVR60 · Jueves · ~40 min</div>
+  </div>
+
+  <h2>Introducción</h2>
+
+  <h3>Los dos hermanos y los platos</h3>
+  <p>Termina un almuerzo familiar. Dos hermanos se levantan a lavar los platos.</p>
+  <ul>
+    <li>El primero lava, seca, guarda… y vuelve a la mesa <strong>sin decir nada</strong>.</li>
+    <li>El segundo lava igual de bien, pero pasa tres veces por el comedor: <strong>"¿Vieron que lavé todo?"</strong></li>
+  </ul>
+  <p>Al final, los platos de los dos quedaron <strong>igual de limpios</strong>. Lo que cambió no fue el plato: fue <strong>desde dónde</strong> lavó cada uno.</p>
+
+  <p>Esta noche no le hablamos al que no sirve. Le hablamos al que sirve… y a veces sirve mucho.</p>
+
+  <div class="box verso">
+    "Porque nosotros somos la circuncisión, los que en espíritu servimos a Dios y nos gloriamos en Cristo Jesús, no teniendo confianza en la carne."
+    <span class="ref">Filipenses 3:3</span>
+  </div>
+
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">λατρεύω (latreúō)</span> — servir a Dios como acto de <strong>adoración</strong>.
+    Pablo pone en la misma frase "servimos" y "no teniendo confianza en la carne": son <strong>dos fuentes distintas</strong>.
+  </div>
+
+  <div class="eje">No todo servicio nace del Espíritu.<br>La carne también sirve, y lo hace con entusiasmo,<br>porque el servicio la alimenta.</div>
+</section>
+
+<!-- ═════════ PUNTO 1 ═════════ -->
+<section id="p1">
+  <h2><span class="num">1.</span>La carne también sirve</h2>
+
+  <h3><span class="letra">a.</span>Qué es la carne</h3>
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">σάρξ (sárx)</span> — no es solo el cuerpo ni solo los deseos sexuales.
+    Es <strong>el yo funcionando sin depender de Dios</strong>: autosuficiencia, gloria propia, control, mérito.
+  </div>
+  <p>Por eso la carne puede ser <strong>muy religiosa</strong>. Justo después del v. 3, Pablo muestra su currículum (vv. 4-6):</p>
+  <ul>
+    <li>Circuncidado al octavo día, del linaje de Israel, de la tribu de Benjamín, hebreo de hebreos.</li>
+    <li>En cuanto a la ley, <strong>fariseo</strong>; en cuanto a celo, perseguidor de la iglesia.</li>
+    <li>En cuanto a la justicia que es en la ley, <strong>irreprensible</strong>.</li>
+  </ul>
+  <p>Todo eso, Pablo lo llama <strong>"confianza en la carne"</strong>.</p>
+  <div class="box verso">
+    "y los que viven según la carne no pueden agradar a Dios."
+    <span class="ref">Romanos 8:8</span>
+  </div>
+
+  <h3><span class="letra">b.</span>Porque le paga</h3>
+  <p>A la carne le gusta servir porque el servicio <strong>le devuelve algo</strong>.</p>
+
+  <p><strong>Mérito.</strong> El hermano mayor del hijo pródigo:</p>
+  <div class="box verso">
+    "He aquí, tantos años te sirvo, no habiéndote desobedecido jamás, y nunca me has dado ni un cabrito para gozarme con mis amigos."
+    <span class="ref">Lucas 15:29</span>
+  </div>
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">δουλεύω (douleúō)</span> — servir <strong>como esclavo</strong>. Vivía en la casa del padre con mentalidad de empleado, no de hijo.
+  </div>
+
+  <p><strong>Aplauso.</strong></p>
+  <div class="box verso">
+    "Guardaos de hacer vuestra justicia delante de los hombres, para ser vistos de ellos; de otra manera no tendréis recompensa de vuestro Padre que está en los cielos. Cuando, pues, des limosna, no hagas tocar trompeta delante de ti, como hacen los hipócritas en las sinagogas y en las calles, para ser alabados por los hombres; de cierto os digo que ya tienen su recompensa."
+    <span class="ref">Mateo 6:1-2</span>
+  </div>
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">θεαθῆναι (theathēnai)</span> — "para ser vistos": de aquí viene la palabra <strong>teatro</strong>.<br>
+    <span class="gr">ἀπέχω (apéchō)</span> — "ya tienen": término comercial, <strong>"pagado en su totalidad, recibo firmado"</strong>. No hay nada más que cobrar.
+  </div>
+
+  <p><strong>Control.</strong> Ya lo vimos en esta serie con Diótrefes:</p>
+  <div class="box verso">
+    "Yo he escrito a la iglesia; pero Diótrefes, al cual le gusta tener el primer lugar entre ellos, no nos recibe. Por esta causa, si yo fuere, recordaré las obras que hace parloteando con palabras malignas contra nosotros; y no contento con estas cosas, no recibe a los hermanos, y a los que quieren recibirlos se lo prohíbe, y los expulsa de la iglesia."
+    <span class="ref">3 Juan 9-10</span>
+  </div>
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">φιλοπρωτεύω (philoprōteúō)</span> — "le gusta tener el primer lugar": literalmente <strong>amar ser el primero</strong>.
+    El servicio le daba un lugar, y desde ese lugar <strong>controlaba</strong> quién entraba y quién no.
+  </div>
+  <p><strong>Identidad:</strong> "soy alguien porque hago". Si me sacan la tarea, siento que me sacan a mí.</p>
+
+  <h3><span class="letra">c.</span>Empieza bien, termina mal</h3>
+  <div class="box verso">
+    "¿Tan necios sois? ¿Habiendo comenzado por el Espíritu, ahora vais a acabar por la carne?"
+    <span class="ref">Gálatas 3:3</span>
+  </div>
+  <p>Casi nadie <strong>empieza</strong> a servir desde la carne. Muchos <strong>terminan</strong> ahí: sin darse cuenta, la fuente cambia y la tarea sigue igual.</p>
+
+  <div class="box aplica">
+    <span class="tag">Aplicación</span>
+    Necesitamos preguntarnos no <strong>cuánto</strong> servimos, sino <strong>qué recibimos a cambio</strong> cuando servimos.
+  </div>
+  <div class="box pregunta">
+    <span class="tag">Pregunta</span>
+    ¿Qué nos está pagando nuestro servicio?
+  </div>
+</section>
+
+<!-- ═════════ PUNTO 2 ═════════ -->
+<section id="p2">
+  <h2><span class="num">2.</span>Cómo se nota</h2>
+
+  <h3><span class="letra">a.</span>Se resiente (Marta)</h3>
+  <div class="box verso">
+    "Pero Marta se preocupaba con muchos quehaceres, y acercándose, dijo: Señor, ¿no te da cuidado que mi hermana me deje servir sola? Dile, pues, que me ayude. Respondiendo Jesús, le dijo: Marta, Marta, afanada y turbada estás con muchas cosas. Pero sólo una cosa es necesaria; y María ha escogido la buena parte, la cual no le será quitada."
+    <span class="ref">Lucas 10:40-42</span>
+  </div>
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">περισπάω (perispáō)</span> — "se preocupaba": <strong>tironeada, arrastrada de un lado a otro</strong>.<br>
+    <span class="gr">διακονία (diakonía)</span> — "quehaceres": la misma palabra que usamos para <strong>ministerio</strong>.
+  </div>
+  <p>Marta no estaba pecando: <strong>estaba sirviendo</strong>, y el servicio la estaba arrastrando.</p>
+  <p>La señal aparece en su queja: <strong>compara</strong> a su hermana y le <strong>reclama</strong> al mismo Señor: "¿no te da cuidado…?"</p>
+
+  <h3><span class="letra">b.</span>Se adelanta (Pedro)</h3>
+  <div class="box verso">
+    "Entonces Simón Pedro, que tenía una espada, la desenvainó, e hirió al siervo del sumo sacerdote, y le cortó la oreja derecha. Y el siervo se llamaba Malco. Jesús entonces dijo a Pedro: Mete tu espada en la vaina; la copa que el Padre me ha dado, ¿no la he de beber?"
+    <span class="ref">Juan 18:10-11</span>
+  </div>
+  <p>Amor sincero. Celo real. <strong>Espada en la mano equivocada.</strong> La carne también puede ser sincera: hace mucho, pero no lo que Dios pidió.</p>
+  <div class="box nota">
+    <span class="tag">Ojo</span>
+    El texto no dice "carne" en esas palabras, ni de Pedro ni de Marta. Es una aplicación que se infiere de la escena.
+  </div>
+
+  <h3>Las luces del tablero</h3>
+  <table>
+    <tr><th>Señal</th><th>Cómo suena por dentro</th></tr>
+    <tr><td>Resentimiento / comparación</td><td>"¿Y los demás qué?"</td></tr>
+    <tr><td>Necesidad de ser visto</td><td>Se apaga si nadie agradece</td></tr>
+    <tr><td>No soporta corrección</td><td>"Esto es mío"</td></tr>
+    <tr><td>Cansancio sin gozo</td><td>Sirve por culpa u obligación</td></tr>
+    <tr><td>Celo sin dirección</td><td>Hace mucho, pero no lo que Dios pidió</td></tr>
+  </table>
+
+  <div class="box aplica">
+    <span class="tag">Aplicación</span>
+    Estas señales <strong>no nos descalifican: nos avisan</strong>. Son como la luz del tablero del auto: se enciende para que frenemos y revisemos, no para tirar el auto.
+    Podemos mirar esta lista con honestidad, <strong>sin acusar al de al lado</strong>.
+  </div>
+  <div class="box pregunta">
+    <span class="tag">Pregunta</span>
+    ¿Cuál de estas luces se nos encendió este último mes?
+  </div>
+</section>
+
+<!-- ═════════ PUNTO 3 ═════════ -->
+<section id="p3">
+  <h2><span class="num">3.</span>Servir desde Cristo</h2>
+
+  <h3><span class="letra">a.</span>Primero los pies</h3>
+  <p>Volvemos a Betania: <strong>"María ha escogido la buena parte"</strong> (Lc 10:42). Antes de las manos, los pies de Jesús.</p>
+  <div class="box verso">
+    "Yo soy la vid, vosotros los pámpanos; el que permanece en mí, y yo en él, éste lleva mucho fruto; porque separados de mí nada podéis hacer."
+    <span class="ref">Juan 15:5</span>
+  </div>
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">μένω (ménō)</span> — <strong>permanecer, quedarse</strong>. El fruto no sale del esfuerzo de la rama, sino de seguir unida a la vid.
+  </div>
+
+  <h3><span class="letra">b.</span>El amor como motor</h3>
+  <div class="box verso">
+    "Porque vosotros, hermanos, a libertad fuisteis llamados; solamente que no uséis la libertad como ocasión para la carne, sino servíos por amor los unos a los otros."
+    <span class="ref">Gálatas 5:13</span>
+  </div>
+  <div class="box griego">
+    <span class="tag">Griego</span>
+    <span class="gr">ἀφορμή (aphormḗ)</span> — "ocasión": término militar, <strong>base de operaciones</strong>. La carne busca dónde instalarse.
+  </div>
+  <div class="clave">
+    🔑 "Servíos" es <span class="gr">δουλεύω (douleúō)</span>: <strong>el mismo verbo del hermano mayor</strong> (Lc 15:29).<br>
+    Es la misma tarea de esclavo, pero con otro motor: allá el <strong>mérito</strong>, acá el <strong>amor</strong>.
+  </div>
+
+  <h3><span class="letra">c.</span>El fuego lo revela</h3>
+  <div class="box verso">
+    "Y si sobre este fundamento alguno edificare oro, plata, piedras preciosas, madera, heno, hojarasca, la obra de cada uno se hará manifiesta; porque el día la declarará, pues por el fuego será revelada; y la obra de cada uno cuál sea, el fuego la probará."
+    <span class="ref">1 Corintios 3:12-13</span>
+  </div>
+  <p>La <strong>actividad</strong> es la misma; el <strong>material</strong> es distinto. Hoy no se ve. Aquel día, sí.</p>
+  <div class="box nota">
+    <span class="tag">Ojo</span>
+    El contexto es la obra de los que edifican la iglesia, así que encaja con los colaboradores. No es un texto sobre perder la salvación (v. 15: "él mismo será salvo, aunque así como por fuego").
+  </div>
+
+  <div class="box aplica">
+    <span class="tag">Aplicación</span>
+    Necesitamos <strong>volver a los pies de Jesús antes de volver a la tarea</strong>. No se trata de servir menos, sino de servir <strong>desde otro lugar</strong>.
+  </div>
+  <div class="box pregunta">
+    <span class="tag">Pregunta</span>
+    ¿Cuándo fue la última vez que estuvimos a sus pies sin que hubiera algo que hacer después?
+  </div>
+</section>
+
+<!-- ═════════ CONCLUSIÓN ═════════ -->
+<section id="conclusion">
+  <h2>Conclusión</h2>
+  <div class="box verso">
+    "Con Cristo estoy juntamente crucificado, y ya no vivo yo, mas vive Cristo en mí; y lo que ahora vivo en la carne, lo vivo en la fe del Hijo de Dios, el cual me amó y se entregó a sí mismo por mí."
+    <span class="ref">Gálatas 2:20</span>
+  </div>
+  <p>Puente con los domingos: <strong>Cristo, nuestra vida</strong>. Si Cristo vive en nosotros, nuestro servicio puede nacer de Él y no de nosotros.</p>
+  <div class="box nota">
+    <span class="tag">Aclaración</span>
+    En este mismo versículo, "lo que ahora vivo <strong>en la carne</strong>" es la vida física. <span class="gr">σάρξ</span> tiene más de un sentido, y Pablo cambia de sentido en una misma frase.
+  </div>
+  <p>Volvemos a los dos hermanos: <strong>los platos quedaron igual de limpios</strong>. Dios no solo mira el plato. Mira <strong>desde dónde</strong> lavamos.</p>
+
+  <div class="box pregunta">
+    <span class="tag">Pregunta final</span>
+    ¿Qué pasaría con nuestro servicio si mañana nadie lo viera, nadie lo agradeciera y nadie nos lo pidiera?
+  </div>
+</section>
+
+<!-- ═════════ LLAMADO ═════════ -->
+<section id="llamado">
+  <h2>Llamado final</h2>
+  <p>Un momento de oración para <strong>entregar el servicio, no para abandonarlo</strong>.</p>
+  <div class="eje">No venimos a dejar el ministerio;<br>venimos a dejar la carne en el altar.</div>
+  <div class="box aplica">
+    <span class="tag">Oramos juntos</span>
+    Le pedimos al Señor que <strong>cambie la fuente, no la tarea</strong>. Que lo que hacemos el domingo, el jueves y en la semana nazca de estar a sus pies.
+  </div>
+</section>
+
+<script>
+  // Resalta en el nav la sección visible
+  const links = document.querySelectorAll('nav a');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('section').forEach(s => io.observe(s));
+</script>
+</body>
+</html>
