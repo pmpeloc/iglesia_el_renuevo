@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1920px; height:1080px; overflow:hidden; background:#000; }
+  .s { display:none; position:relative; width:1920px; height:1080px; color:#fff; font-family:Montserrat,sans-serif; overflow:hidden; }
+  .s.on { display:block; }
+  .bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .shade { position:absolute; inset:0; background:linear-gradient(90deg, rgba(8,12,20,.92) 0%, rgba(8,12,20,.78) 38%, rgba(8,12,20,.25) 62%, rgba(8,12,20,0) 78%); }
+  .txt { position:absolute; left:120px; top:0; bottom:0; width:1000px; display:flex; flex-direction:column; justify-content:center; }
+  .kick { font-weight:800; font-size:40px; letter-spacing:.16em; text-transform:uppercase; color:#ffb347; margin-bottom:26px; }
+  h1 { font-weight:900; font-size:118px; line-height:1.02; text-shadow:0 4px 30px rgba(0,0,0,.5); }
+  .num { font-weight:900; font-size:170px; line-height:.9; color:#ffb347; margin-bottom:6px; }
+  .g { color:#7fd65a; }
+  .ref { margin-top:34px; font-weight:700; font-size:52px; color:#f1e6d2; }
+  .sub { margin-top:26px; font-weight:500; font-size:60px; color:#f1e6d2; }
+  .items { margin-top:44px; }
+  .items div { font-weight:800; font-size:66px; line-height:1.15; margin-top:20px; }
+  .items span { display:block; font-weight:600; font-size:44px; color:#f1e6d2; margin-top:4px; }
+  .logos { position:absolute; right:60px; bottom:50px; display:flex; gap:18px; }
+  .logos img { height:84px; background:#fff; border-radius:14px; padding:7px; }
+  .qr { position:absolute; right:110px; top:50%; transform:translateY(-50%); background:#fff; border-radius:32px; padding:34px 34px 22px; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,.45); }
+  .qr img { width:560px; height:560px; display:block; }
+  .qr p { color:#111; font-weight:800; font-size:34px; margin-top:12px; line-height:1.2; }
+  .qr p small { display:block; font-weight:600; font-size:26px; color:#555; }
+  .portada .shade { background:linear-gradient(90deg, rgba(8,12,20,.93) 0%, rgba(8,12,20,.8) 45%, rgba(8,12,20,.55) 100%); }
+  .portada .logos { left:120px; right:auto; }
+</style>
+</head>
+<body>
+
+<section class="s portada"><img class="bg" src="../img/p1_portada.png"><div class="shade"></div>
+  <div class="txt" style="width:960px"><div class="kick">Casas de Oración · Taller 1</div>
+    <h1>¿Por qué una <span class="g">casa de oración</span>?</h1><div class="ref">Lucas 18:1</div></div>
+  <div class="qr"><img src="../../qr_t1.png"><p>Apunte y guía de oración<small>casadeoracion-elrenuevo.netlify.app/t1</small></p></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<section class="s"><img class="bg" src="../img/p2_viuda.png"><div class="shade"></div>
+  <div class="txt"><div class="kick">¿Por qué una casa de oración?</div><div class="num">1</div><h1>Jesús nos enseñó a <span class="g">no soltar</span></h1></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<section class="s"><img class="bg" src="../img/p3_aposento.png"><div class="shade"></div>
+  <div class="txt"><div class="kick">¿Por qué una casa de oración?</div><div class="num">2</div><h1>La iglesia nació <span class="g">orando junta</span></h1></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<section class="s"><img class="bg" src="../img/p4_asado.png"><div class="shade"></div>
+  <div class="txt"><div class="kick">¿Por qué una casa de oración?</div><div class="num">3</div><h1><span class="g">Empezar chico</span> y no soltar</h1></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<section class="s"><img class="bg" src="../img/p5_manos.png"><div class="shade"></div>
+  <div class="txt"><div class="kick">Guía de oración · Miércoles 25/11</div><h1>ORAR <span class="g">SIN SOLTAR</span></h1><div class="sub">Oramos para no bajar los brazos</div><div class="ref">Lucas 18:1</div></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<section class="s"><img class="bg" src="../img/p6_soga.png"><div class="shade"></div>
+  <div class="txt"><div class="kick">Bloque 1</div><h1><span class="g">No soltar</span></h1>
+    <div class="items"><div>a. Constancia<span>Colosenses 4:2</span></div><div>b. Fe que sigue clamando<span>Lucas 18:7</span></div></div></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<section class="s"><img class="bg" src="../img/p7_ronda.png"><div class="shade"></div>
+  <div class="txt"><div class="kick">Bloque 2</div><h1><span class="g">Juntos</span> y con un mismo ánimo</h1>
+    <div class="items"><div>a. Un mismo sentir<span>Romanos 15:5-6</span></div><div>b. Valentía para hablar<span>Hechos 4:29, 31</span></div></div></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<section class="s"><img class="bg" src="../img/p8_perico.png"><div class="shade"></div>
+  <div class="txt"><div class="kick">Bloque 3</div><h1>Por <span class="g">Perico</span></h1>
+    <div class="items"><div>a. Por los que gobiernan<span>1 Timoteo 2:1-2</span></div><div>b. Que muchos conozcan a Jesús<span>1 Timoteo 2:3-4</span></div></div></div>
+  <div class="logos"><img src="../../sitio/img/raices.png"><img src="../../sitio/img/vastagos.png"></div></section>
+
+<script>
+  const i = parseInt(location.hash.slice(1) || '1', 10) - 1;
+  document.querySelectorAll('.s')[i].classList.add('on');
+</script>
+</body>
+</html>

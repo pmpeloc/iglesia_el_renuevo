@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller 1 · ¿Por qué una casa de oración?</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg:#0f0f0f; --bg2:#1a1a1a; --text:#f0f0f0; --muted:#999;
+    --red:#e05555; --red-bg:#2a1212; --green:#5DBE2C; --green-bg:#0e1f09;
+    --gold:#f0c040; --gold-bg:#1e1800; --accent:#5DBE2C; --border:#333; --nav-h:64px;
+  }
+  body { background:var(--bg); color:var(--text); font-family:Georgia,serif; font-size:22px; line-height:1.7; padding-top:calc(var(--nav-h) + 12px); }
+  nav { position:fixed; top:0; left:0; right:0; height:var(--nav-h); background:#111; border-bottom:2px solid var(--accent); display:flex; align-items:center; gap:6px; padding:0 16px; z-index:100; overflow-x:auto; }
+  nav a { display:inline-block; padding:7px 16px; border-radius:6px; background:#222; color:#ccc; text-decoration:none; font-family:Arial,sans-serif; font-size:15px; font-weight:700; white-space:nowrap; border:1px solid #333; }
+  nav a:hover, nav a.active { background:var(--accent); color:#000; border-color:var(--accent); }
+  nav a.home { background:#000; color:var(--accent); border-color:var(--accent); }
+  section { max-width:900px; margin:0 auto 60px; padding:0 24px; scroll-margin-top:calc(var(--nav-h) + 20px); }
+  .header-card { background:var(--bg2); border-left:6px solid var(--accent); border-radius:8px; padding:28px 32px; margin-bottom:36px; }
+  .header-card .label { font-family:Arial,sans-serif; font-size:13px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .header-card h1 { font-size:2.2rem; font-weight:normal; color:#fff; margin-bottom:6px; }
+  .header-card .meta { font-family:Arial,sans-serif; font-size:15px; color:var(--muted); }
+  .sec-title { font-family:Arial,sans-serif; font-size:13px; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--accent); margin-bottom:20px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+  .verse { background:var(--red-bg); border-left:5px solid var(--red); border-radius:6px; padding:20px 26px; margin:20px 0; font-size:1.2em; line-height:1.6; color:#f5d0d0; }
+  .verse u { text-decoration-color:var(--red); text-decoration-thickness:2px; text-underline-offset:4px; color:#fff; }
+  .verse .ref { display:block; margin-top:10px; font-family:Arial,sans-serif; font-size:.65em; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--red); }
+  .idea { background:var(--green-bg); border-left:5px solid var(--green); border-radius:6px; padding:18px 26px; margin:24px 0; font-size:1.15em; font-style:italic; color:#cdf0b8; }
+  .idea .idea-label, .aplicacion .apl-label, .llamado .ll-label { font-family:Arial,sans-serif; font-size:.6em; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--green); margin-bottom:8px; font-style:normal; }
+  .term { font-weight:700; text-decoration:underline; color:#ddd; }
+  .term-def { color:var(--muted); font-style:italic; }
+  .punto-title { font-size:1.55rem; font-weight:bold; color:#fff; margin:32px 0 20px; padding:14px 20px; background:#222; border-radius:6px; border-left:5px solid var(--accent); }
+  .punto-num { color:var(--accent); margin-right:10px; }
+  .sub-label { font-family:Arial,sans-serif; font-size:.85em; font-weight:700; color:var(--accent); letter-spacing:.1em; margin:22px 0 6px; }
+  .aplicacion { background:var(--green-bg); border-left:5px solid var(--green); border-radius:6px; padding:18px 24px; margin:28px 0 8px; font-size:1.05em; color:#c8f0b0; }
+  .aplicacion p + p { margin-top:10px; }
+  .pregunta { background:var(--gold-bg); border-left:5px solid var(--gold); border-radius:6px; padding:16px 22px; margin:16px 0; font-size:1.05em; color:#f5e8a0; font-style:italic; }
+  .plain { font-size:1.05em; color:#ddd; margin:14px 0; }
+  .puente { font-family:Arial,sans-serif; font-size:.8em; color:var(--gold); border-top:1px dashed #444; padding-top:12px; margin-top:28px; }
+  .llamado { background:#1e0a2a; border-left:5px solid #b060e0; border-radius:6px; padding:20px 26px; margin-top:24px; font-size:1.05em; color:#e0c0ff; }
+  .llamado .ll-label { color:#b060e0; }
+  table.prac { width:100%; border-collapse:collapse; font-family:Arial,sans-serif; font-size:.8em; margin:16px 0; }
+  table.prac td { border-bottom:1px solid #333; padding:12px 10px; vertical-align:top; }
+  table.prac td:first-child { color:var(--accent); font-weight:700; white-space:nowrap; width:90px; }
+  .guia-bar { background:#000; border:2px solid #fff; padding:16px 22px; margin:10px 0 16px; text-align:center; font-family:Arial,sans-serif; }
+  .guia-bar b { display:block; font-size:1.3em; letter-spacing:.05em; }
+  .guia-bar span { color:#bbb; font-size:.8em; }
+  .bloque { margin-top:26px; }
+  .bloque h3 { font-family:Arial,sans-serif; font-size:.9em; letter-spacing:.08em; color:#6fb6ff; }
+  .bloque .proclama { color:#a9d3ff; margin:6px 0 10px; }
+  .bloque .item { margin:12px 0 0 18px; }
+  .bloque .item b { color:#fff; }
+  .bloque .verse { font-size:.95em; margin:8px 0 0; padding:12px 18px; }
+  .mus { display:inline-block; margin-top:6px; font-size:.92em; color:#9fd0ff; }
+  .nav-hint { font-family:Arial,sans-serif; font-size:13px; color:#555; text-align:center; padding:8px; }
+  @media (max-width:640px) {
+    body { font-size:17px; }
+    section { padding:0 14px; }
+    .header-card { padding:20px; }
+    .header-card h1 { font-size:1.6rem; }
+    .punto-title { font-size:1.25rem; }
+    .verse { padding:14px 16px; }
+    nav a { padding:6px 11px; font-size:13px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="../" class="home">☰ Índice</a>
+  <a href="#intro" class="active">Intro</a>
+  <a href="#punto1">1 · Jesús nos enseñó</a>
+  <a href="#punto2">2 · La iglesia nació</a>
+  <a href="#punto3">3 · Empezar chico</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#practica">Práctica</a>
+  <a href="#guia">Guía miércoles</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Casas de Oración · Taller 1 de 8 · Sábado 21/11</div>
+    <h1>¿Por qué una casa de oración?</h1>
+    <div class="meta">Jóvenes y adolescentes · Enseñanza 30 min + Práctica 35 min · Tono: desafiante-reflexivo · RVR1960</div>
+  </div>
+
+  <div class="idea">
+    <div class="idea-label">Hilo conductor</div>
+    No soltar. Jesús nos enseñó a no soltar, la iglesia nació sin soltar, y nosotros empezamos chico para no soltar.
+  </div>
+
+  <div class="sec-title">Introducción · ~4 min</div>
+
+  <div class="pregunta">El problema: casi todos oramos igual.</div>
+  <p class="plain">Oramos mucho cuando hay una emergencia: un examen, una enfermedad, un problema en casa. Cuando pasa, soltamos. Y casi siempre oramos solos y a las corridas.</p>
+
+  <p class="plain">La frase "casa de oración" viene de Isaías, y Jesús la repitió cuando limpió el templo:</p>
+  <div class="verse">
+    "Y les enseñaba, diciendo: ¿No está escrito: <u>Mi casa será llamada casa de oración para todas las naciones?</u> Mas vosotros la habéis hecho cueva de ladrones."
+    <span class="ref">Marcos 11:17 — RVR1960</span>
+  </div>
+
+  <div class="idea">
+    <div class="idea-label">Aclaración honesta</div>
+    Jesús hablaba del templo de Jerusalén. Nosotros usamos la frase por analogía, para nombrar un lugar y un horario fijo donde la iglesia ora junta. Lo que el Nuevo Testamento sí manda con claridad es orar con constancia y en comunidad. De eso trata este taller.
+  </div>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3 · ~8 min</div>
+  <div class="punto-title"><span class="punto-num">1.</span>Jesús nos enseñó a no soltar</div>
+
+  <div class="idea">
+    <div class="idea-label">La idea en una frase</div>
+    Jesús contó una parábola para que no bajemos los brazos cuando la respuesta tarda.
+  </div>
+
+  <div class="verse">
+    "También les refirió Jesús una parábola <u>sobre la necesidad de orar siempre, y no desmayar</u>,"
+    <span class="ref">Lucas 18:1 — RVR1960</span>
+  </div>
+  <p class="plain">Jesús dice para qué es la parábola antes de contarla.</p>
+  <p class="plain"><span class="term">Desmayar</span> <span class="term-def">(ἐκκακέω, ekkakéō) — quedarse sin fuerzas, agotarse.</span> Es el que se cansa de pedir y baja los brazos.</p>
+
+  <div class="sub-label">El relato, en orden</div>
+  <p class="plain">Hay un juez "que ni temía a Dios, ni respetaba a hombre" (v. 2). Hay una viuda —alguien sin poder ni contactos— que "venía a él, diciendo: Hazme justicia de mi adversario" (v. 3). El juez no quiso. Pero ella seguía yendo, hasta que él dijo:</p>
+  <div class="verse">
+    "sin embargo, porque esta viuda me es molesta, le haré justicia, <u>no sea que viniendo de continuo</u>, me agote la paciencia."
+    <span class="ref">Lucas 18:5 — RVR1960</span>
+  </div>
+
+  <div class="sub-label">El giro</div>
+  <div class="verse">
+    "¿Y acaso Dios no hará justicia a sus escogidos, <u>que claman a él día y noche</u>? ¿Se tardará en responderles?"
+    <span class="ref">Lucas 18:7 — RVR1960</span>
+  </div>
+  <p class="plain">Dios no es como ese juez. La parábola funciona por contraste: si un juez injusto termina respondiendo, ¡cuánto más nuestro Padre!</p>
+
+  <div class="pregunta">"¿Entonces Dios necesita que insistamos para enterarse?"</div>
+  <p class="plain">No. Esto no está en el texto en esas palabras, pero se infiere del contraste: insistir no le informa nada a Dios; muestra si confiamos en Él. Por eso Jesús cierra así:</p>
+  <div class="verse">
+    "Os digo que pronto les hará justicia. Pero cuando venga el Hijo del Hombre, <u>¿hallará fe en la tierra?</u>"
+    <span class="ref">Lucas 18:8 — RVR1960</span>
+  </div>
+  <p class="plain">Seguir orando es una forma de tener fe.</p>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <p>Casi todos tenemos un nombre por el que oramos dos o tres veces y después soltamos: un amigo que se apartó, un familiar, un compañero de curso. Necesitamos volver a agarrar ese nombre.</p>
+    <p><b>Paso para la semana:</b> elegir un nombre y no soltarlo hasta el miércoles.</p>
+  </div>
+
+  <p class="puente">Puente → Jesús lo enseñó con una parábola. Lo impactante es que sus discípulos lo vivieron apenas Él se fue.</p>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3 · ~8 min</div>
+  <div class="punto-title"><span class="punto-num">2.</span>La iglesia nació orando junta</div>
+
+  <div class="idea">
+    <div class="idea-label">La idea en una frase</div>
+    La iglesia no empezó con un evento: empezó con un grupo que se juntó a orar y no soltó.
+  </div>
+
+  <div class="sub-label">El relato, en orden</div>
+  <p class="plain">Jesús sube al cielo. Los discípulos vuelven a Jerusalén y suben al aposento alto (Hch 1:12-13). Ahí está la lista de nombres: Pedro, Juan, Tomás, Mateo… y entonces:</p>
+  <div class="verse">
+    "Todos éstos <u>perseveraban unánimes en oración y ruego</u>, con las mujeres, y con María la madre de Jesús, y con sus hermanos."
+    <span class="ref">Hechos 1:14 — RVR1960</span>
+  </div>
+  <p class="plain"><span class="term">Perseveraban</span> <span class="term-def">(προσκαρτερέω, proskarteréō) — aferrarse a algo con constancia, no soltarlo.</span></p>
+  <p class="plain"><b>"Unánimes":</b> con un mismo ánimo. No había uno que oraba y otros que miraban. Y eran "como ciento veinte" (v. 15): un grupo chico.</p>
+
+  <div class="sub-label">Después de Pentecostés, la misma palabra</div>
+  <div class="verse">
+    "<u>Y perseveraban</u> en la doctrina de los apóstoles, en la comunión unos con otros, en el partimiento del pan <u>y en las oraciones</u>."
+    <span class="ref">Hechos 2:42 — RVR1960</span>
+  </div>
+  <p class="plain">Orar juntos pasó a ser parte fija de la vida de la iglesia, igual que la Palabra y la comunión. No era algo para emergencias.</p>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <p>Orar solos es necesario, pero hay cosas que Dios hace cuando oramos juntos. A muchos nos cuesta orar en voz alta delante de otros. No hace falta orar lindo: hace falta estar.</p>
+    <p><b>Paso para la semana:</b> venir al menos un miércoles de diciembre y, si podemos, traer a alguien.</p>
+  </div>
+
+  <p class="puente">Puente → ¿Y cómo se sostiene esto en el tiempo, sin que a las dos semanas se apague?</p>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3 · ~7 min</div>
+  <div class="punto-title"><span class="punto-num">3.</span>Empezar chico y no soltar</div>
+
+  <div class="idea">
+    <div class="idea-label">La idea en una frase</div>
+    Dios no desprecia los comienzos chicos. Lo que importa es que sean fieles.
+  </div>
+
+  <div class="sub-label">Ilustración · El fuego del asado</div>
+  <p class="plain">En un asado, el fuego no se mantiene solo. No hace falta un incendio: hace falta alguien que se quede y le ponga leña cada tanto. Si todos se van, se apaga.</p>
+
+  <div class="verse">
+    "Porque <u>los que menospreciaron el día de las pequeñeces se alegrarán</u>, y verán la plomada en la mano de Zorobabel. Estos siete son los ojos de Jehová, que recorren toda la tierra."
+    <span class="ref">Zacarías 4:10 — RVR1960</span>
+  </div>
+  <p class="plain">El templo se estaba reconstruyendo y era más chico que el anterior. Algunos lo miraban con desprecio. Dios dice que esos mismos se van a alegrar.</p>
+
+  <div class="sub-label">Herrnhut, 1727</div>
+  <p class="plain">En una comunidad de hermanos moravos en Alemania, 24 hombres y 24 mujeres se comprometieron a orar <b>una hora cada uno</b>, para que no hubiera ningún momento sin oración. Esa cadena duró <b>más de cien años</b>. Y de ahí salieron misioneros: hacia 1791 habían enviado unos 300.</p>
+
+  <div class="sub-label">Orar lleva a la misión</div>
+  <div class="verse">
+    "<u>Ministrando éstos al Señor, y ayunando, dijo el Espíritu Santo:</u> Apartadme a Bernabé y a Saulo para la obra a que los he llamado."
+    <span class="ref">Hechos 13:2 — RVR1960</span>
+  </div>
+  <p class="plain">La iglesia de Antioquía estaba orando cuando Dios envió a los primeros misioneros. La casa de oración no es un club de los que oran: desde ahí Dios envía.</p>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <p>No necesitamos prometer vigilias que no vamos a sostener. Necesitamos una hora fiel.</p>
+    <p><b>Paso:</b> anotarnos en la planilla de los miércoles de diciembre, de 20:30 a 22:00.</p>
+  </div>
+</section>
+
+<!-- CONCLUSIÓN Y LLAMADO -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión · ~2 min</div>
+  <p class="plain">Jesús nos enseñó a no soltar. La iglesia nació sin soltar. Dios valora los comienzos chicos. Este miércoles empezamos chico.</p>
+
+  <div class="sec-title" style="margin-top:36px;">Llamado final · ~1 min</div>
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    Necesitamos pedirle perdón a Dios por todas las veces que soltamos. Y necesitamos decirle hoy: "Señor, queremos ser de los que no sueltan". No nos comprometemos con algo enorme: nos comprometemos con un nombre, un miércoles y una hora.
+  </div>
+</section>
+
+<!-- PRÁCTICA -->
+<section id="practica">
+  <div class="sec-title">Práctica guiada · 35 min (21:45–22:20)</div>
+  <table class="prac">
+    <tr><td>5 min</td><td><b>Cómo funciona:</b> frases cortas; nadie está obligado a orar en voz alta; no hace falta orar lindo.<br><span class="mus">🎹 Fondo muy bajo</span></td></tr>
+    <tr><td>10 min</td><td><b>Todos juntos con Lucas 18:1.</b> El líder ora 1 minuto; después cada uno suma <b>oraciones de una frase</b>: cortas (5 a 15 segundos), dirigidas a Dios, pidiendo una sola cosa, sin explicar ni predicar. Ejemplos para decir en voz alta antes de empezar: <i>"Señor, no queremos soltar a los que amamos."</i> · <i>"Padre, danos fuerzas cuando la respuesta tarda."</i> · <i>"Jesús, salvá a mi amigo…"</i> · <i>"Gracias porque nos escuchás de día y de noche."</i><br><span class="mus">🔇 al leer el versículo → 🎹 fondo mientras oramos → 🔁 coro de "Tu Fidelidad" para cerrar</span></td></tr>
+    <tr><td>10 min</td><td><b>En grupos de 3 personas:</b> cada uno dice el nombre que eligió y los otros dos oran por esa persona.<br><span class="mus">🎹 Piano suave, sin canto</span></td></tr>
+    <tr><td>10 min</td><td><b>Todos a la vez, en voz alta, por Perico</b>, y de ahí se pasa a la ministración.<br><span class="mus">🎶 "Manda la lluvia" → 🎹 fondo intenso durante el clamor → 🔁 coro cuando bajan las voces</span></td></tr>
+  </table>
+  <p class="plain" style="font-family:Arial,sans-serif;font-size:.75em;"><a href="musicos.html" style="color:#5DBE2C;">🎵 Hoja para músicos con las canciones y los links →</a></p>
+</section>
+
+<!-- GUÍA DEL MIÉRCOLES -->
+<section id="guia">
+  <div class="sec-title">Guía del miércoles 25/11 · 20:30–22:00</div>
+
+  <table class="prac">
+    <tr><td>20:30</td><td><b>Turno abierto</b> (mientras van llegando): la guía impresa en las mesas.<br><span class="mus">🎹 Piano grabado de fondo</span></td></tr>
+    <tr><td>20:50</td><td>Bienvenida y lectura de la guía (título y versículo central).<br><span class="mus">🎹 Fondo en vivo · 🔇 al leer Lucas 18:1</span></td></tr>
+    <tr><td>21:00</td><td><b>Bloque 1:</b> canción → se lee el bloque → el líder ora → oraciones cortas.<br><span class="mus">🎶 "Tu Fidelidad" → 🔇 lectura → 🎹 fondo → 🔁 coro entre oraciones</span></td></tr>
+    <tr><td>21:20</td><td><b>Bloque 2:</b> mismo formato.<br><span class="mus">🎶 "Ven Espíritu Santo" → 🔇 → 🎹 → 🔁</span></td></tr>
+    <tr><td>21:40</td><td><b>Bloque 3, por Perico:</b> todos a la vez en voz alta, o en grupos de 3 personas con un pedido cada uno.<br><span class="mus">🎶 "Que todos los pueblos te alaben" → 🎹 fondo intenso → 🔁 coro "Manda la lluvia"</span></td></tr>
+    <tr><td>21:55</td><td>Cierre: resumen de los 3 bloques y cuaderno de pedidos y respuestas.<br><span class="mus">🎹 fondo → 🎶 "Santo por siempre"</span></td></tr>
+  </table>
+  <p class="plain" style="font-family:Arial,sans-serif;font-size:.75em;"><a href="musicos.html" style="color:#5DBE2C;">🎵 Hoja para músicos (alternativas y sugeridas nuevas, con links) →</a></p>
+
+  <div class="guia-bar"><b>ORAR SIN SOLTAR</b><span>Oramos para no bajar los brazos</span></div>
+  <div class="verse">
+    "También les refirió Jesús una parábola sobre la necesidad de orar siempre, y no desmayar,"
+    <span class="ref">Lucas 18:1 — RVR1960</span>
+  </div>
+
+  <div class="bloque">
+    <h3>BLOQUE 1: NO SOLTAR</h3>
+    <p class="proclama">Oramos como hijos para que el Señor nos dé constancia y no oremos solo en las emergencias.</p>
+    <div class="item"><b>a. Constancia:</b> oramos para mantenernos en la oración con gratitud, aunque estemos cansados.
+      <div class="verse">"Perseverad en la oración, velando en ella con acción de gracias;"<span class="ref">Colosenses 4:2</span></div></div>
+    <div class="item"><b>b. Fe que sigue clamando:</b> oramos por los nombres que soltamos y hoy volvemos a agarrar.
+      <div class="verse">"¿Y acaso Dios no hará justicia a sus escogidos, que claman a él día y noche? ¿Se tardará en responderles?"<span class="ref">Lucas 18:7</span></div></div>
+  </div>
+
+  <div class="bloque">
+    <h3>BLOQUE 2: JUNTOS Y CON UN MISMO ÁNIMO</h3>
+    <p class="proclama">Oramos como hijos para que los jóvenes y adolescentes de El Renuevo oremos unidos.</p>
+    <div class="item"><b>a. Un mismo sentir:</b> oramos por unidad entre nosotros.
+      <div class="verse">"Pero el Dios de la paciencia y de la consolación os dé entre vosotros un mismo sentir según Cristo Jesús, para que unánimes, a una voz, glorifiquéis al Dios y Padre de nuestro Señor Jesucristo."<span class="ref">Romanos 15:5-6</span></div></div>
+    <div class="item"><b>b. Valentía para hablar:</b> oramos para hablar de Jesús en la escuela, la facultad y el trabajo.
+      <div class="verse">"Y ahora, Señor, mira sus amenazas, y concede a tus siervos que con todo denuedo hablen tu palabra… Cuando hubieron orado, el lugar en que estaban congregados tembló; y todos fueron llenos del Espíritu Santo, y hablaban con denuedo la palabra de Dios."<span class="ref">Hechos 4:29, 31</span></div></div>
+  </div>
+
+  <div class="bloque">
+    <h3>BLOQUE 3: POR PERICO</h3>
+    <p class="proclama">Oramos como Iglesia por nuestra ciudad.</p>
+    <div class="item"><b>a. Por los que gobiernan:</b> el intendente, los concejales, la policía, los directores de escuela.
+      <div class="verse">"Exhorto ante todo, a que se hagan rogativas, oraciones, peticiones y acciones de gracias, por todos los hombres; por los reyes y por todos los que están en eminencia, para que vivamos quieta y reposadamente en toda piedad y honestidad."<span class="ref">1 Timoteo 2:1-2</span></div></div>
+    <div class="item"><b>b. Para que muchos conozcan a Jesús:</b> nuestras familias, compañeros y vecinos.
+      <div class="verse">"Porque esto es bueno y agradable delante de Dios nuestro Salvador, el cual quiere que todos los hombres sean salvos y vengan al conocimiento de la verdad."<span class="ref">1 Timoteo 2:3-4</span></div></div>
+  </div>
+
+  <div class="nav-hint" style="margin-top:60px;">↑ usá los botones del menú para moverte entre secciones · ☰ Índice para ir a otro taller</div>
+</section>
+
+<script>
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a[href^="#"]');
+  function updateNav() {
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - 94) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+</body>
+</html>

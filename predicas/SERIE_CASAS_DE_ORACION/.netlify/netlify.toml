@@ -1,0 +1,31 @@
+plugins = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\predicas\\SERIE_CASAS_DE_ORACION"
+publishOrigin = "default"
+base = "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\predicas\\SERIE_CASAS_DE_ORACION"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
+
+[[headers]]
+for = "/*.pdf"
+
+[headers.values]
+Access-Control-Allow-Origin = "*"
