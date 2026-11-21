@@ -1,0 +1,593 @@
+{
+  "version": 1,
+  "historyId": "c7a668ed-aaef-4c27-a3b2-daccc1d8cd60",
+  "currentRevision": "6dda5137-de2a-4fb7-adf2-7d7ffac02902",
+  "pendingChanges": false,
+  "files": {
+    "AGENTS.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\26\\268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "CLAUDE.md": {
+      "hash": "268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\26\\268ff46777938da818baa92a718571785e9acf2cef2d3ffbacbb93483dcba37a"
+    },
+    "assets/fotos/bn_02.jpg": {
+      "hash": "6513e8567e326f335b2f3c3615590e6031ad30c832bb31df635a4bb1a0ace4c1",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\65\\6513e8567e326f335b2f3c3615590e6031ad30c832bb31df635a4bb1a0ace4c1"
+    },
+    "assets/fotos/bn_07.jpg": {
+      "hash": "b50f651fa9311cf8b16ecae8897f71a2650ec3265d4d9e51fd423452b91706a4",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\b5\\b50f651fa9311cf8b16ecae8897f71a2650ec3265d4d9e51fd423452b91706a4"
+    },
+    "assets/fotos/bn_10.jpg": {
+      "hash": "1c4dfdf895a7dba7aee8045f45460fe71f9a7073eae8d4a4352d1d79c2d12cd2",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\1c\\1c4dfdf895a7dba7aee8045f45460fe71f9a7073eae8d4a4352d1d79c2d12cd2"
+    },
+    "assets/fotos/bn_12.jpg": {
+      "hash": "d5a690a7cb616acc892172b6f748ec307db6e2e8c0dcf687a113e359ef097baf",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\d5\\d5a690a7cb616acc892172b6f748ec307db6e2e8c0dcf687a113e359ef097baf"
+    },
+    "assets/fotos/bn_13.jpg": {
+      "hash": "a4b086bd40b197a6ff73d01ef10564969d11602b561a011d988f4d580500d80b",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\a4\\a4b086bd40b197a6ff73d01ef10564969d11602b561a011d988f4d580500d80b"
+    },
+    "assets/fotos/bn_16.jpg": {
+      "hash": "323bc4edc7910b3f723bd2341242254927ee79132b6fe5051e505441a5cf67e7",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\32\\323bc4edc7910b3f723bd2341242254927ee79132b6fe5051e505441a5cf67e7"
+    },
+    "assets/fotos/bn_26.jpg": {
+      "hash": "57e37472bd7a3ca7501e6aa2aa9f9d17f48383709c823b9a6790f09729f75041",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\57\\57e37472bd7a3ca7501e6aa2aa9f9d17f48383709c823b9a6790f09729f75041"
+    },
+    "assets/fotos/bn_29.jpg": {
+      "hash": "fc46bbd4b62a18441a2ab7cc893377c00a7bbf147852d930db77215650b4a275",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\fc\\fc46bbd4b62a18441a2ab7cc893377c00a7bbf147852d930db77215650b4a275"
+    },
+    "assets/fotos/bn_30.jpg": {
+      "hash": "370ba63450594c0f9a3c3ee3972545d8d4f0cfe279ec1d4ea624e27f989d9f39",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\37\\370ba63450594c0f9a3c3ee3972545d8d4f0cfe279ec1d4ea624e27f989d9f39"
+    },
+    "assets/fotos/bn_31.jpg": {
+      "hash": "44337fa5a8f8eba8b2e421ff1e2644e9c31bf1fe0975be5bcf9fff1d3f1288f8",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\44\\44337fa5a8f8eba8b2e421ff1e2644e9c31bf1fe0975be5bcf9fff1d3f1288f8"
+    },
+    "assets/fotos/bn_32.jpg": {
+      "hash": "84a866e898c135033bdac0edbd38acd766529a79147b0455f945d15ddd89271f",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\84\\84a866e898c135033bdac0edbd38acd766529a79147b0455f945d15ddd89271f"
+    },
+    "assets/fotos/bn_38.jpg": {
+      "hash": "4622700bd59ac1e335da8d85270dda0ffb4827873c555f85f4e1a6eb902fd80e",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\46\\4622700bd59ac1e335da8d85270dda0ffb4827873c555f85f4e1a6eb902fd80e"
+    },
+    "assets/fotos/bn_41.jpg": {
+      "hash": "624ae67b7af5b793f1754e405ad23291b9e5df4292abe49cf3681c255f181365",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\62\\624ae67b7af5b793f1754e405ad23291b9e5df4292abe49cf3681c255f181365"
+    },
+    "assets/fotos/bn_42.jpg": {
+      "hash": "42a0511609d1d894c6e889c649ae338304f6ea03add1c50a0b68f8605b80cc5d",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\42\\42a0511609d1d894c6e889c649ae338304f6ea03add1c50a0b68f8605b80cc5d"
+    },
+    "assets/fotos/bn_48.jpg": {
+      "hash": "7c3b2f0edc1158ded0a5f81f20845ec786576b3bd4bfd4519439a035c2b9b40c",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\7c\\7c3b2f0edc1158ded0a5f81f20845ec786576b3bd4bfd4519439a035c2b9b40c"
+    },
+    "assets/fotos/bn_54.jpg": {
+      "hash": "fb123372627d69e592123c02f37178b404b5a35cf7ead2b325ac25d7f5cf95d2",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\fb\\fb123372627d69e592123c02f37178b404b5a35cf7ead2b325ac25d7f5cf95d2"
+    },
+    "assets/fotos/bn_58.jpg": {
+      "hash": "c183c15e56bc96ad267170901cb3baa5dbf02b6439ce328f013babb17f4e204b",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\c1\\c183c15e56bc96ad267170901cb3baa5dbf02b6439ce328f013babb17f4e204b"
+    },
+    "assets/fotos/bn_59.jpg": {
+      "hash": "8480d47542c9ae53778daa1cae60570bd90eca307bf5717c5053ef301c279731",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\84\\8480d47542c9ae53778daa1cae60570bd90eca307bf5717c5053ef301c279731"
+    },
+    "assets/mision-iso.png": {
+      "hash": "e6907ad0fed94be032bcaed832d9a0ca158f5b1dd766c6e298526381d300d50b",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\e6\\e6907ad0fed94be032bcaed832d9a0ca158f5b1dd766c6e298526381d300d50b"
+    },
+    "assets/mision-wordmark.png": {
+      "hash": "624b0b1e305697b660e50fafa5c41dd2b65e0209fcb4766615d9245406cb1c35",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\62\\624b0b1e305697b660e50fafa5c41dd2b65e0209fcb4766615d9245406cb1c35"
+    },
+    "assets/r-blanco.png": {
+      "hash": "721623ebb1449e2f0c1d7bb406e40952c310657646a368a57eedf84e875ae3dd",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\72\\721623ebb1449e2f0c1d7bb406e40952c310657646a368a57eedf84e875ae3dd"
+    },
+    "hyperframes.json": {
+      "hash": "35a6d4ea79ebe911f0d81705f7aace5d8ff0316b745b0311d56af50c9c237cb7",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\35\\35a6d4ea79ebe911f0d81705f7aace5d8ff0316b745b0311d56af50c9c237cb7"
+    },
+    "index.html": {
+      "hash": "b9d41e6618830c5245ccaf28eebe7b4a26b06757043f9ebaf9e6fe112b90e481",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\b9\\b9d41e6618830c5245ccaf28eebe7b4a26b06757043f9ebaf9e6fe112b90e481"
+    },
+    "meta.json": {
+      "hash": "d726b93cb62e9e1764607373a8a685f76876807732e35713217becebfa0ce208",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\d7\\d726b93cb62e9e1764607373a8a685f76876807732e35713217becebfa0ce208"
+    },
+    "package.json": {
+      "hash": "d9267b43e2ee01a7a86c08a08c397fd3cdc649a46383bf4236733e6321b737da",
+      "content": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\d9\\d9267b43e2ee01a7a86c08a08c397fd3cdc649a46383bf4236733e6321b737da"
+    }
+  },
+  "revisions": {
+    "d6f56121-9e3c-4bda-8d12-5a671eeb7f9b": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794754122079,
+      "endedAt": 1794754122083,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\eb\\eb242e7b54e99980ab0e3230492ce50adf695036e7a2b564404fefeaf2542772",
+          "after": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\9d\\9dbad2b4dfc7e5bfd80dd46dfcf19107654d251c00615837c2b822a664dc3fc6"
+        }
+      }
+    },
+    "00feb790-3b46-4eb7-b0ca-9d7e1d3d4ba0": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794754613469,
+      "endedAt": 1794754613478,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\9d\\9dbad2b4dfc7e5bfd80dd46dfcf19107654d251c00615837c2b822a664dc3fc6",
+          "after": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\b0\\b0fe8d40e35647fd5d69475c6ab0ef7822da5be8ed87d086db9e67c6f19318f2"
+        }
+      }
+    },
+    "9e826824-9d44-4b74-8b14-3395794004d2": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794754652602,
+      "endedAt": 1794754652612,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\b0\\b0fe8d40e35647fd5d69475c6ab0ef7822da5be8ed87d086db9e67c6f19318f2",
+          "after": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\74\\74379f1cf1d700b82318c9c82c77eade68045863b0a9273e2d6ebed77a2d2f8e"
+        }
+      }
+    },
+    "03bf068d-67d0-4182-b4b8-91073ef5c073": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794755147011,
+      "endedAt": 1794755147017,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\74\\74379f1cf1d700b82318c9c82c77eade68045863b0a9273e2d6ebed77a2d2f8e",
+          "after": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\d0\\d0abb7501c12b17d00413c2bc6b769fba0560d5013ae0f4ef7fa4a035f7fc68e"
+        }
+      }
+    },
+    "6dda5137-de2a-4fb7-adf2-7d7ffac02902": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1794756777861,
+      "endedAt": 1794756777865,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\d0\\d0abb7501c12b17d00413c2bc6b769fba0560d5013ae0f4ef7fa4a035f7fc68e",
+          "after": "C:\\Users\\pmpel\\.cache\\hyperframes\\history\\c7a668ed-aaef-4c27-a3b2-daccc1d8cd60\\blobs\\b9\\b9d41e6618830c5245ccaf28eebe7b4a26b06757043f9ebaf9e6fe112b90e481"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": null,
+      "id": "5af29553-60b5-4758-9180-9c4d6efcbbdc"
+    },
+    "revisions": {},
+    "unversioned": [
+      {
+        "id": "5af29553-60b5-4758-9180-9c4d6efcbbdc",
+        "scope": "project",
+        "report": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\checks\\5af29553-60b5-4758-9180-9c4d6efcbbdc.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": false,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 45000,
+            "cache": true,
+            "contrast": true,
+            "craft": true,
+            "strict": false,
+            "snapshots": false,
+            "safeZones": [
+              "tiktok",
+              "reels",
+              "shorts"
+            ],
+            "browserGpuMode": "auto",
+            "includeUnmounted": false
+          }
+        },
+        "createdAt": 1794754075363,
+        "contentHash": "bb0cd5580ad72be91311753012bc4051803f4cd58586a710ca1621d007695826",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": {
+      "revision": "6dda5137-de2a-4fb7-adf2-7d7ffac02902",
+      "id": "31e84f18-9c70-4638-8d79-34ea8f81f9b2-1"
+    },
+    "revisions": {
+      "00feb790-3b46-4eb7-b0ca-9d7e1d3d4ba0": [
+        {
+          "scope": "full",
+          "id": "f44ab36b-7dd0-4bb2-8b4d-8e1f911ece93-0",
+          "time": 42,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794754628781,
+          "contentHash": "824cb75607c3820997b0ca1c7189cf6e1c493207ea47e10765ebc6ae1aa90653",
+          "revision": "00feb790-3b46-4eb7-b0ca-9d7e1d3d4ba0",
+          "inputFingerprint": "fff1b2bf8f2632c9acfe6ed2f7a6ade1a4b21a759e7a008797bd1e13ddc41581",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "44876571-9297-4b86-b7a5-875870ffcc3c"
+        },
+        {
+          "scope": "full",
+          "id": "f44ab36b-7dd0-4bb2-8b4d-8e1f911ece93-1",
+          "time": 66,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794754628782,
+          "contentHash": "56b8ef39be2447404445bb9dfab30cf3625ea682d13dcfced9578058397ea687",
+          "revision": "00feb790-3b46-4eb7-b0ca-9d7e1d3d4ba0",
+          "inputFingerprint": "fff1b2bf8f2632c9acfe6ed2f7a6ade1a4b21a759e7a008797bd1e13ddc41581",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "44876571-9297-4b86-b7a5-875870ffcc3c"
+        },
+        {
+          "scope": "full",
+          "id": "f44ab36b-7dd0-4bb2-8b4d-8e1f911ece93-2",
+          "time": 71.97,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794754628784,
+          "contentHash": "50b091b1fc02c448c0f83eee4d5a822ee8c46647e7ba904ebb860659b5897b83",
+          "revision": "00feb790-3b46-4eb7-b0ca-9d7e1d3d4ba0",
+          "inputFingerprint": "fff1b2bf8f2632c9acfe6ed2f7a6ade1a4b21a759e7a008797bd1e13ddc41581",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "44876571-9297-4b86-b7a5-875870ffcc3c"
+        },
+        {
+          "scope": "full",
+          "id": "f44ab36b-7dd0-4bb2-8b4d-8e1f911ece93-3",
+          "time": 71.75,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794754628786,
+          "contentHash": "b7d7cb0d8c0d9b8f981d3946a0a7be0bee23a639c7178bda1e5df526f4a1c48f",
+          "revision": "00feb790-3b46-4eb7-b0ca-9d7e1d3d4ba0",
+          "inputFingerprint": "fff1b2bf8f2632c9acfe6ed2f7a6ade1a4b21a759e7a008797bd1e13ddc41581",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "44876571-9297-4b86-b7a5-875870ffcc3c"
+        }
+      ],
+      "9e826824-9d44-4b74-8b14-3395794004d2": [
+        {
+          "scope": "full",
+          "id": "4b0bad1e-7ed1-45d0-b64e-79a26c1b1d79-0",
+          "time": 66,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794754664048,
+          "contentHash": "44ea60fca148777fdd2e8e1cca60021c95a4b3126152edb0afe1053c5ce2fa71",
+          "revision": "9e826824-9d44-4b74-8b14-3395794004d2",
+          "inputFingerprint": "8abb321143b68b4362137fd17ee92dc672166ab403cc158d9d2828659796063a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "b0b082ff-b86c-4a68-9d22-63ab56534282"
+        },
+        {
+          "scope": "full",
+          "id": "4b0bad1e-7ed1-45d0-b64e-79a26c1b1d79-1",
+          "time": 71.75,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794754664050,
+          "contentHash": "d4b265b7704a91d21bf73d9278b7e9369788a08638687ed30fab557b1cb92570",
+          "revision": "9e826824-9d44-4b74-8b14-3395794004d2",
+          "inputFingerprint": "8abb321143b68b4362137fd17ee92dc672166ab403cc158d9d2828659796063a",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "b0b082ff-b86c-4a68-9d22-63ab56534282"
+        }
+      ],
+      "6dda5137-de2a-4fb7-adf2-7d7ffac02902": [
+        {
+          "scope": "full",
+          "id": "31e84f18-9c70-4638-8d79-34ea8f81f9b2-0",
+          "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\6eae3043-29d2-4353-a658-501b3386fcde\\frame-00-at-1s.png",
+          "time": 1,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794756786270,
+          "contentHash": "12c9b1dafca7d9e6c1dc2da6d6cf36f2b30a428f02c843a5b6462ba784f02536",
+          "revision": "6dda5137-de2a-4fb7-adf2-7d7ffac02902",
+          "inputFingerprint": "307e0fc9471a82975721574686546e74e4ab29eba25b13b0716d4b6fb5e87e4e",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        },
+        {
+          "scope": "full",
+          "id": "31e84f18-9c70-4638-8d79-34ea8f81f9b2-1",
+          "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\6eae3043-29d2-4353-a658-501b3386fcde\\frame-01-at-71.75s.png",
+          "time": 71.75,
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "zoomScale": 1,
+            "browserGpuMode": "auto",
+            "warnings": [],
+            "partial": false
+          },
+          "createdAt": 1794756786275,
+          "contentHash": "8e0d44368c86402a4f47e64a29b3a944aed234d90008196e6cae0f69c210c505",
+          "revision": "6dda5137-de2a-4fb7-adf2-7d7ffac02902",
+          "inputFingerprint": "307e0fc9471a82975721574686546e74e4ab29eba25b13b0716d4b6fb5e87e4e",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-0",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-00-at-0.05s.png",
+        "time": 0.05,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095442,
+        "contentHash": "1b82b7d546b89a492c023976caf8830f6dbad06d5d06e1cdcbcbcaba84f7c457",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-1",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-01-at-8s.png",
+        "time": 8,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095442,
+        "contentHash": "7828d84b2cabd3199a6e22bb40c3b83569ec7edb697091f167fda72e8a0f2b52",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-2",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-02-at-18s.png",
+        "time": 18,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095443,
+        "contentHash": "bd346b96c6fd6654abc5cd35fa0dccc2dd5106c055d828daff0368654e4cd499",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-3",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-03-at-30s.png",
+        "time": 30,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095443,
+        "contentHash": "ed7fcfc9dc2c5677be001c620c97348a77d9ce6dff2be1fa5bac0acaf78805bf",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-4",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-04-at-42s.png",
+        "time": 42,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095444,
+        "contentHash": "9eaae332b9d631ab3561512581456d9783f0eb5faa123deb0789141ca5fb4543",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-5",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-05-at-54s.png",
+        "time": 54,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095444,
+        "contentHash": "5008070300cc47fb657c0ced14784a68218b36faef24a4ab4e9fb4d8c5370204",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-6",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-06-at-59.95s.png",
+        "time": 59.95,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095445,
+        "contentHash": "7a765ff6268e375b877ec405d9752aba25772e4ec2f009f73ebc7a9541ac47f6",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      },
+      {
+        "scope": "full",
+        "id": "eadf4a00-18a6-4ca6-9998-528bd9acab03-7",
+        "image": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\.hyperframes\\artifacts\\snapshots\\d6fab485-ec62-4c99-94ec-660178545948\\frame-07-at-59.75s.png",
+        "time": 59.75,
+        "metadata": {
+          "width": 1920,
+          "height": 1080,
+          "zoomScale": 1,
+          "browserGpuMode": "auto",
+          "warnings": [],
+          "partial": false
+        },
+        "createdAt": 1794754095446,
+        "contentHash": "d4f2c7266f79644cdeb8adc2a39d81eaa626ec0d56d1a058af7ffdc7e8dddb39",
+        "revision": null,
+        "inputFingerprint": "ce89bace3579646b3c6d479a415870782bfe555d0f52b3eb420e41311da24606",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "renders": {
+    "latest": {
+      "id": "93a49bcc-a9cf-4be9-8589-b229e689bff1",
+      "completedAt": 1794757353018,
+      "output": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\entregables\\proyector_loop_16x9.mp4",
+      "status": "completed",
+      "revision": "6dda5137-de2a-4fb7-adf2-7d7ffac02902"
+    },
+    "retainedRevisions": [
+      "6dda5137-de2a-4fb7-adf2-7d7ffac02902",
+      "03bf068d-67d0-4182-b4b8-91073ef5c073"
+    ]
+  },
+  "pendingArtifactCleanup": []
+}

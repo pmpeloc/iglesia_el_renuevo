@@ -1,0 +1,33 @@
+﻿<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #cier-bloque { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    #cier-logo-caja { position: relative; width: 320px; height: 320px; }
+    #cier-aro { position: absolute; inset: -20px; border: 5px solid #f5d58a; border-radius: 50%; }
+    #cier-logo-mask { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; box-shadow: 0 0 80px rgba(245, 213, 138, 0.35); }
+    #cier-logo { width: 100%; height: 100%; display: block; }
+    #cier-destello { position: absolute; top: -20%; left: 0; width: 40%; height: 140%; background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)); }
+    #cier-nombre { margin-top: 56px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 80px; letter-spacing: 10px; color: #fff; text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5); white-space: nowrap; }
+    #cier-nombre b { color: #f5d58a; font-weight: 800; }
+  </style>
+  <div data-hf-id="hf-n3qp" id="root" data-composition-id="cierre" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-yofp" id="cier-bloque">
+      <div data-hf-id="hf-pfhv" id="cier-logo-caja" data-layout-allow-overflow>
+        <div data-hf-id="hf-c4iz" id="cier-aro"></div>
+        <div data-hf-id="hf-5k4d" id="cier-logo-mask"><img data-hf-id="hf-8foy" id="cier-logo" src="assets/logo.png" alt="Iglesia El Renuevo" /><div data-hf-id="hf-iryx" id="cier-destello"></div></div>
+      </div>
+      <div data-hf-id="hf-gl5k" id="cier-nombre">IGLESIA <b data-hf-id="hf-cv3k">EL RENUEVO</b></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#cier-logo-caja", { scale: 0.3, opacity: 0, rotate: -90 }, { scale: 1, opacity: 1, rotate: 0, duration: 1.0, ease: "back.out(1.5)" }, 0.4);
+      tl.fromTo("#cier-aro", { scale: 0.8, opacity: 0.9 }, { scale: 1.8, opacity: 0, duration: 1.3, ease: "power2.out" }, 1.0);
+      tl.fromTo("#cier-destello", { x: -200, rotate: 20 }, { x: 520, rotate: 20, duration: 0.9, ease: "power2.inOut" }, 1.5);
+      tl.fromTo("#cier-nombre", { opacity: 0, scaleX: 1.5, filter: "blur(10px)" }, { opacity: 1, scaleX: 1, filter: "blur(0px)", duration: 1.1, ease: "expo.out" }, 1.0);
+      tl.fromTo("#cier-bloque", { opacity: 1, scale: 1, filter: "blur(0px)" }, { opacity: 0, scale: 0.92, filter: "blur(12px)", duration: 0.6, ease: "power3.in", immediateRender: false }, 3.6);
+      window.__timelines["cierre"] = tl;
+    })();
+  </script>
+</template>

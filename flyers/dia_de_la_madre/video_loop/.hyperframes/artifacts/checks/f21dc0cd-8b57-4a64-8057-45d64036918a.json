@@ -1,0 +1,788 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 7,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "gsap_repeated_fromto_without_baseline",
+        "severity": "warning",
+        "message": "2 tl.fromTo() calls target \"#fondo-b\" with no stable baseline. The last-authored fromTo \"from\" values become the element's resting state for any seek before the first tween actually runs, because GSAP applies fromTo from-values at authoring time (immediateRender), not at tween position.",
+        "selector": "#fondo-b",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\dia_de_la_madre\\video_loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add `immediateRender: false` to every fromTo except the earliest-positioned one (at 9.8s), so pre-first-tween seeks keep its \"from\" values. A hiding `tl.set(..., 0)` baseline trips gsap_timeline_set_initial_hide, and a `gsap.set` authored before the fromTo calls is overwritten by them."
+      },
+      {
+        "code": "gsap_repeated_fromto_without_baseline",
+        "severity": "warning",
+        "message": "2 tl.fromTo() calls target \"#fondo-c\" with no stable baseline. The last-authored fromTo \"from\" values become the element's resting state for any seek before the first tween actually runs, because GSAP applies fromTo from-values at authoring time (immediateRender), not at tween position.",
+        "selector": "#fondo-c",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\dia_de_la_madre\\video_loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add `immediateRender: false` to every fromTo except the earliest-positioned one (at 19.2s), so pre-first-tween seeks keep its \"from\" values. A hiding `tl.set(..., 0)` baseline trips gsap_timeline_set_initial_hide, and a `gsap.set` authored before the fromTo calls is overwritten by them."
+      },
+      {
+        "code": "gsap_repeated_fromto_without_baseline",
+        "severity": "warning",
+        "message": "2 tl.fromTo() calls target \"#fondo-cierre\" with no stable baseline. The last-authored fromTo \"from\" values become the element's resting state for any seek before the first tween actually runs, because GSAP applies fromTo from-values at authoring time (immediateRender), not at tween position.",
+        "selector": "#fondo-cierre",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\dia_de_la_madre\\video_loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add `immediateRender: false` to every fromTo except the earliest-positioned one (at 24.9s), so pre-first-tween seeks keep its \"from\" values. A hiding `tl.set(..., 0)` baseline trips gsap_timeline_set_initial_hide, and a `gsap.set` authored before the fromTo calls is overwritten by them."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"fondo-a\"> is a timeline element that contains nested <div id=\"cam-a\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#fondo-a",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\dia_de_la_madre\\video_loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"fondo-a\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"fondo-b\"> is a timeline element that contains nested <div id=\"cam-b\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#fondo-b",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\dia_de_la_madre\\video_loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"fondo-b\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"fondo-c\"> is a timeline element that contains nested <div id=\"cam-c\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#fondo-c",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\dia_de_la_madre\\video_loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"fondo-c\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"fondo-cierre\"> is a timeline element that contains nested <div id=\"cam-cierre\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#fondo-cierre",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\dia_de_la_madre\\video_loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"fondo-cierre\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 6
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": false,
+    "errorCount": 12,
+    "warningCount": 0,
+    "infoCount": 3,
+    "findings": [
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(1)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 229.95,
+          "top": 238,
+          "right": 384.16,
+          "bottom": 504,
+          "width": 154.2,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "D",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 229.95,
+          "y": 238,
+          "width": 154.2,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(2)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 384.16,
+          "top": 238,
+          "right": 448.56,
+          "bottom": 504,
+          "width": 64.41,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "í",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 384.16,
+          "y": 238,
+          "width": 64.41,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(3)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 448.56,
+          "top": 238,
+          "right": 560.17,
+          "bottom": 504,
+          "width": 111.61,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "a",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 448.56,
+          "y": 238,
+          "width": 111.61,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(5)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 610.17,
+          "top": 238,
+          "right": 725.98,
+          "bottom": 504,
+          "width": 115.81,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "d",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 610.17,
+          "y": 238,
+          "width": 115.81,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(6)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 725.98,
+          "top": 238,
+          "right": 819.8,
+          "bottom": 504,
+          "width": 93.81,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "e",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 725.98,
+          "y": 238,
+          "width": 93.81,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(8)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 869.8,
+          "top": 238,
+          "right": 929.8,
+          "bottom": 504,
+          "width": 60,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "l",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 869.8,
+          "y": 238,
+          "width": 60,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(9)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 929.8,
+          "top": 238,
+          "right": 1041.41,
+          "bottom": 504,
+          "width": 111.61,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "a",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 929.8,
+          "y": 238,
+          "width": 111.61,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(11)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 1091.41,
+          "top": 238,
+          "right": 1274.81,
+          "bottom": 504,
+          "width": 183.41,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "M",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 1091.41,
+          "y": 238,
+          "width": 183.41,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(12)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 1274.81,
+          "top": 238,
+          "right": 1386.42,
+          "bottom": 504,
+          "width": 111.61,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "a",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 1274.81,
+          "y": 238,
+          "width": 111.61,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(13)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 1386.42,
+          "top": 238,
+          "right": 1502.23,
+          "bottom": 504,
+          "width": 115.81,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "d",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 1386.42,
+          "y": 238,
+          "width": 115.81,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(14)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 1502.23,
+          "top": 238,
+          "right": 1596.23,
+          "bottom": 504,
+          "width": 94,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "r",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 1502.23,
+          "y": 238,
+          "width": 94,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "error",
+        "time": 5,
+        "selector": "#titulo-texto > span:nth-of-type(15)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 1596.23,
+          "top": 238,
+          "right": 1690.05,
+          "bottom": 504,
+          "width": 93.81,
+          "height": 266
+        },
+        "containerSelector": "#titulo-brillo",
+        "text": "e",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "dataAttributes": {},
+        "sourceFile": "compositions/titulo.html",
+        "bbox": {
+          "x": 1596.23,
+          "y": 238,
+          "width": 93.81,
+          "height": 266
+        },
+        "firstSeen": 5,
+        "lastSeen": 8.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 1.667,
+        "selector": "#cam-a",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -4.99,
+          "top": 16.32,
+          "right": 1924.99,
+          "bottom": 1101.94,
+          "width": 1929.98,
+          "height": 1085.62
+        },
+        "containerSelector": "#fondo-a",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 18,
+          "right": 1920,
+          "bottom": 1098,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 4.99,
+          "right": 4.99,
+          "bottom": 3.94
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-e0xm"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -4.99,
+          "y": 16.32,
+          "width": 1929.98,
+          "height": 1085.62
+        },
+        "firstSeen": 1.667,
+        "lastSeen": 8.333,
+        "occurrences": 3,
+        "heldMs": 0,
+        "times": [
+          1.667,
+          5,
+          8.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 11.667,
+        "selector": "#cam-b",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -54.27,
+          "top": -14.4,
+          "right": 1980.93,
+          "bottom": 1130.4,
+          "width": 2035.2,
+          "height": 1144.8
+        },
+        "containerSelector": "#fondo-b",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 18,
+          "right": 1920,
+          "bottom": 1098,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 54.27,
+          "right": 60.93,
+          "top": 32.4,
+          "bottom": 32.4
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-a2tl"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -54.27,
+          "y": -14.4,
+          "width": 2035.2,
+          "height": 1144.8
+        },
+        "firstSeen": 11.667,
+        "lastSeen": 18.333,
+        "occurrences": 3,
+        "heldMs": 0,
+        "times": [
+          11.667,
+          15,
+          18.333
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 21.667,
+        "selector": "#cam-c",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -61.15,
+          "top": -12.02,
+          "right": 1965.6,
+          "bottom": 1128.02,
+          "width": 2026.75,
+          "height": 1140.05
+        },
+        "containerSelector": "#fondo-c",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 18,
+          "right": 1920,
+          "bottom": 1098,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 61.15,
+          "right": 45.6,
+          "top": 30.02,
+          "bottom": 30.02
+        },
+        "dataAttributes": {
+          "data-hf-id": "hf-9b5s"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -61.15,
+          "y": -12.02,
+          "width": 2026.75,
+          "height": 1140.05
+        },
+        "firstSeen": 21.667,
+        "lastSeen": 25,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          21.667,
+          25
+        ]
+      }
+    ],
+    "duration": 30,
+    "samples": [
+      1.667,
+      5,
+      8.333,
+      11.667,
+      15,
+      18.333,
+      21.667,
+      25,
+      28.333
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 15,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      1.667,
+      8.333,
+      15,
+      21.667,
+      28.333
+    ],
+    "checked": 39,
+    "passed": 39
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "film_silent",
+        "severity": "warning",
+        "message": "This 30 s film has no sound source (no <audio>, no <video> with sound): add a music bed and sounds on the visible actions unless the person asked for silence; see references/sound.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 240
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

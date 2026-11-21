@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Llamamiento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+/* Fondo claro, pocas palabras y letra grande: pensado para pantallas chicas. */
+:root {
+    --paper: #FFF8EC;
+    --ink: #161616;
+    --green: #5DBE2C;
+    --green-dk: #2E7D12;
+    --f: 'Montserrat', Arial, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; cursor: none; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--paper); }
+
+/* Lienzo completo: imagen cuadrada de borde a borde (alto total) + texto en el resto. */
+.slide { position: absolute; inset: 0; display: grid; grid-template-columns: 1000px 1fr; visibility: hidden; opacity: 0; transition: opacity .6s ease, visibility 0s .6s; background: var(--paper); color: var(--ink); font-family: var(--f); }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .6s ease; z-index: 1; }
+.slide.flip { grid-template-columns: 1fr 1000px; }
+.slide.flip .pic { order: 2; border-width: 0 0 0 10px; }
+/* Sin imagen: el texto usa todo el ancho. */
+.slide.solo { grid-template-columns: 1fr; }
+.slide.solo .text { align-items: center; text-align: center; padding: 60px 110px; }
+.slide.solo .kicker { align-self: center; }
+/* Solo imagen, a pantalla completa. */
+.slide.full { grid-template-columns: 1fr; }
+.slide.full .pic { width: 1920px; border: 0; }
+.slide.app { background: var(--green); }
+.slide.app .kicker { background: var(--paper); color: var(--ink); }
+
+.pic { height: 1080px; overflow: hidden; border-right: 10px solid var(--ink); background: #fff; }
+.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.slide.active .pic img { animation: zoom 12s ease-out both; }
+@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+.text { display: flex; flex-direction: column; justify-content: center; gap: 44px; padding: 60px 56px; }
+.slide.active .text > * { animation: up .8s var(--ease) both; }
+.slide.active .text > *:nth-child(2) { animation-delay: .12s; }
+.slide.active .text > *:nth-child(3) { animation-delay: .24s; }
+.slide.active .text > *:nth-child(4) { animation-delay: .36s; }
+@keyframes up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+
+.kicker { align-self: flex-start; padding: 16px 32px; border-radius: 40px; line-height: 1.15; background: var(--ink); color: #fff; font: 800 58px/1.15 var(--f); }
+.title { font: 900 128px/1 var(--f); letter-spacing: -.03em; }
+.title em, .big em, .huge em, .body em { font-style: normal; color: var(--green-dk); }
+.big { font: 900 104px/1.05 var(--f); letter-spacing: -.02em; }
+.huge { font: 900 150px/1.02 var(--f); letter-spacing: -.03em; }
+.body { font: 800 96px/1.15 var(--f); }
+.ref { font: 900 88px/1 var(--f); color: var(--green-dk); }
+.slide.app .ref, .slide.app em { color: #fff; }
+.num { width: 260px; height: 260px; border-radius: 50%; display: grid; place-items: center; background: var(--green); border: 10px solid var(--ink); font: 900 190px/1 var(--f); }
+.slide.solo .big { font-size: 128px; }
+.slide.solo .title { font-size: 150px; }
+/* Diapositivas de punto principal: título bien grande. */
+.slide.punto .title { font-size: 220px; }
+.slide.punto.puente .title { font-size: 180px; }
+.slide.punto.puente .num { width: 200px; height: 200px; font-size: 140px; }
+.notes { display: none; }
+.progress { position: fixed; left: 0; bottom: 0; height: 8px; background: var(--green); z-index: 1000; transition: width .5s var(--ease); }
+</style>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- ============ INTRODUCCIÓN ============ -->
+
+<!-- 1 -->
+<section class="slide">
+  <div class="pic"><img src="img/01_portada.jpg" alt=""></div>
+  <div class="text">
+    <div class="title">El Llamamiento</div>
+    <div class="ref">Mateo 9:38</div>
+  </div>
+  <aside class="notes"></aside>
+</section>
+
+<!-- 2 -->
+<section class="slide flip">
+  <div class="pic"><img src="img/02_omaguacas.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">La lengua omaguaca</div>
+    <div class="big">Lo que se deja de hablar, se <em>pierde</em>.</div>
+  </div>
+  <aside class="notes"><p>En estos valles, en Tilcara y en Humahuaca, se hablaba la lengua de los omaguacas. Hoy no la habla nadie, y quedó tan poco registro que ni se sabe a qué familia de lenguas pertenecía.</p><p>No desapareció por un decreto: otras voces fueron ocupando su lugar —primero el quechua, después el castellano— hasta que nadie la transmitió más.</p><p>Lo que se deja de hablar, se pierde. Y el lugar que deja lo ocupan otras voces.</p></aside>
+</section>
+
+<!-- 3 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">“…otra generación que no <em>conocía</em> a Jehová…”</div>
+    <div class="ref">Jueces 2:10</div>
+  </div>
+  <aside class="notes"><p>"Y toda aquella generación también fue reunida a sus padres. Y se levantó después de ellos otra generación que no conocía a Jehová, ni la obra que él había hecho por Israel."</p><p>El llamamiento es un tema del que se habló mucho en nuestro movimiento. ¿Qué pasa si dejamos de hablar de él? ¿Qué voces ocupan ese lugar?</p><p>Hoy no vamos a discutir cómo llama Dios. Vamos a mirar qué nos toca a nosotros frente a Su llamado.</p></aside>
+</section>
+
+<!-- 4 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big" style="font-size:112px">“A la verdad la mies es mucha, mas los obreros <em>pocos</em>. Rogad, pues, al Señor de la mies…”</div>
+    <div class="ref">Mateo 9:37-38</div>
+  </div>
+  <aside class="notes"><p>"Recorría Jesús todas las ciudades y aldeas, enseñando en las sinagogas de ellos, y predicando el evangelio del reino, y sanando toda enfermedad y toda dolencia en el pueblo. Y al ver las multitudes, tuvo compasión de ellas; porque estaban desamparadas y dispersas como ovejas que no tienen pastor. Entonces dijo a sus discípulos: A la verdad la mies es mucha, mas los obreros pocos. Rogad, pues, al Señor de la mies, que envíe obreros a su mies." (Mateo 9:35-38)</p><p>Antes de preguntarnos quién es llamado, nos toca ver, rogar y ser fieles.</p></aside>
+</section>
+
+<!-- ============ PUNTO 1 ============ -->
+
+<!-- 5 -->
+<section class="slide solo punto">
+  <div class="text">
+    <div class="num">1</div>
+    <div class="title"><em>Ver</em> la mies</div>
+  </div>
+  <aside class="notes"><h3>1. Ver la mies</h3><p>a. Jesús recorría · b. Jesús se conmovió</p></aside>
+</section>
+
+<!-- 6 -->
+<section class="slide full">
+  <div class="pic"><img src="img/12_auto_rebano.jpg" alt=""></div>
+  <aside class="notes"><p>Cualquiera que pasa por la ruta ve un rebaño en el cerro: una mancha blanca, todas iguales.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/03_pastor.jpg" alt=""></div>
+  <div class="text">
+    <div class="big">No ve un rebaño. Ve a <em>cada una</em>.</div>
+  </div>
+  <aside class="notes"><p>El pastor ve a cada una. Sabe cuál renguea, cuál se aparta siempre. Si a la tarde falta una, se da cuenta, aunque sean cien.</p><p>No tiene mejor vista que nosotros: tiene la mirada puesta en ellas, porque son suyas.</p></aside>
+</section>
+
+<!-- 7 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">1a · Jesús recorría</div>
+    <div class="big">“<em>Recorría</em> Jesús todas las ciudades y aldeas…”</div>
+    <div class="ref">Mateo 9:35</div>
+  </div>
+  <aside class="notes"><h3>a. Jesús recorría</h3><p>No miraba la necesidad desde lejos: caminaba en medio de la gente.</p><p>Y lo hizo justo después de que los fariseos lo acusaran de echar fuera demonios por el poder del príncipe de los demonios (v.34). La acusación no lo detuvo ni le quitó la compasión.</p></aside>
+</section>
+
+<!-- 8 -->
+<section class="slide flip">
+  <div class="pic"><img src="img/04_compasion.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">1b · Jesús se conmovió</div>
+    <div class="big">“Tuvo <em>compasión</em>”</div>
+    <div class="body">Se le conmovieron las entrañas.</div>
+  </div>
+  <aside class="notes"><h3>b. Jesús se conmovió</h3><p>"Tuvo compasión" significa que se le conmovieron las entrañas: un dolor visceral, no simple lástima.</p><p>Vio a la gente "desamparada y dispersa como ovejas que no tienen pastor". La compasión vino antes que la oración, y la oración antes que el envío.</p></aside>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <div class="pic"><img src="img/05_samaritano.jpg" alt=""></div>
+  <div class="text">
+    <div class="big" style="font-size:88px">“…y viéndole, fue movido a <em>misericordia</em>.”</div>
+    <div class="ref">Lucas 10:33</div>
+  </div>
+  <aside class="notes"><p>"Pero un samaritano, que iba de camino, vino cerca de él, y viéndole, fue movido a misericordia."</p><p>El sacerdote y el levita también lo vieron. Solo uno se conmovió, y ese fue el que se detuvo.</p></aside>
+</section>
+
+<!-- 10 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">“…ve a su hermano tener necesidad, y <em>cierra</em> contra él su corazón…”</div>
+    <div class="ref">1 Juan 3:17</div>
+  </div>
+  <aside class="notes"><p>"Pero el que tiene bienes de este mundo y ve a su hermano tener necesidad, y cierra contra él su corazón, ¿cómo mora el amor de Dios en él?"</p><p>"Corazón" acá es "entrañas", la misma familia de palabras. Se puede ver la necesidad y cerrar las entrañas.</p></aside>
+</section>
+
+<!-- 11 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big" style="font-size:136px">“Es más poderoso responder a una <em>carga</em> que a un cargo.”</div>
+    <div class="ref">Maxi Zeravika</div>
+  </div>
+  <aside class="notes"><p>Frase de Maxi Zeravika (Congreso Reino 2025).</p><p>El cargo sin carga, tarde o temprano, se vuelve insoportable de llevar.</p></aside>
+</section>
+
+<!-- 12 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge" style="font-size:132px">¿Todavía vemos la necesidad… o ya nos <em>acostumbramos</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>¿Todavía vemos la necesidad de nuestra iglesia y de nuestro pueblo, o ya nos acostumbramos a ella?</p><p>Necesitamos pedirle a Dios que nos devuelva la mirada de Jesús, empezando por las personas que tenemos al lado. No necesitamos primero un cargo: necesitamos Su carga.</p></aside>
+</section>
+
+<!-- ============ PUNTO 2 ============ -->
+
+<!-- 13 -->
+<section class="slide solo punto">
+  <div class="text">
+    <div class="num">2</div>
+    <div class="title"><em>Rogar</em> al Señor de la mies</div>
+  </div>
+  <aside class="notes"><h3>2. Rogar al Señor de la mies</h3><p>a. El que envía es el Pastor · b. Los que ruegan son enviados</p></aside>
+</section>
+
+<!-- 14 -->
+<section class="slide full">
+  <div class="pic"><img src="img/13_frasco_completo.jpg" alt=""></div>
+  <aside class="notes"><p>Un frasco que no abre. Lo intentamos con la mano, con un repasador, lo golpeamos contra la mesada, lo ponemos bajo el agua caliente, le metemos un cuchillo por el costado…</p></aside>
+</section>
+
+<section class="slide flip">
+  <div class="pic"><img src="img/14_pedir_ayuda.jpg" alt=""></div>
+  <div class="text">
+    <div class="big">¿Por qué nos cuesta tanto <em>pedir</em>?</div>
+  </div>
+  <aside class="notes"><p>Probamos de todo antes de lo más simple: darnos vuelta y decir "¿me ayudás?".</p><p>¿Por qué nos cuesta tanto pedir? Porque pedir es admitir que solos no podemos.</p></aside>
+</section>
+
+<!-- 15 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="huge" style="font-size:220px">“<em>Rogad</em>”</div>
+    <div class="body">¿Por qué rogar, si Jesús mismo podía enviarlos?</div>
+  </div>
+  <aside class="notes"><p>Jesús acaba de ver a la multitud como ovejas sin pastor. Se da vuelta hacia sus discípulos. Nosotros hubiéramos armado un plan: formar obreros, organizar, convocar. Jesús dice una sola palabra: "Rogad".</p><p>"Rogad" significa rogar como quien no tiene otra salida.</p><p>¿Por qué rogar, si Jesús mismo podía enviarlos?</p></aside>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <div class="pic"><img src="img/07_pastor_saca.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">2a · El que envía es el Pastor</div>
+    <div class="big">Las <em>saca</em>… y va <em>delante</em>.</div>
+    <div class="ref">Juan 10:4</div>
+  </div>
+  <aside class="notes"><h3>a. El que envía es el Pastor</h3><p>"Envíe" significa sacar, hacer salir. Es el mismo verbo de Juan 10:4: "Y cuando ha sacado fuera todas las propias, va delante de ellas; y las ovejas le siguen, porque conocen su voz."</p><p>La multitud estaba "como ovejas que no tienen pastor" (v.36). La respuesta no es un plan nuestro: es el Pastor que saca a los suyos y va delante. Por eso se ruega: el obrero no lo fabricamos nosotros.</p></aside>
+</section>
+
+<!-- 17 -->
+<section class="slide flip">
+  <div class="pic"><img src="img/08_los_doce.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">2b · Los que ruegan son enviados</div>
+    <div class="big">Los <em>llama</em>… y los <em>envía</em>.</div>
+    <div class="ref">Mateo 10:1, 5</div>
+  </div>
+  <aside class="notes"><h3>b. Los que ruegan son enviados</h3><p>Primero los llama: "Entonces llamando a sus doce discípulos, les dio autoridad sobre los espíritus inmundos, para que los echasen fuera, y para sanar toda enfermedad y toda dolencia." "Llamando" es llamar hacia sí: antes de mandarlos, los acerca. Y no los manda con las manos vacías: les da autoridad.</p><p>Después los envía: "A estos doce envió Jesús, y les dio instrucciones." "Envió" es enviar con una misión; de ahí viene "apóstol".</p><p>Quien ruega con sinceridad por obreros, muchas veces termina siendo la respuesta a su propia oración.</p></aside>
+</section>
+
+<!-- 18 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big" style="font-size:136px">El primer llamado es hacia <em>Él</em>; el segundo, hacia afuera.</div>
+  </div>
+  <aside class="notes"><p>El primer llamado es hacia Él; el segundo, hacia afuera.</p></aside>
+</section>
+
+<!-- 19 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="big" style="font-size:124px">No está mal planificar, pero el plan no puede ocupar el lugar del <em>ruego</em>.</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>No está mal planificar, pero el plan no puede ocupar el lugar del ruego. Necesitamos volver a rogar al Señor de la mies, y estar dispuestos a ser la respuesta.</p></aside>
+</section>
+
+<!-- ============ PUNTO 3 ============ -->
+
+<!-- 20 -->
+<section class="slide solo punto puente">
+  <div class="text">
+    <div class="num">3</div>
+    <div class="title">Ser <em>fieles</em> donde estamos</div>
+    <div class="body">Vemos la necesidad, rogamos por obreros… ¿y mientras tanto, qué hacemos nosotros?</div>
+  </div>
+  <aside class="notes"><h3>3. Ser fieles donde estamos</h3><p>a. Dios llama a gente ocupada · b. De servir mesas a ser enviados</p><p>Vemos la necesidad, rogamos por obreros… ¿y mientras tanto, qué hacemos nosotros?</p></aside>
+</section>
+
+<!-- 21 -->
+<section class="slide full">
+  <div class="pic"><img src="img/15_corazon_picaflor.jpg" alt=""></div>
+  <aside class="notes"><p>El picaflor tiene, en proporción a su cuerpo, uno de los corazones más grandes del reino animal. Volando, le late más de mil veces por minuto. Un corazón enorme en un envase chiquito.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/09_picaflor.jpg" alt=""></div>
+  <div class="text">
+    <div class="huge">“Hago mi <em>parte</em>.”</div>
+  </div>
+  <aside class="notes"><p>Fábula de los Andes: se incendia el bosque y todos escapan. El picaflor va y viene del río, con una gota en el pico. "¿Qué pensás hacer con una gota?" — "Hago mi parte."</p><p>No apaga el incendio solo, y nosotros tampoco: eso le toca al Señor de la mies. A nosotros nos toca ser fieles con lo que tenemos en el pico.</p></aside>
+</section>
+
+<!-- 22 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">3a · Dios llama a gente ocupada</div>
+    <div class="big" style="font-size:120px">Moisés · Gedeón · David · Eliseo · Pedro</div>
+  </div>
+  <aside class="notes"><h3>a. Dios llama a gente ocupada</h3><p>A ninguno lo encontró esperando sin hacer nada: Moisés pastoreaba (Éxodo 3:1). Gedeón sacudía el trigo (Jueces 6:11). David cuidaba ovejas y ahí aprendió a enfrentar leones y osos (1 Samuel 17:34-36). Eliseo araba con doce yuntas (1 Reyes 19:19). Pedro y Andrés echaban la red (Mateo 4:18).</p></aside>
+</section>
+
+<!-- 23 -->
+<section class="slide flip">
+  <div class="pic"><img src="img/10_felipe.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">3b · De servir mesas a ser enviados</div>
+    <div class="big" style="font-size:88px">De las <em>mesas</em>… a “Felipe el <em>evangelista</em>”</div>
+    <div class="ref">Hechos 6 · 21:8</div>
+  </div>
+  <aside class="notes"><h3>b. De servir mesas a ser enviados</h3><p>Felipe fue elegido para servir las mesas (Hechos 6:2-5) y terminó siendo conocido como "Felipe el evangelista, que era uno de los siete" (Hechos 21:8). Empezó repartiendo comida.</p></aside>
+</section>
+
+<!-- 24 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">3b · De servir mesas a ser enviados</div>
+    <div class="big">“Ministrando éstos al Señor… <em>Apartadme</em> a Bernabé y a Saulo…”</div>
+    <div class="ref">Hechos 13:2</div>
+  </div>
+  <aside class="notes"><p>"Ministrando éstos al Señor, y ayunando, dijo el Espíritu Santo: Apartadme a Bernabé y a Saulo para la obra a que los he llamado."</p><p>Recibieron su llamado específico mientras ya servían en su iglesia local, y fue la iglesia la que los reconoció y los envió.</p></aside>
+</section>
+
+<!-- 25 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big" style="font-size:116px">La fidelidad en lo poco no compra el llamado: es el lugar donde se <em>escucha más fuerte</em> el llamado.</div>
+    <div class="ref">Lucas 16:10</div>
+  </div>
+  <aside class="notes"><p>La fidelidad en lo poco no compra el llamado: es el lugar donde se escucha más fuerte el llamado.</p><p>"El que es fiel en lo muy poco, también en lo más es fiel."</p></aside>
+</section>
+
+<!-- 26 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge" style="font-size:132px">¿En qué cosa <em>pequeña</em> nos está pidiendo Dios fidelidad hoy?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>Nos toca hacernos cargo de la vida de nuestra iglesia: el servicio que tenemos enfrente, la persona que necesita que la acompañemos, la tarea que nadie quiere hacer.</p></aside>
+</section>
+
+<!-- ============ CONCLUSIÓN ============ -->
+
+<!-- 27 -->
+<section class="slide">
+  <div class="pic"><img src="img/11_herrnhut.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Los moravos · 1727</div>
+    <div class="big">Empezaron <em>rogando</em>. Y Dios envió.</div>
+  </div>
+  <aside class="notes"><p>Herrnhut, Alemania, 27 de agosto de 1727. Una comunidad pequeña de moravos empezó una cadena de oración de 24 horas, turnándose hora por hora. Siguió durante unos cien años sin cortarse.</p><p>En 1732 salieron los primeros misioneros. No empezaron con una estrategia. Empezaron rogando. Y Dios envió.</p><p>Lo que se deja de hablar, se pierde. Pero lo que una iglesia vuelve a rogar, Dios lo vuelve a encender.</p></aside>
+</section>
+
+<!-- ============ LLAMADO FINAL ============ -->
+
+<!-- 28 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Según algunos relatos</div>
+    <div class="huge">Unas 300 personas.</div>
+    <div class="huge">Unos 300 <em>misioneros</em>.</div>
+  </div>
+  <aside class="notes"><p>Según algunos relatos, aquella comunidad no pasaba de unas 300 personas. Y se cree que, con los años, salieron de ahí unos 300 misioneros.</p><p>Una comunidad chica rogó por obreros… y de entre los que rogaban, Dios envió.</p></aside>
+</section>
+
+<!-- 29 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="huge">“Heme aquí, <em>envíame</em> a mí.”</div>
+    <div class="ref">Isaías 6:8</div>
+  </div>
+  <aside class="notes"><p>"Después oí la voz del Señor, que decía: ¿A quién enviaré, y quién irá por nosotros? Entonces respondí yo: Heme aquí, envíame a mí."</p><p>Isaías no dijo "heme aquí" porque se sintiera capaz. Un versículo antes había dicho "¡Ay de mí!". Lo dijo después de que Dios lo limpió.</p></aside>
+</section>
+
+<!-- 30 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="huge"><em>Ver · Rogar · Ser fieles</em></div>
+    <div class="body">¿Estamos dispuestos a ser parte de la respuesta a lo que rogamos?</div>
+  </div>
+  <aside class="notes"><p>Hoy podemos comprometernos a tres cosas: volver a ver la mies con los ojos de Jesús, volver a rogar al Señor de la mies, y ser fieles en lo que ya tenemos en las manos. Lo que Dios haga con cada uno de nosotros queda en Sus manos.</p><p>¿Estamos dispuestos a ser parte de la respuesta a lo que rogamos?</p></aside>
+</section>
+
+</main>
+</div>
+<script>
+/* Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic. */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+            if (e.key === 'f') document.documentElement.requestFullscreen?.();
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        // Renuevo Presenter controla el deck cambiando #N (desde 1).
+        addEventListener('hashchange', () => {
+            const n = parseInt(location.hash.slice(1), 10);
+            if (Number.isFinite(n) && n - 1 !== this.current) this.show(n - 1);
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.slides.forEach((x, j) => x.classList.toggle('active', j === this.current));
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>

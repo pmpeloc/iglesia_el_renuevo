@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sirviendo sin miedo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+/* Un bloque del bosquejo = una diapositiva. Hasta 3 imágenes con su frase; las notas llevan el bloque completo. */
+:root {
+    --paper: #FFF8EC;
+    --ink: #161616;
+    --green: #5DBE2C;
+    --green-dk: #2E7D12;
+    --f: 'Montserrat', Arial, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; cursor: none; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--paper); }
+
+.slide { position: absolute; inset: 0; display: grid; visibility: hidden; opacity: 0; transition: opacity .5s ease, visibility 0s .5s; background: var(--paper); color: var(--ink); font-family: var(--f); }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .5s ease; z-index: 1; }
+
+/* ── UNA imagen: cuadrada de borde a borde + texto ── */
+.slide.una { grid-template-columns: 1000px 1fr; }
+.slide.una.flip { grid-template-columns: 1fr 1000px; }
+.slide.una.flip .pic { order: 2; border-width: 0 0 0 10px; }
+.pic { height: 1080px; overflow: hidden; border-right: 10px solid var(--ink); background: #fff; }
+.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.text { display: flex; flex-direction: column; justify-content: center; gap: 44px; padding: 60px 56px; }
+
+/* ── SOLO texto ── */
+.slide.solo { grid-template-columns: 1fr; }
+.slide.solo .text { align-items: center; text-align: center; padding: 60px 110px; }
+.slide.solo .kicker { align-self: center; }
+.slide.app { background: var(--green); }
+.slide.app .kicker { background: var(--paper); color: var(--ink); }
+.slide.app em { color: #fff; }
+
+/* ── TRES imágenes: título arriba, imágenes a todo el ancho, frase debajo de cada una ── */
+.slide.trio { grid-template-columns: repeat(3, 640px); grid-template-rows: 200px 640px 240px; }
+.slide.trio .head { grid-column: 1 / -1; }
+/* ── DOS imágenes: título a la izquierda, imágenes grandes a la derecha ── */
+.slide.duo { grid-template-columns: 480px 720px 720px; grid-template-rows: 720px 360px; }
+.slide.duo .head { grid-column: 1; grid-row: 1 / span 2; padding: 0 36px; gap: 24px; }
+.slide.duo .head .title { font-size: 60px; line-height: 1.05; }
+.slide.duo .im:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+.slide.duo .im:nth-of-type(3) { grid-column: 3; grid-row: 1; }
+.slide.duo .cap:nth-of-type(4) { grid-column: 2; grid-row: 2; }
+.slide.duo .cap:nth-of-type(5) { grid-column: 3; grid-row: 2; }
+.slide.duo .cap { font-size: 72px; }
+
+.head { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 12px; padding: 0 48px; }
+.head .kicker { font-size: 40px; padding: 8px 26px; }
+.head .title { font: 900 88px/1 var(--f); letter-spacing: -.02em; }
+.im { position: relative; overflow: hidden; border-top: 8px solid var(--ink); border-bottom: 8px solid var(--ink); background: #fff; }
+.im + .im { border-left: 8px solid var(--ink); }
+.slide.duo .im { border-top: 0; border-left: 8px solid var(--ink); }
+.im img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.im .n { position: absolute; left: 14px; bottom: 14px; width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font: 900 44px/1 var(--f); }
+.cap { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 22px; overflow: hidden; font: 800 64px/1.08 var(--f); letter-spacing: -.01em; }
+
+.kicker { align-self: flex-start; padding: 16px 32px; border-radius: 40px; line-height: 1.15; background: var(--ink); color: #fff; font: 800 58px/1.15 var(--f); }
+.title { font: 900 128px/1 var(--f); letter-spacing: -.03em; }
+.title em, .big em, .cap em { font-style: normal; color: var(--green-dk); }
+.big { font: 900 104px/1.05 var(--f); letter-spacing: -.02em; }
+.ref { font: 900 88px/1 var(--f); color: var(--green-dk); }
+.slide.solo .big { font-size: 128px; }
+.slide.solo .title { font-size: 150px; }
+
+.slide.active .text > *, .slide.active .head > * { animation: up .7s var(--ease) both; }
+@keyframes up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+.notes { display: none; }
+.progress { position: fixed; left: 0; bottom: 0; height: 8px; background: var(--green); z-index: 1000; transition: width .5s var(--ease); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- 1 · PORTADA -->
+<section class="slide una">
+  <div class="pic"><img src="img/01_portada.jpg" alt=""></div>
+  <div class="text">
+    <div class="title">Sirviendo <em>sin miedo</em></div>
+    <div class="ref">Mateo 25:14-30</div>
+  </div>
+  <aside class="notes"></aside>
+</section>
+
+<!-- ============ INTRODUCCIÓN ============ -->
+
+<!-- 2 · Introducción (1 de 2) -->
+<section class="slide trio">
+  <div class="head"><div class="title">Introducción</div></div>
+  <div class="im"><img src="img/02_mirada.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/03_reto.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/04_burla.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>La mirada</span></div>
+  <div class="cap"><span>El reto</span></div>
+  <div class="cap"><span>La burla</span></div>
+  <aside class="notes">
+    <h3>Introducción</h3>
+    <p>① La mirada<br>• Adolescente en la iglesia: la mirada si no estaba orando.</p>
+    <p>② El reto<br>• El reto si no estaba limpiando o ayudando.</p>
+    <p>③ La burla<br>• La burla de los que venían temprano a orar, si me veían levantándome.<br>• Muchos, sin mala intención. Pero dejó una raíz.<br>• "Yo servía para que no me reten. No por amor a Dios."</p>
+  </aside>
+</section>
+
+<!-- 3 · Introducción (2 de 2) -->
+<section class="slide duo">
+  <div class="head"><div class="title">Introducción</div></div>
+  <div class="im"><img src="img/05_dos_servidores.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/06_jesus_ensena.jpg" alt=""><span class="n">2</span></div>
+  <div class="cap"><span>Para ganar… o para que no nos castiguen</span></div>
+  <div class="cap"><span>Una parábola para los que sirven</span></div>
+  <aside class="notes">
+    <p>① Para ganar… o para que no nos castiguen<br>• Jueves pasado: la carne sirve porque el servicio le paga (aplauso, lugar, mérito).<br>• Hoy, el otro lado: servir —o dejar de servir— para que no nos castiguen.<br>• Se parecen en algo: en las dos me miro a mí, no al Señor.</p>
+    <p>② Una parábola para los que sirven<br>• Jesús la cuenta a sus discípulos: el tiempo entre que Él se va y que vuelve. Nuestro tiempo. Es una parábola para los que sirven.<br>📖 Mateo 25:14-15, 19-21, 24-27</p>
+  </aside>
+</section>
+
+<!-- 4 · Estribillo -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">Servimos según el Señor que <em>conocemos</em>.</div>
+  </div>
+  <aside class="notes">
+    <p>Servimos según el Señor que conocemos.</p>
+  </aside>
+</section>
+
+<!-- ============ PUNTO 1 ============ -->
+
+<!-- 5 · 1a -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">1 · La imagen equivocada</div><div class="title">a) Lo que el señor <em>hizo</em></div></div>
+  <div class="im"><img src="img/07_entrego.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/08_capacidad.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/09_gozo.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Les entregó sus bienes</span></div>
+  <div class="cap"><span>Conforme a su capacidad</span></div>
+  <div class="cap"><span>Entra en el gozo de tu señor</span></div>
+  <aside class="notes">
+    <h3>1. La imagen equivocada</h3>
+    <h3>a) Lo que el señor hizo · vv. 14-15, 21</h3>
+    <p>① Les entregó sus bienes<br>• "les entregó sus bienes": no les prestó una herramienta. Les confió lo suyo y se fue.<br>• Un talento era una fortuna: unos veinte años de sueldo de un obrero. (dato histórico aproximado)</p>
+    <p>② Conforme a su capacidad<br>• "conforme a su capacidad": los conocía. A ninguno le cargó de más.</p>
+    <p>③ Entra en el gozo de tu señor<br>• "entra en el gozo de tu señor": no dice "tomá tu paga y andá". Dice "vení a alegrarte conmigo".<br>• Confía, conoce y comparte. Esos son los hechos.</p>
+  </aside>
+</section>
+
+<!-- 6 · 1b -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">1 · La imagen equivocada</div><div class="title">b) Lo que el siervo <em>vio</em></div></div>
+  <div class="im"><img src="img/10_duro.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/11_cavando.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/12_lo_tuyo.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Hombre duro</span></div>
+  <div class="cap"><span>Tuve miedo y escondí</span></div>
+  <div class="cap"><span>Aquí tienes lo que es tuyo</span></div>
+  <aside class="notes">
+    <h3>b) Lo que el siervo vio · vv. 24-25</h3>
+    <p>① Hombre duro<br>• "hombre duro": áspero, de los que nunca están conformes.<br>• "siegas donde no sembraste": no era cierto. Había sembrado en él. La prueba estaba enterrada en su casa.<br>• Los fieles empiezan: "me entregaste". Él empieza: "eres duro".<br>• Mismo señor. Otro señor en la cabeza.</p>
+    <p>② Tuve miedo y escondí<br>• "por lo cual tuve miedo": primero la imagen → después el miedo → después esconder.<br>• "fue y cavó" (v. 18): cavar también es trabajo. El miedo también cansa. Hermanos agotados, no de servir: de cuidarse.</p>
+    <p>③ Aquí tienes lo que es tuyo<br>• "aquí tienes lo que es tuyo": lo justo, para que nadie me pueda decir nada.<br>• ★ Yo conozco ese servicio: el mío de adolescente.</p>
+  </aside>
+</section>
+
+<!-- 7 · 1c -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">1 · La imagen equivocada</div><div class="title">c) Lo que el señor <em>respondió</em></div></div>
+  <div class="im"><img src="img/13_propia_boca.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/14_banco.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/15_no_excusa.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Por tu propia boca</span></div>
+  <div class="cap"><span>Al menos, el banco</span></div>
+  <div class="cap"><span>El miedo explica, pero no excusa</span></div>
+  <aside class="notes">
+    <h3>c) Lo que el señor respondió · vv. 26-27</h3>
+    <p>① Por tu propia boca<br>• No se defiende. Le contesta con sus mismas palabras.<br>• "Mal siervo, por tu propia boca te juzgo." (Lucas 19:22 — parábola parecida)</p>
+    <p>② Al menos, el banco<br>• "Por tanto…" = con más razón. Aunque sea lo mínimo: el banco.<br>• El miedo no lo hizo más responsable. Lo paralizó.</p>
+    <p>③ El miedo explica, pero no excusa<br>• El siervo le pone un nombre: "tuve miedo". El señor le pone otro: "malo y negligente".<br>• Detrás del miedo: no quería trabajar para un señor al que no amaba. Cuando vemos a Dios duro, dejamos de amarlo. (no lo dice el texto: es lo que entiendo de la escena — decirlo así)<br>• Termina mal para él (v. 30). No suavizarlo. El miedo explica, pero no excusa.</p>
+  </aside>
+</section>
+
+<!-- 8 · Aplicación 1 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Aplicación</div>
+    <div class="big">¿“Señor, <em>me entregaste</em>”… o “Señor, yo sé que <em>sos duro</em>”?</div>
+  </div>
+  <aside class="notes">
+    <h3>Aplicación</h3>
+    <p>Necesitamos preguntarnos qué imagen del Señor hay debajo de nuestra forma de servir. Si servimos lo justo, a la defensiva, puede ser que le estemos sirviendo a un señor que no existe.<br>¿Con qué frase llegaríamos nosotros: "Señor, me entregaste"… o "Señor, yo sé que sos duro"?</p>
+  </aside>
+</section>
+
+<!-- 9 · Estribillo -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">Servimos según el Señor que <em>conocemos</em>.</div>
+  </div>
+  <aside class="notes">
+    <p>Servimos según el Señor que conocemos.</p>
+  </aside>
+</section>
+
+<!-- 10 · Puente al punto 2 -->
+<section class="slide una flip">
+  <div class="pic"><img src="img/16_ventana.jpg" alt=""></div>
+  <div class="text">
+    <div class="big">¿Qué Señor se ve <em>a través nuestro</em>?</div>
+  </div>
+  <aside class="notes">
+    <p>• Jesús no cuenta de dónde sacó el siervo esa imagen.<br>• ★ Yo sí sé de dónde saqué la mía: no del Señor, sino de cómo me miraban algunos que le servían.<br>• El vidrio de la ventana: el de adentro mira a través nuestro. Vidrio sucio → "afuera está nublado".<br>• Para los que servimos hace más tiempo (yo primero): ¿qué Señor se ve a través nuestro?</p>
+  </aside>
+</section>
+
+<!-- ============ PUNTO 2 ============ -->
+
+<!-- 11 · 2a -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">2 · La imagen que damos</div><div class="title">a) <em>Jueces</em> del siervo ajeno</div></div>
+  <div class="im"><img src="img/17_criado_ajeno.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/18_silla.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/19_cambio_senor.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>El criado es ajeno</span></div>
+  <div class="cap"><span>La silla del Señor</span></div>
+  <div class="cap"><span>Le cambiamos de señor</span></div>
+  <aside class="notes">
+    <h3>2. La imagen que damos</h3>
+    <h3>a) Jueces del siervo ajeno</h3>
+    <p>📖 Romanos 14:4</p>
+    <p>① El criado es ajeno<br>• Pablo habla de comidas y días. El principio nos sirve: el criado es ajeno. Tiene su propio Señor.<br>• El señor "arregló cuentas" (Mt 25:19) → "cada uno de nosotros dará a Dios cuenta de sí" (Ro 14:12). A Dios. No a mí.</p>
+    <p>② La silla del Señor<br>• Si vigilo si oró, si vino temprano, si limpió… me siento en la silla del Señor.</p>
+    <p>③ Le cambiamos de señor<br>• El hermano empieza a servir para mi mirada. Le cambiamos de señor.<br>• Y ese señor nuevo, que soy yo, ese sí es duro. Así se forma la imagen.</p>
+  </aside>
+</section>
+
+<!-- 12 · 2b -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">2 · La imagen que damos</div><div class="title">b) Pastores con <em>dureza</em></div></div>
+  <div class="im"><img src="img/20_dureza.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/21_egipto.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/22_oveja.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Con dureza</span></div>
+  <div class="cap"><span>Como en Egipto</span></div>
+  <div class="cap"><span>La débil, la enferma, la quebrada</span></div>
+  <aside class="notes">
+    <h3>b) Pastores con dureza</h3>
+    <p>📖 Ezequiel 34:4</p>
+    <p>① Con dureza<br>• Cinco cosas que no hicieron. Una sola que sí: mandar. Con dureza.</p>
+    <p>② Como en Egipto<br>• "con dureza": la misma expresión de Egipto.<br>📖 Éxodo 1:13<br>• "Están tratando a mis ovejas como Faraón trató a mi pueblo." (así lo entiendo por la palabra compartida — decirlo así)</p>
+    <p>③ La débil, la enferma, la quebrada<br>• ¿A quiénes? A la débil, la enferma, la quebrada. Justo la que necesitaba cuidado.<br>• El versículo no habla de la intención de los pastores: habla de lo que les pasó a las ovejas.<br>• ★ Quizás los que me retaban no tuvieron mala intención. La raíz quedó igual.</p>
+  </aside>
+</section>
+
+<!-- 13 · Aplicación 2 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Aplicación</div>
+    <div class="big">¿Le rinden cuentas al Señor, o a <em>nuestra mirada</em>?</div>
+  </div>
+  <aside class="notes">
+    <h3>Aplicación</h3>
+    <p>¿Entonces nadie puede decirle nada a nadie? No es eso.<br>📖 1 Tesalonicenses 5:14<br>• Tres hermanos, tres tratos. Y con todos, paciencia.<br>• El problema: tratar al desanimado como si fuera un vago.<br>• Al que necesitaba un abrazo le dimos un reto.</p>
+    <p>Los que servimos hace más tiempo necesitamos preguntarnos a quién tratamos con dureza cuando necesitaba aliento. Y si el Señor nos trae un nombre, nos toca ir y pedir perdón.</p>
+    <p>Los que sirven cerca nuestro, ¿le rinden cuentas al Señor, o a nuestra mirada?</p>
+  </aside>
+</section>
+
+<!-- 14 · Estribillo -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big" style="font-size:112px">Servimos según el Señor que conocemos. Y otros lo conocen <em>a través nuestro</em>.</div>
+  </div>
+  <aside class="notes">
+    <p>Servimos según el Señor que conocemos. Y otros lo conocen a través nuestro.</p>
+  </aside>
+</section>
+
+<!-- 15 · Puente al punto 3 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">La imagen es <em>una sola</em>.</div>
+  </div>
+  <aside class="notes">
+    <p>• Ahora, al que le dieron una imagen torcida: ¿cuál es la salida?<br>• ¿Un líder mejor? Necesitamos serlo. Pero esa no es la salida.<br>• Ningún siervo es la imagen del Señor. La imagen es una sola.</p>
+  </aside>
+</section>
+
+<!-- ============ PUNTO 3 ============ -->
+
+<!-- 16 · 3a -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">3 · La imagen verdadera</div><div class="title">a) Cristo es la <em>imagen</em></div></div>
+  <div class="im"><img src="img/23_miramos_cristo.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/24_manso.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/25_yugo.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Miramos a Cristo</span></div>
+  <div class="cap"><span>Manso y humilde</span></div>
+  <div class="cap"><span>Mi yugo es fácil</span></div>
+  <aside class="notes">
+    <h3>3. La imagen verdadera</h3>
+    <h3>a) Cristo es la imagen</h3>
+    <p>📖 Colosenses 1:15</p>
+    <p>① Miramos a Cristo<br>• Para saber cómo es Dios con el que sirve, no miramos al hermano que nos retó. Miramos a Cristo.<br>• ¿Y cómo es Cristo? Él mismo lo dice:<br>📖 Mateo 11:28-30</p>
+    <p>② Manso y humilde<br>• Llama a los cansados. Se presenta manso y humilde.</p>
+    <p>③ Mi yugo es fácil<br>• El siervo dijo "duro". Jesús dice "fácil": bueno, suave, que no lastima. Lo contrario de duro.<br>• No dice que no hay yugo. Hay yugo, hay carga, hay servicio. Cambia de quién es.<br>• Manso no es blando: es el mismo que vuelve a arreglar cuentas. Pero el que vuelve es Él. No el señor duro que teníamos en la cabeza.</p>
+  </aside>
+</section>
+
+<!-- 17 · 3b (1 de 2) -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">3 · La imagen verdadera</div><div class="title">b) <em>Hijos</em>, no esclavos</div></div>
+  <div class="im"><img src="img/26_otra_vez.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/27_casa_suya.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/28_todo_tuyo.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Otra vez en temor</span></div>
+  <div class="cap"><span>La casa es suya</span></div>
+  <div class="cap"><span>Todas mis cosas son tuyas</span></div>
+  <aside class="notes">
+    <h3>b) Hijos, no esclavos</h3>
+    <p>📖 Romanos 8:15</p>
+    <p>① Otra vez en temor<br>• "Otra vez": el miedo es volver atrás, a un lugar de donde Dios ya nos sacó.</p>
+    <p>② La casa es suya<br>• El esclavo sirve para que no lo castiguen. El hijo sirve porque la casa es suya.</p>
+    <p>③ Todas mis cosas son tuyas<br>• El hermano mayor (jueves pasado): "nunca me has dado ni un cabrito". También tenía una imagen torcida: un padre mezquino.<br>📖 Lucas 15:31<br>• El siervo: "aquí tienes lo que es tuyo". El Padre: "todas mis cosas son tuyas".<br>• El esclavo separa (lo tuyo, lo mío, estamos a mano). El Padre junta.<br>• Uno servía por mérito, el otro por miedo. Los dos vivían en la casa sin conocer al dueño.</p>
+  </aside>
+</section>
+
+<!-- 18 · 3b (2 de 2) -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">3 · La imagen verdadera</div><div class="title">b) <em>Hijos</em>, no esclavos</div></div>
+  <div class="im"><img src="img/29_castigo.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/30_amo_primero.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/31_dos_temores.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>El temor lleva en sí castigo</span></div>
+  <div class="cap"><span>Él nos amó primero</span></div>
+  <div class="cap"><span>Un temor que acerca, un miedo que esconde</span></div>
+  <aside class="notes">
+    <p>• ¿Y cómo se sale?<br>📖 1 Juan 4:18-19</p>
+    <p>① El temor lleva en sí castigo<br>• "lleva en sí castigo": vivir el reto por adelantado. Ese era yo.</p>
+    <p>② Él nos amó primero<br>• No dice "esfuércense por no tener miedo". Lo echa el amor.<br>• "él nos amó primero" = el orden de los siervos fieles: primero, "me entregaste".<br>• Del miedo no se sale apretando los dientes. Se sale conociendo cuánto nos amó.<br>• ★ Mi historia, 2ª parte: cómo tomé esa libertad.</p>
+    <p>③ Un temor que acerca, un miedo que esconde<br>• ¿Y el temor de Dios? Sí, existe:<br>📖 Hebreos 12:28<br>• Hay un temor que nace de la gratitud y nos acerca.<br>• Hay un miedo que nace de una imagen falsa y nos esconde. No son lo mismo.</p>
+  </aside>
+</section>
+
+<!-- 19 · Aplicación 3 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Aplicación</div>
+    <div class="big">¿Para que no nos reten… o porque <em>Él nos amó primero</em>?</div>
+  </div>
+  <aside class="notes">
+    <h3>Aplicación</h3>
+    <p>No se trata de servir menos, ni de que nadie nos pueda corregir. Nos toca volver a mirar a Cristo y volver a servir como hijos.<br>¿Para qué servimos hoy: para que no nos reten… o porque Él nos amó primero?</p>
+  </aside>
+</section>
+
+<!-- 20 · Estribillo -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">Servimos según el Señor que <em>conocemos</em>.</div>
+  </div>
+  <aside class="notes">
+    <p>Servimos según el Señor que conocemos.</p>
+  </aside>
+</section>
+
+<!-- ============ CONCLUSIÓN ============ -->
+
+<!-- 21 · Conclusión -->
+<section class="slide trio">
+  <div class="head"><div class="title">Conclusión</div></div>
+  <div class="im"><img src="img/32_escondido.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/33_donde_estas.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/34_desenterrar.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Tuve miedo y me escondí</span></div>
+  <div class="cap"><span>¿Dónde estás tú?</span></div>
+  <div class="cap"><span>A tiempo de desenterrar</span></div>
+  <aside class="notes">
+    <h3>Conclusión</h3>
+    <p>① Tuve miedo y me escondí<br>• Tres imágenes: la que tenía el siervo · la que damos nosotros · la verdadera, que es Cristo.<br>• La primera vez en la Biblia que alguien tiene miedo y se esconde:<br>📖 Génesis 3:10<br>• Adán: "tuve miedo y me escondí". El siervo: "tuve miedo y escondí".</p>
+    <p>② ¿Dónde estás tú?<br>• Adán se escondió por otra razón: había pecado. Pero ¿qué hizo Dios con el escondido?<br>📖 Génesis 3:9<br>• Salió a buscarlo.</p>
+    <p>③ A tiempo de desenterrar<br>• Buena noticia de la parábola: el Señor todavía no volvió a arreglar cuentas. Estamos a tiempo de desenterrar lo que escondimos.<br>• Domingo: unidos a Cristo. No servimos a un patrón que nos vigila de lejos: servimos a Alguien que nos quiere con Él.</p>
+  </aside>
+</section>
+
+<!-- 22 · Llamado -->
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Llamado</div>
+    <div class="big">“Entra en el <em>gozo</em> de tu señor”</div>
+  </div>
+  <aside class="notes">
+    <h3>Llamado · dos grupos — yo estoy en los dos</h3>
+    <p>Los que enterramos algo por miedo<br>• O venimos sirviendo a la defensiva. El Señor no nos espera con un reto. Lo que Él quiere decirnos es: "entra en el gozo de tu señor".</p>
+    <p>Los que servimos hace más tiempo<br>• Necesitamos pedirle al Señor que nos muestre a quién hicimos sentir vigilado, y que nos dé la humildad de acercarnos a pedir perdón.</p>
+  </aside>
+</section>
+
+<!-- 23 · Cierre -->
+<section class="slide solo">
+  <div class="text">
+    <div class="title">Oremos.</div>
+  </div>
+  <aside class="notes">
+    <p>Oremos.</p>
+  </aside>
+</section>
+
+</main>
+</div>
+
+<script>
+/* Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic. */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+            if (e.key === 'f') document.documentElement.requestFullscreen?.();
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        // Renuevo Presenter controla el deck cambiando #N (desde 1).
+        addEventListener('hashchange', () => {
+            const n = parseInt(location.hash.slice(1), 10);
+            if (Number.isFinite(n) && n - 1 !== this.current) this.show(n - 1);
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.slides.forEach((x, j) => x.classList.toggle('active', j === this.current));
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+new SlidePresentation();
+</script>
+<script>
+/* Achica cada frase hasta que entre debajo de su imagen (mínimo 48px). */
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    document.querySelectorAll('.cap').forEach(cap => {
+        const span = cap.firstElementChild;
+        let px = parseFloat(getComputedStyle(cap).fontSize);
+        while (px > 48 && (span.offsetHeight > cap.clientHeight - 24 || span.scrollWidth > cap.clientWidth - 44)) {
+            px -= 2;
+            cap.style.fontSize = px + 'px';
+        }
+    });
+});
+</script>
+</body>
+</html>

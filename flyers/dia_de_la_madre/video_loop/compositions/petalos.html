@@ -1,0 +1,71 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    #petalos-capa .petalo { position: absolute; left: 0; top: 0; width: 46px; height: 58px; }
+    #petalos-capa .petalo svg { width: 100%; height: 100%; display: block; }
+  </style>
+  <div data-hf-id="hf-otwi" id="root" data-composition-id="petalos" data-width="1920" data-height="1080" data-layout-ignore>
+    <svg data-hf-id="hf-6o47" width="0" height="0" style="position: absolute">
+      <defs data-hf-id="hf-mh0t">
+        <radialGradient data-hf-id="hf-aifk" id="pet-grad" cx="40%" cy="35%" r="75%">
+          <stop data-hf-id="hf-y3rx" offset="0%" stop-color="#ffe3ea" />
+          <stop data-hf-id="hf-eng0" offset="55%" stop-color="#f3a3b6" />
+          <stop data-hf-id="hf-vmtg" offset="100%" stop-color="#c9516f" />
+        </radialGradient>
+        <path data-hf-id="hf-6n5l" id="pet-forma" d="M23 2 C40 10 46 30 38 46 C33 55 13 55 8 46 C0 30 6 10 23 2 Z" fill="url(#pet-grad)" />
+      </defs>
+    </svg>
+    <div data-hf-id="hf-bx6b" id="petalos-capa"></div>
+  </div>
+  <script>
+    (() => {
+      // ponytail: generador con semilla fija, así cada cuadro es siempre igual
+      let s = 20261025;
+      const rnd = () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296;
+      const capa = document.querySelector("#petalos-capa");
+      const crear = () => {
+        const d = document.createElement("div");
+        d.className = "petalo";
+        d.innerHTML = '<svg viewBox="0 0 46 58"><use href="#pet-forma"/></svg>';
+        capa.appendChild(d);
+        return d;
+      };
+      // Lluvia continua: cada período divide 30 s, así el loop cierra exacto
+      const periodos = [7.5, 10, 15];
+      const lluvia = Array.from({ length: 26 }, (_, i) => ({
+        el: crear(), P: periodos[i % 3], fase: rnd(), x: rnd() * 1920,
+        amp: 30 + rnd() * 70, ondas: 1 + Math.floor(rnd() * 3),
+        giros: (rnd() < 0.5 ? -1 : 1) * (1 + Math.floor(rnd() * 2)),
+        esc: 0.55 + rnd() * 0.7, op: 0.55 + rnd() * 0.4,
+      }));
+      // Ráfaga del fundido (9.3–11.3 s): pétalos que cruzan en diagonal
+      const rafaga = Array.from({ length: 40 }, () => ({
+        el: crear(), t0: 9.3 + rnd() * 1.0, dur: 0.9 + rnd() * 0.6,
+        y: -200 + rnd() * 1300, esc: 0.8 + rnd() * 1.3, giro: 360 + rnd() * 540,
+      }));
+      const TAU = Math.PI * 2;
+      const pintar = (t) => {
+        for (const p of lluvia) {
+          const u = (((t / p.P + p.fase) % 1) + 1) % 1;
+          const y = -100 + u * 1280;
+          const x = p.x + Math.sin(u * TAU * p.ondas) * p.amp;
+          p.el.style.transform = `translate(${x}px, ${y}px) rotate(${u * 360 * p.giros}deg) scale(${p.esc})`;
+          p.el.style.opacity = p.op;
+        }
+        for (const p of rafaga) {
+          const u = (t - p.t0) / p.dur;
+          if (u <= 0 || u >= 1) { p.el.style.opacity = 0; continue; }
+          const x = 2050 - u * 2400;
+          const y = p.y + u * 380;
+          p.el.style.transform = `translate(${x}px, ${y}px) rotate(${u * p.giro}deg) scale(${p.esc})`;
+          p.el.style.opacity = 0.95;
+        }
+      };
+      const reloj = { t: 0 };
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo(reloj, { t: 0 }, { t: 30, duration: 30, ease: "none", onUpdate: () => pintar(reloj.t) }, 0);
+      pintar(0);
+      window.__timelines["petalos"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,2001 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": false,
+    "errorCount": 1,
+    "warningCount": 21,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "duplicate_media_discovery_risk",
+        "severity": "warning",
+        "message": "Detected 2 matching img entries with the same source/start/duration.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Avoid duplicated media nodes that can be discovered twice during compilation."
+      },
+      {
+        "code": "gsap_non_transform_motion",
+        "severity": "error",
+        "message": "GSAP tween on \"#s1-l2\" uses motion that snaps to integer device pixels: letterSpacing. Layout and text-reflow properties snap during browser layout; roundProps rounds the tween value. Slow motion or an ease-out tail then stutters under the seek-by-frame capture engine. Animate transforms (x/y/scale/opacity) instead.",
+        "selector": "#s1-l2",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "do not animate letterSpacing (they reflow text and snap glyph positions): for letterSpacing, split the text into per-character elements and animate each glyph's x (the spread), since uniform scale is NOT equivalent, or hold the final value statically. Transforms interpolate sub-pixel and stay smooth at any speed."
+      },
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 1 has 6 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "timeline_track_too_dense",
+        "severity": "warning",
+        "message": "Track 2 has 10 timed elements in this HTML file. Smaller sub-compositions keep timelines easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move coherent scene groups into separate .html files under compositions/ and mount them from the parent with data-composition-src so the timeline stays easier to inspect, revise, and validate."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s1\"> is a timeline element that contains nested <div id=\"s1-cam\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s1",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s2\"> is a timeline element that contains nested <div id=\"s2-cam\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s2",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m1\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m1",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m2\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m2",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m3\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m3",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m3\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m4\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m4",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m4\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m5\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m5",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m5\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m6\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m6",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m6\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m7\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m7",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m7\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m8\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m8",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m8\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m9\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m9",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m9\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"m10\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#m10",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"m10\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s3\"> is a timeline element that contains nested <div id=\"s3-txt\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s3",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s3\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"barra-c\"> is a timeline element that contains nested <div id=\"barra\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#barra-c",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"barra-c\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s4\"> is a timeline element that contains nested <div id=\"s4-cam\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s4",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s4\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s5\"> is a timeline element that contains nested <div id=\"s5-foto\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s5",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s5\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s6\"> is a timeline element that contains nested <div id=\"s6-cam\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s6",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s6\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"s7\"> is a timeline element that contains nested <div id=\"s7-txt\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#s7",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\reel\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"s7\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": false,
+    "errorCount": 1,
+    "warningCount": 32,
+    "infoCount": 5,
+    "findings": [
+      {
+        "code": "content_overlap",
+        "severity": "error",
+        "time": 9.222,
+        "selector": "#s3-b > span:nth-of-type(1)",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 70,
+          "top": 978.91,
+          "right": 568.67,
+          "bottom": 1261.91,
+          "width": 498.67,
+          "height": 283
+        },
+        "containerSelector": "div.l1",
+        "text": "NACIÓN",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70,
+          "y": 978.91,
+          "width": 498.67,
+          "height": 283
+        },
+        "firstSeen": 6.677,
+        "lastSeen": 9.222,
+        "occurrences": 15,
+        "heldMs": 2545,
+        "times": [
+          6.677,
+          6.863,
+          7.048,
+          7.234,
+          7.419,
+          7.604,
+          7.79,
+          7.975,
+          8.161,
+          8.346,
+          8.532,
+          8.717,
+          8.903,
+          9.088,
+          9.222
+        ]
+      },
+      {
+        "selector": "#s1-txt > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 716,
+          "width": 540.13,
+          "height": 41
+        },
+        "time": 1.844,
+        "rect": {
+          "left": 80,
+          "top": 716,
+          "right": 620.13,
+          "bottom": 757,
+          "width": 540.13,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "16 y 17 de noviembre",
+        "message": "<div> \"16 y 17 de noviembre\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 1.844,
+        "lastSeen": 1.844,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          1.844
+        ]
+      },
+      {
+        "selector": "#s1-l1",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 746,
+          "width": 516.31,
+          "height": 180
+        },
+        "time": 1.844,
+        "rect": {
+          "left": 80,
+          "top": 746,
+          "right": 596.31,
+          "bottom": 926,
+          "width": 516.31,
+          "height": 180
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Nos visitan",
+        "message": "<div> \"Nos visitan\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 1.844,
+        "lastSeen": 1.844,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          1.844
+        ]
+      },
+      {
+        "selector": "#s1-l2",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 856,
+          "width": 885.83,
+          "height": 314
+        },
+        "time": 1.844,
+        "rect": {
+          "left": 80,
+          "top": 856,
+          "right": 965.83,
+          "bottom": 1170,
+          "width": 885.83,
+          "height": 314
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "misioneros",
+        "message": "<div> \"misioneros\" is outside the safe area: TikTok (left and right edges), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 1.844,
+        "lastSeen": 1.844,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          1.844
+        ]
+      },
+      {
+        "selector": "#s1-sub",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1147.31,
+          "width": 441.86,
+          "height": 56
+        },
+        "time": 1.844,
+        "rect": {
+          "left": 80,
+          "top": 1147.31,
+          "right": 521.86,
+          "bottom": 1203.31,
+          "width": 441.86,
+          "height": 56
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "del Instituto MISION",
+        "message": "<div> \"del Instituto MISION\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 1.844,
+        "lastSeen": 1.844,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          1.844
+        ]
+      },
+      {
+        "selector": "div.l1",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70,
+          "y": 1177,
+          "width": 582.42,
+          "height": 56
+        },
+        "time": 1.844,
+        "rect": {
+          "left": 70,
+          "top": 1177,
+          "right": 652.42,
+          "bottom": 1233,
+          "width": 582.42,
+          "height": 56
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Lun 16 y Mar 17 · 20:30 hs",
+        "message": "<div> \"Lun 16 y Mar 17 · 20:30 hs\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 1.844,
+        "lastSeen": 9.222,
+        "occurrences": 3,
+        "heldMs": 0,
+        "times": [
+          1.844,
+          5.533,
+          9.222
+        ]
+      },
+      {
+        "selector": "div.l2",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70,
+          "y": 1238.89,
+          "width": 810.34,
+          "height": 44
+        },
+        "time": 1.844,
+        "rect": {
+          "left": 70,
+          "top": 1238.89,
+          "right": 880.34,
+          "bottom": 1282.89,
+          "width": 810.34,
+          "height": 44
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "República de Siria 255 · Entrada libre y gratuit",
+        "message": "<div> \"República de Siria 255 · Entrada libre y gratuit\" is outside the safe area: TikTok (left and right and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 1.844,
+        "lastSeen": 9.222,
+        "occurrences": 3,
+        "heldMs": 0,
+        "times": [
+          1.844,
+          5.533,
+          9.222
+        ]
+      },
+      {
+        "selector": "#s3-k",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70,
+          "y": 556,
+          "width": 639.95,
+          "height": 41
+        },
+        "time": 5.533,
+        "rect": {
+          "left": 70,
+          "top": 556,
+          "right": 709.95,
+          "bottom": 597,
+          "width": 639.95,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Lunes y martes · Perico",
+        "message": "<div> \"Lunes y martes · Perico\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 5.533,
+        "lastSeen": 9.222,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5.533,
+          9.222
+        ]
+      },
+      {
+        "selector": "#s3-a",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70,
+          "y": 573,
+          "width": 896.09,
+          "height": 283
+        },
+        "time": 5.533,
+        "rect": {
+          "left": 70,
+          "top": 573,
+          "right": 966.09,
+          "bottom": 856,
+          "width": 896.09,
+          "height": 283
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Toda lengua",
+        "message": "<div> \"Toda lengua\" is outside the safe area: TikTok (left and right edges), YouTube Shorts (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 5.533,
+        "lastSeen": 9.222,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          5.533,
+          9.222
+        ]
+      },
+      {
+        "selector": "#s3-b",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70,
+          "y": 775.95,
+          "width": 498.67,
+          "height": 485.96
+        },
+        "time": 9.222,
+        "rect": {
+          "left": 70,
+          "top": 775.95,
+          "right": 568.67,
+          "bottom": 1261.91,
+          "width": 498.67,
+          "height": 485.96
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "y toda nación",
+        "message": "<div> \"y toda nación\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 9.222,
+        "lastSeen": 9.222,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.222
+        ]
+      },
+      {
+        "selector": "#s4-txt > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 636,
+          "width": 458.97,
+          "height": 41
+        },
+        "time": 12.911,
+        "rect": {
+          "left": 80,
+          "top": 636,
+          "right": 538.97,
+          "bottom": 677,
+          "width": 458.97,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Reunión especial",
+        "message": "<div> \"Reunión especial\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 12.911,
+        "lastSeen": 12.911,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          12.911
+        ]
+      },
+      {
+        "selector": "#s4-txt > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 651,
+          "width": 437,
+          "height": 300
+        },
+        "time": 12.911,
+        "rect": {
+          "left": 80,
+          "top": 651,
+          "right": 517,
+          "bottom": 951,
+          "width": 437,
+          "height": 300
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Lunes",
+        "message": "<div> \"Lunes\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 12.911,
+        "lastSeen": 12.911,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          12.911
+        ]
+      },
+      {
+        "selector": "#s4-txt > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 866,
+          "width": 470.25,
+          "height": 300
+        },
+        "time": 12.911,
+        "rect": {
+          "left": 80,
+          "top": 866,
+          "right": 550.25,
+          "bottom": 1166,
+          "width": 470.25,
+          "height": 300
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "16 nov",
+        "message": "<div> \"16 nov\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 12.911,
+        "lastSeen": 12.911,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          12.911
+        ]
+      },
+      {
+        "selector": "#s4-txt > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1137,
+          "width": 474.83,
+          "height": 126
+        },
+        "time": 12.911,
+        "rect": {
+          "left": 80,
+          "top": 1137,
+          "right": 554.83,
+          "bottom": 1263,
+          "width": 474.83,
+          "height": 126
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "20:30 HS",
+        "message": "<div> \"20:30 HS\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 12.911,
+        "lastSeen": 12.911,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          12.911
+        ]
+      },
+      {
+        "selector": "#s4-txt > div:nth-of-type(5)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1270,
+          "width": 557.05,
+          "height": 46
+        },
+        "time": 12.911,
+        "rect": {
+          "left": 80,
+          "top": 1270,
+          "right": 637.05,
+          "bottom": 1316,
+          "width": 557.05,
+          "height": 46
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "República de Siria 255 · Perico",
+        "message": "<div> \"República de Siria 255 · Perico\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 12.911,
+        "lastSeen": 12.911,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          12.911
+        ]
+      },
+      {
+        "selector": "#s5-txt > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 786,
+          "width": 709.88,
+          "height": 41
+        },
+        "time": 16.6,
+        "rect": {
+          "left": 80,
+          "top": 786,
+          "right": 789.88,
+          "bottom": 827,
+          "width": 709.88,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Martes 17 · por la mañana",
+        "message": "<div> \"Martes 17 · por la mañana\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 16.6,
+        "lastSeen": 20.289,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          16.6,
+          20.289
+        ]
+      },
+      {
+        "selector": "#s5-tit",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 809,
+          "width": 729.8,
+          "height": 391.39
+        },
+        "time": 16.6,
+        "rect": {
+          "left": 80,
+          "top": 809,
+          "right": 809.8,
+          "bottom": 1200.39,
+          "width": 729.8,
+          "height": 391.39
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Jornada deevangelismo",
+        "message": "<div> \"Jornada deevangelismo\" is outside the safe area: TikTok (left and right edges).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 16.6,
+        "lastSeen": 20.289,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          16.6,
+          20.289
+        ]
+      },
+      {
+        "selector": "#s5-hs",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1176.78,
+          "width": 467.56,
+          "height": 116
+        },
+        "time": 16.6,
+        "rect": {
+          "left": 80,
+          "top": 1176.78,
+          "right": 547.56,
+          "bottom": 1292.78,
+          "width": 467.56,
+          "height": 116
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "10 A 12 HS",
+        "message": "<div> \"10 A 12 HS\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 16.6,
+        "lastSeen": 20.289,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          16.6,
+          20.289
+        ]
+      },
+      {
+        "selector": "#s5-desc",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1300.78,
+          "width": 760.28,
+          "height": 99
+        },
+        "time": 16.6,
+        "rect": {
+          "left": 80,
+          "top": 1300.78,
+          "right": 840.28,
+          "bottom": 1399.78,
+          "width": 760.28,
+          "height": 99
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Salimos desde la iglesia a las calles de Perico,",
+        "message": "<div> \"Salimos desde la iglesia a las calles de Perico,\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 16.6,
+        "lastSeen": 20.289,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          16.6,
+          20.289
+        ]
+      },
+      {
+        "selector": "#s6-txt > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 636,
+          "width": 458.97,
+          "height": 41
+        },
+        "time": 23.978,
+        "rect": {
+          "left": 80,
+          "top": 636,
+          "right": 538.97,
+          "bottom": 677,
+          "width": 458.97,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Reunión especial",
+        "message": "<div> \"Reunión especial\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 23.978,
+        "lastSeen": 23.978,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          23.978
+        ]
+      },
+      {
+        "selector": "#s6-txt > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 651,
+          "width": 564.25,
+          "height": 300
+        },
+        "time": 23.978,
+        "rect": {
+          "left": 80,
+          "top": 651,
+          "right": 644.25,
+          "bottom": 951,
+          "width": 564.25,
+          "height": 300
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Martes",
+        "message": "<div> \"Martes\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 23.978,
+        "lastSeen": 23.978,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          23.978
+        ]
+      },
+      {
+        "selector": "#s6-txt > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 866,
+          "width": 461.5,
+          "height": 300
+        },
+        "time": 23.978,
+        "rect": {
+          "left": 80,
+          "top": 866,
+          "right": 541.5,
+          "bottom": 1166,
+          "width": 461.5,
+          "height": 300
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "17 nov",
+        "message": "<div> \"17 nov\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 23.978,
+        "lastSeen": 23.978,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          23.978
+        ]
+      },
+      {
+        "selector": "#s6-txt > div:nth-of-type(4)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1137,
+          "width": 474.83,
+          "height": 126
+        },
+        "time": 23.978,
+        "rect": {
+          "left": 80,
+          "top": 1137,
+          "right": 554.83,
+          "bottom": 1263,
+          "width": 474.83,
+          "height": 126
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "20:30 HS",
+        "message": "<div> \"20:30 HS\" is outside the safe area: TikTok (left and bottom edges), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 23.978,
+        "lastSeen": 23.978,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          23.978
+        ]
+      },
+      {
+        "selector": "#s6-txt > div:nth-of-type(5)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1270,
+          "width": 557.05,
+          "height": 46
+        },
+        "time": 23.978,
+        "rect": {
+          "left": 80,
+          "top": 1270,
+          "right": 637.05,
+          "bottom": 1316,
+          "width": 557.05,
+          "height": 46
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "República de Siria 255 · Perico",
+        "message": "<div> \"República de Siria 255 · Perico\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 23.978,
+        "lastSeen": 23.978,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          23.978
+        ]
+      },
+      {
+        "selector": "#s7-k",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 206,
+          "width": 362.77,
+          "height": 41
+        },
+        "time": 27.667,
+        "rect": {
+          "left": 80,
+          "top": 206,
+          "right": 442.77,
+          "bottom": 247,
+          "width": 362.77,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Te esperamos",
+        "message": "<div> \"Te esperamos\" is outside the safe area: TikTok (left and top edges), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 27.667,
+        "lastSeen": 31.356,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          27.667,
+          31.356
+        ]
+      },
+      {
+        "selector": "#s7-tit",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 227,
+          "width": 580.27,
+          "height": 391.39
+        },
+        "time": 27.667,
+        "rect": {
+          "left": 80,
+          "top": 227,
+          "right": 660.27,
+          "bottom": 618.39,
+          "width": 580.27,
+          "height": 391.39
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Noches de misión",
+        "message": "<div> \"Noches de misión\" is outside the safe area: TikTok (left and top edges), Instagram Reels (top edge), YouTube Shorts (top edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 27.667,
+        "lastSeen": 31.356,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          27.667,
+          31.356
+        ]
+      },
+      {
+        "selector": "#s7-txt > div:nth-of-type(3) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 596.38,
+          "width": 186.59,
+          "height": 125
+        },
+        "time": 27.667,
+        "rect": {
+          "left": 80,
+          "top": 596.38,
+          "right": 266.59,
+          "bottom": 721.38,
+          "width": 186.59,
+          "height": 125
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Lun 16",
+        "message": "<div> \"Lun 16\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 27.667,
+        "lastSeen": 31.356,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          27.667,
+          31.356
+        ]
+      },
+      {
+        "selector": "#s7-txt > div:nth-of-type(4) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 79.99,
+          "y": 743.17,
+          "width": 200.82,
+          "height": 125
+        },
+        "time": 27.667,
+        "rect": {
+          "left": 79.99,
+          "top": 743.17,
+          "right": 280.81,
+          "bottom": 868.17,
+          "width": 200.82,
+          "height": 125
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Mar 17",
+        "message": "<div> \"Mar 17\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 27.667,
+        "lastSeen": 31.356,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          27.667,
+          31.356
+        ]
+      },
+      {
+        "selector": "#s7-txt > div:nth-of-type(4) > div:nth-of-type(2) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 399.99,
+          "y": 814.58,
+          "width": 402.4,
+          "height": 41
+        },
+        "time": 27.667,
+        "rect": {
+          "left": 399.99,
+          "top": 814.58,
+          "right": 802.39,
+          "bottom": 855.58,
+          "width": 402.4,
+          "height": 41
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Jornada de evangelismo",
+        "message": "<div> \"Jornada de evangelismo\" is outside the safe area: TikTok (right edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 27.667,
+        "lastSeen": 31.356,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          27.667,
+          31.356
+        ]
+      },
+      {
+        "selector": "#s7-txt > div:nth-of-type(5) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 889.97,
+          "width": 200.83,
+          "height": 125
+        },
+        "time": 31.356,
+        "rect": {
+          "left": 80,
+          "top": 889.97,
+          "right": 280.83,
+          "bottom": 1014.97,
+          "width": 200.83,
+          "height": 125
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Mar 17",
+        "message": "<div> \"Mar 17\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 31.356,
+        "lastSeen": 31.356,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          31.356
+        ]
+      },
+      {
+        "selector": "#s7-lugar",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 1059.17,
+          "width": 620.39,
+          "height": 51
+        },
+        "time": 31.356,
+        "rect": {
+          "left": 80,
+          "top": 1059.17,
+          "right": 700.39,
+          "bottom": 1110.17,
+          "width": 620.39,
+          "height": 51
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "República de Siria 255 · Perico",
+        "message": "<div> \"República de Siria 255 · Perico\" is outside the safe area: TikTok (left edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 31.356,
+        "lastSeen": 31.356,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          31.356
+        ]
+      },
+      {
+        "selector": "#s7-txt",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 109.24,
+          "y": 1143.98,
+          "width": 729.8,
+          "height": 81.38
+        },
+        "time": 31.356,
+        "rect": {
+          "left": 109.24,
+          "top": 1143.98,
+          "right": 839.04,
+          "bottom": 1225.36,
+          "width": 729.8,
+          "height": 81.38
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "Entrada libre y gratuita",
+        "message": "<div> \"Entrada libre y gratuita\" is outside the safe area: TikTok (left and right edges).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 31.356,
+        "lastSeen": 31.356,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          31.356
+        ]
+      },
+      {
+        "selector": "div.r > span:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 190,
+          "y": 1451,
+          "width": 161.2,
+          "height": 69
+        },
+        "time": 31.356,
+        "rect": {
+          "left": 190,
+          "top": 1451,
+          "right": 351.2,
+          "bottom": 1520,
+          "width": 161.2,
+          "height": 69
+        },
+        "code": "outside_safe_zone",
+        "severity": "warning",
+        "text": "IglesiaEl Renuevo",
+        "message": "<span> \"IglesiaEl Renuevo\" is outside the safe area: TikTok (bottom edge), Instagram Reels (bottom edge), YouTube Shorts (bottom edge).",
+        "fixHint": "Move the text inside the safe area, or mark text meant to sit there with data-layout-allow-safe-zone.",
+        "firstSeen": 31.356,
+        "lastSeen": 31.356,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          31.356
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 5.533,
+        "selector": "#m2 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -21.65,
+          "top": -38.5,
+          "right": 1101.65,
+          "bottom": 1958.5,
+          "width": 1123.31,
+          "height": 1996.99
+        },
+        "containerSelector": "#m2",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 21.65,
+          "right": 21.65,
+          "top": 38.5,
+          "bottom": 38.5
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -21.65,
+          "y": -38.5,
+          "width": 1123.31,
+          "height": 1996.99
+        },
+        "firstSeen": 5.533,
+        "lastSeen": 5.533,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          5.533
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 9.222,
+        "selector": "#m10 > div:nth-of-type(1)",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -21.6,
+          "top": -38.4,
+          "right": 1101.6,
+          "bottom": 1958.4,
+          "width": 1123.2,
+          "height": 1996.8
+        },
+        "containerSelector": "#m10",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 21.6,
+          "right": 21.6,
+          "top": 38.4,
+          "bottom": 38.4
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -21.6,
+          "y": -38.4,
+          "width": 1123.2,
+          "height": 1996.8
+        },
+        "firstSeen": 9.222,
+        "lastSeen": 9.222,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          9.222
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 12.911,
+        "selector": "#s4-cam",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -6.16,
+          "top": -10.94,
+          "right": 1086.16,
+          "bottom": 1930.94,
+          "width": 1092.31,
+          "height": 1941.89
+        },
+        "containerSelector": "#s4",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 6.16,
+          "right": 6.16,
+          "top": 10.94,
+          "bottom": 10.94
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -6.16,
+          "y": -10.94,
+          "width": 1092.31,
+          "height": 1941.89
+        },
+        "firstSeen": 12.911,
+        "lastSeen": 12.911,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          12.911
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 12.911,
+        "selector": "#s4-cortina",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": 0,
+          "top": -1920,
+          "right": 1080,
+          "bottom": 0,
+          "width": 1080,
+          "height": 1920
+        },
+        "containerSelector": "#s4",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "top": 1920
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": -1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "firstSeen": 12.911,
+        "lastSeen": 12.911,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          12.911
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 23.978,
+        "selector": "#s6-cam",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -10.8,
+          "top": -19.2,
+          "right": 1090.8,
+          "bottom": 1939.2,
+          "width": 1101.6,
+          "height": 1958.4
+        },
+        "containerSelector": "#s6",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1080,
+          "bottom": 1920,
+          "width": 1080,
+          "height": 1920
+        },
+        "overflow": {
+          "left": 10.8,
+          "right": 10.8,
+          "top": 19.2,
+          "bottom": 19.2
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -10.8,
+          "y": -19.2,
+          "width": 1101.6,
+          "height": 1958.4
+        },
+        "firstSeen": 23.978,
+        "lastSeen": 23.978,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          23.978
+        ]
+      }
+    ],
+    "duration": 33.2,
+    "samples": [
+      1.844,
+      5.533,
+      9.222,
+      12.911,
+      16.6,
+      20.289,
+      23.978,
+      27.667,
+      31.356
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 38,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 2,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.75:1; WCAG AA requires 3:1.",
+        "text": "Lunes y martes · Perico",
+        "fg": "rgb(255,91,31)",
+        "bg": "rgb(79,76,72)",
+        "ratio": 2.75,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(255,107,53)",
+        "large": true,
+        "selector": "#s3-k",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 70,
+          "y": 560,
+          "width": 940,
+          "height": 34
+        },
+        "time": 9.222,
+        "times": [
+          9.222
+        ]
+      },
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.98:1; WCAG AA requires 3:1.",
+        "text": "Reunión especial",
+        "fg": "rgb(255,91,31)",
+        "bg": "rgb(74,71,66)",
+        "ratio": 2.98,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(255,93,34)",
+        "large": true,
+        "selector": "div > div:nth-of-type(18) > div:nth-of-type(3) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 80,
+          "y": 640,
+          "width": 920,
+          "height": 34
+        },
+        "time": 23.978,
+        "times": [
+          23.978
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      1.844,
+      9.222,
+      16.6,
+      23.978,
+      31.356
+    ],
+    "checked": 41,
+    "passed": 39
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 3,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "\"«Id por todo el mundo y predicad el evangelio a toda cria...\" (15 words) is on screen 2.23 s (±0.01 s), under its 3.75 s floor: hold it about 0.5 s + 0.3 s a word (5.00 s here) before it leaves or changes; see references/motion.md.",
+        "text": "«Id por todo el mundo y predicad el evangelio a toda criatura». MARCOS 16:15",
+        "selector": "#s2-vers",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 90,
+          "y": 589,
+          "width": 278.36,
+          "height": 120
+        },
+        "time": 2.402,
+        "words": 15,
+        "seconds": 2.231,
+        "floorSeconds": 3.75,
+        "measured": [
+          {
+            "time": 2.122,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 2.247,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 2.371,
+            "opacity": 0.15,
+            "heightPx": 120
+          },
+          {
+            "time": 2.496,
+            "opacity": 0.99,
+            "heightPx": 120
+          },
+          {
+            "time": 2.621,
+            "opacity": 1,
+            "heightPx": 120
+          },
+          {
+            "time": 2.746,
+            "opacity": 1,
+            "heightPx": 120
+          },
+          {
+            "time": 2.871,
+            "opacity": 1,
+            "heightPx": 219
+          },
+          {
+            "time": 4.244,
+            "opacity": 1,
+            "heightPx": 319
+          },
+          {
+            "time": 4.368,
+            "opacity": 1,
+            "heightPx": 319
+          },
+          {
+            "time": 4.493,
+            "opacity": 1,
+            "heightPx": 319
+          },
+          {
+            "time": 4.618,
+            "opacity": 1,
+            "heightPx": 319
+          },
+          {
+            "time": 4.743,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 4.868,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 4.992,
+            "opacity": null,
+            "heightPx": null
+          }
+        ]
+      },
+      {
+        "code": "dead_stretch",
+        "severity": "warning",
+        "message": "Nothing on screen changes for 4.24 s (21.34–25.59 s): start the next move within 3 s, or put data-hold on the element whose stillness is deliberate; see references/motion.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 21.343,
+        "seconds": 4.243,
+        "floorSeconds": 3,
+        "until": 25.586
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"TE ESPERAMOS NOCHES DE MISIÓN LUN 16 20:30 HS Reunión esp...\" (37 words) is on screen 4.83 s (±0.01 s), under the 8.70 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "TE ESPERAMOS NOCHES DE MISIÓN LUN 16 20:30 HS Reunión especial MAR 17 10 A 12 HS Jornada de evangelismo MAR 17 20:30 HS Reunión especial República de Siria 255 · Perico ENTRADA LIBRE Y GRATUITA",
+        "selector": "#s7-txt",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 92.58,
+          "y": 1140.62,
+          "width": 763.12,
+          "height": 88.09999999999991
+        },
+        "time": 28.371,
+        "words": 37,
+        "seconds": 4.833,
+        "floorSeconds": 8.7,
+        "measured": [
+          {
+            "time": 28.083,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 28.208,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 28.332,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 28.457,
+            "opacity": 0.89,
+            "heightPx": 88
+          },
+          {
+            "time": 28.582,
+            "opacity": 1,
+            "heightPx": 76
+          },
+          {
+            "time": 28.707,
+            "opacity": 1,
+            "heightPx": 80
+          },
+          {
+            "time": 28.832,
+            "opacity": 1,
+            "heightPx": 81
+          },
+          {
+            "time": 32.701,
+            "opacity": 1,
+            "heightPx": 81
+          },
+          {
+            "time": 32.826,
+            "opacity": 1,
+            "heightPx": 81
+          },
+          {
+            "time": 32.95,
+            "opacity": 1,
+            "heightPx": 81
+          },
+          {
+            "time": 33.075,
+            "opacity": 1,
+            "heightPx": 81
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 266
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

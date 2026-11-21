@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inter:wght@600;700;800;900&display=block" rel="stylesheet">
+<style>
+  :root { --ink:#0b0b0c; --paper:#f3eee4; --fuego:#ff5b1f; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--ink); color:var(--paper); font-family:Inter, sans-serif; overflow:hidden; position:relative; }
+  .disp { font-family:'League Gothic', sans-serif; text-transform:uppercase; line-height:.88; font-weight:400; }
+  .kicker { font:700 28px/1 Inter; letter-spacing:.26em; text-transform:uppercase; color:var(--fuego); }
+  .fuego { color:var(--fuego); }
+  .foto { position:absolute; overflow:hidden; } .foto img { width:100%; height:100%; object-fit:cover; display:block; }
+  .dia h2 { font-family:'League Gothic'; font-weight:400; text-transform:uppercase; line-height:.9; font-size:120px; border-bottom:4px solid var(--fuego); padding-bottom:14px; }
+  .it { display:flex; gap:26px; padding:20px 0; border-bottom:2px solid rgba(243,238,228,.18); }
+  .it b { flex:none; width:180px; font:900 46px/1.05 Inter; color:var(--fuego); }
+  .it b small { display:block; font:800 26px/1.2 Inter; }
+  .it em { display:block; font-style:normal; font:700 22px/1 Inter; letter-spacing:.22em; text-transform:uppercase; opacity:.7; margin-bottom:8px; }
+  .it div { font:700 42px/1.15 Inter; }
+  .it .lista { font:700 36px/1.3 Inter; }
+  .sello { display:inline-block; background:var(--fuego); color:var(--ink); font:900 34px/1 Inter; letter-spacing:.06em; padding:18px 24px; text-transform:uppercase; white-space:nowrap; }
+  .logos { display:flex; align-items:center; gap:26px; }
+  .logos img.r { width:70px; height:70px; } .logos .sep { width:2px; height:60px; background:rgba(243,238,228,.4); } .logos img.m { height:44px; }
+  .logos span { font:700 26px/1.1 Inter; }
+  .lugar { font:700 36px/1.25 Inter; }
+
+  /* horizontal 1920x1080 */
+  body.h { width:1920px; height:1080px; }
+  .h .foto { left:0; top:0; width:640px; height:1080px; }
+  .h .velo { position:absolute; left:0; top:0; width:640px; height:1080px; background:linear-gradient(180deg, rgba(11,11,12,.15) 0%, rgba(11,11,12,.55) 50%, rgba(11,11,12,.95) 100%), linear-gradient(90deg, transparent 70%, var(--ink) 100%); }
+  .h .izq { position:absolute; left:80px; bottom:90px; width:520px; }
+  .h .izq .t { font-size:124px; margin-top:16px; }
+  .h .izq .lugar { margin-top:24px; }
+  .h .izq .sello { margin-top:18px; }
+  .h .dias { position:absolute; left:720px; right:80px; top:90px; display:grid; grid-template-columns:1fr 1.15fr; gap:60px; }
+  .h .it b { width:150px; font-size:42px; } .h .it div { font-size:38px; } .h .it .lista { font-size:32px; white-space:nowrap; }
+  .h .logos { position:absolute; left:720px; bottom:80px; }
+
+  /* vertical 1080x1920 */
+  body.v { width:1080px; height:1920px; }
+  .v .foto { left:0; top:0; width:1080px; height:620px; }
+  .v .velo { position:absolute; left:0; top:0; width:1080px; height:620px; background:linear-gradient(180deg, rgba(11,11,12,.2) 0%, rgba(11,11,12,.6) 55%, var(--ink) 100%); }
+  .v .cab { position:absolute; left:80px; right:80px; top:250px; }
+  .v .cab .t { font-size:180px; margin-top:16px; }
+  .v .dias { position:absolute; left:80px; right:80px; top:520px; display:flex; flex-direction:column; gap:34px; }
+  .v .it { padding:18px 0; } .v .it b { font-size:52px; width:200px; } .v .it div { font-size:46px; } .v .it em { font-size:24px; } .v .it .lista { font-size:42px; line-height:1.25; }
+  .v .dia h2 { font-size:120px; }
+  .v .pie { margin-top:6px; }
+  .v .pie .sello { margin-top:18px; }
+  .v .logos { margin-top:34px; }
+</style>
+</head>
+<body>
+<script>
+  const v = location.hash === '#v';
+  document.body.className = v ? 'v' : 'h';
+  const lunes = `<div class="dia"><h2>Lunes <span class="fuego">16</span></h2>
+    <div class="it"><b>20:30</b><div><em>Foro</em>Prácticas de justicia</div></div>
+    <div class="it"><b>21:15</b><div><em>Plenaria</em>Hineni · Isaías 6</div></div></div>`;
+  const martes = `<div class="dia"><h2>Martes <span class="fuego">17</span></h2>
+    <div class="it"><b>10 a 12<small>hs</small></b><div><em>Evangelismo</em>Salimos desde la iglesia</div></div>
+    <div class="it"><b>20:30</b><div><em>Talleres</em><span class="lista">Matrimonios<br>Jóvenes y adolescentes<br>Cuarto de oración</span></div></div>
+    <div class="it"><b>21:15</b><div><em>Plenaria</em>El clamor del Espíritu</div></div></div>`;
+  const logos = `<div class="logos"><img class="r" src="../assets/r-blanco.png"><span>Iglesia<br>El Renuevo</span><div class="sep"></div><img class="m" src="../assets/mision-wordmark.png"></div>`;
+  document.body.innerHTML = v ? `
+    <div class="foto"><img src="../assets/fotos/bn_31.jpg"></div><div class="velo"></div>
+    <div class="cab"><div class="kicker">Noches de misión · Instituto MISION</div><div class="disp t">Cronograma</div></div>
+    <div class="dias">${lunes}${martes}<div class="pie"><div class="lugar">República de Siria 255 · Perico</div><div class="sello">Entrada libre y gratuita</div>${logos}</div></div>`
+  : `
+    <div class="foto"><img src="../assets/fotos/bn_58.jpg" style="object-position:68% 40%"></div><div class="velo"></div>
+    <div class="izq"><div class="kicker">Noches de misión</div><div class="disp t">Cronograma</div>
+      <div class="lugar">Rep. de Siria 255 · Perico</div><div class="sello">Entrada libre y gratuita</div></div>
+    <div class="dias">${lunes}${martes}</div>
+    ${logos}`;
+</script>
+</body>
+</html>

@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidos a Él — Juan 14:1-3</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0f0f0f;
+    --bg2:      #1a1a1a;
+    --text:     #f0f0f0;
+    --muted:    #999;
+    --red:      #e05555;
+    --red-bg:   #2a1212;
+    --green:    #5DBE2C;
+    --green-bg: #0e1f09;
+    --gold:     #f0c040;
+    --gold-bg:  #1e1800;
+    --blue:     #5aa9e6;
+    --blue-bg:  #0c1a26;
+    --accent:   #5DBE2C;
+    --border:   #333;
+    --nav-h:    64px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: #111;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    z-index: 100;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: #222;
+    color: #ccc;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid #333;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+
+  /* ── HEADER CARD ── */
+  .header-card {
+    background: var(--bg2);
+    border-left: 6px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .header-card .label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .header-card h1 {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-card .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── VERSE BOX ── */
+  .verse {
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #f5d0d0;
+  }
+  .verse.sm { font-size: 1em; margin-top: 14px; }
+  .verse .ref {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .verse.sm .ref { font-size: .75em; }
+  .verse b { color: #fff; }
+
+  /* ── IDEA CENTRAL / ESTRIBILLO ── */
+  .idea {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 26px;
+    margin: 24px 0;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #cdf0b8;
+  }
+  .idea .idea-label {
+    font-family: Arial, sans-serif;
+    font-size: .6em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+    font-style: normal;
+  }
+
+  /* ── term ── */
+  .term {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #ddd;
+  }
+  .term-def {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── PUNTO TITLE ── */
+  .punto-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 32px 0 20px;
+    padding: 14px 20px;
+    background: #222;
+    border-radius: 6px;
+    border-left: 5px solid var(--accent);
+  }
+  .punto-num {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  /* ── SUBPOINTS ── */
+  .sub {
+    margin: 22px 0 22px 16px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+  }
+  .sub-label {
+    font-family: Arial, sans-serif;
+    font-size: .95em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .06em;
+    margin-bottom: 8px;
+  }
+  .sub-label .vv { color: var(--muted); font-weight: 400; letter-spacing: 0; }
+
+  /* ── CUES (renglones de bosquejo) ── */
+  ul.cues {
+    list-style: none;
+    margin: 10px 0;
+  }
+  ul.cues li {
+    position: relative;
+    padding-left: 26px;
+    margin: 10px 0;
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #e8e8e8;
+  }
+  ul.cues li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  ul.cues li b { color: #fff; }
+  ul.cues li.yo { color: #f5e8a0; }
+  ul.cues li.yo::before { content: "★"; color: var(--gold); }
+
+  .ojo {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    color: #8a8a8a;
+    font-style: italic;
+  }
+
+  /* ── APPLICATION BOX ── */
+  .aplicacion {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 28px 0 8px;
+    font-size: 1.1em;
+    color: #c8f0b0;
+  }
+  .aplicacion .apl-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* ── QUESTION ── */
+  .pregunta {
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #f5e8a0;
+    font-style: italic;
+  }
+
+  /* ── PUENTE entre puntos ── */
+  .puente {
+    background: var(--blue-bg);
+    border-left: 5px solid var(--blue);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 36px 0 0;
+    color: #cfe6f8;
+  }
+  .puente .pt-label {
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .puente ul.cues li { color: #cfe6f8; }
+  .puente ul.cues li::before { color: var(--blue); }
+
+  /* ── MI HISTORIA ── */
+  .historia {
+    background: var(--gold-bg);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 20px 0;
+    color: #f5e8a0;
+  }
+  .historia .h-label {
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .historia ul.cues li { color: #f5e8a0; }
+  .historia ul.cues li::before { color: var(--gold); }
+
+  /* ── INTRO / CONCLUSION plain text ── */
+  .plain {
+    font-size: 1.1em;
+    color: #ddd;
+    margin: 14px 0;
+  }
+
+  /* ── LLAMADO ── */
+  .llamado {
+    background: #1e0a2a;
+    border-left: 5px solid #b060e0;
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: #e0c0ff;
+  }
+  .llamado .ll-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b060e0;
+    margin-bottom: 8px;
+  }
+  .llamado + .llamado { margin-top: 14px; }
+
+  .nav-hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    padding: 8px;
+  }
+
+  /* ── CELULAR ── */
+  @media (max-width: 600px) {
+    :root { --nav-h: 52px; }
+    body { font-size: 17px; line-height: 1.6; }
+    nav { padding: 0 8px; gap: 4px; }
+    nav a { font-size: 13px; padding: 6px 10px; }
+    section { padding: 0 14px; margin-bottom: 44px; }
+    .header-card { padding: 18px 18px; margin-bottom: 24px; }
+    .header-card .label { font-size: 11px; letter-spacing: .12em; }
+    .header-card h1 { font-size: 1.7rem; }
+    .header-card .meta { font-size: 13px; }
+    .sec-title { font-size: 11px; letter-spacing: .15em; }
+    .verse { font-size: 1.15em; padding: 14px 16px; }
+    .verse.sm { font-size: 1em; }
+    .idea, .aplicacion, .pregunta, .puente, .historia, .llamado { padding: 14px 16px; }
+    .punto-title { font-size: 1.3rem; padding: 12px 14px; }
+    .sub { margin-left: 4px; padding-left: 12px; }
+    ul.cues li { padding-left: 22px; }
+  }
+
+  .aplicacion ul.cues li { font-size: 1em; color: #c8f0b0; }
+
+  /* ── RESALTADO dentro del versículo ── */
+  .verse u {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+  <a href="#intro" class="active">Intro</a>
+  <a href="#punto1">1 · En nuestro miedo</a>
+  <a href="#punto2">2 · La promesa</a>
+  <a href="#punto3">3 · Vive en casa</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Serie · Cristo, nuestra vida · Parte 1</div>
+    <h1>Unidos a Él</h1>
+    <div class="meta">Juan 14:1-3 &nbsp;·&nbsp; RVR1960 &nbsp;·&nbsp; Domingo 15/11 &nbsp;·&nbsp; 40 min &nbsp;·&nbsp; Tono reflexivo</div>
+  </div>
+
+  <div class="sec-title">Introducción · ~5 min</div>
+
+  <div class="pregunta">
+    Creemos en Jesús, pero muchas veces vivimos como si estuviera lejos.
+  </div>
+
+  <ul class="cues">
+    <li>El domingo lo sentimos cerca. El lunes enfrentamos las cuentas, el trabajo y los problemas de casa como si estuviéramos solos.</li>
+    <li>El jueves vimos que de ahí nace el miedo: de imaginar a un Señor lejano.</li>
+  </ul>
+
+  <div class="sub-label" style="margin-top:28px;">La escena</div>
+  <p class="plain">Es la última cena. Jesús les avisa que se va:</p>
+
+  <div class="verse">
+    "Hijitos, aún estaré con vosotros un poco. Me buscaréis; pero como dije a los judíos, así os digo ahora a vosotros: <u>A donde yo voy, vosotros no podéis ir.</u>"
+    <span class="ref">Juan 13:33</span>
+  </div>
+
+  <p class="plain">Pedro no lo acepta, y Jesús le anuncia que le va a fallar:</p>
+
+  <div class="verse">
+    "Le dijo Simón Pedro: <u>Señor, ¿a dónde vas?</u> Jesús le respondió: A donde yo voy, no me puedes seguir ahora; mas me seguirás después. Le dijo Pedro: Señor, ¿por qué no te puedo seguir ahora? Mi vida pondré por ti. Jesús le respondió: ¿Tu vida pondrás por mí? De cierto, de cierto te digo: No cantará el gallo, <u>sin que me hayas negado tres veces.</u>"
+    <span class="ref">Juan 13:36-38</span>
+  </div>
+
+  <p class="plain">Los discípulos quedan con miedo de perderlo. Lo siguiente que Jesús dice es el texto de hoy:</p>
+
+  <div class="verse">
+    "No se turbe vuestro corazón; creéis en Dios, creed también en mí. En la casa de mi Padre muchas moradas hay; si así no fuera, yo os lo hubiera dicho; voy, pues, a preparar lugar para vosotros. Y si me fuere y os preparare lugar, vendré otra vez, y os tomaré a mí mismo, <u>para que donde yo estoy, vosotros también estéis.</u>"
+    <span class="ref">Juan 14:1-3 · texto base</span>
+  </div>
+
+  <div class="idea">
+    <div class="idea-label">La idea de todo el mensaje</div>
+    Jesús no nos promete solo un lugar para después. Nos promete estar con Él, desde ahora.
+  </div>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3 · ~10 min</div>
+
+  <div class="punto-title">
+    <span class="punto-num">1.</span>Él está en nuestro miedo
+  </div>
+
+  <div class="sub-label">Ilustración · El corte de luz</div>
+  <ul class="cues">
+    <li>Es de noche y se corta la luz. Desde la pieza, el nene grita: "¡Mamá!".</li>
+    <li>No quiere que le expliquen por qué se cortó ni cuándo vuelve. Quiere que alguien venga.</li>
+    <li>La mamá se sienta al lado, le agarra la mano, y el nene se calma.</li>
+    <li>La luz sigue cortada, pero ya no tiene miedo.</li>
+  </ul>
+
+  <p class="plain"><b>Del ejemplo al texto:</b> eso hace Jesús con sus discípulos. La situación no cambia, pero les da su persona.</p>
+
+  <div class="verse">
+    "No se turbe vuestro corazón; creéis en Dios, <u>creed también en mí.</u>"
+    <span class="ref">Juan 14:1</span>
+  </div>
+
+  <div class="sub-label" style="margin-top:28px;">Qué dice el texto</div>
+  <ul class="cues">
+    <li>"Turbado" es estar revuelto por dentro, como el agua cuando se agita.</li>
+    <li>Jesús sabe lo que es eso. Dos capítulos antes, pensando en la cruz, Él mismo dijo:</li>
+  </ul>
+
+  <div class="verse">
+    "<u>Ahora está turbada mi alma</u>; ¿y qué diré? ¿Padre, sálvame de esta hora? Mas para esto he llegado a esta hora."
+    <span class="ref">Juan 12:27</span>
+  </div>
+
+  <ul class="cues">
+    <li>A los discípulos no les saca el problema, porque se va igual. Tampoco les da una explicación. Les da a quién mirar: "creed también en mí".</li>
+  </ul>
+
+  <div class="sub-label" style="margin-top:28px;">Qué nos pasa a nosotros</div>
+  <ul class="cues">
+    <li>Cuando llega el miedo, lo primero que hacemos es buscar la salida: hacer cuentas, llamar a alguien, dar vueltas en la cama.</li>
+    <li>A Jesús lo dejamos para el final, cuando ya no queda otra cosa.</li>
+  </ul>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Cómo se vive en la semana</div>
+    <ul class="cues">
+      <li>Cuando llegue la preocupación (la cuenta que no cierra, el estudio médico, el hijo que nos preocupa), necesitamos hablarle a Él primero, antes de hacer cualquier otra cosa.</li>
+      <li>Podemos decírselo con nombre y apellido: "Señor, esto me tiene revuelto. Creo en vos".</li>
+      <li>En casa podemos hacerlo juntos. Cuando un hijo tiene miedo, orar con él en el momento le enseña a quién acudir.</li>
+    </ul>
+  </div>
+
+  <div class="puente">
+    <div class="pt-label">Para pasar al punto 2</div>
+    Si Jesús se da a sí mismo en el miedo, ¿qué es lo que promete para el final?
+  </div>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3 · ~10 min</div>
+
+  <div class="punto-title">
+    <span class="punto-num">2.</span>Él es la promesa
+  </div>
+
+  <div class="sub-label">Ilustración · El bolso</div>
+  <ul class="cues">
+    <li>Un papá vuelve a casa después de varias semanas de trabajar lejos.</li>
+    <li>Los chicos salen corriendo a recibirlo y van derecho al bolso: "¿Qué me trajiste?".</li>
+    <li>El papá se queda con los brazos abiertos.</li>
+    <li>Él volvió por ellos, y ellos fueron a buscar el regalo.</li>
+  </ul>
+
+  <p class="plain"><b>Del ejemplo al texto:</b> Jesús dice "vendré otra vez". ¿Para qué vuelve? No viene a repartir cosas.</p>
+
+  <div class="sub-label" style="margin-top:28px;">Qué dice el texto</div>
+  <ul class="cues">
+    <li>Hay un lugar. El cielo existe y Jesús vuelve:</li>
+  </ul>
+
+  <div class="verse">
+    "<u>En la casa de mi Padre muchas moradas hay</u>; si así no fuera, yo os lo hubiera dicho; voy, pues, a preparar lugar para vosotros."
+    <span class="ref">Juan 14:2</span>
+  </div>
+
+  <ul class="cues">
+    <li>Pero la promesa termina en una persona:</li>
+  </ul>
+
+  <div class="verse">
+    "Y si me fuere y os preparare lugar, vendré otra vez, y <u>os tomaré a mí mismo</u>, para que donde yo estoy, vosotros también estéis."
+    <span class="ref">Juan 14:3</span>
+  </div>
+
+  <ul class="cues">
+    <li>"Os tomaré a mí mismo" quiere decir "los voy a recibir conmigo". El lugar vale porque Él está ahí.</li>
+    <li>Tomás pide el camino, como quien pide un mapa. Jesús le contesta con su persona:</li>
+  </ul>
+
+  <div class="verse">
+    "Le dijo Tomás: Señor, no sabemos a dónde vas; ¿cómo, pues, podemos saber el camino? Jesús le dijo: <u>Yo soy el camino</u>, y la verdad, y la vida; nadie viene al Padre, sino por mí."
+    <span class="ref">Juan 14:5-6</span>
+  </div>
+
+  <div class="sub-label" style="margin-top:28px;">Qué nos pasa a nosotros</div>
+  <ul class="cues">
+    <li>Muchas veces queremos lo que Jesús da más que a Jesús: la salud, el trabajo, la solución, el cielo.</li>
+    <li>Se nota en la oración: casi todo es una lista de pedidos.</li>
+    <li>Se nota también cuando lo que pedimos no llega: nos enfriamos y nos alejamos.</li>
+  </ul>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Cómo se vive en la semana</div>
+    <ul class="cues">
+      <li>Necesitamos apartar un momento del día para estar con Él sin pedirle nada: leer un pasaje, agradecer, quedarnos en silencio.</li>
+      <li>Cuando algo que pedimos no llegue, nos toca quedarnos igual. Lo que tenemos no es solo una respuesta: lo tenemos a Él.</li>
+    </ul>
+  </div>
+
+  <div class="puente">
+    <div class="pt-label">Para pasar al punto 3</div>
+    ¿Y estar con Él es recién para cuando lleguemos al cielo?
+  </div>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3 · ~10 min</div>
+
+  <div class="punto-title">
+    <span class="punto-num">3.</span>Él vive en casa
+  </div>
+
+  <div class="sub-label">Ilustración · La visita</div>
+  <ul class="cues">
+    <li>Cuando viene una visita, ordenamos el comedor, sacamos los vasos lindos y hablamos más suave.</li>
+    <li>La atendemos adelante y cerramos la puerta de la pieza desordenada.</li>
+    <li>Cuando se va, la casa vuelve a ser la de siempre.</li>
+    <li>El que vive en casa es distinto: ve la cocina a la mañana, escucha cómo nos hablamos, está en todo.</li>
+  </ul>
+
+  <p class="plain"><b>Del ejemplo al texto:</b> Jesús no dijo "pasaremos a visitarlo". Dijo otra cosa:</p>
+
+  <div class="verse">
+    "Respondió Jesús y le dijo: El que me ama, mi palabra guardará; y mi Padre le amará, y vendremos a él, y <u>haremos morada con él.</u>"
+    <span class="ref">Juan 14:23</span>
+  </div>
+
+  <div class="sub-label" style="margin-top:28px;">Qué dice el texto</div>
+  <ul class="cues">
+    <li>"Morada" es la casa donde uno se queda a vivir. En todo el Nuevo Testamento la palabra aparece solo dos veces, las dos en este capítulo.</li>
+    <li>La primera vez, la morada es nuestra en la casa del Padre:</li>
+  </ul>
+
+  <div class="verse">
+    "En la casa de mi Padre <u>muchas moradas hay</u>; si así no fuera, yo os lo hubiera dicho; voy, pues, a preparar lugar para vosotros."
+    <span class="ref">Juan 14:2</span>
+  </div>
+
+  <ul class="cues">
+    <li>La segunda vez, en Juan 14:23, la morada es de Él en nosotros: "haremos morada con él".</li>
+    <li>Un día vamos a vivir en su casa. Mientras tanto, Él viene a vivir en la nuestra.</li>
+    <li>Jesús dice cómo se nota: "El que me ama, mi palabra guardará".</li>
+  </ul>
+
+  <div class="sub-label" style="margin-top:28px;">Qué nos pasa a nosotros</div>
+  <ul class="cues">
+    <li>Tratamos a Jesús como una visita: lo vemos el domingo en el templo y el lunes seguimos solos.</li>
+    <li>Podemos pasar años así. A Felipe le pasó:</li>
+  </ul>
+
+  <div class="verse">
+    "Felipe le dijo: Señor, muéstranos el Padre, y nos basta. Jesús le dijo: <u>¿Tanto tiempo hace que estoy con vosotros, y no me has conocido, Felipe?</u> El que me ha visto a mí, ha visto al Padre; ¿cómo, pues, dices tú: Muéstranos el Padre?"
+    <span class="ref">Juan 14:8-9</span>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Cómo se vive en la semana</div>
+    <ul class="cues">
+      <li>Si Él vive en casa, está cuando discutimos, cuando elegimos qué mirar, cuando decidimos en qué gastar. Necesitamos contar con Él en esas cosas, no solo en las "espirituales".</li>
+      <li>Podemos abrir su palabra en familia una noche de esta semana. Juan 14 alcanza.</li>
+      <li>Cada uno conoce alguna palabra de Jesús que no está guardando: un perdón pendiente, una costumbre, una conversación que venimos esquivando. Nos toca obedecerla esta semana.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión · ~3 min</div>
+
+  <p class="plain">El versículo de la serie:</p>
+
+  <div class="verse">
+    "Cuando <u>Cristo, vuestra vida</u>, se manifieste, entonces vosotros también seréis manifestados con él en gloria."
+    <span class="ref">Colosenses 3:4</span>
+  </div>
+
+  <div class="sub-label" style="margin-top:28px;">Repaso con las tres imágenes</div>
+  <ul class="cues">
+    <li><b>El corte de luz:</b> en el miedo, Jesús no nos da una explicación, se da Él.</li>
+    <li><b>El bolso:</b> al final no nos espera solo un regalo, nos espera Él.</li>
+    <li><b>La visita:</b> mientras tanto no vivimos solos, Él vive en casa.</li>
+  </ul>
+
+  <div class="puente">
+    <div class="pt-label">El domingo que viene</div>
+    Si estamos unidos a Cristo, también morimos con Él. Vemos la cruz de cada día.
+  </div>
+</section>
+
+<!-- LLAMADO -->
+<section id="llamado">
+  <div class="sec-title">Llamado final · ~2 min</div>
+
+  <p class="plain">La noche en que todos le iban a fallar, Jesús prometió:</p>
+
+  <div class="verse">
+    "…vendré otra vez, y <u>os tomaré a mí mismo</u>, para que donde yo estoy, vosotros también estéis."
+    <span class="ref">Juan 14:3</span>
+  </div>
+
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    Necesitamos dejar de vivir como si estuviera lejos: entregarle hoy lo que nos tiene turbados y abrirle la casa para que se quede.
+  </div>
+
+  <div class="pregunta" style="margin-top:24px;">
+    Oremos.
+  </div>
+</section>
+
+<script>
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+
+  function updateNav() {
+    const navH = document.getElementById('nav').offsetHeight + 30;
+    let cur = '';
+    secs.forEach(s => {
+      if (window.scrollY >= s.offsetTop - navH) cur = s.id;
+    });
+    links.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>

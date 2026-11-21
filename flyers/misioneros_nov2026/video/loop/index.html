@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="es" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ink: #0b0b0c;
+        --paper: #f3eee4;
+        --fuego: #ff5b1f;
+        --display: "League Gothic", sans-serif;
+        --serif: "EB Garamond", serif;
+        --sans: "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); font-family: var(--sans); color: var(--paper); }
+      .full { position: absolute; inset: 0; overflow: hidden; }
+      .foto { position: absolute; inset: 0; }
+      .foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .kicker { font: 700 30px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--fuego); }
+      .disp { font-family: var(--display); font-weight: 400; text-transform: uppercase; line-height: .9; letter-spacing: .005em; }
+      .fuego { color: var(--fuego); }
+
+      /* A · bienvenida */
+      .a-velo { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,.35), rgba(11,11,12,.55) 50%, rgba(11,11,12,.92)); }
+      .a-txt { position: absolute; left: 0; right: 0; top: 250px; text-align: center; }
+      .a-txt .disp { font-size: 300px; }
+      .a-txt .sub { margin-top: 26px; font: 600 50px/1.2 var(--sans); }
+      .a-txt .sub b { color: var(--fuego); font-weight: 800; }
+
+      /* B · versículo */
+      #b-txt { position: absolute; left: 170px; right: 170px; top: 250px; text-align: center; font: italic 500 118px/1.1 var(--serif); }
+      #b-txt span { display: inline-block; }
+      #b-cita { margin-top: 40px; }
+
+      /* C · franjas */
+      .fr { position: absolute; top: 0; bottom: 0; width: 384px; overflow: hidden; }
+      .fr img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      #c-tit { position: absolute; left: 0; right: 0; top: 310px; text-align: center; }
+      #c-tit .disp { font-size: 250px; text-shadow: 0 12px 60px rgba(0,0,0,.7); }
+
+      /* D · agenda */
+      #d-izq { position: absolute; left: 150px; top: 170px; width: 700px; }
+      #d-tit { font-size: 200px; margin-top: 18px; }
+      #d-lugar { margin-top: 30px; font: 700 42px/1.25 var(--sans); }
+      #d-sello { display: inline-block; margin-top: 30px; background: var(--fuego); color: var(--ink); font: 900 44px/1 var(--sans); letter-spacing: .06em; padding: 22px 30px; text-transform: uppercase; white-space: nowrap; transform: rotate(-2deg); }
+      #d-der { position: absolute; left: 960px; right: 150px; top: 190px; }
+      .fila { display: flex; align-items: center; gap: 36px; padding: 28px 0; border-bottom: 2px solid rgba(243,238,228,.2); }
+      .fila .d { font-family: var(--display); font-size: 120px; line-height: .9; width: 320px; text-transform: uppercase; }
+      .fila .d b { font-weight: 400; color: var(--fuego); }
+      .fila .h { font: 900 60px/1 var(--sans); }
+      .fila .q { font: 600 34px/1.2 var(--sans); opacity: .85; margin-top: 8px; }
+
+      .dfoto { position: absolute; left: 0; top: 0; bottom: 0; width: 820px; overflow: hidden; }
+      .dfoto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .dtxt { position: absolute; left: 920px; right: 130px; top: 150px; }
+      .dtxt .uno { font-size: 210px; margin-top: 14px; }
+      .prog { margin-top: 24px; border-top: 4px solid var(--fuego); }
+      .it { display: flex; gap: 30px; padding: 18px 0; border-bottom: 2px solid rgba(243,238,228,.2); }
+      .it b { flex: none; width: 170px; font: 900 58px/1.05 var(--sans); color: var(--fuego); }
+      .it span { display: block; font: 700 24px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; opacity: .7; margin-bottom: 8px; }
+      .it div { font: 700 52px/1.1 var(--sans); }
+      .it small { display: block; font: 700 38px/1.22 var(--sans); }
+      .dpie { margin-top: 24px; display: flex; gap: 22px; align-items: center; font: 700 34px/1 var(--sans); }
+      .dpie i { font-style: normal; background: var(--fuego); color: var(--ink); padding: 12px 16px; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; font-size: 28px; }
+      /* E · jornada */
+      #e { background: var(--fuego); color: var(--ink); }
+      #e-foto { position: absolute; right: 150px; top: 150px; width: 680px; height: 640px; overflow: hidden; }
+      #e-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      #e-txt { position: absolute; left: 150px; top: 170px; width: 960px; }
+      #e-txt .kicker { color: var(--ink); }
+      #e-tit { font-size: 210px; margin-top: 18px; }
+      #e-hs { margin-top: 22px; font: 900 100px/1 var(--sans); letter-spacing: -.02em; }
+      #e-desc { margin-top: 22px; font: 600 40px/1.3 var(--sans); max-width: 900px; }
+
+      /* capa fija: logos + cinta */
+      #marca { position: absolute; left: 150px; top: 60px; display: flex; align-items: center; gap: 28px; }
+      #marca img.r { width: 64px; height: 64px; }
+      #marca .sep { width: 2px; height: 56px; background: rgba(243,238,228,.45); }
+      #marca img.m { height: 40px; }
+      #fecha { position: absolute; right: 150px; top: 78px; font: 800 32px/1 var(--sans); letter-spacing: .14em; }
+      #cinta { position: absolute; left: 0; right: 0; bottom: 0; height: 96px; background: var(--ink); border-top: 3px solid var(--fuego); overflow: hidden; }
+      #cinta-mov { position: absolute; left: 0; top: 0; height: 96px; display: flex; white-space: nowrap; }
+      #cinta-mov span { font-family: var(--display); font-size: 62px; line-height: 96px; text-transform: uppercase; padding-right: 60px; }
+      #cinta-mov span i { font-style: normal; color: var(--fuego); padding-left: 60px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="72" data-width="1920" data-height="1080">
+
+      <!-- A · bienvenida (0–12.8) -->
+      <div id="a" class="clip full" data-start="0" data-duration="12.8" data-track-index="1" style="z-index:1">
+        <div id="a-cam" class="foto"><img src="assets/fotos/bn_31.jpg" /></div>
+        <div class="a-velo"></div>
+        <div class="a-txt" id="a-txt">
+          <div class="kicker">16 y 17 de noviembre · Perico</div>
+          <div class="disp" style="margin-top:20px">Noches de <span class="fuego">misión</span></div>
+          <div class="sub">con misioneros del <b>Instituto MISION</b></div>
+        </div>
+      </div>
+
+      <!-- B · versículo (12–24.8) -->
+      <div id="b" class="clip full" data-start="12" data-duration="12.8" data-track-index="2" style="z-index:2">
+        <div id="b-cam" class="foto"><img src="assets/fotos/bn_13.jpg" style="object-position:50% 30%" /></div>
+        <div class="full" style="background:rgba(11,11,12,.72)"></div>
+        <div id="b-txt">
+          <span>«Id</span> <span>por</span> <span>todo</span> <span>el</span> <span>mundo</span> <span>y</span> <span>predicad</span> <span>el</span> <span>evangelio</span> <span>a</span> <span>toda</span> <span>criatura».</span>
+          <div id="b-cita" class="kicker">Marcos 16:15</div>
+        </div>
+      </div>
+
+      <!-- C · toda lengua (24–36.8) -->
+      <div id="c" class="clip full" data-start="24" data-duration="12.8" data-track-index="1" style="z-index:3">
+        <div class="fr" id="c1" style="left:0"><img src="assets/fotos/bn_07.jpg" style="object-position:58% 40%" /></div>
+        <div class="fr" id="c2" style="left:384px"><img src="assets/fotos/bn_10.jpg" style="object-position:40% 30%" /></div>
+        <div class="fr" id="c3" style="left:768px"><img src="assets/fotos/bn_58.jpg" style="object-position:62% 40%" /></div>
+        <div class="fr" id="c4" style="left:1152px"><img src="assets/fotos/bn_54.jpg" style="object-position:42% 40%" /></div>
+        <div class="fr" id="c5" style="left:1536px"><img src="assets/fotos/bn_59.jpg" style="object-position:52% 40%" /></div>
+        <div class="full" style="background:linear-gradient(180deg,rgba(11,11,12,.3),rgba(11,11,12,.62) 50%,rgba(11,11,12,.85))"></div>
+        <div id="c-tit">
+          <div class="disp" id="c-a">Toda lengua</div>
+          <div class="disp" id="c-b">y toda <span class="fuego">nación</span></div>
+        </div>
+      </div>
+
+      <!-- D · lunes (36–48.8) -->
+      <div id="d" class="clip full" data-start="36" data-duration="12.8" data-track-index="2" style="z-index:4;background:var(--ink)">
+        <div class="dfoto"><div id="d-cam" class="foto"><img src="assets/fotos/bn_02.jpg" style="object-position:22% 50%" /></div></div>
+        <div class="dtxt" id="d-txt">
+          <div class="kicker">Reunión especial · noviembre</div>
+          <div class="disp uno">Lunes <span class="fuego">16</span></div>
+          <div class="prog">
+            <div class="it"><b>20:30</b><div><span>Foro</span>Prácticas de justicia</div></div>
+            <div class="it"><b>21:15</b><div><span>Plenaria</span>Hineni · Isaías 6</div></div>
+          </div>
+          <div class="dpie">República de Siria 255 <i>Entrada libre y gratuita</i></div>
+        </div>
+      </div>
+
+      <!-- E · jornada (48–60) -->
+      <div id="e" class="clip full" data-start="48" data-duration="12.8" data-track-index="1" style="z-index:5">
+        <div id="e-foto"><img id="e-img" src="assets/fotos/bn_29.jpg" style="object-position:45% 50%" /></div>
+        <div id="e-txt">
+          <div class="kicker">Martes 17 · por la mañana</div>
+          <div id="e-tit" class="disp">Jornada de<br />evangelismo</div>
+          <div id="e-hs">10 A 12 HS</div>
+          <div id="e-desc">Salimos desde la iglesia a las calles de Perico, junto a los misioneros. ¡Sumate!</div>
+        </div>
+      </div>
+
+      <!-- F · martes (60–72) -->
+      <div id="f" class="clip full" data-start="60" data-duration="12" data-track-index="2" style="z-index:6;background:var(--ink)">
+        <div class="dfoto"><div id="f-cam" class="foto"><img src="assets/fotos/bn_54.jpg" style="object-position:42% 35%" /></div></div>
+        <div class="dtxt" id="f-txt">
+          <div class="kicker">Reunión especial · noviembre</div>
+          <div class="disp uno">Martes <span class="fuego">17</span></div>
+          <div class="prog">
+            <div class="it"><b>20:30</b><div><span>Talleres</span><small>Matrimonios<br />Jóvenes y adolescentes<br />Cuarto de oración</small></div></div>
+            <div class="it"><b>21:15</b><div><span>Plenaria</span>El clamor del Espíritu</div></div>
+          </div>
+          <div class="dpie">República de Siria 255 <i>Entrada libre y gratuita</i></div>
+        </div>
+      </div>
+
+      <!-- A otra vez, para cerrar el bucle sin salto (70.8–72) -->
+      <div id="a2" class="clip full" data-start="70.8" data-duration="1.2" data-track-index="2" style="z-index:7">
+        <div class="foto"><img src="assets/fotos/bn_31.jpg" /></div>
+        <div class="a-velo"></div>
+        <div class="a-txt">
+          <div class="kicker">16 y 17 de noviembre · Perico</div>
+          <div class="disp" style="margin-top:20px">Noches de <span class="fuego">misión</span></div>
+          <div class="sub">con misioneros del <b>Instituto MISION</b></div>
+        </div>
+      </div>
+
+      <!-- capa fija -->
+      <div id="fijo" class="clip full" data-start="0" data-duration="72" data-track-index="3" style="z-index:10">
+        <div id="marca"><img class="r" src="assets/r-blanco.png" /><div class="sep"></div><img class="m" src="assets/mision-wordmark.png" /></div>
+        <div id="fecha">16 · 17 NOV</div>
+        <div id="cinta" data-layout-allow-overflow>
+          <div id="cinta-mov">
+            <span>Toda lengua y toda nación<i>✦</i></span><span>Noches de misión<i>✦</i></span><span>Id por todo el mundo<i>✦</i></span><span>Entrada libre y gratuita<i>✦</i></span>
+            <span>Toda lengua y toda nación<i>✦</i></span><span>Noches de misión<i>✦</i></span><span>Id por todo el mundo<i>✦</i></span><span>Entrada libre y gratuita<i>✦</i></span>
+            <span>Toda lengua y toda nación<i>✦</i></span><span>Noches de misión<i>✦</i></span><span>Id por todo el mundo<i>✦</i></span><span>Entrada libre y gratuita<i>✦</i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const fade = (sel, at, d = 0.8) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: d, ease: "power2.inOut" }, at);
+
+      // cinta: un tercio de su ancho por cada vuelta del bucle (3 copias iguales) → empalme perfecto
+      tl.fromTo("#cinta-mov", { xPercent: 0 }, { xPercent: -100 / 3, duration: 72, ease: "none" }, 0);
+
+      // A: arranca ya armada (el cuadro 0 = el último)
+      tl.fromTo("#a-cam", { scale: 1.0, x: 0 }, { scale: 1.12, x: -60, duration: 12.8, ease: "none" }, 0);
+
+      // B
+      fade("#b", 12);
+      tl.fromTo("#b-cam", { scale: 1.12 }, { scale: 1.0, duration: 12.8, ease: "none" }, 12);
+      tl.fromTo("#b-txt span", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, stagger: 0.18, ease: "power2.out" }, 12.6);
+      tl.fromTo("#b-cita", { opacity: 0 }, { opacity: 1, duration: 0.6 }, 15.2);
+
+      // C
+      fade("#c", 24);
+      ["#c1", "#c2", "#c3", "#c4", "#c5"].forEach((id, i) => {
+        tl.fromTo(id, { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "expo.out" }, 24.2 + i * 0.25);
+        tl.fromTo(id + " img", { scale: 1.2, y: i % 2 ? -30 : 30 }, { scale: 1.04, y: 0, duration: 12.6, ease: "power1.out" }, 24.2);
+      });
+      tl.fromTo("#c-a", { opacity: 0, filter: "blur(14px)", scale: 1.1 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.8, ease: "expo.out" }, 25.8);
+      tl.fromTo("#c-b", { opacity: 0, filter: "blur(14px)", scale: 1.1 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.8, ease: "expo.out" }, 26.6);
+
+      // D: lunes
+      fade("#d", 36);
+      tl.fromTo("#d-cam", { scale: 1.12 }, { scale: 1.0, duration: 12.8, ease: "none" }, 36);
+      tl.fromTo("#d-txt > *, #d-txt .it", { opacity: 0, x: 60, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.7, stagger: 0.25, ease: "expo.out" }, 36.6);
+
+      // E
+      fade("#e", 48);
+      tl.fromTo("#e-foto", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "expo.out" }, 48.6);
+      tl.fromTo("#e-img", { scale: 1.2 }, { scale: 1.02, duration: 12, ease: "power1.out" }, 48.6);
+      tl.fromTo("#e-txt > *", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.7, stagger: 0.15, ease: "expo.out" }, 48.9);
+
+      // F: martes
+      fade("#f", 60);
+      tl.fromTo("#f-cam", { scale: 1.12 }, { scale: 1.0, duration: 12, ease: "none" }, 60);
+      tl.fromTo("#f-txt > *, #f-txt .it", { opacity: 0, x: 60, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.7, stagger: 0.25, ease: "expo.out" }, 60.6);
+
+      // vuelta a A
+      fade("#a2", 70.8, 1.0);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

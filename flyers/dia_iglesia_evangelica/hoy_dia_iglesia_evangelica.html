@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; text-wrap: balance; }
+  body { width: 1920px; height: 1080px; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; background: #12082E; }
+  .lienzo { position: relative; width: 1920px; height: 1080px; overflow: hidden;
+            background: url(fondo_16x9.png) center / cover no-repeat; }
+
+  .izq { position: absolute; left: 70px; top: 50px; width: 860px; text-align: center; }
+  .hoy { display: inline-block; background: #FFC93C; color: #3A1468; font-weight: 900; font-size: 84px; line-height: 1;
+         padding: 12px 36px; border-radius: 18px; transform: rotate(-2deg); box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+  .hoy small { font-size: 46px; }
+  .titulo { display: flex; align-items: center; justify-content: center; gap: 20px; margin-top: 14px; }
+  .logo { width: 260px; filter: drop-shadow(0 10px 24px rgba(0,0,0,.45)); }
+  h1 { font-size: 52px; font-weight: 900; line-height: 1.04; text-align: left; text-shadow: 0 4px 18px rgba(0,0,0,.6); }
+  .hora { margin-top: 4px; font-size: 48px; font-weight: 800; text-shadow: 0 4px 14px rgba(0,0,0,.6); }
+  .hora span { color: #FFC93C; }
+
+  .carpa { position: absolute; left: 70px; top: 440px; width: 860px; border-radius: 28px; overflow: hidden;
+           border: 5px solid #fff; box-shadow: 0 16px 40px rgba(0,0,0,.5); }
+  .carpa img { display: block; width: 100%; height: 330px; object-fit: cover; object-position: center 65%; }
+  .lluvia { padding: 16px 20px 20px; text-align: center; background: rgba(20,6,50,.95); }
+  .lluvia .t { font-size: 54px; font-weight: 900; line-height: 1.05; color: #FFC93C; }
+  .lluvia .s { font-size: 38px; font-weight: 700; line-height: 1.2; }
+
+  .tener { position: absolute; left: 990px; right: 70px; top: 60px; background: rgba(30,10,70,.9);
+           border: 4px solid #FFC93C; border-radius: 26px; padding: 24px 34px 28px; }
+  .tener h2 { font-size: 44px; font-weight: 900; letter-spacing: 3px; color: #FFC93C; text-align: center; margin-bottom: 8px; }
+  .item { display: flex; gap: 20px; align-items: flex-start; margin-top: 20px; }
+  .item .e { font-size: 58px; line-height: 1; flex: none; width: 72px; text-align: center; }
+  .item .x { font-size: 44px; font-weight: 700; line-height: 1.2; }
+  .item .x b { font-weight: 900; color: #FFC93C; }
+
+  .cole { position: absolute; left: 990px; right: 70px; top: 760px; display: flex; align-items: center; gap: 20px;
+          background: rgba(30,10,70,.9); border: 4px solid #E0338A; border-radius: 26px; padding: 16px 26px 16px 16px; }
+  .cole img { width: 250px; flex: none; }
+  .cole .p { font-size: 44px; font-weight: 900; line-height: 1.12; }
+  .cole .i { font-size: 38px; font-weight: 700; line-height: 1.2; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="lienzo">
+  <div class="izq">
+    <div class="hoy">¡HOY! <small>SÁBADO 7</small></div>
+    <div class="titulo">
+      <img class="logo" src="logo_celebra_tu_fe.png" alt="¡Celebra Tu Fe!">
+      <h1>DÍA DE LA<br>IGLESIA<br>EVANGÉLICA</h1>
+    </div>
+    <div class="hora"><span>18:00 HS</span> · Ciudad Cultural</div>
+  </div>
+
+  <div class="carpa">
+    <img src="carpa.png" alt="Carpa gigante bajo la lluvia">
+    <div class="lluvia">
+      <div class="t">☔ NO SE SUSPENDE POR LLUVIA</div>
+      <div class="s">Hay una carpa gigante alquilada para el evento</div>
+    </div>
+  </div>
+
+  <div class="tener">
+    <h2>A TENER EN CUENTA</h2>
+    <div class="item"><div class="e">⏰</div><div class="x"><b>SEAMOS PUNTUALES:</b> el colectivo sale a las <b>17:00 en punto</b></div></div>
+    <div class="item"><div class="e">🧥</div><div class="x"><b>LLEVEMOS ROPA DE ABRIGO</b></div></div>
+    <div class="item"><div class="e">🙏</div><div class="x"><b>UNA OFRENDA</b> para que los organizadores puedan cubrir los gastos de esta celebración</div></div>
+  </div>
+
+  <div class="cole">
+    <img src="colectivo.png" alt="">
+    <div>
+      <div class="p">Salimos desde la Iglesia El Renuevo</div>
+      <div class="i">Al terminar, el colectivo nos deja de nuevo en El Renuevo</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

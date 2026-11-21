@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=EB+Garamond:ital,wght@1,500&family=Inter:wght@600;700;800;900&display=block" rel="stylesheet">
+<style>
+  :root { --ink:#0b0b0c; --paper:#f3eee4; --fuego:#ff5b1f; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:5400px; height:1350px; overflow:hidden; background:var(--ink); color:var(--paper); font-family:Inter, sans-serif; position:relative; }
+  .abs { position:absolute; }
+  .disp { font-family:'League Gothic', sans-serif; text-transform:uppercase; line-height:.88; font-weight:400; }
+  .kicker { font:700 28px/1 Inter; letter-spacing:.26em; text-transform:uppercase; color:var(--fuego); }
+  .fuego { color:var(--fuego); }
+  .ph { overflow:hidden; } .ph img { width:100%; height:100%; object-fit:cover; display:block; }
+  .num-slide { font:700 24px/1 Inter; letter-spacing:.2em; opacity:.6; }
+
+  /* 1 portada: foto que se asoma al slide 2 */
+  #p1 { left:0; top:0; width:1380px; height:1350px; -webkit-mask-image:linear-gradient(90deg,#000 72%,transparent 100%); mask-image:linear-gradient(90deg,#000 72%,transparent 100%); z-index:2; }
+  #v1 { left:0; top:0; width:1380px; height:1350px; background:linear-gradient(180deg, rgba(11,11,12,.2) 0%, rgba(11,11,12,.15) 30%, rgba(11,11,12,.85) 58%, var(--ink) 80%); z-index:3; -webkit-mask-image:linear-gradient(90deg,#000 72%,transparent 100%); mask-image:linear-gradient(90deg,#000 72%,transparent 100%); }
+  #t1 { z-index:5; left:80px; top:640px; width:960px; }
+  #t1 .a { font-size:150px; margin-top:16px; }
+  #t1 .b { font-size:262px; color:var(--fuego); }
+  #t1 .c { margin-top:18px; font:600 42px/1.2 Inter; }
+  #desliza { z-index:5; left:80px; top:1220px; font:800 30px/1 Inter; letter-spacing:.12em; text-transform:uppercase; }
+
+  /* 2 lunes */
+  #p2 { left:1080px; top:0; width:1080px; height:780px; z-index:1; }
+  #t2 { z-index:5; left:1160px; top:640px; width:900px; }
+  .nom { font-size:200px; margin-top:16px; }
+  .hs { margin-top:20px; font:900 96px/1 Inter; letter-spacing:-.02em; }
+  .q { margin-top:16px; font:600 36px/1.25 Inter; opacity:.9; }
+
+  /* 3 jornada */
+  #f3 { left:2160px; top:0; width:1080px; height:1350px; background:var(--fuego); color:var(--ink); }
+  #p3 { left:2240px; top:130px; width:920px; height:520px; }
+  #t3 { z-index:5; left:2240px; top:680px; width:920px; color:var(--ink); }
+  #t3 .kicker { color:var(--ink); }
+  #t3 .tt { font-size:168px; margin-top:16px; }
+  #t3 .hs { color:var(--ink); }
+
+  /* 4 martes */
+  #p4 { left:3240px; top:0; width:1080px; height:780px; }
+  #v4 { left:3240px; top:0; width:1080px; height:780px; background:linear-gradient(180deg, transparent 25%, rgba(11,11,12,.85) 62%, var(--ink) 80%); }
+  #t4 { left:3320px; top:520px; width:900px; }
+
+  /* 5 cierre */
+  #t5 { left:4400px; top:150px; width:920px; }
+  #t5 .tt { font-size:190px; margin-top:16px; }
+  .fila { display:flex; align-items:center; gap:30px; padding:22px 0; border-bottom:2px solid rgba(243,238,228,.18); }
+  .fila .d { font-family:'League Gothic'; font-size:100px; line-height:.9; width:270px; text-transform:uppercase; }
+  .fila .d b { font-weight:400; color:var(--fuego); }
+  .fila .h { font:900 50px/1 Inter; } .fila .qq { font:600 30px/1.2 Inter; opacity:.85; margin-top:8px; }
+  #lugar5 { margin-top:28px; font:700 40px/1.25 Inter; }
+  #sello5 { display:inline-block; margin-top:24px; background:var(--fuego); color:var(--ink); font:900 40px/1 Inter; letter-spacing:.06em; padding:20px 26px; text-transform:uppercase; transform:rotate(-2deg); }
+  #logos5 { left:4400px; top:1170px; display:flex; align-items:center; gap:30px; }
+  #logos5 img.r { width:76px; height:76px; } #logos5 .sep { width:2px; height:66px; background:rgba(243,238,228,.4); } #logos5 img.m { height:48px; }
+  #logos5 span { font:700 26px/1.1 Inter; }
+
+  .pr { margin-top:22px; border-top:3px solid var(--fuego); }
+  .pr > div { display:flex; gap:22px; padding:14px 0; border-bottom:1px solid rgba(243,238,228,.2); font:700 40px/1.18 Inter; }
+  .pr b { flex:none; width:128px; color:var(--fuego); font-weight:900; }
+  .pr em { display:block; font-style:normal; font:700 20px/1 Inter; letter-spacing:.22em; text-transform:uppercase; opacity:.7; margin-bottom:6px; }
+  .q2 { margin-top:18px; font:600 30px/1.3 Inter; opacity:.9; }
+  #ruta { z-index:4; left:0; top:0; width:5400px; height:1350px; }
+</style>
+</head>
+<body>
+  <div id="f3" class="abs"></div>
+
+  <div id="p1" class="abs ph"><img src="../assets/fotos/bn_10.jpg" style="object-position:40% 20%"></div>
+  <div id="v1" class="abs"></div>
+  <div id="p2" class="abs ph"><img src="../assets/fotos/bn_02.jpg" style="object-position:20% 50%"></div>
+  <div class="abs" style="z-index:1;left:1080px;top:0;width:1080px;height:780px;background:linear-gradient(180deg,transparent 45%,var(--ink) 100%)"></div>
+  <div id="p3" class="abs ph"><img src="../assets/fotos/bn_29.jpg" style="object-position:45% 45%"></div>
+  <div id="p4" class="abs ph"><img src="../assets/fotos/bn_54.jpg" style="object-position:42% 30%"></div>
+  <div id="v4" class="abs"></div>
+
+  <!-- recorrido continuo entre los 5 slides -->
+  <svg id="ruta" class="abs" viewBox="0 0 5400 1350">
+    <path d="M -20 1290 C 400 1300, 700 1250, 1100 1270 S 1900 1310, 2200 1290 S 2900 1250, 3240 1280 S 4000 1320, 4320 1290 S 5100 1260, 5420 1280" fill="none" stroke="#ff5b1f" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 2160 1288 C 2500 1270, 2900 1252, 3240 1280" fill="none" stroke="#0b0b0c" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="1620" cy="1293" r="16" fill="#ff5b1f"/>
+    <circle cx="2700" cy="1262" r="16" fill="#0b0b0c"/>
+    <circle cx="3780" cy="1300" r="16" fill="#ff5b1f"/>
+  </svg>
+
+  <div id="t1" class="abs">
+    <div class="kicker">16 y 17 de noviembre · Perico</div>
+    <div class="disp a">Nos visitan</div>
+    <div class="disp b">misioneros</div>
+    <div class="c">del Instituto MISION</div>
+  </div>
+  <div id="desliza" class="abs">Deslizá <span class="fuego">→</span></div>
+
+  <div id="t2" class="abs" style="left:1160px">
+    <div class="kicker">Reunión especial</div>
+    <div class="disp nom">Lunes <span class="fuego">16</span></div>
+    <div class="pr"><div><b>20:30</b><span><em>Foro</em>Prácticas de justicia</span></div><div><b>21:15</b><span><em>Plenaria</em>Hineni · Isaías 6</span></div></div>
+    <div class="q2">República de Siria 255 · Entrada libre y gratuita</div>
+  </div>
+
+  <div id="t3" class="abs">
+    <div class="kicker">Martes 17 · por la mañana</div>
+    <div class="disp tt">Jornada de<br>evangelismo</div>
+    <div class="hs">10 A 12 HS</div>
+    <div class="q">Salimos desde la iglesia a las calles de Perico, junto a los misioneros. ¡Sumate!</div>
+  </div>
+
+  <div id="t4" class="abs">
+    <div class="kicker">Reunión especial</div>
+    <div class="disp nom">Martes <span class="fuego">17</span></div>
+    <div class="pr"><div><b>20:30</b><span><em>Talleres</em>Matrimonios<br>Jóvenes y adolescentes<br>Cuarto de oración</span></div><div><b>21:15</b><span><em>Plenaria</em>El clamor del Espíritu</span></div></div>
+    <div class="q2">República de Siria 255 · Entrada libre y gratuita</div>
+  </div>
+
+  <div id="t5" class="abs">
+    <div class="kicker">Te esperamos</div>
+    <div class="disp tt">Noches de <span class="fuego">misión</span></div>
+    <div class="fila"><div class="d">Lun <b>16</b></div><div><div class="h">20:30 HS</div><div class="qq">Foro y plenaria</div></div></div>
+    <div class="fila"><div class="d">Mar <b>17</b></div><div><div class="h">10 A 12 HS</div><div class="qq">Jornada de evangelismo</div></div></div>
+    <div class="fila"><div class="d">Mar <b>17</b></div><div><div class="h">20:30 HS</div><div class="qq">Talleres y plenaria</div></div></div>
+    <div id="lugar5">República de Siria 255 · Perico</div>
+    <div id="sello5">Entrada libre y gratuita</div>
+  </div>
+  <div id="logos5" class="abs"><img class="r" src="../assets/r-blanco.png"><span>Iglesia<br>El Renuevo</span><div class="sep"></div><img class="m" src="../assets/mision-wordmark.png"></div>
+</body>
+</html>

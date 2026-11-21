@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1920px; height: 1080px; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; background: #12082E; }
+  .lienzo { position: relative; width: 1920px; height: 1080px; overflow: hidden;
+            background: url(fondo_16x9.png) center / cover no-repeat; }
+
+  .izq { position: absolute; left: 80px; top: 36px; width: 1060px; }
+  .logo { width: 520px; display: block; margin-left: -20px; filter: drop-shadow(0 10px 24px rgba(0,0,0,.45)); }
+  h1 { font-size: 68px; font-weight: 900; line-height: 1.02; margin-top: 4px; text-shadow: 0 4px 18px rgba(0,0,0,.5); }
+  .fecha { display: inline-block; margin-top: 24px; background: #FFC93C; color: #3A1468; font-weight: 900; font-size: 64px;
+           padding: 8px 30px; border-radius: 14px; transform: rotate(-1.5deg); }
+  .hora { margin-top: 20px; font-size: 56px; font-weight: 800; }
+  .hora span { color: #FFC93C; }
+  .lugar { margin-top: 6px; font-size: 48px; white-space: nowrap; font-weight: 700; }
+
+  .cole { position: absolute; left: 80px; bottom: 40px; width: 1000px; display: flex; align-items: center; gap: 24px;
+          background: rgba(30,10,70,.82); border: 4px solid #E0338A; border-radius: 26px; padding: 14px 32px 14px 14px; }
+  .cole img { width: 240px; flex: none; }
+  .cole .t { font-size: 40px; font-weight: 800; color: #FFC93C; line-height: 1.1; }
+  .cole .p { font-size: 54px; white-space: nowrap; font-weight: 900; line-height: 1.1; }
+  .cole .i { font-size: 48px; font-weight: 700; line-height: 1.2; }
+
+  .pastores { position: absolute; right: 30px; bottom: 0; height: 840px; filter: drop-shadow(0 0 30px rgba(0,0,0,.5)); }
+  .nombres { position: absolute; right: 70px; bottom: 40px; width: 760px; text-align: center;
+             background: rgba(30,10,70,.88); border: 4px solid #FFC93C; border-radius: 22px; padding: 14px 20px; }
+  .nombres .lbl { font-size: 36px; font-weight: 800; color: #FFC93C; letter-spacing: 4px; }
+  .nombres .n { font-size: 54px; font-weight: 900; line-height: 1.1; }
+</style>
+</head>
+<body>
+<div class="lienzo">
+  <img class="pastores" src="pastores.png" alt="Pastores Alejandra y Osvaldo Carnival">
+  <div class="nombres">
+    <div class="lbl">PASTORES INVITADOS</div>
+    <div class="n">Alejandra y Osvaldo Carnival</div>
+  </div>
+
+  <div class="izq">
+    <img class="logo" src="logo_celebra_tu_fe.png" alt="¡Celebra Tu Fe!">
+    <h1>DÍA DE LA IGLESIA EVANGÉLICA</h1>
+    <div class="fecha">SÁBADO 7 DE NOVIEMBRE</div>
+    <div class="hora"><span>18:00 HS</span> · Inicio del evento</div>
+    <div class="lugar">Ciudad Cultural, San Salvador de Jujuy</div>
+  </div>
+
+  <div class="cole">
+    <img src="colectivo.png" alt="">
+    <div>
+      <div class="t">COLECTIVO IDA Y VUELTA</div>
+      <div class="p">$10.000 por persona</div>
+      <div class="i">Info: 388 479-9096</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

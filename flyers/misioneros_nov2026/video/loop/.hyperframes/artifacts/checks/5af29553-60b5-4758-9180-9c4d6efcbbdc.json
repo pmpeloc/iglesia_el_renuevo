@@ -1,0 +1,772 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 8,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "duplicate_media_discovery_risk",
+        "severity": "warning",
+        "message": "Detected 2 matching img entries with the same source/start/duration.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Avoid duplicated media nodes that can be discovered twice during compilation."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"a\"> is a timeline element that contains nested <div id=\"a-cam\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#a",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"a\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"b\"> is a timeline element that contains nested <div id=\"b-cam\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#b",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"b\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"c\"> is a timeline element that contains nested <div id=\"c1\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#c",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"c\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"d\"> is a timeline element that contains nested <div id=\"d-izq\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#d",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"d\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"e\"> is a timeline element that contains nested <div id=\"e-foto\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#e",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"e\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"a2\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#a2",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"a2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"fijo\"> is a timeline element that contains nested <div id=\"marca\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#fijo",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\pmpel\\projects\\iglesia_el_renuevo\\flyers\\misioneros_nov2026\\video\\loop\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"fijo\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": false,
+    "errorCount": 1,
+    "warningCount": 0,
+    "infoCount": 5,
+    "findings": [
+      {
+        "code": "content_overlap",
+        "severity": "error",
+        "time": 59.33,
+        "selector": "#e-tit",
+        "message": "Two text blocks overlap and may render unreadable.",
+        "rect": {
+          "left": 150,
+          "top": 186,
+          "right": 956.63,
+          "bottom": 627,
+          "width": 806.63,
+          "height": 441
+        },
+        "containerSelector": "#a2 > div:nth-of-type(3) > div:nth-of-type(1)",
+        "text": "JORNADA DE EVANGELISMO",
+        "fixHint": "Give each block its own zone, or put data-layout-allow-overlap on the text or on a container inside the scene. A marker on the scene root does not apply. Decoration nobody needs to read can take data-layout-ignore.",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 150,
+          "y": 186,
+          "width": 806.63,
+          "height": 441
+        },
+        "firstSeen": 59.33,
+        "lastSeen": 60,
+        "occurrences": 3,
+        "heldMs": 670.0000000000017,
+        "times": [
+          59.33,
+          59.665,
+          60
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 3.333,
+        "selector": "#a-cam",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -45.13,
+          "top": -16.69,
+          "right": 1934.2,
+          "bottom": 1096.69,
+          "width": 1979.33,
+          "height": 1113.37
+        },
+        "containerSelector": "#a",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 45.13,
+          "right": 14.2,
+          "top": 16.69,
+          "bottom": 16.69
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -45.13,
+          "y": -16.69,
+          "width": 1979.33,
+          "height": 1113.37
+        },
+        "firstSeen": 3.333,
+        "lastSeen": 10,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          3.333,
+          10
+        ]
+      },
+      {
+        "code": "container_overflow",
+        "severity": "info",
+        "time": 16.667,
+        "selector": "#b-cam",
+        "message": "Element extends outside a clipping layout container.",
+        "rect": {
+          "left": -73.15,
+          "top": -41.15,
+          "right": 1993.15,
+          "bottom": 1121.15,
+          "width": 2066.3,
+          "height": 1162.3
+        },
+        "containerSelector": "#b",
+        "fixHint": "Resize/reposition the child or container, or mark intentional overflow with data-layout-allow-overflow.",
+        "containerRect": {
+          "left": 0,
+          "top": 0,
+          "right": 1920,
+          "bottom": 1080,
+          "width": 1920,
+          "height": 1080
+        },
+        "overflow": {
+          "left": 73.15,
+          "right": 73.15,
+          "top": 41.15,
+          "bottom": 41.15
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": -73.15,
+          "y": -41.15,
+          "width": 2066.3,
+          "height": 1162.3
+        },
+        "firstSeen": 16.667,
+        "lastSeen": 23.333,
+        "occurrences": 2,
+        "heldMs": 0,
+        "times": [
+          16.667,
+          23.333
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 36.667,
+        "selector": "#c-a",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 485.38,
+          "top": 272,
+          "right": 1434.63,
+          "bottom": 572,
+          "width": 949.25,
+          "height": 300
+        },
+        "containerSelector": "#d",
+        "text": "Toda lengua",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 24,
+          "end": 36.8
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 485.38,
+          "y": 272,
+          "width": 949.25,
+          "height": 300
+        },
+        "firstSeen": 36.667,
+        "lastSeen": 36.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          36.667
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 36.667,
+        "selector": "#c-b",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 426.88,
+          "top": 497,
+          "right": 964.88,
+          "bottom": 797,
+          "width": 538,
+          "height": 300
+        },
+        "containerSelector": "#d",
+        "text": "y toda",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 24,
+          "end": 36.8
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 426.88,
+          "y": 497,
+          "width": 538,
+          "height": 300
+        },
+        "firstSeen": 36.667,
+        "lastSeen": 36.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          36.667
+        ]
+      },
+      {
+        "code": "text_occluded",
+        "severity": "info",
+        "time": 36.667,
+        "selector": "#c-b > span:nth-of-type(1)",
+        "message": "Text is hidden beneath an opaque element.",
+        "rect": {
+          "left": 964.88,
+          "top": 497,
+          "right": 1493.13,
+          "bottom": 797,
+          "width": 528.25,
+          "height": 300
+        },
+        "containerSelector": "#d",
+        "text": "nación",
+        "fixHint": "Give the text its own zone, raise its stacking order above the covering element, or mark intentional layering with data-layout-allow-occlusion.",
+        "coveredFraction": 1,
+        "lifetime": {
+          "start": 24,
+          "end": 36.8
+        },
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 964.88,
+          "y": 497,
+          "width": 528.25,
+          "height": 300
+        },
+        "firstSeen": 36.667,
+        "lastSeen": 36.667,
+        "occurrences": 1,
+        "heldMs": 0,
+        "times": [
+          36.667
+        ]
+      }
+    ],
+    "duration": 60,
+    "samples": [
+      3.333,
+      10,
+      16.667,
+      23.333,
+      30,
+      36.667,
+      43.333,
+      50,
+      56.667
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 6,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "contrast_aa_failure",
+        "severity": "warning",
+        "message": "Contrast is 2.68:1; WCAG AA requires 3:1.",
+        "text": "16 · 17 NOV",
+        "fg": "rgb(243,238,228)",
+        "bg": "rgb(255,91,31)",
+        "ratio": 2.68,
+        "requiredRatio": 3,
+        "suggestedColor": "rgb(71,70,67)",
+        "large": true,
+        "selector": "#fecha",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 1547.703125,
+          "y": 78,
+          "width": 222.296875,
+          "height": 32
+        },
+        "time": 56.667,
+        "times": [
+          56.667
+        ]
+      }
+    ],
+    "enabled": true,
+    "samples": [
+      3.333,
+      16.667,
+      30,
+      43.333,
+      56.667
+    ],
+    "checked": 82,
+    "passed": 81
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 5,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "film_silent",
+        "severity": "warning",
+        "message": "This 60 s film has no sound source (no <audio>, no <video> with sound): add a music bed and sounds on the visible actions unless the person asked for silence; see references/sound.md.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"ENTRADA LIBRE Y GRATUITA✦\" (4 words) is on screen 1.86 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "ENTRADA LIBRE Y GRATUITA✦",
+        "selector": "#cinta-mov > span:nth-of-type(8)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 1915.13,
+          "y": 998,
+          "width": 4.869999999999891,
+          "height": 74
+        },
+        "time": 58.141,
+        "words": 4,
+        "seconds": 1.863,
+        "floorSeconds": 2,
+        "measured": [
+          {
+            "time": 57.875,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 58,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 58.125,
+            "opacity": null,
+            "heightPx": null
+          },
+          {
+            "time": 58.25,
+            "opacity": 1,
+            "heightPx": 74
+          },
+          {
+            "time": 58.375,
+            "opacity": 1,
+            "heightPx": 74
+          },
+          {
+            "time": 58.5,
+            "opacity": 1,
+            "heightPx": 74
+          },
+          {
+            "time": 58.625,
+            "opacity": 1,
+            "heightPx": 74
+          },
+          {
+            "time": 59.5,
+            "opacity": 1,
+            "heightPx": 74
+          },
+          {
+            "time": 59.625,
+            "opacity": 1,
+            "heightPx": 74
+          },
+          {
+            "time": 59.75,
+            "opacity": 1,
+            "heightPx": 74
+          },
+          {
+            "time": 59.875,
+            "opacity": 1,
+            "heightPx": 74
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"IGLESIA EL RENUEVO LES DA LA\" (6 words) is on screen 0.60 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "IGLESIA EL RENUEVO LES DA LA",
+        "selector": "#a2 > div:nth-of-type(3) > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 616,
+          "y": 247,
+          "width": 687.98,
+          "height": 36
+        },
+        "time": 59.406,
+        "words": 6,
+        "seconds": 0.598,
+        "floorSeconds": 2,
+        "measured": [
+          {
+            "time": 59.125,
+            "opacity": 0.06,
+            "heightPx": 36
+          },
+          {
+            "time": 59.25,
+            "opacity": 0.19,
+            "heightPx": 36
+          },
+          {
+            "time": 59.375,
+            "opacity": 0.42,
+            "heightPx": 36
+          },
+          {
+            "time": 59.5,
+            "opacity": 0.71,
+            "heightPx": 36
+          },
+          {
+            "time": 59.625,
+            "opacity": 0.85,
+            "heightPx": 36
+          },
+          {
+            "time": 59.75,
+            "opacity": 0.96,
+            "heightPx": 36
+          },
+          {
+            "time": 59.875,
+            "opacity": 0.99,
+            "heightPx": 36
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"BIENVENIDA\" (1 word) is on screen 0.60 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "BIENVENIDA",
+        "selector": "#a2 > div:nth-of-type(3) > div:nth-of-type(2)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 456.44,
+          "y": 255,
+          "width": 1007.1099999999999,
+          "height": 360
+        },
+        "time": 59.406,
+        "words": 1,
+        "seconds": 0.598,
+        "floorSeconds": 2,
+        "measured": [
+          {
+            "time": 59.125,
+            "opacity": 0.06,
+            "heightPx": 360
+          },
+          {
+            "time": 59.25,
+            "opacity": 0.19,
+            "heightPx": 360
+          },
+          {
+            "time": 59.375,
+            "opacity": 0.42,
+            "heightPx": 360
+          },
+          {
+            "time": 59.5,
+            "opacity": 0.71,
+            "heightPx": 360
+          },
+          {
+            "time": 59.625,
+            "opacity": 0.85,
+            "heightPx": 360
+          },
+          {
+            "time": 59.75,
+            "opacity": 0.96,
+            "heightPx": 360
+          },
+          {
+            "time": 59.875,
+            "opacity": 0.99,
+            "heightPx": 360
+          }
+        ]
+      },
+      {
+        "code": "line_unread",
+        "severity": "warning",
+        "message": "The film's last line \"a los misioneros del Instituto MISION\" (6 words) is on screen 0.60 s (±0.01 s), under the 2.00 s a closing line needs: hold it about 0.5 s + 0.3 s a word and at least 2 s before the film ends; see references/motion.md.",
+        "text": "a los misioneros del Instituto MISION",
+        "selector": "#a2 > div:nth-of-type(3) > div:nth-of-type(3)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 512.56,
+          "y": 596,
+          "width": 894.8600000000001,
+          "height": 60
+        },
+        "time": 59.406,
+        "words": 6,
+        "seconds": 0.598,
+        "floorSeconds": 2,
+        "measured": [
+          {
+            "time": 59.125,
+            "opacity": 0.06,
+            "heightPx": 60
+          },
+          {
+            "time": 59.25,
+            "opacity": 0.19,
+            "heightPx": 60
+          },
+          {
+            "time": 59.375,
+            "opacity": 0.42,
+            "heightPx": 60
+          },
+          {
+            "time": 59.5,
+            "opacity": 0.71,
+            "heightPx": 60
+          },
+          {
+            "time": 59.625,
+            "opacity": 0.85,
+            "heightPx": 60
+          },
+          {
+            "time": 59.75,
+            "opacity": 0.96,
+            "heightPx": 60
+          },
+          {
+            "time": 59.875,
+            "opacity": 0.99,
+            "heightPx": 60
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 480
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 1,
+    "findings": [
+      {
+        "code": "audio_none",
+        "severity": "info",
+        "message": "The film has no sound: no clip in it plays audio.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0
+      }
+    ]
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}

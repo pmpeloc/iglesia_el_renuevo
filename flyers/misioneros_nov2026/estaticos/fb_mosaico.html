@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=EB+Garamond:ital,wght@1,500&family=Inter:wght@600;700;800;900&display=block" rel="stylesheet">
+<style>
+  :root { --ink:#0b0b0c; --paper:#f3eee4; --fuego:#ff5b1f; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:2160px; height:1800px; overflow:hidden; background:var(--ink); color:var(--paper); font-family:Inter, sans-serif; }
+  .abs { position:absolute; }
+  .disp { font-family:'League Gothic', sans-serif; text-transform:uppercase; line-height:.88; font-weight:400; }
+  .kicker { font:700 26px/1 Inter; letter-spacing:.26em; text-transform:uppercase; color:var(--fuego); }
+  .fuego { color:var(--fuego); }
+  /* franja superior: 2 cuadrados de 1080 */
+  #top { left:0; top:0; width:2160px; height:1080px; overflow:hidden; }
+  #top img { position:absolute; right:-80px; top:-140px; height:1400px; }
+  #top .velo { position:absolute; inset:0; background:linear-gradient(90deg, var(--ink) 0%, rgba(11,11,12,.96) 34%, rgba(11,11,12,.55) 55%, rgba(11,11,12,.05) 75%); }
+  #logos { left:90px; top:80px; display:flex; align-items:center; gap:24px; }
+  #logos img.r { width:70px; height:70px; } #logos .sep { width:2px; height:60px; background:rgba(243,238,228,.45); } #logos img.m { height:42px; }
+  #tit { left:90px; top:280px; }
+  #tit .a { font-size:170px; margin-top:20px; }
+  #tit .b { font-size:290px; color:var(--fuego); }
+  #tit .c { margin-top:22px; font:600 44px/1.2 Inter; }
+  #info { left:90px; top:910px; display:flex; gap:22px; align-items:center; }
+  #info .l { font:700 34px/1.2 Inter; }
+  #info .sello { background:var(--fuego); color:var(--ink); font:900 30px/1 Inter; letter-spacing:.06em; padding:16px 20px; text-transform:uppercase; }
+  /* fila inferior: 3 cuadrados de 720 */
+  .cel { top:1080px; width:720px; height:720px; overflow:hidden; }
+  .cel .foto { position:absolute; inset:0; } .cel .foto img { width:100%; height:100%; object-fit:cover; }
+  .cel .velo { position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,11,12,.25) 0%, rgba(11,11,12,.75) 45%, rgba(11,11,12,.96) 75%); }
+  .cel .txt { position:absolute; left:56px; right:46px; bottom:44px; }
+  .cel .nom { font-size:130px; margin-top:12px; }
+  .cel .num { font-size:150px; color:var(--fuego); }
+  .cel .hs { margin-top:14px; font:900 64px/1 Inter; letter-spacing:-.02em; }
+  .cel .q { margin-top:10px; font:600 26px/1.25 Inter; opacity:.9; }
+  .pr { margin-top:16px; border-top:3px solid var(--fuego); }
+  .pr div { display:flex; gap:16px; padding:10px 0; border-bottom:1px solid rgba(243,238,228,.2); font:700 27px/1.2 Inter; }
+  .pr b { flex:none; width:84px; color:var(--fuego); font-weight:900; }
+  .pr em { display:block; font-style:normal; font:700 15px/1 Inter; letter-spacing:.2em; text-transform:uppercase; opacity:.7; margin-bottom:5px; }
+  #c2 { background:var(--fuego); color:var(--ink); }
+  #c2 .kicker { color:var(--ink); }
+  #c2 .tt { font-size:118px; margin-top:12px; }
+  #c2 .hs { color:var(--ink); }
+</style>
+</head>
+<body>
+  <div id="top" class="abs">
+    <img src="../assets/fotos/bn_58.jpg">
+    <div class="velo"></div>
+  </div>
+  <div id="logos" class="abs"><img class="r" src="../assets/r-blanco.png"><div class="sep"></div><img class="m" src="../assets/mision-wordmark.png"></div>
+  <div id="tit" class="abs">
+    <div class="kicker">16 y 17 de noviembre · Perico</div>
+    <div class="disp a">Nos visitan</div>
+    <div class="disp b">misioneros</div>
+    <div class="c">del Instituto MISION</div>
+  </div>
+  <div id="info" class="abs"><div class="l">República de Siria 255</div><div class="sello">Entrada libre y gratuita</div></div>
+
+  <div id="c1" class="abs cel" style="left:0">
+    <div class="foto"><img src="../assets/fotos/bn_02.jpg" style="object-position:24% 50%"></div><div class="velo"></div>
+    <div class="txt"><div class="kicker">Reunión especial</div><div class="disp nom">Lunes <span class="fuego">16</span></div><div class="pr"><div><b>20:30</b><span><em>Foro</em>Prácticas de justicia</span></div><div><b>21:15</b><span><em>Plenaria</em>Hineni · Isaías 6</span></div></div></div>
+  </div>
+  <div id="c2" class="abs cel" style="left:720px">
+    <div class="txt"><div class="kicker">Martes 17 · por la mañana</div><div class="disp tt">Jornada de<br>evangelismo</div><div class="hs">10 A 12 HS</div><div class="q">Salimos desde la iglesia junto a los misioneros</div></div>
+  </div>
+  <div id="c3" class="abs cel" style="left:1440px">
+    <div class="foto"><img src="../assets/fotos/bn_54.jpg" style="object-position:42% 30%"></div><div class="velo"></div>
+    <div class="txt"><div class="kicker">Reunión especial</div><div class="disp nom">Martes <span class="fuego">17</span></div><div class="pr"><div><b>20:30</b><span><em>Talleres</em>Matrimonios · Jóvenes y adolescentes<br>Cuarto de oración</span></div><div><b>21:15</b><span><em>Plenaria</em>El clamor del Espíritu</span></div></div></div>
+  </div>
+</body>
+</html>

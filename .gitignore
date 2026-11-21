@@ -3,3 +3,6 @@ tmp/
 
 # App de la convención: repo propio (mcym_cuyo_app)
 convencion_cuyo_2026/mcym_cuyo_app/
+
+# Binarios de terceros
+*.exe

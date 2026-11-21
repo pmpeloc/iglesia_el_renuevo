@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reformados para servir</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Noto+Serif+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+/* Fondo claro, pocas palabras y letra grande: pensado para pantallas chicas. */
+:root {
+    --paper: #FFF8EC;
+    --ink: #161616;
+    --green: #5DBE2C;
+    --green-dk: #2E7D12;
+    --f: 'Montserrat', Arial, sans-serif;
+    --f-greek: 'Noto Serif Display', Georgia, serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; cursor: none; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--paper); }
+
+/* Lienzo completo: imagen cuadrada de borde a borde (alto total) + texto en el resto. */
+.slide { position: absolute; inset: 0; display: grid; grid-template-columns: 1000px 1fr; visibility: hidden; opacity: 0; transition: opacity .6s ease, visibility 0s .6s; background: var(--paper); color: var(--ink); font-family: var(--f); }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .6s ease; z-index: 1; }
+.slide.flip { grid-template-columns: 1fr 1000px; }
+.slide.flip .pic { order: 2; border-width: 0 0 0 10px; }
+/* Sin imagen: el texto usa todo el ancho (griego, versículos, aplicaciones). */
+.slide.solo { grid-template-columns: 1fr; }
+.slide.solo .text { align-items: center; text-align: center; padding: 60px 110px; }
+.slide.solo .kicker { align-self: center; }
+.slide.app { background: var(--green); }
+.slide.app .kicker { background: var(--paper); color: var(--ink); }
+
+.pic { height: 1080px; overflow: hidden; border-right: 10px solid var(--ink); background: #fff; }
+.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.slide.active .pic img { animation: zoom 12s ease-out both; }
+@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+.text { display: flex; flex-direction: column; justify-content: center; gap: 44px; padding: 60px 56px; }
+.slide.active .text > * { animation: up .8s var(--ease) both; }
+.slide.active .text > *:nth-child(2) { animation-delay: .12s; }
+.slide.active .text > *:nth-child(3) { animation-delay: .24s; }
+.slide.active .text > *:nth-child(4) { animation-delay: .36s; }
+@keyframes up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+
+.kicker { align-self: flex-start; padding: 16px 32px; border-radius: 999px; background: var(--ink); color: #fff; font: 800 58px/1 var(--f); }
+.title { font: 900 128px/1 var(--f); letter-spacing: -.03em; }
+.title em, .big em, .huge em { font-style: normal; color: var(--green-dk); }
+.big { font: 900 104px/1.05 var(--f); letter-spacing: -.02em; }
+.huge { font: 900 150px/1.02 var(--f); letter-spacing: -.03em; }
+.body { font: 800 80px/1.15 var(--f); }
+.ref { font: 900 88px/1 var(--f); color: var(--green-dk); }
+.slide.app .ref, .slide.app em { color: #fff; }
+.num { width: 260px; height: 260px; border-radius: 50%; display: grid; place-items: center; background: var(--green); border: 10px solid var(--ink); font: 900 190px/1 var(--f); }
+.year { font: 900 300px/.85 var(--f); color: var(--green-dk); letter-spacing: -.04em; }
+.greek { font: 700 300px/1.05 var(--f-greek); color: var(--green-dk); }
+.translit { font: 800 100px/1 var(--f); letter-spacing: .06em; }
+.slide.solo .big { font-size: 136px; }
+.logo { position: absolute; right: 40px; bottom: 34px; height: 110px; }
+.notes { display: none; }
+.progress { position: fixed; left: 0; bottom: 0; height: 8px; background: var(--green); z-index: 1000; transition: width .5s var(--ease); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- ============ INTRODUCCIÓN ============ -->
+
+<section class="slide">
+  <div class="pic"><img src="img/01_portada.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Serie de la Reforma</div>
+    <div class="title">Reformados para <em>servir</em></div>
+    <div class="ref">Efesios 2:8-10</div>
+  </div>
+  <img class="logo" src="img/logo.png" alt="El Renuevo">
+  <aside class="notes"><h3>Reformados para servir · Reunión General (jueves)</h3><p>Texto base: Efesios 2:8-10 (RVR1960). 45 min · Desafiante y reflexivo.</p><p>Tiempos: Intro 4' · cada punto ~7' · Conclusión + llamado 6'.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/02_intro.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Antes de 1517</div>
+    <div class="big">Servir a Dios era cosa de <em>algunos</em>.</div>
+    <div class="body">El pueblo solo miraba.</div>
+  </div>
+  <aside class="notes"><h3>Introducción (≈4 min)</h3><p>Faltan dos semanas para el 31 de octubre: en 1517 Lutero clava sus 95 tesis. En la prédica anterior vimos que la Reforma le devolvió la Palabra al pueblo.</p><p>Hoy: también le devolvió el SERVICIO. En la iglesia de ese tiempo, "vocación" (llamado) se usaba casi solo para quienes vivían una vida religiosa. El resto solo miraba.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/05_regalo.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Efesios 2:8-10</div>
+    <div class="big">Salvos por <em>gracia</em>…</div>
+    <div class="body">…creados para buenas obras.</div>
+  </div>
+  <aside class="notes"><h3>Leemos el texto base</h3><p>"Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe. Porque somos hechura suya, creados en Cristo Jesús para buenas obras, las cuales Dios preparó de antemano para que anduviésemos en ellas." (Ef 2:8-10 RVR1960)</p><p>Salvos por gracia, "no por obras", y a la vez creados "para buenas obras". La Reforma recuperó ese equilibrio y cambió para siempre la manera de servir.</p></aside>
+</section>
+
+<!-- ============ PUNTO 1 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/03_punto1.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">1</div>
+    <div class="title">Todos somos <em>sacerdotes</em></div>
+  </div>
+  <aside class="notes"><h3>1. Todos somos sacerdotes (≈7 min)</h3><p>a. Acceso directo · b. Llamado a servir</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/04_lutero_1520.jpg" alt=""></div>
+  <div class="text">
+    <div class="year">1520</div>
+    <div class="big">No hay dos clases de cristianos.</div>
+    <div class="ref">1 Pedro 2:9</div>
+  </div>
+  <aside class="notes"><h3>1 · Historia</h3><p>La iglesia de ese tiempo dividía a los cristianos en "estado espiritual" (el clero) y "estado temporal" (el pueblo).</p><p>En "A la nobleza cristiana de la nación alemana" (1520), Lutero sostuvo que TODOS los cristianos pertenecen al estado espiritual; la única diferencia es la función. Es el sacerdocio de todos los creyentes.</p><p>1 Pedro 2:9: "Mas vosotros sois linaje escogido, real sacerdocio, nación santa, pueblo adquirido por Dios, para que anunciéis las virtudes de aquel que os llamó de las tinieblas a su luz admirable." (También Ap 1:6.)</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/06_orando.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">1a · Acceso directo</div>
+    <div class="big">Un solo mediador: <em>Jesucristo</em>.</div>
+    <div class="ref">1 Timoteo 2:5</div>
+  </div>
+  <aside class="notes"><h3>a. Acceso directo</h3><p>Ya no hace falta un intermediario humano para acercarnos a Dios.</p><p>1 Ti 2:5: "Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre."</p><p>He 4:16: "Acerquémonos, pues, confiadamente al trono de la gracia, para alcanzar misericordia y hallar gracia para el oportuno socorro."</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/07_dones.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">1b · Llamado a servir</div>
+    <div class="big">“Cada uno según el don… <em>minístrelo</em> a los otros”</div>
+    <div class="ref">1 Pedro 4:10</div>
+  </div>
+  <aside class="notes"><h3>b. Llamado a servir</h3><p>Todo sacerdote tiene una tarea.</p><p>1 P 4:10: "Cada uno según el don que ha recibido, minístrelo a los otros, como buenos administradores de la multiforme gracia de Dios."</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="greek">ἱεράτευμα</div>
+    <div class="translit">hieráteuma</div>
+    <div class="big">Un <em>pueblo entero</em> de sacerdotes</div>
+  </div>
+  <aside class="notes"><h3>Palabra griega (1 P 2:9)</h3><p>ἱεράτευμα (hieráteuma): sacerdocio, un CUERPO de sacerdotes. No es un sacerdote solo: es un pueblo entero.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/08_se_levanta.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge">¿Sacerdotes o <em>espectadores</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación · Punto 1</h3><p>El servicio no es solo de "los de adelante".</p><p>¿Estamos viviendo como sacerdotes o como espectadores?</p><p>Necesitamos ocupar el lugar que Dios nos dio en el cuerpo.</p></aside>
+</section>
+
+<!-- ============ PUNTO 2 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/09_gratitud.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">2</div>
+    <div class="title">Servir por <em>gratitud</em></div>
+  </div>
+  <aside class="notes"><h3>2. Servir por gratitud (≈7 min)</h3><p>a. No para ganar · b. Porque ya fuimos alcanzados</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/10_carga.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Antes de la Reforma</div>
+    <div class="big">Las obras se usaban para <em>ganar</em> el favor de Dios.</div>
+  </div>
+  <aside class="notes"><h3>2 · Historia</h3><p>Las obras servían para acumular mérito: penitencias, peregrinaciones, indulgencias.</p><p>Se le atribuye a Johann Tetzel el lema "cuando la moneda en el cofre suena, el alma del purgatorio sale" (decirlo como "se le atribuye").</p><p>Con "solo por gracia y solo por fe", la obra deja de ser una forma de pago y pasa a ser una respuesta.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">2a · No para ganar</div>
+    <div class="huge">“…no por obras, para que nadie se <em>gloríe</em>.”</div>
+    <div class="ref">Efesios 2:9</div>
+  </div>
+  <aside class="notes"><h3>a. No para ganar</h3><p>Ef 2:8-9: "Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios; no por obras, para que nadie se gloríe."</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/11_ofrenda.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">2b · Ya fuimos alcanzados</div>
+    <div class="big">“…por las <em>misericordias</em> de Dios…”</div>
+    <div class="ref">Romanos 12:1</div>
+  </div>
+  <aside class="notes"><h3>b. Porque ya fuimos alcanzados</h3><p>Ro 12:1: "Así que, hermanos, os ruego por las misericordias de Dios, que presentéis vuestros cuerpos en sacrificio vivo, santo, agradable a Dios, que es vuestro culto racional."</p><p>El "así que" mira hacia atrás: once capítulos de misericordia vienen ANTES del servicio.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="greek">λατρεία</div>
+    <div class="translit">latreía</div>
+    <div class="big">Servir es <em>adorar</em></div>
+  </div>
+  <aside class="notes"><h3>Palabra griega (Ro 12:1)</h3><p>λατρεία (latreía): culto, servicio sagrado. Para Pablo, servir y adorar son la misma palabra.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge">¿Servimos para que Dios nos acepte… o porque <em>ya</em> nos aceptó?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación · Punto 2</h3><p>¿Servimos para que Dios nos acepte o porque ya nos aceptó?</p><p>Si mañana no pudiéramos servir más, ¿nos sentiríamos menos amados?</p><p>Debemos dejar de servir desde la deuda y empezar a servir desde la gratitud.</p></aside>
+</section>
+
+<!-- ============ PUNTO 3 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/12_libres.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">3</div>
+    <div class="title">Libres para <em>servir</em></div>
+  </div>
+  <aside class="notes"><h3>3. Libres para servir (≈7 min)</h3><p>La paradoja de Lutero.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/13_lutero_escribe.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Lutero · 1520</div>
+    <div class="big">Libre señor de todo.</div>
+    <div class="big"><em>Servidor</em> de todos.</div>
+  </div>
+  <aside class="notes"><h3>3 · Historia</h3><p>Lutero abre "La libertad cristiana" (1520) con esta tesis (cita textual):</p><p>"El cristiano es libre señor de todas las cosas y no está sujeto a nadie. El cristiano es servidor de todas las cosas y está sujeto a todos."</p><p>La toma de Pablo: 1 Co 9:19: "Por lo cual, siendo libre de todos, me he hecho siervo de todos para ganar a mayor número."</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/14_lavando_pies.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Gálatas 5:13</div>
+    <div class="big">“…<em>servíos</em> por amor los unos a los otros.”</div>
+  </div>
+  <aside class="notes"><h3>Gálatas 5:13</h3><p>"Porque vosotros, hermanos, a libertad fuisteis llamados; solamente que no uséis la libertad como ocasión para la carne, sino servíos por amor los unos a los otros."</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="greek">δουλεύω</div>
+    <div class="translit">douleúō</div>
+    <div class="big">Servir como esclavo… <em>siendo libre</em></div>
+  </div>
+  <aside class="notes"><h3>Palabra griega (Gál 5:13)</h3><p>δουλεύω (douleúō): servir como esclavo. Pablo usa a propósito la palabra del esclavo para describir lo que hace un hombre libre. Esa es la paradoja.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge">¿La libertad es una excusa… o una <em>oportunidad</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación · Punto 3</h3><p>La gracia no nos liberó para quedarnos cómodos: nos liberó para servir.</p><p>¿Estamos usando la libertad como excusa o como oportunidad?</p><p>Nos toca elegir servir, no porque estemos obligados, sino porque somos libres.</p></aside>
+</section>
+
+<!-- ============ PUNTO 4 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/15_trabajos.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">4</div>
+    <div class="title">Todo trabajo es <em>servicio</em></div>
+  </div>
+  <aside class="notes"><h3>4. Todo trabajo es servicio (≈7 min)</h3><p>La vocación.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/16_lechera.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Una idea de Lutero</div>
+    <div class="big">Dios también obra en lo <em>cotidiano</em>.</div>
+  </div>
+  <aside class="notes"><h3>4 · Historia</h3><p>Los reformadores le dieron dignidad al trabajo común: el hogar, el oficio, el comercio. Ya no hacía falta irse a un monasterio para servir a Dios.</p><p>Lutero mismo se casó con Katharina von Bora en 1525 y vivió una vida de familia.</p><p>Se le atribuye la idea de que Dios ordeña las vacas a través de la vocación de la lechera (presentarlo como "una idea de Lutero", no como cita textual).</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/17_carpintero.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Colosenses 3:23-24</div>
+    <div class="big">“…hacedlo de corazón, como para el <em>Señor</em>…”</div>
+  </div>
+  <aside class="notes"><h3>Colosenses 3:23-24</h3><p>"Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres; sabiendo que del Señor recibiréis la recompensa de la herencia, porque a Cristo el Señor servís."</p><p>También 1 Co 10:31: "Si, pues, coméis o bebéis, o hacéis otra cosa, hacedlo todo para la gloria de Dios."</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="greek">κλῆσις</div>
+    <div class="translit">klēsis</div>
+    <div class="big">Llamado · <em>vocación</em></div>
+  </div>
+  <aside class="notes"><h3>Palabra griega (1 Co 7:20)</h3><p>κλῆσις (klēsis): llamado, vocación. Dios no llama solo al púlpito: llama a cada uno en su lugar.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge">¿Cómo servimos a Cristo el <em>lunes</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación · Punto 4</h3><p>El servicio no termina el jueves a la noche.</p><p>¿Cómo servimos a Cristo el lunes en el trabajo, en casa, en la facultad?</p><p>Necesitamos ver nuestro trabajo diario como un altar.</p></aside>
+</section>
+
+<!-- ============ PUNTO 5 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/18_detras_escena.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">5</div>
+    <div class="title">Sin plataforma <em>propia</em></div>
+  </div>
+  <aside class="notes"><h3>5. Sin plataforma propia (≈7 min)</h3><p>Solo a Dios la gloria.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/19_bach.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">J. S. Bach</div>
+    <div class="year" style="font-size:250px">S.D.G.</div>
+    <div class="body">Solo a Dios la <em style="font-style:normal;color:var(--green-dk)">gloria</em></div>
+  </div>
+  <aside class="notes"><h3>5 · Historia</h3><p>La Reforma cerró con una convicción: solo a Dios la gloria (Soli Deo Gloria).</p><p>Johann Sebastian Bach, músico luterano, firmaba muchas de sus partituras con "S.D.G.". Gran parte de esa música se tocó en cultos comunes y estuvo décadas sin reconocimiento. Ejemplo directo para la banda y para todos los servidores.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/20_diotrefes.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">El contra-modelo</div>
+    <div class="big">“…le gusta tener el <em>primer lugar</em>…”</div>
+    <div class="ref">3 Juan 9</div>
+  </div>
+  <aside class="notes"><h3>Diótrefes</h3><p>3 Juan 9: "Yo he escrito a la iglesia; pero Diótrefes, al cual le gusta tener el primer lugar entre ellos, no nos recibe."</p><p>Un servidor que convirtió la iglesia en su plataforma.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/21_juan.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">El modelo</div>
+    <div class="big">“Es necesario que él crezca, pero que yo <em>mengüe</em>.”</div>
+    <div class="ref">Juan 3:30</div>
+  </div>
+  <aside class="notes"><h3>Juan el Bautista</h3><p>Juan 3:30: "Es necesario que él crezca, pero que yo mengüe."</p><p>El modelo opuesto a Diótrefes. Conecta con "El amigo del novio".</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="greek" style="font-size:230px">φιλοπρωτεύω</div>
+    <div class="translit">philoprōteúō</div>
+    <div class="big">Amar ser el <em>primero</em></div>
+  </div>
+  <aside class="notes"><h3>Palabra griega (3 Juan 9)</h3><p>φιλοπρωτεύω (philoprōteúō): amar ser el primero. Es la enfermedad de Diótrefes.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge">Si nadie nos agradeciera… ¿seguiríamos <em>sirviendo</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación · Punto 5</h3><p>Si nadie nos agradeciera nunca más, ¿seguiríamos sirviendo igual?</p><p>Debemos revisar si nuestro servicio señala a Cristo o nos señala a nosotros.</p></aside>
+</section>
+
+<!-- ============ CONCLUSIÓN Y LLAMADO ============ -->
+
+<section class="slide">
+  <div class="pic"><img src="img/01_portada.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Efesios 2:10</div>
+    <div class="big">No nos liberó de servir.</div>
+    <div class="big">Nos liberó <em>para</em> servir.</div>
+  </div>
+  <aside class="notes"><h3>Conclusión (≈3 min)</h3><p>Ef 2:10: "Porque somos hechura suya, creados en Cristo Jesús para buenas obras, las cuales Dios preparó de antemano para que anduviésemos en ellas."</p><p>Repaso: TODOS servimos (1), por GRATITUD (2), como LIBRES (3), en TODO lugar (4) y para SU gloria (5).</p><p>La Reforma no nos liberó de servir. Nos liberó PARA servir.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="year" style="color:var(--ink);font-size:340px">S.D.G.</div>
+    <div class="big">Firmamos nuestro servicio: <em>solo a Dios la gloria</em>.</div>
+  </div>
+  <img class="logo" src="img/logo.png" alt="El Renuevo">
+  <aside class="notes"><h3>Llamado final (≈3 min)</h3><p>Para los que sirven cansados, como pagando una deuda: necesitamos descansar en la gracia.</p><p>Para los que recibieron gracia y no sirven: nos toca tomar nuestro lugar en el sacerdocio.</p><p>Momento de oración: "firmamos" con S.D.G. nuestro servicio de esta semana.</p></aside>
+</section>
+
+</main>
+</div>
+<script>
+/* Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic. */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+            if (e.key === 'f') document.documentElement.requestFullscreen?.();
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        // Renuevo Presenter controla el deck cambiando #N (desde 1).
+        addEventListener('hashchange', () => {
+            const n = parseInt(location.hash.slice(1), 10);
+            if (Number.isFinite(n) && n - 1 !== this.current) this.show(n - 1);
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.slides.forEach((x, j) => x.classList.toggle('active', j === this.current));
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>

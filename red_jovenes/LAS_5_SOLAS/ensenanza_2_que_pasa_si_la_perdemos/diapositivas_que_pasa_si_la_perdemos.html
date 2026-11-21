@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué pasa si la perdemos?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+/* Fondo claro, pocas palabras y letra grande: pensado para pantallas chicas. */
+:root {
+    --paper: #FFF8EC;
+    --ink: #161616;
+    --orange: #E8521A;
+    --orange-dk: #B23A0A;
+    --f: 'Montserrat', Arial, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; cursor: none; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--paper); }
+
+/* Lienzo completo: imagen cuadrada de borde a borde (alto total) + texto en el resto. */
+.slide { position: absolute; inset: 0; display: grid; grid-template-columns: 1000px 1fr; visibility: hidden; opacity: 0; transition: opacity .6s ease, visibility 0s .6s; background: var(--paper); color: var(--ink); font-family: var(--f); }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .6s ease; z-index: 1; }
+.slide.flip { grid-template-columns: 1fr 1000px; }
+.slide.flip .pic { order: 2; border-width: 0 0 0 10px; }
+/* Sin imagen: el texto usa todo el ancho. */
+.slide.solo { grid-template-columns: 1fr; }
+.slide.solo .text { align-items: center; text-align: center; padding: 60px 110px; }
+.slide.solo .kicker, .slide.solo .fake { align-self: center; }
+.slide.app { background: var(--orange); }
+.slide.app .kicker { background: var(--paper); color: var(--ink); }
+
+.pic { height: 1080px; overflow: hidden; border-right: 10px solid var(--ink); background: #fff; }
+.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.slide.active .pic img { animation: zoom 12s ease-out both; }
+@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+
+.text { display: flex; flex-direction: column; justify-content: center; gap: 44px; padding: 60px 56px; }
+.slide.active .text > * { animation: up .8s var(--ease) both; }
+.slide.active .text > *:nth-child(2) { animation-delay: .12s; }
+.slide.active .text > *:nth-child(3) { animation-delay: .24s; }
+.slide.active .text > *:nth-child(4) { animation-delay: .36s; }
+@keyframes up { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+
+.kicker.sub { border-radius: 28px; font-size: 52px; line-height: 1.15; }
+.kicker { align-self: flex-start; padding: 16px 32px; border-radius: 999px; background: var(--ink); color: #fff; font: 800 58px/1 var(--f); }
+.fake { align-self: flex-start; padding: 18px 30px; border: 6px dashed var(--ink); border-radius: 20px; font: 900 56px/1.15 var(--f); }
+.fake small { display: block; font-size: 40px; letter-spacing: .08em; text-transform: uppercase; color: var(--orange-dk); }
+.title { font: 900 128px/1 var(--f); letter-spacing: -.03em; }
+.title em, .big em, .huge em, .body em { font-style: normal; color: var(--orange-dk); }
+.big { font: 900 104px/1.05 var(--f); letter-spacing: -.02em; }
+.huge { font: 900 150px/1.02 var(--f); letter-spacing: -.03em; }
+.body { font: 800 80px/1.15 var(--f); }
+.list { font: 800 76px/1.3 var(--f); }
+.ref { font: 900 88px/1 var(--f); color: var(--orange-dk); }
+.slide.app .ref, .slide.app em { color: #fff; }
+.num { width: 260px; height: 260px; border-radius: 50%; display: grid; place-items: center; background: var(--orange); border: 10px solid var(--ink); font: 900 190px/1 var(--f); }
+.slide.solo .big { font-size: 136px; }
+.slide.solo .big.long { font-size: 104px; }
+.slide.solo .body.long { font-size: 72px; }
+.logos { position: absolute; right: 40px; bottom: 34px; display: flex; gap: 26px; align-items: center; }
+.logos img { height: 110px; }
+.notes { display: none; }
+.progress { position: fixed; left: 0; bottom: 0; height: 8px; background: var(--orange); z-index: 1000; transition: width .5s var(--ease); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- ============ INTRODUCCIÓN ============ -->
+
+<section class="slide">
+  <div class="pic"><img src="img/01_billetes.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Las 5 Solas · Encuentro 2</div>
+    <div class="title">¿Qué pasa si la <em>perdemos</em>?</div>
+  </div>
+  <div class="logos"><img src="img/logo_vastagos.png" alt="Vástagos"><img src="img/logo_raices.png" alt="Raíces"></div>
+  <aside class="notes"></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Repaso</div>
+    <div class="big long">La Biblia nos enseña que somos salvos solo por <em>Cristo</em>, solo por <em>gracia</em>, solo por <em>fe</em>… para la <em>gloria de Dios</em>.</div>
+  </div>
+  <aside class="notes"><p>Repaso de la semana pasada: "La Biblia nos enseña que somos salvos solo por Cristo, solo por gracia, solo por fe… para la gloria de Dios."</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/01_billetes.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Billetes falsos</div>
+    <div class="big">Solo se falsifica lo que tiene <em>valor</em>.</div>
+  </div>
+  <aside class="notes"><p>Nadie falsifica un billete de $10. Se falsifican los de $20.000. <strong>Solo se falsifica lo que tiene valor.</strong></p><p>Y el billete falso no se ve distinto: se ve <em>casi igual</em>.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="big">No la tiramos de golpe: la <em>cambiamos</em> por algo que se parece.</div>
+  </div>
+  <aside class="notes"><p>Así se pierde una sola: no la tiramos de golpe, la cambiamos por algo que <strong>se parece</strong>.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Gálatas 1:6-7</div>
+    <div class="big long">“…para seguir un evangelio <em>diferente</em>. No que haya otro…”</div>
+    <div class="body">Una de las cartas preferidas de Lutero.</div>
+  </div>
+  <aside class="notes"><p>"Estoy maravillado de que tan pronto os hayáis alejado del que os llamó por la gracia de Cristo, para seguir un evangelio diferente. No que haya otro, sino que hay algunos que os perturban y quieren pervertir el evangelio de Cristo." (Gálatas 1:6-7 RVR1960)</p><p>Gálatas fue una de las cartas preferidas de Lutero. Escribió un comentario completo sobre ella.</p></aside>
+</section>
+
+<!-- ============ SOLA 1 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/02_mi_verdad.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">1</div>
+    <div class="title">Solo la <em>Escritura</em></div>
+    <div class="fake"><small>Billete falso</small>“Mi verdad.”</div>
+  </div>
+  <aside class="notes"><h3>1 · Solo la Escritura</h3></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/02_mi_verdad.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker sub">a · El billete falso</div>
+    <div class="body">Lo que siento, un video o la mayoría tienen la <em>última palabra</em>.</div>
+  </div>
+  <aside class="notes"><h3>a. El billete falso</h3><p>Lo que siento, lo que dice un video o lo que opina la mayoría pasa a tener la última palabra.</p><p><em>(Solo decirlo)</em> también "Dios me dijo…" algo que contradice la Biblia.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Si la perdemos</div>
+    <div class="big">Gana el que grita más fuerte o tiene más <em>seguidores</em>.</div>
+  </div>
+  <aside class="notes"><p>si la Biblia no manda, gana el que grita más fuerte o el que tiene más seguidores.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/03_berea.jpg" alt=""></div>
+  <div class="text" style="gap:30px">
+    <div class="kicker sub">b · La verdad que lo corrige</div>
+    <div class="big" style="font-size:88px">“…escudriñando cada día las <em>Escrituras</em>…”</div>
+    <div class="ref" style="font-size:72px">Hechos 17:11</div>
+    <div class="body" style="font-size:68px">Comprobaban hasta lo que predicaba Pablo.</div>
+  </div>
+  <aside class="notes"><h3>b. La verdad que lo corrige</h3><p>"Y éstos eran más nobles que los que estaban en Tesalónica, pues recibieron la palabra con toda solicitud, escudriñando cada día las Escrituras para ver si estas cosas eran así." (Hechos 17:11 RVR1960)</p><p>Los de Berea comprobaban con la Biblia hasta lo que predicaba Pablo.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge" style="font-size:128px">¿Comprobamos con la Biblia… o creemos lo que <em>suena bien</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>¿Comprobamos con la Biblia lo que escuchamos, incluso lo que se predica acá, o creemos lo que suena bien?</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">¿Está en la Biblia?</div>
+    <div class="big">“Dios ayuda a los que se ayudan.”</div>
+    <div class="body"><em>No.</em> Es un refrán que popularizó Benjamin Franklin.</div>
+  </div>
+  <aside class="notes"><p>"Dios ayuda a los que se ayudan." No está en la Biblia. Es un refrán viejo que popularizó Benjamin Franklin.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">¿Está en la Biblia?</div>
+    <div class="big long">“Dios no te da más de lo que podés soportar.”</div>
+    <div class="body">1 Corintios 10:13 habla de <em>tentación</em>, no de sufrimiento.</div>
+  </div>
+  <aside class="notes"><p>"Dios no te da más de lo que podés soportar." Se apoya en 1 Corintios 10:13, pero ese versículo habla de <strong>tentación</strong>, no de sufrimiento: Dios "dará también juntamente con la tentación la salida".</p><p>1 Co 10:13: "No os ha sobrevenido ninguna tentación que no sea humana; pero fiel es Dios, que no os dejará ser tentados más de lo que podéis resistir, sino que dará también juntamente con la tentación la salida, para que podáis soportar."</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/04_ia_biblia.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">La IA como los de Berea</div>
+    <div class="list">1. Preguntar <em>bien</em><br>2. Leer el capítulo <em>completo</em><br>3. Dudas → un <em>líder</em></div>
+  </div>
+  <aside class="notes"><p><strong>1. Preguntar bien.</strong></p><p><strong>2. Abrir la Biblia y leer el capítulo completo.</strong> La IA puede equivocarse o inventar. <em>Momento personal:</em> a mí me pasó que una IA me dio como cita textual un versículo que no existía.</p><p><strong>3. Si queda una duda, hablarla con un líder.</strong> Así no nos quedamos con lo primero que leímos.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">1 · Preguntar bien</div>
+    <div class="body long">“¿Qué versículos hablan de la ansiedad? Dame la <em>cita exacta</em> y el <em>contexto</em> de cada uno, y decime si hay pasajes que parecen decir otra cosa.”</div>
+  </div>
+  <aside class="notes"><p>No "¿qué dice la Biblia de la ansiedad?". Mejor algo así: "¿Qué versículos hablan de la ansiedad? Dame la cita exacta y el contexto de cada uno, y decime si hay pasajes que parecen decir otra cosa."</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/04_ia_biblia.jpg" alt=""></div>
+  <div class="text">
+    <div class="big">La IA es una <em>lupa</em>, no el juez.</div>
+  </div>
+  <aside class="notes"><p>la IA es una lupa, no el juez. Nos ayuda a buscar, pero la última palabra la tiene la Biblia.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Desafío</div>
+    <div class="big long">Esta semana: comprobar con la Biblia una frase que escuchamos <em>seguido</em>.</div>
+  </div>
+  <aside class="notes"><p>Esta semana podemos tomar una frase que escuchamos seguido, en la iglesia, en redes o en casa, y comprobar si de verdad está en la Biblia.</p></aside>
+</section>
+
+<!-- ============ SOLA 2 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/05_caminos.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">2</div>
+    <div class="title">Solo <em>Cristo</em></div>
+    <div class="fake"><small>Billete falso</small>“Jesús y algo más.”</div>
+  </div>
+  <aside class="notes"><h3>2 · Solo Cristo</h3></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/05_caminos.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker sub">a · El billete falso</div>
+    <div class="big">“Todos los caminos llevan a <em>Dios</em>.”</div>
+  </div>
+  <aside class="notes"><h3>a. El billete falso</h3><p>"Todos los caminos llevan a Dios", o Jesús + horóscopo, energías o amuletos "por las dudas".</p><p><em>(Solo decirlo)</em> también Jesús como un buen maestro más.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Si la perdemos</div>
+    <div class="big">Si Jesús es <em>un</em> camino, la cruz no hacía falta.</div>
+  </div>
+  <aside class="notes"><p>si Jesús es <em>un</em> camino, la cruz no hacía falta.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker sub">b · La verdad que lo corrige</div>
+    <div class="big long">“Yo soy <em>el</em> camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.”</div>
+    <div class="ref">Juan 14:6</div>
+    <div class="body"><em>El</em> camino. No <em>un</em> camino.</div>
+  </div>
+  <aside class="notes"><h3>b. La verdad que lo corrige</h3><p>"Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí." (Juan 14:6 RVR1960)</p><p>Dice <strong>el</strong> camino, no <strong>un</strong> camino.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge" style="font-size:128px">¿Jesús nos alcanza… o buscamos otra <em>seguridad</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>¿Jesús nos alcanza, o en el fondo seguimos buscando otra cosa que nos dé seguridad?</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/06_amuletos.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Lo “espiritual”</div>
+    <div class="list">Horóscopo<br>Tarot en TikTok<br>Cintita roja<br>“Manifestar”<br>Energías</div>
+  </div>
+  <aside class="notes"><p><strong>Lo "espiritual":</strong> el horóscopo y la compatibilidad de signos, el tarot en TikTok, la cintita roja contra la envidia, "manifestar" o decretar lo que queremos, cristales y energías.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Lo cotidiano</div>
+    <div class="big">La plata · La pareja<br>Los <em>likes</em> · Rendir bien</div>
+  </div>
+  <aside class="notes"><p><strong>Lo cotidiano</strong> (más difícil de ver): la plata, la pareja, los likes y la aprobación de los demás, rendir bien en el colegio o el trabajo.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Cómo darnos cuenta</div>
+    <div class="big">Si lo perdemos, ¿se nos cae <em>todo</em>?</div>
+    <div class="body">Ahí estamos confiando.</div>
+  </div>
+  <aside class="notes"><p>¿qué es lo que, si lo perdemos, sentimos que se nos cae todo? Eso es en lo que estamos confiando.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Desafío</div>
+    <div class="big long">Ponerle nombre a nuestra “<em>cintita roja</em>”… y entregársela a Jesús.</div>
+  </div>
+  <aside class="notes"><p>Necesitamos ponerle nombre a nuestra "cintita roja", eso que tenemos "por las dudas" además de Jesús, y entregárselo a Él.</p></aside>
+</section>
+
+<!-- ============ SOLA 3 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/07_total_perdona.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">3</div>
+    <div class="title">Solo por <em>gracia</em></div>
+    <div class="fake"><small>Billete falso</small>“Total, Dios perdona.”</div>
+  </div>
+  <aside class="notes"><h3>3 · Solo por gracia</h3></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/07_total_perdona.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker sub">a · El billete falso</div>
+    <div class="body">La gracia como <em>permiso</em> para vivir como queramos.</div>
+  </div>
+  <aside class="notes"><h3>a. El billete falso</h3><p>La gracia como permiso para vivir como queramos.</p><p><em>(Solo decirlo)</em> el otro billete falso, querer ganarnos la salvación, ya lo vimos el sábado pasado.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Bonhoeffer · 1937</div>
+    <div class="huge">“Gracia <em>barata</em>”</div>
+    <div class="body">Perdón sin arrepentimiento y sin seguir a Cristo.</div>
+  </div>
+  <aside class="notes"><p>Dietrich Bonhoeffer, pastor alemán, llamó a esto <strong>"gracia barata"</strong> en <em>El precio de la gracia</em> (1937): perdón sin arrepentimiento y sin seguir a Cristo.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker sub">b · La verdad que lo corrige</div>
+    <div class="big long">“…la gracia de Dios se ha manifestado… <em>enseñándonos</em>…”</div>
+    <div class="ref">Tito 2:11-12</div>
+    <div class="body">No solo perdona: también <em>enseña</em>.</div>
+  </div>
+  <aside class="notes"><h3>b. La verdad que lo corrige</h3><p>"Porque la gracia de Dios se ha manifestado para salvación a todos los hombres, enseñándonos que, renunciando a la impiedad y a los deseos mundanos, vivamos en este siglo sobria, justa y piadosamente." (Tito 2:11-12 RVR1960)</p><p>La gracia no solo perdona: también <strong>enseña</strong>.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge" style="font-size:128px">¿Un regalo que nos cambia… o una <em>excusa</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>¿Usamos la gracia como un regalo que nos cambia, o como una excusa para no cambiar?</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/08_newton.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">John Newton</div>
+    <div class="big">De traficante de esclavos a “Sublime <em>gracia</em>”.</div>
+    <div class="body">No cambió de golpe.</div>
+  </div>
+  <aside class="notes"><p>Fue traficante de esclavos. Después de convertirse escribió <em>Amazing Grace</em>, la canción que en español conocemos como "Sublime gracia".</p><p>El cambio no fue de un día para otro: al principio siguió un tiempo en ese negocio. Años después se arrepintió en público y apoyó a William Wilberforce en la lucha para abolir la esclavitud en Inglaterra. <strong>La gracia lo fue cambiando de verdad.</strong></p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Bonhoeffer</div>
+    <div class="big">Enfrentó al nazismo. Lo ejecutaron en <em>1945</em>.</div>
+  </div>
+  <aside class="notes"><p><strong>Opcional.</strong></p><p>El mismo que habló de la "gracia barata" vivió lo contrario. Enfrentó al nazismo y lo ejecutaron en 1945.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/09_zaqueo.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Lucas 19:8</div>
+    <div class="big">“…se lo devuelvo <em>cuadruplicado</em>.”</div>
+    <div class="body">Lo primero que hace Zaqueo.</div>
+  </div>
+  <aside class="notes"><p>"Entonces Zaqueo, puesto en pie, dijo al Señor: He aquí, Señor, la mitad de mis bienes doy a los pobres; y si en algo he defraudado a alguno, se lo devuelvo cuadruplicado." (Lucas 19:8 RVR1960)</p><p>Lo primero que hace después de encontrarse con Jesús es devolver lo que robó.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Gracia usada como excusa</div>
+    <div class="list">“Total, el domingo pido perdón.”<br>“Dios conoce mi corazón.”<br>“Nadie es perfecto.”</div>
+  </div>
+  <aside class="notes"><p>"Total, el domingo pido perdón."</p><p>"Dios conoce mi corazón", dicho para justificar algo que sabemos que está mal.</p><p>"Nadie es perfecto", dicho para no cambiar nada.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="huge" style="font-size:128px">La gracia es gratis, pero no nos deja <em>igual</em>.</div>
+  </div>
+  <aside class="notes"><p>La gracia es gratis, pero no nos deja igual.</p></aside>
+</section>
+
+<!-- ============ SOLA 4 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/10_silla.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">4</div>
+    <div class="title">Solo por <em>fe</em></div>
+    <div class="fake"><small>Billete falso</small>“Fe en mi fe.”</div>
+  </div>
+  <aside class="notes"><h3>4 · Solo por fe</h3></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/10_silla.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker sub">a · El billete falso</div>
+    <div class="body">Creer que salva <em>cuánto</em> creo o cuánto siento.</div>
+  </div>
+  <aside class="notes"><h3>a. El billete falso</h3><p>Creer que lo que salva es <em>cuánto</em> creo o cuánto siento. Si un día no siento nada, pienso que Dios se fue.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Si la perdemos</div>
+    <div class="big">La fe se vuelve otra <em>obra</em>.</div>
+    <div class="body">“¿Habré creído lo suficiente?”</div>
+  </div>
+  <aside class="notes"><p>la fe se vuelve otra obra, y vuelve el miedo de Lutero: "¿habré creído lo suficiente?".</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker sub">b · La verdad que lo corrige</div>
+    <div class="big">“Puestos los ojos en <em>Jesús</em>, el autor y consumador de la fe…”</div>
+    <div class="ref">Hebreos 12:2</div>
+  </div>
+  <aside class="notes"><h3>b. La verdad que lo corrige</h3><p>"Puestos los ojos en Jesús, el autor y consumador de la fe, el cual por el gozo puesto delante de él sufrió la cruz, menospreciando el oprobio, y se sentó a la diestra del trono de Dios." (Hebreos 12:2 RVR1960)</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/10_silla.jpg" alt=""></div>
+  <div class="text">
+    <div class="body">No nos sostiene la fuerza con que nos sentamos.</div>
+    <div class="big">Nos sostiene la <em>silla</em>.</div>
+  </div>
+  <aside class="notes"><p>Retomamos la silla del sábado pasado: <strong>no nos sostiene la fuerza con que nos sentamos, nos sostiene la silla.</strong></p><p>Lo que salva no es el tamaño de nuestra fe, es Aquel en quien confiamos.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge" style="font-size:128px">Cuando no sentimos nada… ¿pensamos que Dios se <em>fue</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>Cuando no sentimos nada al orar o al alabar, ¿pensamos que Dios se fue? ¿Nuestra fe depende del ánimo del día?</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/11_pedro.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Mateo 14:30</div>
+    <div class="big">“…al ver el fuerte viento, tuvo <em>miedo</em>…”</div>
+    <div class="body">Pedro cambió adónde miraba.</div>
+  </div>
+  <aside class="notes"><p>Mientras miraba a Jesús, caminaba. "Pero al ver el fuerte viento, tuvo miedo; y comenzando a hundirse, dio voces, diciendo: ¡Señor, sálvame!" (Mt 14:30 RVR1960)</p><p>El viento no cambió a Jesús. Pedro cambió adónde miraba.</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/12_spurgeon.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Charles Spurgeon</div>
+    <div class="big">Depresiones fuertes toda su vida.</div>
+    <div class="body">Y siguió <em>confiando</em>.</div>
+  </div>
+  <aside class="notes"><p>Uno de los predicadores más grandes de la historia. Sufrió depresiones muy fuertes toda su vida y habló de eso abiertamente.</p><p>Muchas veces no <em>sentía</em> nada, y aun así siguió confiando y predicando.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">El campamento</div>
+    <div class="big">No perdimos a Jesús: bajó la <em>emoción</em>.</div>
+  </div>
+  <aside class="notes"><p>Volvemos "re arriba", y a las dos semanas sentimos que perdimos todo. Pero no perdimos a Jesús: bajó la emoción.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="big">Los sentimientos son el <em>clima</em>.<br>Jesús es el <em>suelo</em>.</div>
+  </div>
+  <aside class="notes"><p>los sentimientos son como el clima: cambian. Jesús es el suelo: no se mueve.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Desafío</div>
+    <div class="big long">Sin sentir nada, seguimos: orar · leer la Biblia · venir a la iglesia.</div>
+    <div class="body">Porque confiamos en <em>Él</em>.</div>
+  </div>
+  <aside class="notes"><p>En los días en que no sentimos nada, podemos seguir haciendo lo que hace la fe: orar, leer la Biblia, venir a la iglesia. No porque lo sintamos, sino porque confiamos en Él.</p></aside>
+</section>
+
+<!-- ============ SOLA 5 ============ -->
+
+<section class="slide flip">
+  <div class="pic"><img src="img/13_centro_yo.jpg" alt=""></div>
+  <div class="text">
+    <div class="num">5</div>
+    <div class="title">Solo a Dios la <em>gloria</em></div>
+    <div class="fake"><small>Billete falso</small>“El centro soy yo.”</div>
+  </div>
+  <aside class="notes"><h3>5 · Solo a Dios la gloria</h3></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/13_centro_yo.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker sub">a · El billete falso</div>
+    <div class="body">Dios como <em>asistente</em> de nuestros planes.</div>
+    <div class="body">Servir para que nos vean.</div>
+  </div>
+  <aside class="notes"><h3>a. El billete falso</h3><p>Un evangelio donde el centro soy yo. Dios como asistente para cumplir nuestros planes. Servir para que nos vean.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Si la perdemos</div>
+    <div class="big">Cuando Dios no hace lo que queremos, lo <em>dejamos</em>.</div>
+  </div>
+  <aside class="notes"><p>si el centro somos nosotros, cuando Dios no hace lo que queremos, lo dejamos.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker sub">b · La verdad que lo corrige</div>
+    <div class="big long">“Porque de él, y por él, y para él, son todas las cosas. A él sea la <em>gloria</em> por los siglos.”</div>
+    <div class="ref">Romanos 11:36</div>
+  </div>
+  <aside class="notes"><h3>b. La verdad que lo corrige</h3><p>"Porque de él, y por él, y para él, son todas las cosas. A él sea la gloria por los siglos. Amén." (Romanos 11:36 RVR1960)</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Para pensar</div>
+    <div class="huge" style="font-size:120px">Si Dios no nos diera nada más que la cruz… ¿lo <em>seguiríamos</em>?</div>
+  </div>
+  <aside class="notes"><h3>Aplicación</h3><p>Si Dios no nos diera nada más de lo que ya nos dio en la cruz, ¿lo seguiríamos igual?</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/14_panes.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Juan 6:26</div>
+    <div class="big">“…porque comisteis el <em>pan</em>…”</div>
+  </div>
+  <aside class="notes"><p>Jesús multiplica los panes y al día siguiente lo busca una multitud. Él les dice: "De cierto, de cierto os digo que me buscáis, no porque habéis visto las señales, sino porque comisteis el pan y os saciasteis." (Jn 6:26 RVR1960)</p></aside>
+</section>
+
+<section class="slide">
+  <div class="pic"><img src="img/14_panes.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Juan 6:68</div>
+    <div class="big">“Señor, ¿a quién <em>iremos</em>?”</div>
+    <div class="body">La multitud quería el pan. Pedro quería a <em>Jesús</em>.</div>
+  </div>
+  <aside class="notes"><p>Cuando les habla de seguirlo de verdad, muchos se van (Jn 6:66). Jesús les pregunta a los doce si también quieren irse, y Pedro responde: "Señor, ¿a quién iremos? Tú tienes palabras de vida eterna." (Jn 6:68 RVR1960)</p><p>La multitud quería <strong>el pan</strong>. Pedro quería <strong>a Jesús</strong>.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Daniel 3:18</div>
+    <div class="big">“Y si no, sepas, oh rey, que no serviremos a tus <em>dioses</em>…”</div>
+  </div>
+  <aside class="notes"><p><strong>Opcional.</strong></p><p>Los tres amigos le dicen al rey que Dios puede librarlos del horno. "Y si no, sepas, oh rey, que no serviremos a tus dioses, ni tampoco adoraremos la estatua de oro que has levantado." (Dn 3:18 RVR1960)</p><p>Su fe no dependía de que Dios hiciera lo que ellos querían.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Cómo darnos cuenta</div>
+    <div class="big">¿Y cuando Dios no responde como <em>queremos</em>?</div>
+    <div class="body">El examen · la relación · la enfermedad</div>
+  </div>
+  <aside class="notes"><p>¿Qué pasa con nuestra fe cuando Dios no responde como queremos: el examen que no aprobamos, la relación que no se dio, la enfermedad que no se fue? Ahí se ve si seguimos a Dios por lo que nos da o por quién es.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Desafío</div>
+    <div class="huge" style="font-size:120px">“Señor, sé que podés… y si no, igual te <em>seguimos</em>.”</div>
+  </div>
+  <aside class="notes"><p>Podemos aprender a orar como los amigos de Daniel: "Señor, sé que podés… y si no, igual te seguimos."</p></aside>
+</section>
+
+<!-- ============ CIERRE Y LLAMADO ============ -->
+
+<section class="slide">
+  <div class="pic"><img src="img/01_billetes.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Conocer el verdadero</div>
+    <div class="big">Para detectar el falso, hay que conocer el <em>verdadero</em>.</div>
+  </div>
+  <aside class="notes"><p>Para no aceptar un billete falso, hay que conocer muy bien el verdadero.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="big long">No para pelear con nadie: para que no nos cambien el <em>evangelio</em> sin darnos cuenta.</div>
+  </div>
+  <aside class="notes"><p>Por eso estudiamos las 5: no para pelear con nadie, sino para que no nos cambien el evangelio sin darnos cuenta.</p></aside>
+</section>
+
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Llamado</div>
+    <div class="huge" style="font-size:128px">Hoy podemos devolver el billete <em>falso</em>.</div>
+    <div class="body">Y volver al evangelio completo.</div>
+  </div>
+  <aside class="notes"><p>Quizás algunos de nosotros cambiamos, sin darnos cuenta, una de estas verdades por un billete falso. Hoy podemos devolverlo y volver al evangelio completo. Tenemos un momento corto de oración.</p></aside>
+</section>
+
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Ahora · Taller</div>
+    <div class="title">Pliego <em>2</em></div>
+    <div class="body">1 peligro actual + la verdad que lo corrige</div>
+  </div>
+  <div class="logos"><img src="img/logo_vastagos.png" alt="Vástagos"><img src="img/logo_raices.png" alt="Raíces"></div>
+  <aside class="notes"><p>Cada grupo escribe <strong>1 peligro actual + la verdad que lo corrige</strong>, con sus palabras. Pueden usar el de hoy o encontrar otro.</p></aside>
+</section>
+
+</main>
+</div>
+<script>
+/* Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic. */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+            if (e.key === 'f') document.documentElement.requestFullscreen?.();
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        // Renuevo Presenter controla el deck cambiando #N (desde 1).
+        addEventListener('hashchange', () => {
+            const n = parseInt(location.hash.slice(1), 10);
+            if (Number.isFinite(n) && n - 1 !== this.current) this.show(n - 1);
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.slides.forEach((x, j) => x.classList.toggle('active', j === this.current));
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>

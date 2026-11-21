@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leña cada mañana — Levítico 6:12-13</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0f0f0f;
+    --bg2:      #1a1a1a;
+    --text:     #f0f0f0;
+    --muted:    #999;
+    --red:      #e05555;
+    --red-bg:   #2a1212;
+    --green:    #5DBE2C;
+    --green-bg: #0e1f09;
+    --gold:     #f0c040;
+    --gold-bg:  #1e1800;
+    --accent:   #5DBE2C;
+    --border:   #333;
+    --nav-h:    64px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: #111;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    z-index: 100;
+    overflow-x: auto;
+  }
+
+  nav a {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: #222;
+    color: #ccc;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid #333;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+
+  /* ── HEADER CARD ── */
+  .header-card {
+    background: var(--bg2);
+    border-left: 6px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .header-card .label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .header-card h1 {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-card .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  /* ── SECTION TITLE ── */
+  .sec-title {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── VERSE BOX ── */
+  .verse {
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #f5d0d0;
+  }
+  .verse .ref {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  /* ── IDEA CENTRAL ── */
+  .idea {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 26px;
+    margin: 24px 0;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #cdf0b8;
+  }
+  .idea .idea-label {
+    font-family: Arial, sans-serif;
+    font-size: .6em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+    font-style: normal;
+  }
+
+  /* ── term ── */
+  .term {
+    font-weight: 700;
+    text-decoration: underline;
+    color: #ddd;
+  }
+  .term-def {
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  /* ── PUNTO TITLE ── */
+  .punto-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 32px 0 20px;
+    padding: 14px 20px;
+    background: #222;
+    border-radius: 6px;
+    border-left: 5px solid var(--accent);
+  }
+  .punto-num {
+    color: var(--accent);
+    margin-right: 10px;
+  }
+
+  /* ── SUBPOINTS ── */
+  .sub {
+    margin: 18px 0 18px 16px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+  }
+  .sub-label {
+    font-family: Arial, sans-serif;
+    font-size: .85em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .sub p {
+    font-size: 1.1em;
+    color: #e8e8e8;
+  }
+
+  /* ── APPLICATION BOX ── */
+  .aplicacion {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 28px 0 8px;
+    font-size: 1.1em;
+    color: #c8f0b0;
+  }
+  .aplicacion .apl-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* ── QUESTION ── */
+  .pregunta {
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #f5e8a0;
+    font-style: italic;
+  }
+
+  /* ── INTRO / CONCLUSION plain text ── */
+  .plain {
+    font-size: 1.1em;
+    color: #ddd;
+    margin: 14px 0;
+  }
+
+  /* ── LLAMADO ── */
+  .llamado {
+    background: #1e0a2a;
+    border-left: 5px solid #b060e0;
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: #e0c0ff;
+  }
+  .llamado .ll-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b060e0;
+    margin-bottom: 8px;
+  }
+
+  /* ── NOTA ── */
+  .nota {
+    font-family: Arial, sans-serif;
+    font-size: .55em;
+    color: #666;
+    font-style: italic;
+    display: block;
+    margin-top: 6px;
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .nav-hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    padding: 8px;
+  }
+
+  /* ── subrayado de versículos ── */
+  .verse u { text-decoration-thickness: 2px; text-underline-offset: 4px; color: #fff; }
+  ul.pasos { margin: 10px 0 0 22px; }
+  ul.pasos li { margin: 6px 0; }
+  .paso { color: #fff; font-weight: bold; }
+
+  /* ── celular ── */
+  @media (max-width: 640px) {
+    body { font-size: 17px; }
+    :root { --nav-h: 54px; }
+    nav a { font-size: 13px; padding: 6px 11px; }
+    section { padding: 0 14px; }
+    .header-card { padding: 20px 18px; }
+    .header-card h1 { font-size: 1.7rem; }
+    .verse { padding: 16px 16px; font-size: 1.15em; }
+    .punto-title { font-size: 1.3rem; padding: 12px 14px; }
+    .idea, .aplicacion, .pregunta, .llamado { padding: 14px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#intro" class="active">Intro</a>
+  <a href="#punto1">1 · Orar</a>
+  <a href="#punto2">2 · Adorar</a>
+  <a href="#punto3">3 · Predicar</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Levítico 6:12-13 — Reunión General · Jueves 19/11/2026 · 20 min</div>
+    <h1>Leña cada mañana</h1>
+    <div class="meta">Tono: equilibrado, cierre desafiante &nbsp;·&nbsp; Después de la jornada con el Instituto Misión &nbsp;·&nbsp; RVR1960</div>
+  </div>
+
+  <div class="sec-title">Introducción · ~3 min</div>
+
+  <p class="plain">
+    El lunes y el martes vivimos algo hermoso con los jóvenes misioneros del Instituto Misión. Fue muy bendecido.
+  </p>
+
+  <div class="pregunta">
+    La pregunta ahora es otra: ¿cómo seguimos?
+  </div>
+
+  <p class="plain">
+    Todos conocemos la historia: una jornada fuerte, una semana encendida… y a las tres semanas, volvemos a lo de siempre. No nos hace falta otra jornada. Nos hace falta algo que mantenga el fuego.
+  </p>
+
+  <div class="verse">
+    "Y el fuego encendido sobre el altar no se apagará, sino que <u>el sacerdote pondrá en él leña cada mañana</u>, y acomodará el holocausto sobre él, y quemará sobre él las grosuras de los sacrificios de paz. <u>El fuego arderá continuamente en el altar; no se apagará.</u>"
+    <span class="ref">Levítico 6:12-13 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    El fuego de ese altar lo había encendido Dios (lo cuenta Levítico 9:24). Pero el sacerdote tenía que poner leña <strong>cada mañana</strong>. Dios no le pedía que encendiera el fuego: le pedía que lo cuidara.
+  </p>
+  <p class="plain">
+    <span class="term">Tamid</span> <span class="term-def">(hebreo) — "continuamente": lo que se hace siempre, todos los días, sin cortar.</span>
+  </p>
+
+  <p class="plain">
+    En estos días Dios me dio claridad sobre tres cosas que quiero mantener. Lo comparto desde lo personal, como un hermano que también lo necesita:
+  </p>
+
+  <div class="idea">
+    <div class="idea-label">Idea central</div>
+    El fuego lo enciende Dios; cuidarlo nos toca a nosotros, cada día. La leña es: orar, adorar y predicar.
+  </div>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3 · ~5 min</div>
+
+  <div class="punto-title"><span class="punto-num">1.</span>Orar</div>
+
+  <div class="idea">
+    <div class="idea-label">La idea</div>
+    Orar es estar en comunión con Dios todos los días, no solo pedirle cosas cuando hay un problema.
+  </div>
+
+  <div class="verse">
+    "Levantándose muy de mañana, siendo aún muy oscuro, salió y se fue a un lugar desierto, <u>y allí oraba.</u>"
+    <span class="ref">Marcos 1:35 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    El día anterior Jesús había sanado a muchos; toda la ciudad estaba en la puerta (Marcos 1:33). Después de un día así de bendecido, lo primero que hace a la mañana siguiente es buscar al Padre.
+  </p>
+  <p class="plain">
+    <strong>Si el Hijo de Dios necesitaba ese tiempo después de un día de gloria, cuánto más nosotros después de nuestra jornada.</strong>
+  </p>
+
+  <div class="verse">
+    "<u>Orad sin cesar.</u>"
+    <span class="ref">1 Tesalonicenses 5:17 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    <span class="term">Adialeíptōs</span> <span class="term-def">(ἀδιαλείπτως) — sin interrupción.</span>
+    No quiere decir hablar sin parar: quiere decir no cortar nunca la conexión. Llevar a Dios en cada pensamiento: en el colectivo, en el trabajo, lavando los platos.
+  </p>
+
+  <div class="verse">
+    "Todos estos <u>perseveraban unánimes en oración</u> y ruego, con las mujeres, y con María la madre de Jesús, y con sus hermanos."
+    <span class="ref">Hechos 1:14 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    Entre la ascensión y Pentecostés no sabían cuándo iba a venir el Espíritu. Pero sabían qué hacer mientras esperaban: orar <strong>juntos</strong>.
+  </p>
+  <p class="plain">
+    <span class="term">Proskarteréō</span> <span class="term-def">(προσκαρτερέω) — perseverar: mantenerse firme, aferrado, sin soltar.</span>
+    La oración personal y la oración con los hermanos no compiten: se necesitan.
+  </p>
+
+  <div class="pregunta">
+    "No sé orar bien." "No tengo tiempo." — La oración no se mide por las palabras lindas sino por la constancia. Jesús no oró porque le sobraba el tiempo: lo sacó de la noche.
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <ul class="pasos">
+      <li>Necesitamos un momento fijo con Dios cada día, antes del celular y antes de las noticias. Aunque sean diez minutos, que sean primero.</li>
+      <li>Podemos convertir los pensamientos del día en oración: la preocupación del trabajo, el hijo que nos preocupa, la cuenta que no cierra.</li>
+      <li><span class="paso">Paso para la semana:</span> el martes, Reunión de Oración. No como obligación: como el lugar donde perseveramos juntos.</li>
+    </ul>
+  </div>
+
+  <div class="pregunta">
+    <strong>Puente →</strong> La oración no termina cuando decimos "amén". Si hablamos con Dios todos los días, eso termina mostrándose en cómo vivimos. Eso es adorar.
+  </div>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3 · ~5 min</div>
+
+  <div class="punto-title"><span class="punto-num">2.</span>Adorar</div>
+
+  <div class="idea">
+    <div class="idea-label">La idea</div>
+    Adorar no es cantar canciones: es entregarle a Dios la vida entera, cada día, aunque cueste.
+  </div>
+
+  <div class="verse">
+    "Así que, hermanos, os ruego <u>por las misericordias de Dios</u>, que <u>presentéis vuestros cuerpos en sacrificio vivo</u>, santo, agradable a Dios, que es vuestro culto racional."
+    <span class="ref">Romanos 12:1 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    <strong>"Por las misericordias de Dios":</strong> Pablo acaba de pasar once capítulos explicando lo que Dios hizo por nosotros en Cristo. La adoración responde a esa misericordia; no es una forma de ganarla.
+  </p>
+  <p class="plain">
+    <strong>"Vuestros cuerpos":</strong> es algo concreto. Las manos, los ojos, la boca, la agenda, la billetera.
+  </p>
+  <p class="plain">
+    <strong>"Sacrificio vivo":</strong> volvemos al altar de Levítico. Esos sacrificios morían una sola vez. Nosotros somos un sacrificio que sigue vivo y que cada mañana tiene que volver a subir al altar.
+  </p>
+  <p class="plain">
+    <span class="term">Latreía</span> <span class="term-def">(λατρεία) — "culto": servicio, adoración que se vive.</span><br>
+    <span class="term">Logikós</span> <span class="term-def">(λογικός) — "racional": lo lógico, lo coherente.</span><br>
+    Cuando entendemos lo que Dios hizo, entregarle todo es lo más lógico.
+  </p>
+
+  <div class="verse">
+    "Y el rey dijo a Arauna: No, sino por precio te lo compraré; porque <u>no ofreceré a Jehová mi Dios holocaustos que no me cuesten nada.</u> Entonces David compró la era y los bueyes por cincuenta siclos de plata."
+    <span class="ref">2 Samuel 24:24 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    Le regalaban todo para el sacrificio, y David dijo que no. Una adoración que no cuesta nada no es una ofrenda.
+  </p>
+
+  <div class="verse">
+    "los veinticuatro ancianos <u>se postran</u> delante del que está sentado en el trono, y adoran al que vive por los siglos de los siglos, y <u>echan sus coronas delante del trono</u>, diciendo: <u>Señor, digno eres</u> de recibir la gloria y la honra y el poder; porque tú creaste todas las cosas, y por tu voluntad existen y fueron creadas."
+    <span class="ref">Apocalipsis 4:10-11 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    <span class="term">Proskynéō</span> <span class="term-def">(προσκυνέω) — adorar: postrarse, inclinarse ante alguien superior.</span>
+    Los ancianos echan sus coronas: lo que podrían mostrar como propio. Eso es rendirse.
+  </p>
+
+  <div class="idea">
+    <div class="idea-label">Clave</div>
+    No adoramos porque tengamos ganas: adoramos porque Él es digno.
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <ul class="pasos">
+      <li>Debemos tomar decisiones de adoración en lo cotidiano: perdonar cuando no tenemos ganas, ser honestos en el trabajo aunque nos perjudique, servir cuando estamos cansados.</li>
+      <li>Necesitamos preguntarnos cuál es la "corona" que todavía no le entregamos: el orgullo, un rencor, el control de algo.</li>
+      <li><span class="paso">Paso para la semana:</span> identificar una decisión concreta que nos cueste, y ofrecérsela a Dios como adoración.</li>
+    </ul>
+  </div>
+
+  <div class="pregunta">
+    <strong>Puente →</strong> El que ora y el que adora no puede quedarse callado. Lo que Dios pone en el altar termina saliendo por la boca.
+  </div>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3 · ~5 min</div>
+
+  <div class="punto-title"><span class="punto-num">3.</span>Predicar</div>
+
+  <div class="idea">
+    <div class="idea-label">La idea</div>
+    La Palabra de Dios tiene poder propio: no son palabras al aire, y merece ser predicada con pasión y valentía.
+  </div>
+
+  <div class="verse">
+    "Porque como desciende de los cielos la lluvia y la nieve, y no vuelve allá, sino que riega la tierra, y la hace germinar y producir, y da semilla al que siembra, y pan al que come, así será mi palabra que sale de mi boca; <u>no volverá a mí vacía</u>, sino que hará lo que yo quiero, y será prosperada en aquello para que la envié."
+    <span class="ref">Isaías 55:10-11 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    La lluvia no pide permiso para hacer crecer la semilla.
+    <span class="term">Reqam</span> <span class="term-def">(hebreo) — "vacía": volver con las manos vacías.</span>
+    La Palabra siempre vuelve con algo.
+  </p>
+
+  <div class="verse">
+    "Porque <u>la palabra de Dios es viva y eficaz</u>, y más cortante que toda espada de dos filos; y penetra hasta partir el alma y el espíritu, las coyunturas y los tuétanos, y <u>discierne los pensamientos y las intenciones del corazón.</u>"
+    <span class="ref">Hebreos 4:12 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    <span class="term">Energés</span> <span class="term-def">(ἐνεργής) — "eficaz": que actúa, que trabaja.</span>
+    Por eso puede traer convicción al pecador más rebelde, y levantar al que está a punto de dejar todo. El poder no está en el predicador: está en la Palabra.
+  </p>
+
+  <div class="verse">
+    "Y ahora, Señor, mira sus amenazas, y <u>concede a tus siervos que con todo denuedo hablen tu palabra</u> […] Cuando hubieron orado, el lugar en que estaban congregados tembló; y todos fueron llenos del Espíritu Santo, y <u>hablaban con denuedo la palabra de Dios.</u>"
+    <span class="ref">Hechos 4:29, 31 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    Los habían amenazado. No le pidieron a Dios que les sacara la amenaza: le pidieron valentía.
+    <span class="term">Parrēsía</span> <span class="term-def">(παρρησία) — "denuedo": hablar con franqueza, de frente, sin esconderse.</span>
+  </p>
+  <p class="plain">
+    <strong>El denuedo nació en una reunión de oración.</strong> El punto 3 sale del punto 1.
+  </p>
+
+  <p class="plain">
+    No todos estamos llamados a predicar desde este púlpito; para mí es un llamado personal. Pero la Palabra no se queda solo en el púlpito:
+  </p>
+
+  <div class="verse">
+    "Pero <u>los que fueron esparcidos iban por todas partes anunciando el evangelio.</u>"
+    <span class="ref">Hechos 8:4 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    No eran los apóstoles (ellos se quedaron en Jerusalén, Hechos 8:1): eran hermanos comunes.
+  </p>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <ul class="pasos">
+      <li>En lo personal: quiero predicar con denuedo, con entrega y con pasión, porque la Palabra lo merece.</li>
+      <li>Todos podemos compartir lo que Dios nos habla con alguien de la familia, del trabajo o del barrio.</li>
+      <li><span class="paso">Paso para la semana:</span> compartir un versículo con una persona, e invitar a alguien al domingo.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONCLUSION -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión · ~1,5 min</div>
+
+  <div class="verse">
+    "Y nosotros <u>persistiremos en la oración y en el ministerio de la palabra.</u>"
+    <span class="ref">Hechos 6:4 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    "Persistiremos" es otra vez <span class="term">proskarteréō</span>, la misma palabra de Hechos 1:14. Los apóstoles tuvieron que decidir qué no iban a soltar, y lo dijeron en voz alta.
+  </p>
+
+  <div class="idea">
+    <div class="idea-label">Cierre</div>
+    La jornada encendió el fuego. Ahora nos toca la leña de cada mañana: orar, adorar, predicar.
+  </div>
+</section>
+
+<!-- LLAMADO -->
+<section id="llamado">
+  <div class="sec-title">Llamado Final · ~1,5 min</div>
+
+  <p class="plain">
+    Así como los apóstoles decidieron qué iban a sostener, hoy podemos decidir delante de Dios qué no vamos a soltar.
+  </p>
+
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    Pasar adelante quienes quieran comprometerse a cuidar el fuego:
+    <ul class="pasos">
+      <li>volver a orar cada día,</li>
+      <li>entregarle a Dios la corona que todavía guardamos,</li>
+      <li>abrir la boca para Su Palabra.</li>
+    </ul>
+    <p style="margin-top:10px;">A los servidores: el fuego de la iglesia se sostiene con la leña de cada uno de nosotros.</p>
+  </div>
+
+  <div class="pregunta" style="margin-top:24px;">
+    Cerrar orando juntos: ya es poner en práctica el punto 1.
+  </div>
+
+  <div class="nav-hint" style="margin-top:60px;">
+    ↑ usá los botones del menú para navegar entre secciones mientras predicás
+  </div>
+</section>
+
+<script>
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+  function updateNav() {
+    const navH = document.getElementById('nav').offsetHeight + 30;
+    let cur = '';
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - navH) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>

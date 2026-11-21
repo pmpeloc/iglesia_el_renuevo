@@ -1,0 +1,36 @@
+﻿<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #titulo-bloque { position: absolute; left: 0; right: 0; top: 150px; text-align: center; color: #fff; }
+    #titulo-feliz { font-family: Montserrat, sans-serif; font-weight: 800; font-size: 72px; letter-spacing: 30px; padding-left: 30px; color: #f5d58a; text-shadow: 0 4px 20px rgba(46, 7, 22, 0.6); }
+    #titulo-dia { position: relative; display: inline-block; margin-top: 10px; font-family: "Playfair Display", serif; font-style: italic; font-weight: 700; font-size: 200px; line-height: 1.05; text-shadow: 0 8px 36px rgba(46, 7, 22, 0.7); white-space: nowrap; }
+    #titulo-dia .letra { display: inline-block; }
+    #titulo-brillo {
+      position: absolute; inset: 0; color: transparent; text-shadow: none;
+      background: linear-gradient(100deg, rgba(255, 240, 200, 0) 40%, rgba(255, 226, 150, 1) 50%, rgba(255, 240, 200, 0) 60%);
+      background-size: 300% 100%; -webkit-background-clip: text; background-clip: text;
+    }
+    #titulo-linea { width: 640px; height: 4px; margin: 24px auto 0; background: linear-gradient(90deg, rgba(245, 213, 138, 0), #f5d58a, rgba(245, 213, 138, 0)); }
+  </style>
+  <div data-hf-id="hf-or0y" id="root" data-composition-id="titulo" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-e71j" id="titulo-bloque">
+      <div data-hf-id="hf-zd9v" id="titulo-feliz">FELIZ</div>
+      <div data-hf-id="hf-o64f" id="titulo-dia" data-layout-allow-overlap><span data-hf-id="hf-fyel" id="titulo-texto">Día de la Madre</span><span data-hf-id="hf-hse6" id="titulo-brillo" aria-hidden="true" data-layout-allow-occlusion>Día de la Madre</span></div>
+      <div data-hf-id="hf-2lsy" id="titulo-linea"></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const txt = document.querySelector("#titulo-texto");
+      txt.innerHTML = [...txt.textContent].map((c) => `<span class="letra">${c === " " ? "&nbsp;" : c}</span>`).join("");
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#titulo-feliz", { opacity: 0, scaleX: 1.6, filter: "blur(10px)" }, { opacity: 1, scaleX: 1, filter: "blur(0px)", duration: 1.1, ease: "expo.out" }, 0.1);
+      tl.fromTo("#titulo-texto .letra", { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power4.out", stagger: 0.06 }, 0.45);
+      tl.fromTo("#titulo-linea", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.9, ease: "power3.out" }, 1.4);
+      tl.fromTo("#titulo-brillo", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 1.4, ease: "power2.inOut" }, 2.2);
+      tl.fromTo("#titulo-brillo", { backgroundPosition: "100% 0" }, { backgroundPosition: "0% 0", duration: 1.4, ease: "power2.inOut", immediateRender: false }, 4.4);
+      tl.fromTo("#titulo-bloque", { opacity: 1, filter: "blur(0px)", y: 0 }, { opacity: 0, filter: "blur(12px)", y: -30, duration: 0.5, ease: "power3.in", immediateRender: false }, 6.4);
+      window.__timelines["titulo"] = tl;
+    })();
+  </script>
+</template>

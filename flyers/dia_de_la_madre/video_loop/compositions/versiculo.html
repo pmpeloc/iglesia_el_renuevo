@@ -1,0 +1,33 @@
+﻿<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #vers-bloque { position: absolute; left: 380px; right: 380px; top: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; }
+    #vers-comilla { font-family: "Playfair Display", serif; font-style: italic; font-weight: 700; font-size: 220px; line-height: 0.6; height: 110px; color: #f5d58a; }
+    #vers-texto { font-family: "Playfair Display", serif; font-style: italic; font-weight: 700; font-size: 74px; line-height: 1.3; text-shadow: 0 4px 24px rgba(46, 7, 22, 0.8); text-wrap: balance; }
+    #vers-texto .pal { display: inline-block; }
+    #vers-clave { color: #f5d58a; text-shadow: 0 0 30px rgba(245, 213, 138, 0.55), 0 4px 24px rgba(46, 7, 22, 0.8); }
+    #vers-ref { display: flex; align-items: center; gap: 28px; margin-top: 44px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 44px; letter-spacing: 6px; color: #f5d58a; }
+    #vers-ref .raya { width: 120px; height: 3px; background: #f5d58a; }
+  </style>
+  <div data-hf-id="hf-9c2d" id="root" data-composition-id="versiculo" data-width="1920" data-height="1080">
+    <div data-hf-id="hf-pt6o" id="vers-bloque">
+      <div data-hf-id="hf-phg7" id="vers-comilla">“</div>
+      <div data-hf-id="hf-f8pg" id="vers-texto">
+        <span data-hf-id="hf-eka4" class="pal">Se</span> <span data-hf-id="hf-64qv" class="pal">levantan</span> <span data-hf-id="hf-bqsd" class="pal">sus</span> <span data-hf-id="hf-zayt" class="pal">hijos</span> <span data-hf-id="hf-sggz" class="pal">y</span> <span data-hf-id="hf-1793" class="pal">la</span> <span data-hf-id="hf-9n0d" class="pal">llaman</span> <span data-hf-id="hf-7so6" class="pal" id="vers-clave">bienaventurada;</span> <span data-hf-id="hf-7dr7" class="pal">y</span> <span data-hf-id="hf-c5do" class="pal">su</span> <span data-hf-id="hf-brtq" class="pal">marido</span> <span data-hf-id="hf-m078" class="pal">también</span> <span data-hf-id="hf-itpz" class="pal">la</span> <span data-hf-id="hf-rqzx" class="pal">alaba.</span>
+      </div>
+      <div data-hf-id="hf-lzxn" id="vers-ref"><span data-hf-id="hf-4p5i" class="raya" id="vers-raya-i"></span><span data-hf-id="hf-sark" id="vers-ref-txt" style="display: inline-block">PROVERBIOS 31:28 · RVR1960</span><span data-hf-id="hf-w19n" class="raya" id="vers-raya-d"></span></div>
+    </div>
+  </div>
+  <script>
+    (() => {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#vers-comilla", { opacity: 0, scale: 0.4, rotate: -20 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.9, ease: "back.out(1.6)" }, 0.6);
+      tl.fromTo("#vers-texto .pal", { opacity: 0, filter: "blur(8px)", y: 18 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.5, ease: "power3.out", stagger: 0.16 }, 0.9);
+      tl.fromTo("#vers-clave", { scale: 1.35 }, { scale: 1, duration: 0.8, ease: "elastic.out(1, 0.6)", immediateRender: false }, 0.9 + 7 * 0.16);
+      tl.fromTo(["#vers-raya-i", "#vers-raya-d"], { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, 3.4);
+      tl.fromTo("#vers-ref-txt", { opacity: 0, scaleX: 1.3 }, { opacity: 1, scaleX: 1, duration: 0.9, ease: "expo.out" }, 3.4);
+      tl.fromTo("#vers-bloque", { opacity: 1, filter: "blur(0px)", scale: 1 }, { opacity: 0, filter: "blur(12px)", scale: 1.08, duration: 0.5, ease: "power3.in", immediateRender: false }, 8.4);
+      window.__timelines["versiculo"] = tl;
+    })();
+  </script>
+</template>

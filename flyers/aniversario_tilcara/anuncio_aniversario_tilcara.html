@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@1,600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1920px; height: 1080px; overflow: hidden; background: #120803; font-family: Montserrat, sans-serif; color: #fff; }
+  .lienzo { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+  /* Recorte de la foto del flyer original (sin el título de arriba) */
+  .foto { position: absolute; left: -910px; top: -1001px; width: 2919px; filter: saturate(1.1) brightness(.95); }
+  .velo { position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(18,8,3,.92) 0%, rgba(18,8,3,.8) 40%, rgba(18,8,3,.25) 60%, rgba(18,8,3,.3) 100%),
+      linear-gradient(0deg, rgba(18,8,3,.6) 0%, rgba(18,8,3,0) 40%); }
+  .izq { position: absolute; left: 90px; top: 70px; width: 1000px; }
+  .kicker { font-size: 38px; font-weight: 600; letter-spacing: 10px; color: #F7B267; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 210px; line-height: .9; letter-spacing: 4px; margin-top: 8px;
+       text-shadow: 0 6px 24px rgba(0,0,0,.6); }
+  .lema { font-family: "Playfair Display", serif; font-style: italic; font-weight: 600; font-size: 52px; line-height: 1.1; color: #FFD9A8; margin-top: 14px;
+          display: inline-block; padding: 10px 28px 14px; background: rgba(18,8,3,.8); border: 3px solid #F28C28; border-radius: 16px; }
+  .fechas { display: flex; gap: 40px; margin-top: 30px; }
+  .dia { border-left: 8px solid #F28C28; padding-left: 22px; }
+  .dia .nom { font-size: 38px; font-weight: 700; color: #F7B267; letter-spacing: 3px; }
+  .dia .num { font-family: 'Bebas Neue', sans-serif; font-size: 100px; line-height: .95; }
+  .dia .hs { font-size: 48px; font-weight: 600; line-height: 1.2; }
+  .lugar { margin-top: 40px; font-size: 54px; font-weight: 700; }
+  .lugar span { color: #F7B267; }
+  .logos { display: flex; align-items: center; gap: 44px; margin-top: 48px; }
+  .logos img { height: 170px; }
+  .logos .sep { width: 3px; height: 130px; background: rgba(242,140,40,.6); }
+  /* logo MCyM negro sobre blanco: invertido y fundido para que quede blanco sobre el fondo */
+  .logos .mcym { filter: invert(1); mix-blend-mode: screen; }
+  .der { position: absolute; right: 70px; top: 70px; width: 760px; height: 940px; padding: 46px 50px;
+         background: rgba(18,8,3,.72); backdrop-filter: blur(8px); border: 3px solid #F28C28; border-radius: 28px; }
+  .der h2 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 92px; line-height: .95; color: #F7B267; }
+  .tag { display: inline-block; margin-top: 20px; background: #F28C28; color: #120803; font-weight: 800; font-size: 52px; padding: 6px 24px; border-radius: 12px; }
+  .der p { font-size: 48px; font-weight: 600; line-height: 1.25; margin-top: 24px; }
+  .nota { font-size: 44px !important; font-weight: 500 !important; color: #FBE3C6; }
+  .contacto { position: absolute; left: 50px; right: 50px; bottom: 42px; border-top: 3px solid rgba(242,140,40,.6); padding-top: 22px; }
+  .contacto .lbl { font-size: 38px; font-weight: 600; color: #F7B267; }
+  .contacto .tel { font-size: 66px; font-weight: 800; line-height: 1.1; }
+</style>
+</head>
+<body>
+<div class="lienzo">
+  <img class="foto" src="fondo_lamparas.jpeg" alt="">
+  <div class="velo"></div>
+
+  <div class="izq">
+    <div class="kicker">IGLESIA MCYM TILCARA</div>
+    <h1>ANIVERSARIO</h1>
+    <div class="lema">Luces de Gloria en lámparas de barro</div>
+    <div class="fechas">
+      <div class="dia">
+        <div class="nom">SÁBADO</div>
+        <div class="num">31 OCT</div>
+        <div class="hs">17 hs<br>20 hs</div>
+      </div>
+      <div class="dia">
+        <div class="nom">DOMINGO</div>
+        <div class="num">1 NOV</div>
+        <div class="hs">9 hs · 16 hs<br>19 hs Santa Cena</div>
+      </div>
+    </div>
+    <div class="lugar"><span>Lugar:</span> Rivadavia 830, Tilcara</div>
+    <div class="logos">
+      <img src="logo_renuevo.png" alt="Iglesia El Renuevo">
+      <div class="sep"></div>
+      <img class="mcym" src="logo_mcym.png" alt="MCyM">
+    </div>
+  </div>
+
+  <div class="der">
+    <h2>HOSPEDAJE GRATUITO</h2>
+    <div class="tag">¡Hasta el 24/10!</div>
+    <p>50 cupos<br>Traer sábanas y colchas</p>
+    <p class="nota">Después del 24/10 o completo el cupo: sin hospedaje, pero sí con las comidas del día.</p>
+    <div class="contacto">
+      <div class="lbl">Inscripciones · Hna. Soledad</div>
+      <div class="tel">388 521-3175</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

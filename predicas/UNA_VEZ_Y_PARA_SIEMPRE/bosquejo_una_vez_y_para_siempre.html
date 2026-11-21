@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una vez y para siempre — Hebreos 10</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:       #0f0f0f;
+    --bg2:      #1a1a1a;
+    --text:     #f0f0f0;
+    --muted:    #999;
+    --red:      #e05555;
+    --red-bg:   #2a1212;
+    --green:    #5DBE2C;
+    --green-bg: #0e1f09;
+    --gold:     #f0c040;
+    --gold-bg:  #1e1800;
+    --accent:   #5DBE2C;
+    --border:   #333;
+    --nav-h:    64px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    line-height: 1.7;
+    padding-top: calc(var(--nav-h) + 12px);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    background: #111;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    z-index: 100;
+    overflow-x: auto;
+  }
+  nav a {
+    display: inline-block;
+    padding: 7px 16px;
+    border-radius: 6px;
+    background: #222;
+    color: #ccc;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid #333;
+    transition: background .15s, color .15s;
+  }
+  nav a:hover, nav a.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+  }
+  nav a.decl { border-color: var(--gold); color: var(--gold); }
+  nav a.decl.active, nav a.decl:hover { background: var(--gold); color: #000; }
+
+  /* ── SECTIONS ── */
+  section {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+    scroll-margin-top: calc(var(--nav-h) + 20px);
+  }
+
+  .header-card {
+    background: var(--bg2);
+    border-left: 6px solid var(--accent);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 36px;
+  }
+  .header-card .label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .header-card h1 {
+    font-size: 2.2rem;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .header-card .meta {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--muted);
+  }
+
+  .sec-title {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── DECLARACIÓN ── */
+  .declaracion {
+    background: var(--gold-bg);
+    border: 1px solid #4a3c00;
+    border-left: 6px solid var(--gold);
+    border-radius: 8px;
+    padding: 24px 28px;
+  }
+  .declaracion .sec-title { color: var(--gold); border-color: #4a3c00; }
+  .declaracion p { font-size: 1.05em; color: #eee; margin: 14px 0; }
+  .declaracion strong { color: #fff; }
+
+  /* ── VERSE BOX ── */
+  .verse {
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin: 20px 0;
+    font-size: 1.3em;
+    line-height: 1.6;
+    color: #f5d0d0;
+  }
+  .verse.small { font-size: 1.05em; margin: 14px 0; }
+  .verse .ref {
+    display: block;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .idea {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 26px;
+    margin: 24px 0;
+    font-size: 1.2em;
+    font-style: italic;
+    color: #cdf0b8;
+  }
+  .idea .idea-label {
+    font-family: Arial, sans-serif;
+    font-size: .6em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+    font-style: normal;
+  }
+
+  .term { font-weight: 700; text-decoration: underline; color: #ddd; }
+  .term-def { color: var(--muted); font-style: italic; }
+
+  .punto-title {
+    font-size: 1.55rem;
+    font-weight: bold;
+    color: #fff;
+    margin: 32px 0 20px;
+    padding: 14px 20px;
+    background: #222;
+    border-radius: 6px;
+    border-left: 5px solid var(--accent);
+  }
+  .punto-num { color: var(--accent); margin-right: 10px; }
+
+  .sub {
+    margin: 18px 0 18px 16px;
+    padding-left: 20px;
+    border-left: 2px solid #333;
+  }
+  .sub-label {
+    font-family: Arial, sans-serif;
+    font-size: .85em;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .1em;
+    margin-bottom: 6px;
+  }
+  .sub p { font-size: 1.1em; color: #e8e8e8; margin: 8px 0; }
+  .sub ul { margin: 8px 0 8px 28px; font-size: 1.1em; color: #e8e8e8; }
+
+  .ilus {
+    background: #161a22;
+    border-left: 5px solid #5a8ad0;
+    border-radius: 6px;
+    padding: 14px 22px;
+    margin: 16px 0;
+    font-size: 1.05em;
+    color: #cfe0f5;
+  }
+  .ilus .ilus-label {
+    font-family: Arial, sans-serif;
+    font-size: .65em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #5a8ad0;
+    margin-bottom: 6px;
+  }
+
+  .aplicacion {
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    padding: 18px 24px;
+    margin: 28px 0 8px;
+    font-size: 1.1em;
+    color: #c8f0b0;
+  }
+  .aplicacion .apl-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  .pregunta {
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    padding: 16px 22px;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #f5e8a0;
+    font-style: italic;
+  }
+  .aplicacion .pregunta { margin: 0; border: none; padding: 0; background: transparent; color: #c8f0b0; }
+
+  .plain { font-size: 1.1em; color: #ddd; margin: 14px 0; }
+
+  .llamado {
+    background: #1e0a2a;
+    border-left: 5px solid #b060e0;
+    border-radius: 6px;
+    padding: 20px 26px;
+    margin-top: 24px;
+    font-size: 1.1em;
+    color: #e0c0ff;
+  }
+  .llamado .ll-label {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #b060e0;
+    margin-bottom: 8px;
+  }
+  .llamado ul { margin: 8px 0 0 24px; }
+
+  .nota {
+    font-family: Arial, sans-serif;
+    font-size: .7em;
+    color: #777;
+    font-style: italic;
+    display: block;
+    margin-top: 6px;
+  }
+
+  .nav-hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #444;
+    text-align: center;
+    padding: 8px;
+  }
+
+  /* ── CELULAR ── */
+  @media (max-width: 600px) {
+    :root { --nav-h: 52px; }
+    body { font-size: 17px; line-height: 1.6; }
+    nav { padding: 0 10px; gap: 5px; }
+    nav a { font-size: 13px; padding: 6px 11px; }
+    section { padding: 0 14px; margin-bottom: 44px; }
+    .header-card { padding: 18px 18px; }
+    .header-card h1 { font-size: 1.7rem; }
+    .declaracion { padding: 18px 16px; }
+    .verse { font-size: 1.12em; padding: 14px 16px; }
+    .verse.small { font-size: 1em; }
+    .idea, .aplicacion, .pregunta, .llamado, .ilus { padding: 14px 16px; }
+    .punto-title { font-size: 1.3rem; padding: 12px 14px; }
+    .sub { margin-left: 4px; padding-left: 12px; }
+    .sub p, .sub ul, .plain, .aplicacion, .pregunta, .llamado { font-size: 1em; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#declaracion" class="decl active">Declaración</a>
+  <a href="#intro">Intro</a>
+  <a href="#punto1">1 · Un solo sacrificio</a>
+  <a href="#punto2">2 · Un solo mediador</a>
+  <a href="#punto3">3 · Firmes y adelante</a>
+  <a href="#conclusion">Conclusión</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+
+<!-- DECLARACIÓN -->
+<section id="declaracion">
+  <div class="declaracion">
+    <div class="sec-title">Declaración · antes del mensaje · ~3 min</div>
+
+    <p>Iglesia, antes de compartir la Palabra quiero dedicar unos minutos a algo que muchos de ustedes vieron o escucharon esta semana. Como pastores, nos toca hablar con claridad.</p>
+
+    <p>En los últimos días tomaron estado público declaraciones del presidente de la Asociación de Pastores de Jujuy. Celebraba la llegada del Papa a la Argentina como lo mejor que le pudo pasar al país y lo reconocía como "un pastor más".</p>
+
+    <p>Queremos decirlo con respeto, pero sin rodeos: <strong>esas declaraciones no representan a esta iglesia ni lo que creemos.</strong></p>
+
+    <p>No lo decimos por enojo ni para atacar a nadie. Respetamos a las personas y respetamos a nuestros vecinos, familiares y amigos católicos. Los amamos, y nada de lo que digamos hoy nos autoriza a faltarle el respeto a nadie. Pero amar a alguien no significa decir que todo es lo mismo.</p>
+
+    <p>Lo que nos separa no son costumbres ni detalles. Es el corazón del evangelio. La Palabra de Dios dice:</p>
+
+    <div class="verse small">
+      "Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre."
+      <span class="ref">1 Timoteo 2:5 — RVR1960</span>
+    </div>
+    <div class="verse small">
+      "Él es la cabeza del cuerpo que es la iglesia."
+      <span class="ref">Colosenses 1:18 — RVR1960</span>
+    </div>
+    <p>La Iglesia no tiene otra cabeza.</p>
+    <div class="verse small">
+      "Y en ningún otro hay salvación."
+      <span class="ref">Hechos 4:12 — RVR1960</span>
+    </div>
+
+    <p>Creemos que somos salvos solo por gracia, solo por medio de la fe y solo por Cristo. Creemos que la Escritura es nuestra única autoridad. Eso no es negociable. Por eso no podemos reconocer como pastor de la Iglesia de Cristo a quien enseña que necesitamos otros mediadores y otra autoridad junto a la Escritura, por más estima personal que se le pueda tener.</p>
+
+    <p>Hermanos, pido algo de cada uno de nosotros: que esto no se convierta en peleas en redes sociales, en burlas ni en divisiones. La respuesta no es la agresión. La Palabra nos enseña cómo responder:</p>
+
+    <div class="verse small">
+      "Sino que siguiendo la verdad en amor, crezcamos en todo en aquel que es la cabeza, esto es, Cristo."
+      <span class="ref">Efesios 4:15 — RVR1960</span>
+    </div>
+    <p>Verdad y amor juntos: no uno sin el otro.</p>
+
+    <p>Y no hay mejor día para decir esto que hoy, que celebramos la Santa Cena. Esta mesa anuncia lo mismo que acabamos de decir: que hay un solo sacrificio, un solo mediador y un solo Señor.</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="header-card">
+    <div class="label">Hebreos 10:10-23, 39 — Reunión General · Santa Cena · 40 min</div>
+    <h1>Una vez y para siempre</h1>
+    <div class="meta">Tono: reflexivo con firmeza &nbsp;·&nbsp; RVR1960</div>
+  </div>
+
+  <div class="sec-title">Introducción · ~4 min</div>
+
+  <div class="verse">
+    "Así, pues, todas las veces que comiereis este pan, y bebiereis esta copa, la muerte del Señor anunciáis hasta que él venga."
+    <span class="ref">1 Corintios 11:26 — RVR1960</span>
+  </div>
+
+  <p class="plain">
+    Vivimos en un tiempo en el que todo parece dar lo mismo: "cada uno con su verdad", "todos los caminos llevan a Dios". En medio de eso, hoy vamos a sentarnos a una mesa que no es neutral.
+  </p>
+  <p class="plain">
+    Pablo dice que cuando comemos este pan <strong>anunciamos</strong> algo: la Cena es una declaración. Hebreos 10 nos muestra qué estamos anunciando. Y también nos va a mostrar que no siempre vivimos lo que anunciamos.
+  </p>
+
+  <div class="idea">
+    <div class="idea-label">Idea central</div>
+    La mesa del Señor anuncia un solo sacrificio, un solo mediador y una fe que se mantiene firme.
+  </div>
+</section>
+
+<!-- PUNTO 1 -->
+<section id="punto1">
+  <div class="sec-title">Punto 1 de 3 · ~9 min</div>
+
+  <div class="punto-title"><span class="punto-num">1.</span>Un solo sacrificio</div>
+
+  <div class="sub">
+    <div class="sub-label">a) Los sacerdotes, siempre de pie</div>
+    <div class="verse small">
+      "Y ciertamente todo sacerdote está día tras día ministrando y ofreciendo muchas veces los mismos sacrificios, que nunca pueden quitar los pecados."
+      <span class="ref">Hebreos 10:11 — RVR1960</span>
+    </div>
+    <p>El tabernáculo no tenía sillas para los sacerdotes. Su trabajo nunca terminaba: mañana había que volver a empezar.</p>
+    <span class="nota">Inferencia de la lista de muebles de Éxodo 25–30, no está dicho en Hebreos 10.</span>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) Cristo, sentado</div>
+    <div class="verse small">
+      "Pero Cristo, habiendo ofrecido una vez para siempre un solo sacrificio por los pecados, se ha sentado a la diestra de Dios."
+      <span class="ref">Hebreos 10:12 — RVR1960</span>
+    </div>
+    <p><span class="term">Ephápax</span> <span class="term-def">(ἐφάπαξ) — una vez y para siempre. No "una vez por ahora": una vez que no se repite nunca más.</span></p>
+    <p>Cristo se sentó porque la obra está terminada. En la cruz lo dijo: <em>"Consumado es"</em> (Juan 19:30).</p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c) No hay más ofrenda</div>
+    <div class="verse small">
+      "Pues donde hay remisión de éstos, no hay más ofrenda por el pecado."
+      <span class="ref">Hebreos 10:18 — RVR1960</span>
+    </div>
+    <p>Nada se agrega, nada se repite y nada se completa.</p>
+    <p>Es fácil verlo afuera, pero también lo hacemos nosotros: <em>"si sirvo más, si no falto nunca, si ayuno, Dios me va a aceptar"</em>. Sin darnos cuenta, le agregamos nuestras propias ofrendas a la cruz. Servir es bueno, pero no es un pago. Cristo ya pagó todo.</p>
+  </div>
+
+  <div class="ilus">
+    <div class="ilus-label">Ilustración · El recibo</div>
+    Un recibo con el sello "PAGADO". Nadie vuelve a pagar una deuda que ya tiene el recibo sellado.
+    <span class="nota">Se suele decir que "tetélestai" se escribía en recibos antiguos: presentarlo como algo que "se suele decir".</span>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta">¿Seguimos tratando de pagar algo que Cristo ya pagó?</div>
+    <p style="margin-top:10px;">Necesitamos venir a esta mesa a recibir, no a pagar.</p>
+  </div>
+</section>
+
+<!-- PUNTO 2 -->
+<section id="punto2">
+  <div class="sec-title">Punto 2 de 3 · ~12 min</div>
+
+  <div class="punto-title"><span class="punto-num">2.</span>Un solo mediador</div>
+
+  <div class="sub">
+    <div class="sub-label">a) El camino abierto</div>
+    <div class="verse small">
+      "Así que, hermanos, teniendo libertad para entrar en el Lugar Santísimo por la sangre de Jesucristo, por el camino nuevo y vivo que él nos abrió a través del velo, esto es, de su carne…"
+      <span class="ref">Hebreos 10:19-20 — RVR1960</span>
+    </div>
+    <p><span class="term">Parresía</span> <span class="term-def">(παρρησία) — libertad, confianza para hablar abiertamente. La confianza de un hijo, no el miedo de un extraño.</span></p>
+    <p>El velo se rasgó <em>"de arriba abajo"</em> (Mateo 27:51): lo abrió Dios, no el hombre. El camino es <strong>su carne</strong>, y esa carne es el pan que vamos a partir hoy.</p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) Nadie más en el medio</div>
+    <div class="verse small">
+      "Porque hay un solo Dios, y un solo mediador entre Dios y los hombres, Jesucristo hombre."
+      <span class="ref">1 Timoteo 2:5 — RVR1960</span>
+    </div>
+    <p>Si Cristo nos abrió el camino directo, no necesitamos a nadie más en el medio: ni a otro sacerdote, ni a un santo, ni a una institución. Él mismo vive <em>"siempre para interceder"</em> por nosotros (Hebreos 7:25).</p>
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">c) Nuestros propios intermediarios</div>
+    <div class="verse small">
+      "Porque diciendo el uno: Yo ciertamente soy de Pablo; y el otro: Yo soy de Apolos, ¿no sois carnales? ¿Qué, pues, es Pablo, y qué es Apolos? Servidores por medio de los cuales habéis creído…"
+      <span class="ref">1 Corintios 3:4-5 — RVR1960</span>
+    </div>
+    <p>Los evangélicos también nos fabricamos mediadores:</p>
+    <ul>
+      <li>buscamos al pastor de moda, al predicador "más ungido" o al profeta del momento;</li>
+      <li>pedimos oración a todos, pero no oramos nosotros;</li>
+      <li>pensamos que Dios nos escucha más si ora otro, o si vamos a tal evento o tal campaña.</li>
+    </ul>
+    <p>Pedir oración es bíblico (Santiago 5:16), y está bien. El problema empieza cuando el pedido <strong>reemplaza</strong> nuestro propio acceso a Dios. Pablo y Apolos eran servidores, no mediadores. Lo mismo vale para cualquier pastor, incluido el que hoy está predicando.</p>
+  </div>
+
+  <div class="ilus">
+    <div class="ilus-label">Ilustración · La llave</div>
+    Un hijo que vuelve a su casa no toca el timbre ni pide permiso al portero: tiene la llave. Muchas veces nosotros tenemos la llave, pero seguimos tocando el timbre y esperando que otro nos abra.
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta">¿A quién vamos primero cuando tenemos una necesidad: al teléfono o al trono?</div>
+    <p style="margin-top:10px;">Necesitamos volver a acercarnos nosotros mismos: <em>"Acerquémonos, pues, confiadamente al trono de la gracia"</em> (Hebreos 4:16).</p>
+  </div>
+</section>
+
+<!-- PUNTO 3 -->
+<section id="punto3">
+  <div class="sec-title">Punto 3 de 3 · ~9 min</div>
+
+  <div class="punto-title"><span class="punto-num">3.</span>Firmes y adelante</div>
+
+  <div class="sub">
+    <div class="sub-label">a) Sin inclinarnos</div>
+    <div class="verse small">
+      "Mantengamos firme, sin fluctuar, la profesión de nuestra esperanza, porque fiel es el que prometió."
+      <span class="ref">Hebreos 10:23 — RVR1960</span>
+    </div>
+    <p><span class="term">Aklinés</span> <span class="term-def">(ἀκλινής) — que no se inclina, que no se ladea. Única vez en el Nuevo Testamento.</span></p>
+    <p><span class="term">Homología</span> <span class="term-def">(ὁμολογία) — profesión, confesión. Literalmente "decir lo mismo": confesar es decir lo mismo que Dios dice.</span></p>
+    <p>El relativismo no nos pide que neguemos a Cristo. Nos pide algo más sutil: que nos inclinemos un poquito para quedar bien. Nuestra firmeza no es terquedad ni orgullo, y no depende de nosotros: se apoya en que <em>fiel es el que prometió</em>.</p>
+  </div>
+
+  <div class="ilus">
+    <div class="ilus-label">Ilustración · La plomada</div>
+    Nadie corrige la plomada para que coincida con la pared: se corrige la pared para que coincida con la plomada. La Palabra es nuestra plomada.
+  </div>
+
+  <div class="sub">
+    <div class="sub-label">b) Sin retroceder</div>
+    <div class="verse small">
+      "Pero nosotros no somos de los que retroceden para perdición, sino de los que tienen fe para preservación del alma."
+      <span class="ref">Hebreos 10:39 — RVR1960</span>
+    </div>
+    <p>La firmeza no significa quedarnos quietos ni a la defensiva, enojados con el mundo. Significa <strong>seguir adelante</strong>: seguir predicando el evangelio con claridad, aunque no esté de moda.</p>
+  </div>
+
+  <div class="aplicacion">
+    <div class="apl-label">→ Aplicación</div>
+    <div class="pregunta">¿Nos estamos inclinando para quedar bien, o estamos retrocediendo por cansancio?</div>
+    <p style="margin-top:10px;">Necesitamos mantenernos firmes y seguir adelante, diciendo lo mismo que Dios dice.</p>
+  </div>
+</section>
+
+<!-- CONCLUSIÓN -->
+<section id="conclusion">
+  <div class="sec-title">Conclusión · ~3 min</div>
+
+  <p class="plain">Hoy, al tomar el pan y la copa, vamos a anunciar tres cosas:</p>
+
+  <div class="idea">
+    <div class="idea-label">Lo que anunciamos</div>
+    Que su sacrificio fue <strong>una vez y para siempre</strong>.<br>
+    Que Él es <strong>el único camino</strong> al Padre, sin intermediarios de afuera ni los que nos fabricamos nosotros.<br>
+    Que <strong>seguimos firmes y adelante</strong> en Él.
+  </div>
+
+  <p class="plain">Tomar la Cena es eso: decir en quién confiamos.</p>
+</section>
+
+<!-- LLAMADO -->
+<section id="llamado">
+  <div class="sec-title">Llamado Final · ~3 min · transición a la Santa Cena</div>
+
+  <div class="verse">
+    "Acerquémonos con corazón sincero, en plena certidumbre de fe…"
+    <span class="ref">Hebreos 10:22 — RVR1960</span>
+  </div>
+  <div class="verse small">
+    "Por tanto, pruébese cada uno a sí mismo, y coma así del pan, y beba de la copa."
+    <span class="ref">1 Corintios 11:28 — RVR1960</span>
+  </div>
+
+  <div class="llamado">
+    <div class="ll-label">→ Llamado</div>
+    <ul>
+      <li>Quienes ya conocemos a Cristo: nos acercamos a la mesa revisando nuestro corazón, dejando nuestras "ofrendas" y nuestros intermediarios, y renovando nuestra confesión.</li>
+      <li>Quien todavía no lo conoce: hoy también puede acercarse a Él, al único que pagó por completo.</li>
+    </ul>
+  </div>
+
+  <div class="nav-hint" style="margin-top:60px;">
+    ↑ usá los botones del menú para navegar entre secciones mientras predicás
+  </div>
+</section>
+
+<script>
+  const secs  = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('nav a');
+
+  let last = '';
+  function updateNav() {
+    const navH = document.getElementById('nav').offsetHeight + 30;
+    let cur = secs[0].id;
+    secs.forEach(s => { if (window.scrollY >= s.offsetTop - navH) cur = s.id; });
+    if (cur === last) return;
+    last = cur;
+    links.forEach(a => {
+      const on = a.getAttribute('href') === '#' + cur;
+      a.classList.toggle('active', on);
+      // en el celular, el menú se desplaza solo hasta la sección actual
+      if (on) a.parentNode.scrollTo({ left: a.offsetLeft - 10, behavior: 'smooth' });
+    });
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+</script>
+
+</body>
+</html>

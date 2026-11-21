@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1920px; overflow: hidden; font-family: Montserrat, sans-serif; color: #fff; background: #071526; }
+  .lienzo { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: url(fondo_9x16.png) center / cover no-repeat; }
+  .velo { position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(6,16,36,.75) 0%, rgba(6,16,36,.55) 38%, rgba(6,16,36,0) 55%, rgba(6,16,36,0) 75%, rgba(6,16,36,.5) 100%); }
+
+  .arriba { position: absolute; left: 50px; right: 50px; top: 70px; text-align: center; }
+  .logo { height: 64px; }
+  .kicker { margin-top: 26px; font-size: 40px; font-weight: 700; letter-spacing: 6px; color: #3DDCC8; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-size: 168px; line-height: .88; letter-spacing: 2px; margin-top: 10px;
+       text-shadow: 0 6px 24px rgba(0,0,0,.6); }
+
+  .fechas { display: flex; justify-content: center; gap: 56px; margin-top: 34px; text-align: left; }
+  .dia { border-left: 8px solid #3DDCC8; padding-left: 22px; }
+  .dia .nom { font-size: 40px; font-weight: 700; color: #3DDCC8; letter-spacing: 3px; }
+  .dia .num { font-family: 'Bebas Neue', sans-serif; font-size: 110px; line-height: .95; }
+  .dia .hs { font-size: 52px; font-weight: 700; }
+  .dia .hs span { font-weight: 600; font-size: 40px; display: block; color: #C9F3EE; }
+  .extra { margin-top: 26px; font-size: 48px; font-weight: 600; line-height: 1.2; text-shadow: 0 3px 12px rgba(0,0,0,.6); }
+  .extra span { color: #3DDCC8; font-weight: 800; }
+
+  .ayuda { position: absolute; left: 40px; right: 40px; bottom: 40px; padding: 26px 30px; text-align: center;
+           background: rgba(6,16,36,.88); border: 4px solid #3DDCC8; border-radius: 26px; }
+  .ayuda .t { font-size: 44px; font-weight: 900; color: #3DDCC8; }
+  .items { display: flex; justify-content: center; gap: 20px; margin-top: 16px; white-space: nowrap; }
+  .item { background: #3DDCC8; color: #062A2E; font-size: 50px; font-weight: 900; padding: 6px 22px; border-radius: 14px; }
+  .ayuda p { margin-top: 16px; font-size: 46px; font-weight: 600; line-height: 1.2; }
+</style>
+</head>
+<body>
+<div class="lienzo">
+  <div class="velo"></div>
+  <div class="arriba">
+    <img class="logo" src="logo_mision.png" alt="Instituto MiSion">
+    <div class="kicker">DELEGACIÓN DE 24 JÓVENES</div>
+    <h1>VISITA DE<br>MISIONEROS</h1>
+    <div class="fechas">
+      <div class="dia">
+        <div class="nom">LUNES</div>
+        <div class="num">16 NOV</div>
+        <div class="hs">20:00 hs<span>Reunión general</span></div>
+      </div>
+      <div class="dia">
+        <div class="nom">MARTES</div>
+        <div class="num">17 NOV</div>
+        <div class="hs">20:00 hs<span>Reunión general</span></div>
+      </div>
+    </div>
+    <div class="extra"><span>+</span> Actividades durante el día<br><span>(a confirmar)</span></div>
+  </div>
+
+  <div class="ayuda">
+    <div class="t">¡NECESITAMOS TU COLABORACIÓN!</div>
+    <div class="items"><div class="item">🏠 HOSPEDAJE</div><div class="item">🍲 ALIMENTOS</div></div>
+    <p>¿Podés recibir misioneros en tu casa o colaborar con comida? ¡Avisanos!</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿Qué pasa si la perdemos? - Las 5 Solas</title>
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  :root {
+    --bg: #0f0f0f;
+    --panel: #1a1a1a;
+    --text: #f1f1f1;
+    --muted: #aaa;
+    --orange: #E8521A;
+    --green: #5DBE2C;
+    --green-bg: #10220b;
+    --red: #e35c5c;
+    --red-bg: #2a1212;
+    --gold: #efc24d;
+    --gold-bg: #241d05;
+    --purple: #b978e6;
+    --purple-bg: #21102d;
+    --border: #343434;
+    --nav-h: 68px;
+  }
+  body {
+    margin: 0;
+    padding-top: calc(var(--nav-h) + 18px);
+    background: var(--bg);
+    color: var(--text);
+    font: 23px/1.65 Georgia, serif;
+  }
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 10;
+    min-height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    overflow-x: auto;
+    background: #111;
+    border-bottom: 2px solid var(--orange);
+  }
+  nav a {
+    flex: 0 0 auto;
+    padding: 9px 15px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #222;
+    color: #ddd;
+    font: 700 16px/1 Arial, sans-serif;
+    text-decoration: none;
+  }
+  nav a:hover, nav a.active { color: #fff; background: var(--orange); border-color: var(--orange); }
+  main { padding-bottom: 80px; }
+  section {
+    max-width: 960px;
+    margin: 0 auto 80px;
+    padding: 0 26px;
+    scroll-margin-top: calc(var(--nav-h) + 24px);
+  }
+  .hero {
+    position: relative;
+    margin-bottom: 34px;
+    padding: 28px 32px;
+    background: var(--panel);
+    border-left: 6px solid var(--orange);
+    border-radius: 8px;
+  }
+  .hero img { position: absolute; top: 18px; right: 22px; width: 64px; height: 64px; object-fit: contain; }
+  .kicker, .section-label, .box-label {
+    font: 700 14px/1.2 Arial, sans-serif;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+  .kicker { margin-bottom: 12px; color: var(--orange); }
+  h1 { margin: 0 0 8px; padding-right: 70px; color: #fff; font-size: clamp(34px, 5vw, 54px); line-height: 1.08; }
+  .meta { color: var(--muted); font: 16px/1.45 Arial, sans-serif; }
+  .section-label { margin-bottom: 22px; padding-bottom: 10px; color: var(--orange); border-bottom: 1px solid var(--border); }
+  .point-title {
+    margin: 0 0 20px;
+    padding: 16px 20px;
+    background: #222;
+    border-left: 5px solid var(--orange);
+    border-radius: 6px;
+    color: #fff;
+    font: 700 32px/1.2 Arial, sans-serif;
+  }
+  .point-title span { margin-right: 10px; color: var(--orange); }
+  .question {
+    margin: 0 0 30px;
+    padding: 16px 20px;
+    color: #f5e79e;
+    background: var(--gold-bg);
+    border-left: 5px solid var(--gold);
+    border-radius: 6px;
+    font: 700 27px/1.3 Arial, sans-serif;
+  }
+  .question .box-label { display: block; margin-bottom: 6px; color: var(--gold); }
+  .sub { margin: 30px 0; padding: 0 0 0 20px; border-left: 2px solid var(--border); }
+  .sub h3 { margin: 0 0 12px; color: #fff; font: 700 25px/1.3 Arial, sans-serif; }
+  .sub h3 .letter { margin-right: 8px; color: var(--orange); }
+  .sub p, .sub li { color: #e9e9e9; }
+  .sub ul, .sub ol { margin: 10px 0; padding-left: 26px; }
+  .bridge {
+    margin: 14px 0 18px;
+    padding: 14px 18px;
+    color: #ffd9c7;
+    background: #2a1408;
+    border-left: 5px solid var(--orange);
+    border-radius: 6px;
+  }
+  .bridge .box-label { margin-bottom: 6px; color: var(--orange); }
+  .verse {
+    margin: 14px 0 18px;
+    padding: 18px 22px;
+    color: #f7d4d4;
+    background: var(--red-bg);
+    border-left: 5px solid var(--red);
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-style: italic;
+  }
+  .verse .ref { display: block; margin-top: 9px; color: var(--red); font: 700 14px/1.2 Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; font-style: normal; }
+  .application {
+    margin: 30px 0 0;
+    padding: 20px 24px;
+    color: #cef1bb;
+    background: var(--green-bg);
+    border-left: 5px solid var(--green);
+    border-radius: 6px;
+    font-size: 1.08em;
+  }
+  .application .box-label { margin: 18px 0 8px; color: var(--green); }
+  .application .box-label:first-child { margin-top: 0; }
+  .application p { margin: 8px 0; }
+  .application ul, .application ol { margin: 8px 0; padding-left: 26px; }
+  .application strong { color: #fff; }
+  .call { padding: 22px 26px; color: #ead5f8; background: var(--purple-bg); border-left: 5px solid var(--purple); border-radius: 6px; }
+  .call .box-label { margin-bottom: 10px; color: var(--purple); }
+  .note { color: var(--muted); font: 16px/1.5 Arial, sans-serif; }
+  .opt { color: var(--muted); font: 700 14px/1 Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+  .time { float: right; color: var(--muted); font: 700 15px/2.2 Arial, sans-serif; }
+  strong { color: #fff; }
+  @media (max-width: 640px) {
+    body { font-size: 19px; }
+    section { padding: 0 16px; }
+    .hero { padding: 22px 20px; }
+    .hero img { width: 46px; height: 46px; }
+    .point-title { font-size: 25px; }
+    .question { font-size: 22px; }
+    .sub { padding-left: 14px; }
+  }
+</style>
+</head>
+<body>
+<nav aria-label="Navegación del bosquejo">
+  <a class="active" href="#intro">Intro</a>
+  <a href="#sola1">1 · Escritura</a>
+  <a href="#sola2">2 · Cristo</a>
+  <a href="#sola3">3 · Gracia</a>
+  <a href="#sola4">4 · Fe</a>
+  <a href="#sola5">5 · Gloria</a>
+  <a href="#cierre">Cierre</a>
+  <a href="#llamado">Llamado</a>
+</nav>
+<main>
+
+<section id="intro">
+  <div class="hero">
+    <img src="img/logo_raices.png" alt="Raíces">
+    <div class="kicker">Las 5 Solas · Encuentro 2 de 3</div>
+    <h1>¿Qué pasa si la perdemos?</h1>
+    <div class="meta">Texto base: Gálatas 1:6-7 · 20 min · Jóvenes y adolescentes · Tono: desafiante / reflexivo</div>
+  </div>
+  <div class="section-label">Introducción · Billetes falsos <span class="time">≈1½ min</span></div>
+  <ul>
+    <li><strong>Repaso en 15 segundos</strong>, la frase del sábado pasado: <em>"La Biblia nos enseña que somos salvos solo por Cristo, solo por gracia, solo por fe… para la gloria de Dios."</em></li>
+    <li><strong>Ilustración:</strong> nadie falsifica un billete de $10. Se falsifican los de $20.000. <strong>Solo se falsifica lo que tiene valor.</strong> Y el billete falso no se ve distinto: se ve <em>casi igual</em>.</li>
+    <li>Así se pierde una sola: no la tiramos de golpe, <strong>la cambiamos por algo que se parece</strong>.</li>
+  </ul>
+  <div class="verse">"Estoy maravillado de que tan pronto os hayáis alejado del que os llamó por la gracia de Cristo, para seguir un evangelio diferente. No que haya otro, sino que hay algunos que os perturban y quieren pervertir el evangelio de Cristo."<span class="ref">Gálatas 1:6-7 · RVR1960 · Texto base</span></div>
+  <p><strong>Dato:</strong> Gálatas fue una de las cartas preferidas de Lutero. Escribió un comentario completo sobre ella.</p>
+</section>
+
+<section id="sola1">
+  <div class="section-label">Sola 1 <span class="time">≈3½ min</span></div>
+  <h2 class="point-title"><span>1</span>Solo la Escritura</h2>
+  <div class="question"><span class="box-label">Billete falso</span>"Mi verdad."</div>
+
+  <div class="sub">
+    <h3><span class="letter">a.</span>El billete falso</h3>
+    <p>Lo que siento, lo que dice un video o lo que opina la mayoría pasa a tener la última palabra. También: <em>"Dios me dijo…"</em> algo que contradice la Biblia.</p>
+    <p><strong>Qué se pierde:</strong> si la Biblia no manda, gana el que grita más fuerte o el que tiene más seguidores.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">b.</span>La verdad que lo corrige</h3>
+    <div class="verse">"Y éstos eran más nobles que los que estaban en Tesalónica, pues recibieron la palabra con toda solicitud, escudriñando cada día las Escrituras para ver si estas cosas eran así."<span class="ref">Hechos 17:11 · RVR1960</span></div>
+    <p>Los de Berea comprobaban con la Biblia hasta lo que predicaba Pablo.</p>
+  </div>
+
+  <div class="application">
+    <div class="box-label">Aplicación</div>
+    <p><strong>¿Comprobamos con la Biblia lo que escuchamos, incluso lo que se predica acá, o creemos lo que suena bien?</strong></p>
+    <div class="box-label">Frases que "suenan a Biblia"</div>
+    <ul>
+      <li><em>"Dios ayuda a los que se ayudan."</em> No está en la Biblia. Es un refrán viejo que popularizó Benjamin Franklin.</li>
+      <li><em>"Dios no te da más de lo que podés soportar."</em> Se apoya en 1 Corintios 10:13, pero ese versículo habla de <strong>tentación</strong>, no de sufrimiento: Dios "dará también juntamente con la tentación la salida".</li>
+    </ul>
+    <div class="box-label">La IA como los de Berea</div>
+    <ol>
+      <li><strong>Preguntar bien.</strong> No "¿qué dice la Biblia de la ansiedad?", sino: <em>"¿Qué versículos hablan de la ansiedad? Dame la cita exacta y el contexto de cada uno, y decime si hay pasajes que parecen decir otra cosa."</em></li>
+      <li><strong>Abrir la Biblia y leer el capítulo completo.</strong> La IA puede equivocarse o inventar. <em>Momento personal:</em> a mí me pasó que una IA me dio como cita textual un versículo que no existía.</li>
+      <li><strong>Si queda una duda, hablarla con un líder.</strong> Así no nos quedamos con lo primero que leímos.</li>
+    </ol>
+    <p><strong>La IA es una lupa, no el juez.</strong> Nos ayuda a buscar, pero la última palabra la tiene la Biblia.</p>
+    <div class="box-label">Desafío</div>
+    <p>Esta semana podemos tomar una frase que escuchamos seguido, en la iglesia, en redes o en casa, y comprobar si de verdad está en la Biblia.</p>
+  </div>
+</section>
+
+<section id="sola2">
+  <div class="section-label">Sola 2 <span class="time">≈3½ min</span></div>
+  <h2 class="point-title"><span>2</span>Solo Cristo</h2>
+  <div class="question"><span class="box-label">Billete falso</span>"Jesús y algo más."</div>
+
+  <div class="sub">
+    <h3><span class="letter">a.</span>El billete falso</h3>
+    <p><em>"Todos los caminos llevan a Dios"</em>, o Jesús + horóscopo, energías o amuletos "por las dudas". También Jesús como un buen maestro más.</p>
+    <p><strong>Qué se pierde:</strong> si Jesús es <em>un</em> camino, la cruz no hacía falta.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">b.</span>La verdad que lo corrige</h3>
+    <div class="verse">"Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí."<span class="ref">Juan 14:6 · RVR1960</span></div>
+    <p>Dice <strong>el</strong> camino, no <strong>un</strong> camino.</p>
+  </div>
+
+  <div class="application">
+    <div class="box-label">Aplicación</div>
+    <p><strong>¿Jesús nos alcanza, o en el fondo seguimos buscando otra cosa que nos dé seguridad?</strong></p>
+    <div class="box-label">Lo que hoy se busca para sentirse seguro</div>
+    <ul>
+      <li><strong>Lo "espiritual":</strong> el horóscopo y la compatibilidad de signos, el tarot en TikTok, la cintita roja contra la envidia, "manifestar" o decretar lo que queremos, cristales y energías.</li>
+      <li><strong>Lo cotidiano</strong> (más difícil de ver): la plata, la pareja, los likes y la aprobación de los demás, rendir bien en el colegio o el trabajo.</li>
+    </ul>
+    <p><strong>Cómo darnos cuenta:</strong> ¿qué es lo que, si lo perdemos, sentimos que se nos cae todo? Eso es en lo que estamos confiando.</p>
+    <div class="box-label">Desafío</div>
+    <p>Necesitamos ponerle nombre a nuestra "cintita roja", eso que tenemos "por las dudas" además de Jesús, y entregárselo a Él.</p>
+  </div>
+</section>
+
+<section id="sola3">
+  <div class="section-label">Sola 3 <span class="time">≈3½ min</span></div>
+  <h2 class="point-title"><span>3</span>Solo por gracia</h2>
+  <div class="question"><span class="box-label">Billete falso</span>"Total, Dios perdona."</div>
+
+  <div class="sub">
+    <h3><span class="letter">a.</span>El billete falso</h3>
+    <p>La gracia como <strong>permiso</strong> para vivir como queramos. (El otro billete falso, querer ganarnos la salvación, ya lo vimos el sábado pasado.)</p>
+    <div class="bridge"><div class="box-label">🔗 Dato histórico · Bonhoeffer, 1937</div>Dietrich Bonhoeffer, pastor alemán, llamó a esto <strong>"gracia barata"</strong> en <em>El precio de la gracia</em>: perdón sin arrepentimiento y sin seguir a Cristo. <em>Es un resumen de su idea, no una cita textual.</em></div>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">b.</span>La verdad que lo corrige</h3>
+    <div class="verse">"Porque la gracia de Dios se ha manifestado para salvación a todos los hombres, enseñándonos que, renunciando a la impiedad y a los deseos mundanos, vivamos en este siglo sobria, justa y piadosamente."<span class="ref">Tito 2:11-12 · RVR1960</span></div>
+    <p>La gracia no solo perdona: también <strong>enseña</strong>.</p>
+  </div>
+
+  <div class="application">
+    <div class="box-label">Aplicación</div>
+    <p><strong>¿Usamos la gracia como un regalo que nos cambia, o como una excusa para no cambiar?</strong></p>
+    <div class="box-label">Gracia que cambia</div>
+    <ul>
+      <li><strong>John Newton:</strong> fue traficante de esclavos. Después de convertirse escribió <em>Amazing Grace</em>, que en español conocemos como "Sublime gracia". No cambió de un día para otro: al principio siguió un tiempo en ese negocio. Años después se arrepintió en público y apoyó a William Wilberforce en la lucha para abolir la esclavitud en Inglaterra. <strong>La gracia lo fue cambiando de verdad.</strong></li>
+      <li><span class="opt">Opcional ·</span> <strong>Bonhoeffer:</strong> el mismo que habló de la "gracia barata" vivió lo contrario. Enfrentó al nazismo y lo ejecutaron en 1945.</li>
+      <li><strong>Zaqueo</strong> (Lucas 19:8): lo primero que hace después de encontrarse con Jesús es devolver lo que robó.</li>
+    </ul>
+    <div class="box-label">Gracia usada como excusa</div>
+    <ul>
+      <li><em>"Total, el domingo pido perdón."</em></li>
+      <li><em>"Dios conoce mi corazón"</em>, dicho para justificar algo que sabemos que está mal.</li>
+      <li><em>"Nadie es perfecto"</em>, dicho para no cambiar nada.</li>
+    </ul>
+    <p><strong>La gracia es gratis, pero no nos deja igual.</strong></p>
+  </div>
+</section>
+
+<section id="sola4">
+  <div class="section-label">Sola 4 <span class="time">≈3½ min</span></div>
+  <h2 class="point-title"><span>4</span>Solo por fe</h2>
+  <div class="question"><span class="box-label">Billete falso</span>"Fe en mi fe."</div>
+
+  <div class="sub">
+    <h3><span class="letter">a.</span>El billete falso</h3>
+    <p>Creer que lo que salva es <em>cuánto</em> creo o cuánto siento. Si un día no siento nada, pienso que Dios se fue.</p>
+    <p><strong>Qué se pierde:</strong> la fe se vuelve otra obra, y vuelve el miedo de Lutero: "¿habré creído lo suficiente?".</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">b.</span>La verdad que lo corrige</h3>
+    <div class="verse">"Puestos los ojos en Jesús, el autor y consumador de la fe…"<span class="ref">Hebreos 12:2 · RVR1960</span></div>
+    <p>Retomamos la silla del sábado pasado: <strong>no nos sostiene la fuerza con que nos sentamos, nos sostiene la silla.</strong> Lo que salva no es el tamaño de nuestra fe, es Aquel en quien confiamos.</p>
+  </div>
+
+  <div class="application">
+    <div class="box-label">Aplicación</div>
+    <p><strong>Cuando no sentimos nada al orar o al alabar, ¿pensamos que Dios se fue? ¿Nuestra fe depende del ánimo del día?</strong></p>
+    <div class="box-label">Pedro sobre el agua · Mateo 14:29-30</div>
+    <p>Mientras miraba a Jesús, caminaba. <em>"Pero al ver el fuerte viento, tuvo miedo; y comenzando a hundirse…"</em> El viento no cambió a Jesús. Pedro cambió adónde miraba.</p>
+    <div class="box-label">Charles Spurgeon</div>
+    <p>Uno de los predicadores más grandes de la historia. Sufrió depresiones muy fuertes toda su vida y habló de eso abiertamente. Muchas veces no <em>sentía</em> nada, y aun así siguió confiando y predicando.</p>
+    <div class="box-label">El campamento</div>
+    <p>Volvemos "re arriba", y a las dos semanas sentimos que perdimos todo. No perdimos a Jesús: bajó la emoción.</p>
+    <p><strong>Los sentimientos son como el clima: cambian. Jesús es el suelo: no se mueve.</strong></p>
+    <div class="box-label">Desafío</div>
+    <p>En los días en que no sentimos nada, podemos seguir haciendo lo que hace la fe: orar, leer la Biblia, venir a la iglesia. No porque lo sintamos, sino porque confiamos en Él.</p>
+  </div>
+</section>
+
+<section id="sola5">
+  <div class="section-label">Sola 5 <span class="time">≈3½ min</span></div>
+  <h2 class="point-title"><span>5</span>Solo a Dios la gloria</h2>
+  <div class="question"><span class="box-label">Billete falso</span>"El centro soy yo."</div>
+
+  <div class="sub">
+    <h3><span class="letter">a.</span>El billete falso</h3>
+    <p>Un evangelio donde el centro soy yo. Dios como <strong>asistente</strong> para cumplir nuestros planes. Servir para que nos vean.</p>
+    <p><strong>Qué se pierde:</strong> si el centro somos nosotros, cuando Dios no hace lo que queremos, lo dejamos.</p>
+  </div>
+
+  <div class="sub">
+    <h3><span class="letter">b.</span>La verdad que lo corrige</h3>
+    <div class="verse">"Porque de él, y por él, y para él, son todas las cosas. A él sea la gloria por los siglos. Amén."<span class="ref">Romanos 11:36 · RVR1960</span></div>
+  </div>
+
+  <div class="application">
+    <div class="box-label">Aplicación</div>
+    <p><strong>Si Dios no nos diera nada más de lo que ya nos dio en la cruz, ¿lo seguiríamos igual?</strong></p>
+    <div class="box-label">Juan 6</div>
+    <p>Jesús multiplica los panes y al día siguiente lo busca una multitud. Él les dice: <em>"me buscáis, no porque habéis visto las señales, sino porque comisteis el pan y os saciasteis"</em> (Jn 6:26). Cuando les habla de seguirlo de verdad, muchos se van (6:66). Pedro responde: <em>"Señor, ¿a quién iremos? Tú tienes palabras de vida eterna"</em> (6:68).</p>
+    <p>La multitud quería <strong>el pan</strong>. Pedro quería <strong>a Jesús</strong>.</p>
+    <div class="box-label"><span class="opt">Opcional ·</span> "Y si no" · Daniel 3:17-18</div>
+    <p>Los tres amigos le dicen al rey que Dios puede librarlos del horno. <em>"Y si no, sepas, oh rey, que no serviremos a tus dioses…"</em> Su fe no dependía de que Dios hiciera lo que ellos querían.</p>
+    <div class="box-label">Cómo darnos cuenta</div>
+    <p>¿Qué pasa con nuestra fe cuando Dios no responde como queremos: el examen que no aprobamos, la relación que no se dio, la enfermedad que no se fue? Ahí se ve si seguimos a Dios por lo que nos da o por quién es.</p>
+    <div class="box-label">Desafío</div>
+    <p>Podemos aprender a orar como los amigos de Daniel: <em>"Señor, sé que podés… y si no, igual te seguimos."</em></p>
+  </div>
+</section>
+
+<section id="cierre">
+  <div class="section-label">Cierre · Conocer el verdadero <span class="time">≈½ min</span></div>
+  <p>Para no aceptar un billete falso, hay que conocer muy bien el verdadero.</p>
+  <p class="note">Es una ilustración, no un dato verificado.</p>
+  <p>Por eso estudiamos las 5: no para pelear con nadie, sino para que <strong>no nos cambien el evangelio sin darnos cuenta</strong>.</p>
+</section>
+
+<section id="llamado">
+  <div class="section-label">Llamado final <span class="time">≈1 min</span></div>
+  <div class="call"><div class="box-label">Llamado</div>Quizás algunos de nosotros cambiamos, sin darnos cuenta, una de estas verdades por un billete falso. Hoy podemos devolverlo y volver al evangelio completo. Tenemos un momento corto de oración.</div>
+  <p>Después: <strong>taller del Pliego 2</strong>. Cada grupo escribe <strong>1 peligro actual + la verdad que lo corrige</strong>, con sus palabras. Pueden usar el de hoy o encontrar otro.</p>
+  <p class="note">Verificación: "Dios ayuda a los que se ayudan" no está en la Biblia; Franklin la popularizó (Almanaque del pobre Richard, 1736), aunque el refrán es más antiguo. Bonhoeffer: <em>Nachfolge</em> (1937), ejecutado en Flossenbürg el 9/4/1945. Newton dejó el tráfico de esclavos en 1754 y publicó su arrepentimiento en <em>Thoughts upon the African Slave Trade</em> (1788).</p>
+</section>
+
+</main>
+<script>
+  const sections = [...document.querySelectorAll("section[id]")];
+  const links = [...document.querySelectorAll("nav a")];
+  const updateNav = () => {
+    let current = sections[0].id;
+    for (const section of sections) {
+      if (window.scrollY >= section.offsetTop - 110) current = section.id;
+    }
+    for (const link of links) {
+      link.classList.toggle("active", link.hash === `#${current}`);
+    }
+  };
+  addEventListener("scroll", updateNav, { passive: true });
+  updateNav();
+</script>
+</body>
+</html>

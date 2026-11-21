@@ -1,0 +1,108 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --borravino: #5a1630;
+        --borravino-oscuro: #2e0716;
+        --oro: #f5d58a;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--borravino-oscuro); }
+      #root { width: 100%; height: 100%; position: relative; overflow: hidden; }
+      .fondo { position: absolute; inset: 0; overflow: hidden; }
+      .fondo .cam { position: absolute; inset: 0; }
+      .fondo img { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+      #fondo-a { z-index: 1; }
+      #fondo-b { z-index: 2; opacity: 0; }
+      #fondo-c { z-index: 3; opacity: 0; }
+      #fondo-cierre { z-index: 4; opacity: 0; }
+      #fondo-cierre .cam {
+        background:
+          radial-gradient(circle at 50% 42%, rgba(245, 213, 138, 0.28) 0%, rgba(245, 213, 138, 0) 38%),
+          radial-gradient(ellipse at 50% 50%, #6e1b3b 0%, #3a0b1e 62%, #22050f 100%);
+      }
+      /* velo para que el texto blanco se lea sobre el fondo A */
+      #fondo-a .velo { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(58, 11, 30, 0.45) 0%, rgba(58, 11, 30, 0.15) 50%, rgba(58, 11, 30, 0) 70%); }
+      #fondo-b .velo { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(46, 7, 22, 0.45) 0%, rgba(46, 7, 22, 0) 60%); }
+      #fondo-c .velo { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(46, 7, 22, 0) 35%, rgba(46, 7, 22, 0.45) 75%); }
+      #fondo-a .cam { transform-origin: 50% 100%; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-j7pz" id="root" data-composition-id="main" data-start="0" data-duration="30" data-width="1920" data-height="1080">
+      <div data-hf-id="hf-srd5" id="fondo-a" class="fondo clip" data-start="0" data-duration="30" data-track-index="0">
+        <div data-hf-id="hf-e0xm" class="cam" id="cam-a"><img data-hf-id="hf-t2dy" src="assets/bg_a.png" alt="" /><div data-hf-id="hf-4kj0" class="velo"></div></div>
+      </div>
+      <div data-hf-id="hf-qkat" id="fondo-b" class="fondo clip" data-start="0" data-duration="30" data-track-index="1">
+        <div data-hf-id="hf-a2tl" class="cam" id="cam-b"><img data-hf-id="hf-r4bp" src="assets/bg_b.png" alt="" /><div data-hf-id="hf-rekk" class="velo"></div></div>
+      </div>
+      <div data-hf-id="hf-4kid" id="fondo-c" class="fondo clip" data-start="0" data-duration="30" data-track-index="2">
+        <div data-hf-id="hf-9b5s" class="cam" id="cam-c"><img data-hf-id="hf-s4po" src="assets/bg_c.png" alt="" /><div data-hf-id="hf-q7nh" class="velo"></div></div>
+      </div>
+      <div data-hf-id="hf-rmhh" id="fondo-cierre" class="fondo clip" data-start="0" data-duration="30" data-track-index="3">
+        <div data-hf-id="hf-davv" class="cam" id="cam-cierre"></div>
+      </div>
+
+      <div data-hf-id="hf-5by7" id="titulo" data-composition-id="titulo" data-composition-src="compositions/titulo.html"
+        data-start="3.2" data-duration="7.2" data-track-index="4" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index: 10"></div>
+      <div data-hf-id="hf-qd2b" id="versiculo" data-composition-id="versiculo" data-composition-src="compositions/versiculo.html"
+        data-start="10.2" data-duration="9" data-track-index="5" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index: 10"></div>
+      <div data-hf-id="hf-esl8" id="gracias" data-composition-id="gracias" data-composition-src="compositions/gracias.html"
+        data-start="19.2" data-duration="6" data-track-index="6" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index: 10"></div>
+      <div data-hf-id="hf-65xe" id="cierre" data-composition-id="cierre" data-composition-src="compositions/cierre.html"
+        data-start="25" data-duration="4.4" data-track-index="7" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index: 10"></div>
+
+      <div data-hf-id="hf-un7a" id="petalos" data-composition-id="petalos" data-composition-src="compositions/petalos.html"
+        data-start="0" data-duration="30" data-track-index="8" data-track-kind="graphics"
+        data-width="1920" data-height="1080" style="z-index: 20"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const lazy = { immediateRender: false };
+      // estado base en t=0 (también es el estado al que vuelve el loop en t=30)
+      tl.set("#fondo-a", { opacity: 1 }, 0).set("#cam-a", { filter: "blur(0px)" }, 0);
+      tl.set(["#fondo-b", "#fondo-c", "#fondo-cierre"], { opacity: 0 }, 0);
+      tl.set("#cam-b", { x: -40, scale: 1.12, filter: "blur(14px)" }, 0).set("#cam-c", { x: 0, scale: 1.35, filter: "blur(14px)" }, 0).set("#cam-cierre", { scale: 1.2 }, 0);
+
+      // 1 · Apertura: el ramo sube desde abajo (mismo estado en t=0 y t=30 para que el loop no salte)
+      tl.fromTo("#cam-a", { y: 120, scale: 1.16 }, { y: 0, scale: 1, duration: 3.6, ease: "expo.out" }, 0);
+      tl.fromTo("#cam-a", { scale: 1 }, { scale: 1.06, duration: 6.2, ease: "none", ...lazy }, 3.6);
+
+      // 2 → 3 · Fundido entre pétalos (la ráfaga está en petalos.html, 9.3–11.2)
+      tl.fromTo("#cam-a", { filter: "blur(0px)" }, { filter: "blur(14px)", duration: 0.8, ease: "power2.in", ...lazy }, 9.7);
+      tl.fromTo("#fondo-a", { opacity: 1 }, { opacity: 0, duration: 0.8, ease: "power2.inOut", ...lazy }, 9.8);
+      tl.fromTo("#fondo-b", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power2.inOut", ...lazy }, 9.8);
+      tl.fromTo("#cam-b", { filter: "blur(14px)", scale: 1.12, x: -40 }, { filter: "blur(0px)", scale: 1.06, x: 0, duration: 1.1, ease: "power3.out", ...lazy }, 9.9);
+      tl.fromTo("#cam-b", { x: 0 }, { x: 40, duration: 8, ease: "none", ...lazy }, 11);
+
+      // 3 → 4 · Zoom suave: el fondo B se va hacia la cámara y la rosa llega desde cerca
+      tl.fromTo("#cam-b", { scale: 1.06, filter: "blur(0px)" }, { scale: 1.4, filter: "blur(16px)", duration: 0.7, ease: "power3.in", ...lazy }, 18.9);
+      tl.fromTo("#fondo-c", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.inOut", ...lazy }, 19.2);
+      tl.fromTo("#cam-c", { scale: 1.35, filter: "blur(14px)" }, { scale: 1.04, filter: "blur(0px)", duration: 1.2, ease: "expo.out", ...lazy }, 19.3);
+      tl.fromTo("#cam-c", { scale: 1.04, x: 0 }, { scale: 1.1, x: -30, duration: 4.5, ease: "none", ...lazy }, 20.5);
+      tl.fromTo("#fondo-b", { opacity: 1 }, { opacity: 0, duration: 0.1, ...lazy }, 19.7);
+
+      // 4 → 5 · Inundación de color hacia el borravino del cierre
+      tl.fromTo("#fondo-cierre", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.inOut", ...lazy }, 24.9);
+      tl.fromTo("#cam-cierre", { scale: 1.2 }, { scale: 1, duration: 4, ease: "power2.out", ...lazy }, 24.9);
+      tl.fromTo("#fondo-c", { opacity: 1 }, { opacity: 0, duration: 0.1, ...lazy }, 25.6);
+
+      // 5 → 1 · Vuelve el ramo, ya en la posición de arranque
+      tl.set("#cam-a", { y: 120, scale: 1.16, filter: "blur(14px)" }, 28.4);
+      tl.fromTo("#cam-a", { filter: "blur(14px)" }, { filter: "blur(0px)", duration: 1.2, ease: "power2.out", ...lazy }, 28.5);
+      tl.fromTo("#fondo-a", { opacity: 0 }, { opacity: 1, duration: 0.1, ...lazy }, 28.4);
+      tl.fromTo("#fondo-cierre", { opacity: 1 }, { opacity: 0, duration: 1.1, ease: "power2.inOut", ...lazy }, 28.5);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

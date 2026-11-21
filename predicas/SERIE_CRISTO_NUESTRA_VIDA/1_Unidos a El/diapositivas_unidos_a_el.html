@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidos a Él</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+/* Un bloque del bosquejo = una diapositiva. Hasta 3 imágenes con su frase; las notas llevan el bloque completo. */
+:root {
+    --paper: #FFF8EC;
+    --ink: #161616;
+    --green: #5DBE2C;
+    --green-dk: #2E7D12;
+    --f: 'Montserrat', Arial, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; cursor: none; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--paper); }
+
+.slide { position: absolute; inset: 0; display: grid; visibility: hidden; opacity: 0; transition: opacity .5s ease, visibility 0s .5s; background: var(--paper); color: var(--ink); font-family: var(--f); }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .5s ease; z-index: 1; }
+
+/* ── UNA imagen: cuadrada de borde a borde + texto ── */
+.slide.una { grid-template-columns: 1000px 1fr; }
+.slide.una.flip { grid-template-columns: 1fr 1000px; }
+.slide.una.flip .pic { order: 2; border-width: 0 0 0 10px; }
+.pic { height: 1080px; overflow: hidden; border-right: 10px solid var(--ink); background: #fff; }
+.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.text { display: flex; flex-direction: column; justify-content: center; gap: 44px; padding: 60px 56px; }
+
+/* ── SOLO texto ── */
+.slide.solo { grid-template-columns: 1fr; }
+.slide.solo .text { align-items: center; text-align: center; padding: 60px 110px; }
+.slide.solo .kicker { align-self: center; }
+.slide.app { background: var(--green); }
+.slide.app .kicker { background: var(--paper); color: var(--ink); }
+.slide.app em { color: #fff; }
+
+/* ── TRES imágenes: título arriba, imágenes a todo el ancho, frase debajo de cada una ── */
+.slide.trio { grid-template-columns: repeat(3, 640px); grid-template-rows: 200px 640px 240px; }
+.slide.trio .head { grid-column: 1 / -1; }
+/* ── DOS imágenes: título a la izquierda, imágenes grandes a la derecha ── */
+.slide.duo { grid-template-columns: 480px 720px 720px; grid-template-rows: 720px 360px; }
+.slide.duo .head { grid-column: 1; grid-row: 1 / span 2; padding: 0 36px; gap: 24px; }
+.slide.duo .head .title { font-size: 60px; line-height: 1.05; }
+.slide.duo .im:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+.slide.duo .im:nth-of-type(3) { grid-column: 3; grid-row: 1; }
+.slide.duo .cap:nth-of-type(4) { grid-column: 2; grid-row: 2; }
+.slide.duo .cap:nth-of-type(5) { grid-column: 3; grid-row: 2; }
+.slide.duo .cap { font-size: 72px; }
+
+.head { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 12px; padding: 0 48px; }
+.head .kicker { font-size: 40px; padding: 8px 26px; }
+.head .title { font: 900 88px/1 var(--f); letter-spacing: -.02em; }
+.im { position: relative; overflow: hidden; border-top: 8px solid var(--ink); border-bottom: 8px solid var(--ink); background: #fff; }
+.im + .im { border-left: 8px solid var(--ink); }
+.slide.duo .im { border-top: 0; border-left: 8px solid var(--ink); }
+.im img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.im .n { position: absolute; left: 14px; bottom: 14px; width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: #fff; font: 900 44px/1 var(--f); }
+.cap { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 22px; overflow: hidden; font: 800 64px/1.08 var(--f); letter-spacing: -.01em; }
+
+.kicker { align-self: flex-start; padding: 16px 32px; border-radius: 40px; line-height: 1.15; background: var(--ink); color: #fff; font: 800 58px/1.15 var(--f); }
+.title { font: 900 128px/1 var(--f); letter-spacing: -.03em; }
+.title em, .big em, .cap em { font-style: normal; color: var(--green-dk); }
+.big { font: 900 104px/1.05 var(--f); letter-spacing: -.02em; }
+.ref { font: 900 88px/1 var(--f); color: var(--green-dk); }
+.slide.solo .big { font-size: 128px; }
+.slide.solo .title { font-size: 150px; }
+
+.slide.active .text > *, .slide.active .head > * { animation: up .7s var(--ease) both; }
+@keyframes up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+.notes { display: none; }
+.progress { position: fixed; left: 0; bottom: 0; height: 8px; background: var(--green); z-index: 1000; transition: width .5s var(--ease); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- 1 · PORTADA -->
+<section class="slide una">
+  <div class="pic"><img src="img/01_portada.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Cristo, nuestra vida · 1</div>
+    <div class="title">Unidos <em>a Él</em></div>
+    <div class="ref">Juan 14:1-3</div>
+  </div>
+  <aside class="notes"></aside>
+</section>
+
+<!-- ============ INTRODUCCIÓN ============ -->
+
+<!-- 2 · Introducción (1 de 2) -->
+<section class="slide duo">
+  <div class="head"><div class="title">Introducción</div></div>
+  <div class="im"><img src="img/02_domingo.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/03_lunes.jpg" alt=""><span class="n">2</span></div>
+  <div class="cap"><span>El domingo, <em>cerca</em></span></div>
+  <div class="cap"><span>El lunes, <em>solos</em></span></div>
+  <aside class="notes">
+    <h3>Introducción</h3>
+    <p>Creemos en Jesús, pero muchas veces vivimos como si estuviera lejos.</p>
+    <p>① El domingo, cerca<br>• El domingo lo sentimos cerca.</p>
+    <p>② El lunes, solos<br>• El lunes enfrentamos las cuentas, el trabajo y los problemas de casa como si estuviéramos solos.<br>• El jueves vimos que de ahí nace el miedo: de imaginar a un Señor lejano.</p>
+  </aside>
+</section>
+
+<!-- 3 · Introducción (2 de 2) -->
+<section class="slide trio">
+  <div class="head"><div class="title">Introducción</div></div>
+  <div class="im"><img src="img/04_se_va.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/05_pedro.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/06_miedo_perderlo.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Jesús se va</span></div>
+  <div class="cap"><span>Pedro le va a fallar</span></div>
+  <div class="cap"><span>Miedo de perderlo</span></div>
+  <aside class="notes">
+    <p>① Jesús se va<br>• Es la última cena. Jesús les avisa que se va:<br>📖 Juan 13:33 — "Hijitos, aún estaré con vosotros un poco. Me buscaréis; pero como dije a los judíos, así os digo ahora a vosotros: A donde yo voy, vosotros no podéis ir."</p>
+    <p>② Pedro le va a fallar<br>• Pedro no lo acepta, y Jesús le anuncia que le va a fallar:<br>📖 Juan 13:36-38 — "Le dijo Simón Pedro: Señor, ¿a dónde vas? Jesús le respondió: A donde yo voy, no me puedes seguir ahora; mas me seguirás después. Le dijo Pedro: Señor, ¿por qué no te puedo seguir ahora? Mi vida pondré por ti. Jesús le respondió: ¿Tu vida pondrás por mí? De cierto, de cierto te digo: No cantará el gallo, sin que me hayas negado tres veces."</p>
+    <p>③ Miedo de perderlo<br>• Los discípulos quedan con miedo de perderlo. Lo siguiente que Jesús dice es el texto de hoy:<br>📖 Juan 14:1-3 — "No se turbe vuestro corazón; creéis en Dios, creed también en mí. En la casa de mi Padre muchas moradas hay; si así no fuera, yo os lo hubiera dicho; voy, pues, a preparar lugar para vosotros. Y si me fuere y os preparare lugar, vendré otra vez, y os tomaré a mí mismo, para que donde yo estoy, vosotros también estéis."</p>
+  </aside>
+</section>
+
+<!-- 4 · Idea de todo el mensaje -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big" style="font-size:112px">No solo un lugar para después: estar <em>con Él</em>, desde ahora.</div>
+  </div>
+  <aside class="notes">
+    <p>Jesús no nos promete solo un lugar para después. Nos promete estar con Él, desde ahora.</p>
+  </aside>
+</section>
+
+<!-- ============ PUNTO 1 ============ -->
+
+<!-- 5 · 1 · Ilustración -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">1 · Él está en nuestro miedo</div><div class="title">El <em>corte de luz</em></div></div>
+  <div class="im"><img src="img/07_mama.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/08_alguien_venga.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/09_mano.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>“¡Mamá!”</span></div>
+  <div class="cap"><span>Que alguien venga</span></div>
+  <div class="cap"><span>Ya no tiene miedo</span></div>
+  <aside class="notes">
+    <h3>1. Él está en nuestro miedo</h3>
+    <p>① "¡Mamá!"<br>• Es de noche y se corta la luz. Desde la pieza, el nene grita: "¡Mamá!".</p>
+    <p>② Que alguien venga<br>• No quiere que le expliquen por qué se cortó ni cuándo vuelve. Quiere que alguien venga.</p>
+    <p>③ Ya no tiene miedo<br>• La mamá se sienta al lado, le agarra la mano, y el nene se calma.<br>• La luz sigue cortada, pero ya no tiene miedo.<br>• Eso hace Jesús con sus discípulos. La situación no cambia, pero les da su persona.</p>
+  </aside>
+</section>
+
+<!-- 6 · 1 · Qué dice el texto -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">1 · Él está en nuestro miedo</div><div class="title">Qué dice <em>el texto</em></div></div>
+  <div class="im"><img src="img/10_revuelto.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/11_turbada.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/12_creed.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Revuelto por dentro</span></div>
+  <div class="cap"><span>“Turbada mi alma”</span></div>
+  <div class="cap"><span>“Creed también en mí”</span></div>
+  <aside class="notes">
+    <p>📖 Juan 14:1 — "No se turbe vuestro corazón; creéis en Dios, creed también en mí."</p>
+    <p>① Revuelto por dentro<br>• "Turbado" es estar revuelto por dentro, como el agua cuando se agita.</p>
+    <p>② "Turbada mi alma"<br>• Jesús sabe lo que es eso. Dos capítulos antes, pensando en la cruz, Él mismo dijo:<br>📖 Juan 12:27 — "Ahora está turbada mi alma; ¿y qué diré? ¿Padre, sálvame de esta hora? Mas para esto he llegado a esta hora."</p>
+    <p>③ "Creed también en mí"<br>• A los discípulos no les saca el problema, porque se va igual. Tampoco les da una explicación. Les da a quién mirar: "creed también en mí".</p>
+  </aside>
+</section>
+
+<!-- 7 · 1 · Qué nos pasa a nosotros -->
+<section class="slide duo">
+  <div class="head"><div class="kicker">1 · Él está en nuestro miedo</div><div class="title">Qué <em>nos pasa</em> a nosotros</div></div>
+  <div class="im"><img src="img/13_salida.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/14_final.jpg" alt=""><span class="n">2</span></div>
+  <div class="cap"><span>Buscamos la salida</span></div>
+  <div class="cap"><span>Jesús, para el final</span></div>
+  <aside class="notes">
+    <p>① Buscamos la salida<br>• Cuando llega el miedo, lo primero que hacemos es buscar la salida: hacer cuentas, llamar a alguien, dar vueltas en la cama.</p>
+    <p>② Jesús, para el final<br>• A Jesús lo dejamos para el final, cuando ya no queda otra cosa.</p>
+  </aside>
+</section>
+
+<!-- 8 · 1 · Cómo se vive en la semana -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Cómo se vive en la semana</div>
+    <div class="big">Hablarle a Él <em>primero</em>.</div>
+  </div>
+  <aside class="notes">
+    <h3>Cómo se vive en la semana</h3>
+    <p>• Cuando llegue la preocupación (la cuenta que no cierra, el estudio médico, el hijo que nos preocupa), necesitamos hablarle a Él primero, antes de hacer cualquier otra cosa.</p>
+    <p>• Podemos decírselo con nombre y apellido: "Señor, esto me tiene revuelto. Creo en vos".</p>
+    <p>• En casa podemos hacerlo juntos. Cuando un hijo tiene miedo, orar con él en el momento le enseña a quién acudir.</p>
+  </aside>
+</section>
+
+<!-- 9 · Puente al punto 2 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">¿Qué promete Jesús <em>para el final</em>?</div>
+  </div>
+  <aside class="notes">
+    <p>Si Jesús se da a sí mismo en el miedo, ¿qué es lo que promete para el final?</p>
+  </aside>
+</section>
+
+<!-- ============ PUNTO 2 ============ -->
+
+<!-- 10 · 2 · Ilustración -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">2 · Él es la promesa</div><div class="title">El <em>bolso</em></div></div>
+  <div class="im"><img src="img/15_vuelve_papa.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/16_que_me_trajiste.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/17_brazos_abiertos.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Vuelve papá</span></div>
+  <div class="cap"><span>“¿Qué me trajiste?”</span></div>
+  <div class="cap"><span>Él volvió por ellos</span></div>
+  <aside class="notes">
+    <h3>2. Él es la promesa</h3>
+    <p>① Vuelve papá<br>• Un papá vuelve a casa después de varias semanas de trabajar lejos.</p>
+    <p>② "¿Qué me trajiste?"<br>• Los chicos salen corriendo a recibirlo y van derecho al bolso: "¿Qué me trajiste?".</p>
+    <p>③ Él volvió por ellos<br>• El papá se queda con los brazos abiertos.<br>• Él volvió por ellos, y ellos fueron a buscar el regalo.<br>• Jesús dice "vendré otra vez". ¿Para qué vuelve? No viene a repartir cosas.</p>
+  </aside>
+</section>
+
+<!-- 11 · 2 · Qué dice el texto -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">2 · Él es la promesa</div><div class="title">Qué dice <em>el texto</em></div></div>
+  <div class="im"><img src="img/18_lugar.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/19_tomare.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/20_camino.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Hay un lugar</span></div>
+  <div class="cap"><span>“Os tomaré a mí mismo”</span></div>
+  <div class="cap"><span>“Yo soy el camino”</span></div>
+  <aside class="notes">
+    <p>① Hay un lugar<br>• Hay un lugar. El cielo existe y Jesús vuelve:<br>📖 Juan 14:2 — "En la casa de mi Padre muchas moradas hay; si así no fuera, yo os lo hubiera dicho; voy, pues, a preparar lugar para vosotros."</p>
+    <p>② "Os tomaré a mí mismo"<br>• Pero la promesa termina en una persona:<br>📖 Juan 14:3 — "Y si me fuere y os preparare lugar, vendré otra vez, y os tomaré a mí mismo, para que donde yo estoy, vosotros también estéis."<br>• "Os tomaré a mí mismo" quiere decir "los voy a recibir conmigo". El lugar vale porque Él está ahí.</p>
+    <p>③ "Yo soy el camino"<br>• Tomás pide el camino, como quien pide un mapa. Jesús le contesta con su persona:<br>📖 Juan 14:5-6 — "Le dijo Tomás: Señor, no sabemos a dónde vas; ¿cómo, pues, podemos saber el camino? Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí."</p>
+  </aside>
+</section>
+
+<!-- 12 · 2 · Qué nos pasa a nosotros -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">2 · Él es la promesa</div><div class="title">Qué <em>nos pasa</em> a nosotros</div></div>
+  <div class="im"><img src="img/21_lo_que_da.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/22_lista.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/23_enfriamos.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Lo que da, más que a Él</span></div>
+  <div class="cap"><span>Una lista de pedidos</span></div>
+  <div class="cap"><span>Nos enfriamos</span></div>
+  <aside class="notes">
+    <p>① Lo que da, más que a Él<br>• Muchas veces queremos lo que Jesús da más que a Jesús: la salud, el trabajo, la solución, el cielo.</p>
+    <p>② Una lista de pedidos<br>• Se nota en la oración: casi todo es una lista de pedidos.</p>
+    <p>③ Nos enfriamos<br>• Se nota también cuando lo que pedimos no llega: nos enfriamos y nos alejamos.</p>
+  </aside>
+</section>
+
+<!-- 13 · 2 · Cómo se vive en la semana -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Cómo se vive en la semana</div>
+    <div class="big">Estar con Él <em>sin pedirle nada</em>.</div>
+  </div>
+  <aside class="notes">
+    <h3>Cómo se vive en la semana</h3>
+    <p>• Necesitamos apartar un momento del día para estar con Él sin pedirle nada: leer un pasaje, agradecer, quedarnos en silencio.</p>
+    <p>• Cuando algo que pedimos no llegue, nos toca quedarnos igual. Lo que tenemos no es solo una respuesta: lo tenemos a Él.</p>
+  </aside>
+</section>
+
+<!-- 14 · Puente al punto 3 -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">¿Recién cuando lleguemos <em>al cielo</em>?</div>
+  </div>
+  <aside class="notes">
+    <p>¿Y estar con Él es recién para cuando lleguemos al cielo?</p>
+  </aside>
+</section>
+
+<!-- ============ PUNTO 3 ============ -->
+
+<!-- 15 · 3 · Ilustración -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">3 · Él vive en casa</div><div class="title">La <em>visita</em></div></div>
+  <div class="im"><img src="img/24_ordenamos.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/25_puerta.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/26_vive_en_casa.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Ordenamos todo</span></div>
+  <div class="cap"><span>La puerta cerrada</span></div>
+  <div class="cap"><span>El que vive en casa</span></div>
+  <aside class="notes">
+    <h3>3. Él vive en casa</h3>
+    <p>① Ordenamos todo<br>• Cuando viene una visita, ordenamos el comedor, sacamos los vasos lindos y hablamos más suave.</p>
+    <p>② La puerta cerrada<br>• La atendemos adelante y cerramos la puerta de la pieza desordenada.<br>• Cuando se va, la casa vuelve a ser la de siempre.</p>
+    <p>③ El que vive en casa<br>• El que vive en casa es distinto: ve la cocina a la mañana, escucha cómo nos hablamos, está en todo.<br>• Jesús no dijo "pasaremos a visitarlo". Dijo otra cosa:<br>📖 Juan 14:23 — "Respondió Jesús y le dijo: El que me ama, mi palabra guardará; y mi Padre le amará, y vendremos a él, y haremos morada con él."</p>
+  </aside>
+</section>
+
+<!-- 16 · 3 · Qué dice el texto -->
+<section class="slide trio">
+  <div class="head"><div class="kicker">3 · Él vive en casa</div><div class="title">Qué dice <em>el texto</em></div></div>
+  <div class="im"><img src="img/27_morada.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/28_dos_casas.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/29_palabra.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Donde uno se queda a vivir</span></div>
+  <div class="cap"><span>Su casa y la nuestra</span></div>
+  <div class="cap"><span>“Mi palabra guardará”</span></div>
+  <aside class="notes">
+    <p>① Donde uno se queda a vivir<br>• "Morada" es la casa donde uno se queda a vivir. En todo el Nuevo Testamento la palabra aparece solo dos veces, las dos en este capítulo.</p>
+    <p>② Su casa y la nuestra<br>• La primera vez, la morada es nuestra en la casa del Padre:<br>📖 Juan 14:2 — "En la casa de mi Padre muchas moradas hay; si así no fuera, yo os lo hubiera dicho; voy, pues, a preparar lugar para vosotros."<br>• La segunda vez, en Juan 14:23, la morada es de Él en nosotros: "haremos morada con él".<br>• Un día vamos a vivir en su casa. Mientras tanto, Él viene a vivir en la nuestra.</p>
+    <p>③ "Mi palabra guardará"<br>• Jesús dice cómo se nota: "El que me ama, mi palabra guardará".</p>
+  </aside>
+</section>
+
+<!-- 17 · 3 · Qué nos pasa a nosotros -->
+<section class="slide duo">
+  <div class="head"><div class="kicker">3 · Él vive en casa</div><div class="title">Qué <em>nos pasa</em> a nosotros</div></div>
+  <div class="im"><img src="img/30_visita_jesus.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/31_felipe.jpg" alt=""><span class="n">2</span></div>
+  <div class="cap"><span>Como a una visita</span></div>
+  <div class="cap"><span>“¿Tanto tiempo, Felipe?”</span></div>
+  <aside class="notes">
+    <p>① Como a una visita<br>• Tratamos a Jesús como una visita: lo vemos el domingo en el templo y el lunes seguimos solos.</p>
+    <p>② "¿Tanto tiempo, Felipe?"<br>• Podemos pasar años así. A Felipe le pasó:<br>📖 Juan 14:8-9 — "Felipe le dijo: Señor, muéstranos el Padre, y nos basta. Jesús le dijo: ¿Tanto tiempo hace que estoy con vosotros, y no me has conocido, Felipe? El que me ha visto a mí, ha visto al Padre; ¿cómo, pues, dices tú: Muéstranos el Padre?"</p>
+  </aside>
+</section>
+
+<!-- 18 · 3 · Cómo se vive en la semana -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Cómo se vive en la semana</div>
+    <div class="big">Contar con Él <em>en todo</em>.</div>
+  </div>
+  <aside class="notes">
+    <h3>Cómo se vive en la semana</h3>
+    <p>• Si Él vive en casa, está cuando discutimos, cuando elegimos qué mirar, cuando decidimos en qué gastar. Necesitamos contar con Él en esas cosas, no solo en las "espirituales".</p>
+    <p>• Podemos abrir su palabra en familia una noche de esta semana. Juan 14 alcanza.</p>
+    <p>• Cada uno conoce alguna palabra de Jesús que no está guardando: un perdón pendiente, una costumbre, una conversación que venimos esquivando. Nos toca obedecerla esta semana.</p>
+  </aside>
+</section>
+
+<!-- ============ CONCLUSIÓN ============ -->
+
+<!-- 19 · Conclusión (reusa las tres ilustraciones) -->
+<section class="slide trio">
+  <div class="head"><div class="title">Conclusión</div></div>
+  <div class="im"><img src="img/09_mano.jpg" alt=""><span class="n">1</span></div>
+  <div class="im"><img src="img/17_brazos_abiertos.jpg" alt=""><span class="n">2</span></div>
+  <div class="im"><img src="img/26_vive_en_casa.jpg" alt=""><span class="n">3</span></div>
+  <div class="cap"><span>Se da <em>Él</em></span></div>
+  <div class="cap"><span>Nos espera <em>Él</em></span></div>
+  <div class="cap"><span><em>Él</em> vive en casa</span></div>
+  <aside class="notes">
+    <h3>Conclusión</h3>
+    <p>📖 Colosenses 3:4 — "Cuando Cristo, vuestra vida, se manifieste, entonces vosotros también seréis manifestados con él en gloria."</p>
+    <p>① El corte de luz<br>• En el miedo, Jesús no nos da una explicación, se da Él.</p>
+    <p>② El bolso<br>• Al final no nos espera solo un regalo, nos espera Él.</p>
+    <p>③ La visita<br>• Mientras tanto no vivimos solos, Él vive en casa.<br>• El domingo que viene: si estamos unidos a Cristo, también morimos con Él. Vemos la cruz de cada día.</p>
+  </aside>
+</section>
+
+<!-- 20 · Llamado -->
+<section class="slide solo">
+  <div class="text">
+    <div class="kicker">Llamado</div>
+    <div class="big">“Os tomaré <em>a mí mismo</em>”</div>
+  </div>
+  <aside class="notes">
+    <h3>Llamado</h3>
+    <p>La noche en que todos le iban a fallar, Jesús prometió:<br>📖 Juan 14:3 — "…vendré otra vez, y os tomaré a mí mismo, para que donde yo estoy, vosotros también estéis."</p>
+    <p>Necesitamos dejar de vivir como si estuviera lejos: entregarle hoy lo que nos tiene turbados y abrirle la casa para que se quede.</p>
+  </aside>
+</section>
+
+<!-- 21 · Cierre -->
+<section class="slide solo">
+  <div class="text">
+    <div class="title">Oremos.</div>
+  </div>
+  <aside class="notes">
+    <p>Oremos.</p>
+  </aside>
+</section>
+
+</main>
+</div>
+
+<script>
+/* Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic. */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+            if (e.key === 'f') document.documentElement.requestFullscreen?.();
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        // Renuevo Presenter controla el deck cambiando #N (desde 1).
+        addEventListener('hashchange', () => {
+            const n = parseInt(location.hash.slice(1), 10);
+            if (Number.isFinite(n) && n - 1 !== this.current) this.show(n - 1);
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.slides.forEach((x, j) => x.classList.toggle('active', j === this.current));
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+new SlidePresentation();
+</script>
+<script>
+/* Achica cada frase hasta que entre debajo de su imagen (mínimo 48px). */
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+    document.querySelectorAll('.cap').forEach(cap => {
+        const span = cap.firstElementChild;
+        let px = parseFloat(getComputedStyle(cap).fontSize);
+        while (px > 48 && (span.offsetHeight > cap.clientHeight - 24 || span.scrollWidth > cap.clientWidth - 44)) {
+            px -= 2;
+            cap.style.fontSize = px + 'px';
+        }
+    });
+});
+</script>
+</body>
+</html>

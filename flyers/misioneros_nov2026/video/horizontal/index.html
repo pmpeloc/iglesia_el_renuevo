@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        --ink: #0b0b0c;
+        --paper: #f3eee4;
+        --fuego: #ff5b1f;
+        --display: "League Gothic", sans-serif;
+        --serif: "EB Garamond", serif;
+        --sans: "Inter", sans-serif;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); }
+      #root { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--ink); font-family: var(--sans); color: var(--paper); }
+      .full { position: absolute; inset: 0; overflow: hidden; }
+      .foto { position: absolute; inset: 0; }
+      .foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .velo-izq { position: absolute; inset: 0; background: linear-gradient(90deg, var(--ink) 0%, rgba(11,11,12,.92) 34%, rgba(11,11,12,.35) 62%, rgba(11,11,12,.1) 100%); }
+      .kicker { font: 700 28px/1 var(--sans); letter-spacing: .26em; text-transform: uppercase; color: var(--fuego); }
+      .disp { font-family: var(--display); font-weight: 400; text-transform: uppercase; line-height: .9; letter-spacing: .005em; }
+      .fuego { color: var(--fuego); }
+
+      /* 1 apertura */
+      #h1-foto { position: absolute; left: 820px; top: 0; right: 0; bottom: 0; overflow: hidden; }
+      #h1-txt { position: absolute; left: 150px; top: 230px; width: 900px; }
+      #h1-a { font-size: 150px; margin-top: 18px; }
+      #h1-b { font-size: 214px; color: var(--fuego); }
+      #h1-c { margin-top: 18px; font: 600 40px/1.2 var(--sans); }
+
+      /* 2 versículo */
+      #h2-txt { position: absolute; left: 150px; right: 150px; top: 300px; text-align: center; font: italic 500 104px/1.08 var(--serif); }
+      #h2-txt span { display: inline-block; }
+      #h2-cita { margin-top: 36px; }
+
+      /* 3 franjas */
+      .franja { position: absolute; top: 0; bottom: 0; width: 480px; overflow: hidden; }
+      .franja img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      #h3-tit { position: absolute; left: 0; right: 0; top: 330px; text-align: center; }
+      #h3-tit .disp { font-size: 230px; text-shadow: 0 12px 50px rgba(0,0,0,.6); }
+      #h3-tit .kicker { margin-bottom: 18px; }
+
+      /* 4 coro */
+      #h4-txt { position: absolute; left: 150px; right: 150px; top: 250px; }
+      #h4-a, #h4-b { font-size: 240px; text-shadow: 0 12px 50px rgba(0,0,0,.5); }
+
+      /* barra info */
+      #barra { position: absolute; left: 150px; right: 150px; bottom: 90px; display: flex; justify-content: space-between; align-items: center; padding-top: 22px; border-top: 3px solid var(--fuego); }
+      #barra .l1 { font: 800 38px/1 var(--sans); }
+      #barra .l2 { font: 600 30px/1 var(--sans); opacity: .85; }
+
+      /* tarjetas de día */
+      .dia-foto { position: absolute; left: 0; top: 0; bottom: 0; width: 1000px; overflow: hidden; }
+      .dia-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .dia-txt { position: absolute; left: 1100px; right: 120px; top: 200px; }
+      .dia-txt .nombre, .dia-txt .num { font-size: 220px; }
+      .dia-txt .num { color: var(--fuego); }
+      .dia-txt .hs { margin-top: 24px; font: 900 96px/1 var(--sans); letter-spacing: -.02em; }
+      .dia-txt .lugar { margin-top: 18px; font: 600 34px/1.25 var(--sans); opacity: .9; }
+      .dia-txt { top: 150px !important; left: 1080px !important; right: 100px !important; }
+      .dia-txt .uno { font-size: 200px; margin-top: 14px; }
+      .prog { margin-top: 26px; border-top: 3px solid var(--fuego); }
+      .it { display: flex; gap: 26px; padding: 16px 0; border-bottom: 2px solid rgba(243,238,228,.18); }
+      .it b { flex: none; width: 150px; font: 900 50px/1.05 var(--sans); color: var(--fuego); }
+      .it span { display: block; font: 700 22px/1 var(--sans); letter-spacing: .22em; text-transform: uppercase; opacity: .7; margin-bottom: 8px; }
+      .it div { font: 700 44px/1.12 var(--sans); }
+      .it small { display: block; font: 700 34px/1.3 var(--sans); }
+      .lugar2 { margin-top: 20px; font: 600 30px/1.25 var(--sans); opacity: .9; }
+      .cortina { position: absolute; inset: 0; background: var(--fuego); }
+
+      /* jornada */
+      #h6 { background: var(--fuego); color: var(--ink); }
+      #h6-foto { position: absolute; right: 120px; top: 150px; width: 700px; height: 640px; overflow: hidden; }
+      #h6-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      #h6-txt { position: absolute; left: 150px; top: 170px; width: 950px; }
+      #h6-txt .kicker { color: var(--ink); }
+      #h6-tit { font-size: 200px; margin-top: 18px; }
+      #h6-hs { margin-top: 22px; font: 900 92px/1 var(--sans); letter-spacing: -.02em; }
+      #h6-desc { margin-top: 20px; font: 600 36px/1.3 var(--sans); max-width: 860px; }
+      #ruta { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+
+      /* cierre */
+      #h8-izq { position: absolute; left: 150px; top: 150px; width: 760px; }
+      #h8-tit { font-size: 190px; margin-top: 16px; }
+      #h8-lugar { margin-top: 28px; font: 700 38px/1.25 var(--sans); }
+      #h8-sello { display: inline-block; margin-top: 28px; background: var(--fuego); color: var(--ink); font: 900 40px/1 var(--sans); letter-spacing: .06em; padding: 20px 28px; text-transform: uppercase; }
+      #h8-der { position: absolute; left: 1000px; right: 150px; top: 190px; }
+      .fila { display: flex; align-items: center; gap: 34px; padding: 26px 0; border-bottom: 2px solid rgba(243,238,228,.18); }
+      .fila .d { font-family: var(--display); font-size: 110px; line-height: .9; width: 300px; text-transform: uppercase; }
+      .fila .d b { font-weight: 400; color: var(--fuego); }
+      .fila .h { font: 900 54px/1 var(--sans); }
+      .fila .q { font: 600 32px/1.2 var(--sans); opacity: .85; margin-top: 8px; }
+      #h8-logos { position: absolute; left: 1000px; top: 800px; display: flex; align-items: center; gap: 40px; }
+      #h8-logos .r { display: flex; align-items: center; gap: 18px; font: 700 28px/1.1 var(--sans); }
+      #h8-logos .r img { width: 84px; height: 84px; }
+      #h8-logos .sep { width: 2px; height: 84px; background: rgba(243,238,228,.4); }
+      #h8-logos .m { height: 56px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="51" data-width="1920" data-height="1080">
+      <audio id="musica" class="clip" src="assets/musica.mp3" data-start="0" data-duration="51" data-track-index="0" data-volume="1"></audio>
+
+      <!-- 1 · apertura (0–5.54) -->
+      <div id="h1" class="clip full" data-start="0" data-duration="5.54" data-track-index="1" style="z-index:1">
+        <div id="h1-foto"><div id="h1-cam" class="foto"><img src="assets/fotos/bn_10.jpg" style="object-position:40% 25%" /></div></div>
+        <div class="velo-izq"></div>
+        <div id="h1-txt">
+          <div class="kicker">16 y 17 de noviembre · Perico</div>
+          <div id="h1-a" class="disp">Nos visitan</div>
+          <div id="h1-b" class="disp">misioneros</div>
+          <div id="h1-c">del Instituto MISION · Buenos Aires</div>
+        </div>
+      </div>
+
+      <!-- 2 · versículo (5.54–11.08) -->
+      <div id="h2" class="clip full" data-start="5.54" data-duration="5.54" data-track-index="1" style="z-index:2">
+        <div id="h2-cam" class="foto"><img src="assets/fotos/bn_31.jpg" /></div>
+        <div class="full" style="background:rgba(11,11,12,.7)"></div>
+        <div id="h2-txt">
+          <span>«Id</span> <span>por</span> <span>todo</span> <span>el</span> <span>mundo</span> <span>y</span> <span>predicad</span> <span>el</span> <span>evangelio</span> <span>a</span> <span>toda</span> <span>criatura».</span>
+          <div id="h2-cita" class="kicker">Marcos 16:15</div>
+        </div>
+      </div>
+
+      <!-- 3 · cuatro franjas, una por pulso (11.08–17.08) -->
+      <div id="h3" class="clip full" data-start="11.08" data-duration="6.0" data-track-index="1" style="z-index:3">
+        <div class="franja" id="fr1" style="left:0"><img src="assets/fotos/bn_07.jpg" style="object-position:58% 40%" /></div>
+        <div class="franja" id="fr2" style="left:480px"><img src="assets/fotos/bn_13.jpg" style="object-position:50% 30%" /></div>
+        <div class="franja" id="fr3" style="left:960px"><img src="assets/fotos/bn_58.jpg" style="object-position:62% 40%" /></div>
+        <div class="franja" id="fr4" style="left:1440px"><img src="assets/fotos/bn_59.jpg" style="object-position:52% 40%" /></div>
+        <div id="h3-velo" class="full" style="background:linear-gradient(180deg,rgba(11,11,12,.15),rgba(11,11,12,.6) 55%,rgba(11,11,12,.85))"></div>
+        <div id="h3-tit">
+          <div class="kicker">Lunes 16 y martes 17</div>
+          <div class="disp" id="h3-t">Reuniones <span class="fuego">especiales</span></div>
+        </div>
+      </div>
+
+      <!-- 4 · coro (17.08–22.15), montaje a pulso -->
+      <div id="k1" class="clip full" data-start="17.08" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_30.jpg" /></div></div>
+      <div id="k2" class="clip full" data-start="17.54" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_54.jpg" style="object-position:40% 40%" /></div></div>
+      <div id="k3" class="clip full" data-start="18.00" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_29.jpg" /></div></div>
+      <div id="k4" class="clip full" data-start="18.46" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_12.jpg" style="object-position:50% 35%" /></div></div>
+      <div id="k5" class="clip full" data-start="18.92" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_41.jpg" /></div></div>
+      <div id="k6" class="clip full" data-start="19.38" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_26.jpg" /></div></div>
+      <div id="k7" class="clip full" data-start="19.85" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_32.jpg" /></div></div>
+      <div id="k8" class="clip full" data-start="20.31" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_42.jpg" /></div></div>
+      <div id="k9" class="clip full" data-start="20.77" data-duration="0.47" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_38.jpg" /></div></div>
+      <div id="k10" class="clip full" data-start="21.23" data-duration="0.46" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_31.jpg" /></div></div>
+      <div id="k11" class="clip full" data-start="21.69" data-duration="0.46" data-track-index="2" style="z-index:4"><div class="foto"><img src="assets/fotos/bn_58.jpg" style="object-position:60% 40%" /></div></div>
+      <div id="h4-velo" class="clip full" data-start="17.08" data-duration="5.07" data-track-index="3" style="z-index:5;background:linear-gradient(90deg,rgba(11,11,12,.85),rgba(11,11,12,.55) 55%,rgba(11,11,12,.3))"></div>
+      <div id="h4" class="clip full" data-start="17.08" data-duration="5.07" data-track-index="4" style="z-index:6">
+        <div id="h4-txt">
+          <div id="h4-a" class="disp">Toda lengua</div>
+          <div id="h4-b" class="disp">y toda <span class="fuego">nación</span></div>
+        </div>
+      </div>
+
+      <!-- barra con la info (0–22.15) -->
+      <div id="barra-c" class="clip full" data-start="0" data-duration="22.15" data-track-index="5" style="z-index:7">
+        <div id="barra">
+          <div class="l1">Lun 16 y Mar 17 · <span class="fuego">20:30 hs</span></div>
+          <div class="l2">República de Siria 255 · Entrada libre y gratuita</div>
+        </div>
+      </div>
+
+      <!-- 5 · LUNES (22.15–27.69) -->
+      <div id="h5" class="clip full" data-start="22.15" data-duration="7.38" data-track-index="1" style="z-index:8">
+        <div class="dia-foto"><div id="h5-cam" class="foto"><img src="assets/fotos/bn_02.jpg" style="object-position:22% 50%" /></div></div>
+        <div class="dia-txt" id="h5-txt">
+          <div class="kicker">Reunión especial · noviembre</div>
+          <div class="disp uno">Lunes <span class="fuego">16</span></div>
+          <div class="prog">
+            <div class="it"><b>20:30</b><div><span>Foro</span>Prácticas de justicia</div></div>
+            <div class="it"><b>21:15</b><div><span>Plenaria</span>Hineni · Isaías 6</div></div>
+          </div>
+          <div class="lugar2">República de Siria 255 · Perico · Entrada libre</div>
+        </div>
+        <div id="h5-cortina" class="cortina"></div>
+      </div>
+
+      <!-- 6 · JORNADA (27.69–33.23) -->
+      <div id="h6" class="clip full" data-start="29.53" data-duration="4.62" data-track-index="1" style="z-index:9">
+        <svg id="ruta" viewBox="0 0 1920 1080" data-layout-ignore>
+          <path id="ruta-p" d="M -20 1000 C 300 930, 520 1010, 800 960 S 1300 860, 1500 900 S 1800 1000, 1960 930" fill="none" stroke="#0b0b0c" stroke-width="6" stroke-linecap="round" />
+        </svg>
+        <div id="h6-foto"><img id="h6-img" src="assets/fotos/bn_29.jpg" style="object-position:45% 50%" /></div>
+        <div id="h6-txt">
+          <div class="kicker">Martes 17 · por la mañana</div>
+          <div id="h6-tit" class="disp">Jornada de<br />evangelismo</div>
+          <div id="h6-hs">10 A 12 HS</div>
+          <div id="h6-desc">Salimos desde la iglesia a las calles de Perico, junto a los misioneros. ¡Sumate!</div>
+        </div>
+      </div>
+
+      <!-- 7 · MARTES (33.23–38.77) -->
+      <div id="h7" class="clip full" data-start="34.15" data-duration="7.38" data-track-index="1" style="z-index:10">
+        <div class="dia-foto"><div id="h7-cam" class="foto"><img src="assets/fotos/bn_54.jpg" style="object-position:42% 40%" /></div></div>
+        <div class="dia-txt" id="h7-txt">
+          <div class="kicker">Reunión especial · noviembre</div>
+          <div class="disp uno">Martes <span class="fuego">17</span></div>
+          <div class="prog">
+            <div class="it"><b>20:30</b><div><span>Talleres</span><small>Matrimonios<br />Jóvenes y adolescentes<br />Cuarto de oración</small></div></div>
+            <div class="it"><b>21:15</b><div><span>Plenaria</span>El clamor del Espíritu</div></div>
+          </div>
+          <div class="lugar2">República de Siria 255 · Perico · Entrada libre</div>
+        </div>
+      </div>
+
+      <!-- 8 · cierre (38.77–48) -->
+      <div id="h8" class="clip full" data-start="41.53" data-duration="9.47" data-track-index="1" style="z-index:11;background:var(--ink)">
+        <div id="h8-izq">
+          <div class="kicker" id="h8-k">Te esperamos</div>
+          <div id="h8-tit" class="disp">Noches de<br /><span class="fuego">misión</span></div>
+          <div id="h8-lugar">República de Siria 255 · Perico</div>
+          <div id="h8-sello">Entrada libre y gratuita</div>
+        </div>
+        <div id="h8-der">
+          <div class="fila"><div class="d">Lun <b>16</b></div><div><div class="h">20:30 HS</div><div class="q">Foro y plenaria</div></div></div>
+          <div class="fila"><div class="d">Mar <b>17</b></div><div><div class="h">10 A 12 HS</div><div class="q">Jornada de evangelismo</div></div></div>
+          <div class="fila"><div class="d">Mar <b>17</b></div><div><div class="h">20:30 HS</div><div class="q">Talleres y plenaria</div></div></div>
+        </div>
+        <div id="h8-logos">
+          <div class="r"><img src="assets/r-blanco.png" /><span>Iglesia<br />El Renuevo</span></div>
+          <div class="sep"></div>
+          <img class="m" src="assets/mision-wordmark.png" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const B = 60 / 130;
+      const tl = gsap.timeline({ paused: true });
+
+      // 1
+      tl.fromTo("#h1-cam", { scale: 1.12 }, { scale: 1.0, duration: 5.54, ease: "power2.out" }, 0);
+      tl.fromTo("#barra", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.6, ease: "expo.out" }, 0.6);
+      tl.fromTo("#h1-txt", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 5.32);
+
+      // 2
+      tl.fromTo("#h2-cam", { scale: 1.0, x: 0 }, { scale: 1.1, x: -40, duration: 5.54, ease: "none" }, 5.54);
+      tl.fromTo("#h2-txt span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, stagger: 0.12, ease: "power2.out" }, 5.7);
+      tl.fromTo("#h2-cita", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 7.4);
+      tl.to("#h2-txt", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 10.86);
+
+      // 3: franjas que caen una por pulso
+      ["#fr1", "#fr2", "#fr3", "#fr4"].forEach((id, i) => {
+        tl.fromTo(id, { clipPath: "inset(0% 0% 100% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "expo.out" }, 11.08 + i * 2 * B);
+        tl.fromTo(id + " img", { scale: 1.25 }, { scale: 1.05, duration: 6 - i * 2 * B, ease: "power2.out" }, 11.08 + i * 2 * B);
+      });
+      tl.fromTo("#h3-tit", { opacity: 0, filter: "blur(12px)", scale: 1.1 }, { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.45, ease: "expo.out" }, 11.08 + 8 * B);
+
+      // 4: coro
+      tl.fromTo("#h4-a", { opacity: 0, scale: 1.25, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 17.08);
+      tl.fromTo("#h4-b", { opacity: 0, scale: 1.25, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 17.08 + 4 * B);
+      ["#k1","#k2","#k3","#k4","#k5","#k6","#k7","#k8","#k9","#k10","#k11"].forEach((id, i) => {
+        tl.fromTo(id + " .foto", { scale: 1.12 }, { scale: 1.03, duration: B, ease: "power2.out" }, 17.08 + i * B);
+      });
+
+      // 5: lunes (22.15–29.53)
+      tl.fromTo("#h5-cortina", { xPercent: 0 }, { xPercent: 100, duration: 0.55, ease: "power3.inOut" }, 22.15);
+      tl.fromTo("#h5-cam", { scale: 1.12 }, { scale: 1.0, duration: 7.38, ease: "power1.out" }, 22.15);
+      tl.fromTo("#h5-txt > *, #h5-txt .it", { opacity: 0, x: 60, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, stagger: 0.12, ease: "expo.out" }, 22.45);
+      tl.to("#h5-txt", { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, 29.33);
+
+      // 6: jornada (29.53–34.15)
+      const L = 2300;
+      tl.fromTo("#h6-foto", { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.6, ease: "expo.out" }, 29.59);
+      tl.fromTo("#h6-img", { scale: 1.2 }, { scale: 1.02, duration: 4.5, ease: "power2.out" }, 29.59);
+      tl.fromTo("#h6-txt > *", { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.45, stagger: 0.1, ease: "expo.out" }, 29.79);
+      tl.fromTo("#ruta-p", { attr: { "stroke-dasharray": L, "stroke-dashoffset": L } }, { attr: { "stroke-dashoffset": 0 }, duration: 3.6, ease: "power1.inOut" }, 30.1);
+      tl.to("#h6-txt", { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, 33.95);
+
+      // 7: martes (34.15–41.53)
+      tl.fromTo("#h7-cam", { scale: 1.25, filter: "blur(18px)" }, { scale: 1.08, filter: "blur(0px)", duration: 0.7, ease: "expo.out" }, 34.15);
+      tl.fromTo("#h7-cam", { scale: 1.08 }, { scale: 1.0, duration: 6.6, ease: "none", immediateRender: false }, 34.85);
+      tl.fromTo("#h7-txt > *, #h7-txt .it", { opacity: 0, x: 60, filter: "blur(8px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, stagger: 0.12, ease: "expo.out" }, 34.32);
+      tl.to("#h7-txt", { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, 41.33);
+
+      // 8: cierre (41.53–51)
+      tl.fromTo("#h8-k, #h8-tit", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.3, stagger: 0.1, ease: "power3.out" }, 41.6);
+      tl.fromTo(".fila", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, stagger: 2 * B, ease: "expo.out" }, 41.95);
+      tl.fromTo("#h8-lugar", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 43.55);
+      tl.fromTo("#h8-sello", { opacity: 0, scale: 1.4, rotation: -4 }, { opacity: 1, scale: 1, rotation: -2, duration: 0.45, ease: "back.out(1.6)" }, 43.95);
+      tl.fromTo("#h8-logos", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 44.45);
+      tl.to("#h8", { opacity: 0, duration: 1.2, ease: "power2.in" }, 49.7);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
