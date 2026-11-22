@@ -122,3 +122,20 @@ Nos juntamos para:
 🎂 Celebrar el cumple de *Renzo* (¡y el cumple atrasado de Misael! 😅)
 
 ¡Están todos invitados! Un tiempo de amistad y comunión entre hermanos 🙌
+
+---
+
+## Leña cada mañana — domingo 22/11
+
+🔥 *LEÑA CADA MAÑANA*
+
+El lunes y el martes Dios encendió algo hermoso con los misioneros. La pregunta ahora es: *¿cómo seguimos?* 🤔
+
+_"El fuego arderá continuamente en el altar; no se apagará."_ — Levítico 6:13
+
+📅 *Hoy, domingo 22/11*
+🕣 *20:30 hs*
+📍 Iglesia El Renuevo
+
+El fuego lo enciende Dios; cuidarlo nos toca a nosotros. ¡Te esperamos! 🙌
+Invitá a alguien 💙

@@ -1,0 +1,338 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leña cada mañana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+/* Un bloque del bosquejo = una diapositiva. Una imagen por diapositiva; las notas llevan el bloque completo. */
+:root {
+    --paper: #FFF8EC;
+    --ink: #161616;
+    --green: #5DBE2C;
+    --green-dk: #2E7D12;
+    --f: 'Montserrat', Arial, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+.deck-viewport { position: fixed; inset: 0; overflow: hidden; background: #000; cursor: none; }
+.deck-stage { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; overflow: hidden; transform-origin: 0 0; background: var(--paper); }
+
+.slide { position: absolute; inset: 0; display: grid; visibility: hidden; opacity: 0; transition: opacity .5s ease, visibility 0s .5s; background: var(--paper); color: var(--ink); font-family: var(--f); }
+.slide.active { visibility: visible; opacity: 1; transition: opacity .5s ease; z-index: 1; }
+
+/* UNA imagen: cuadrada de borde a borde + texto */
+.slide.una { grid-template-columns: 1000px 1fr; }
+.pic { height: 1080px; overflow: hidden; border-right: 10px solid var(--ink); background: #fff; }
+.pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.text { display: flex; flex-direction: column; justify-content: center; gap: 40px; padding: 60px 56px; overflow: hidden; }
+
+/* SOLO texto */
+.slide.solo { grid-template-columns: 1fr; }
+.slide.solo .text { align-items: center; text-align: center; padding: 60px 110px; }
+.slide.solo .kicker { align-self: center; }
+.slide.app { background: var(--green); }
+.slide.app .kicker { background: var(--paper); color: var(--ink); }
+.slide.app em { color: #fff; }
+
+.kicker { align-self: flex-start; padding: 16px 32px; border-radius: 40px; background: var(--ink); color: #fff; font: 800 58px/1.15 var(--f); }
+.title { font: 900 128px/1 var(--f); letter-spacing: -.03em; }
+.title em, .big em, .lista em { font-style: normal; color: var(--green-dk); }
+.big { font: 900 100px/1.05 var(--f); letter-spacing: -.02em; }
+.ref { font: 900 88px/1 var(--f); color: var(--green-dk); }
+.tres { font: 800 64px/1.1 var(--f); white-space: nowrap; }
+.lista { font: 900 96px/1.15 var(--f); letter-spacing: -.02em; display: flex; flex-direction: column; gap: 28px; }
+.slide.solo .big { font-size: 128px; }
+.slide.solo .title { font-size: 150px; }
+
+.slide.active .text > * { animation: up .7s var(--ease) both; }
+@keyframes up { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: none; } }
+
+.notes { display: none; }
+.progress { position: fixed; left: 0; bottom: 0; height: 8px; background: var(--green); z-index: 1000; transition: width .5s var(--ease); }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck-viewport">
+<main class="deck-stage" id="deckStage">
+
+<!-- 1 · PORTADA -->
+<section class="slide una">
+  <div class="pic"><img src="img/01_portada.jpg" alt=""></div>
+  <div class="text">
+    <div class="title"><em>Leña</em> cada mañana</div>
+    <div class="ref">Levítico 6:12-13</div>
+  </div>
+  <aside class="notes"></aside>
+</section>
+
+<!-- 2 · INTRODUCCIÓN -->
+<section class="slide una">
+  <div class="pic"><img src="img/02_intro.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Introducción</div>
+    <div class="big">El fuego lo enciende Dios; <em>cuidarlo</em> nos toca a nosotros</div>
+    <div class="tres">Orar · Adorar · Predicar</div>
+  </div>
+  <aside class="notes">
+    <h3>Introducción</h3>
+    <p>El lunes y el martes vivimos algo hermoso con los jóvenes misioneros del Instituto Misión. Fue muy bendecido.</p>
+    <p>La pregunta ahora es otra: ¿cómo seguimos?</p>
+    <p>Todos conocemos la historia: una jornada fuerte, una semana encendida… y a las tres semanas, volvemos a lo de siempre. No nos hace falta otra jornada. Nos hace falta algo que mantenga el fuego.</p>
+    <p>▸ Levítico 6:12-13</p>
+    <p>El fuego de ese altar lo había encendido Dios (lo cuenta Levítico 9:24). Pero el sacerdote tenía que poner leña cada mañana. Dios no le pedía que encendiera el fuego: le pedía que lo cuidara.</p>
+    <p>Continuamente: lo que se hace siempre, todos los días, sin cortar.</p>
+    <p>En estos días Dios me dio claridad sobre tres cosas que quiero mantener. Lo comparto desde lo personal, como un hermano que también lo necesita:</p>
+    <p>El fuego lo enciende Dios; cuidarlo nos toca a nosotros, cada día. La leña es: orar, adorar y predicar.</p>
+  </aside>
+</section>
+
+<!-- 3 · PUNTO 1 -->
+<section class="slide una">
+  <div class="pic"><img src="img/03_orar.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Punto 1</div>
+    <div class="title"><em>Orar</em></div>
+    <div class="big">Estar en comunión con Dios, todos los días</div>
+  </div>
+  <aside class="notes">
+    <h3>1. Orar</h3>
+    <p>Orar es estar en comunión con Dios todos los días, no solo pedirle cosas cuando hay un problema.</p>
+    <p>▸ Marcos 1:35</p>
+    <p>El día anterior Jesús había sanado a muchos; toda la ciudad estaba en la puerta (Marcos 1:33). Después de un día así de bendecido, lo primero que hace a la mañana siguiente es buscar al Padre.</p>
+    <p>Si el Hijo de Dios necesitaba ese tiempo después de un día de gloria, cuánto más nosotros después de nuestra jornada.</p>
+    <p>▸ 1 Tesalonicenses 5:17</p>
+    <p>Sin cesar: sin interrupción. No quiere decir hablar sin parar: quiere decir no cortar nunca la conexión. Llevar a Dios en cada pensamiento: en el colectivo, en el trabajo, lavando los platos.</p>
+    <p>▸ Hechos 1:14</p>
+    <p>Entre la ascensión y Pentecostés no sabían cuándo iba a venir el Espíritu. Pero sabían qué hacer mientras esperaban: orar juntos.</p>
+    <p>Perseverar: mantenerse firme, aferrado, sin soltar. La oración personal y la oración con los hermanos no compiten: se necesitan.</p>
+    <p>"No sé orar bien." "No tengo tiempo." — La oración no se mide por las palabras lindas sino por la constancia. Jesús no oró porque le sobraba el tiempo: lo sacó de la noche.</p>
+  </aside>
+</section>
+
+<!-- 4 · APLICACIÓN 1 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Aplicación</div>
+    <div class="lista">
+      <div>Un momento fijo, <em>primero</em></div>
+      <div>Pensamientos hechos oración</div>
+      <div>Martes: Reunión de Oración</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>Aplicación</h3>
+    <p>Necesitamos un momento fijo con Dios cada día, antes del celular y antes de las noticias. Aunque sean diez minutos, que sean primero.</p>
+    <p>Podemos convertir los pensamientos del día en oración: la preocupación del trabajo, el hijo que nos preocupa, la cuenta que no cierra.</p>
+    <p>Paso para la semana: el martes, Reunión de Oración. No como obligación: como el lugar donde perseveramos juntos.</p>
+  </aside>
+</section>
+
+<!-- 5 · PUENTE -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">La oración termina mostrándose en cómo <em>vivimos</em></div>
+  </div>
+  <aside class="notes">
+    <p>La oración no termina cuando decimos "amén". Si hablamos con Dios todos los días, eso termina mostrándose en cómo vivimos. Eso es adorar.</p>
+  </aside>
+</section>
+
+<!-- 6 · PUNTO 2 -->
+<section class="slide una">
+  <div class="pic"><img src="img/06_adorar.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Punto 2</div>
+    <div class="title"><em>Adorar</em></div>
+    <div class="big">Entregarle a Dios la vida entera, cada día</div>
+  </div>
+  <aside class="notes">
+    <h3>2. Adorar</h3>
+    <p>Adorar no es cantar canciones: es entregarle a Dios la vida entera, cada día, aunque cueste.</p>
+    <p>▸ Romanos 12:1</p>
+    <p>"Por las misericordias de Dios": Pablo acaba de pasar once capítulos explicando lo que Dios hizo por nosotros en Cristo. La adoración responde a esa misericordia; no es una forma de ganarla.</p>
+    <p>"Vuestros cuerpos": es algo concreto. Las manos, los ojos, la boca, la agenda, la billetera.</p>
+    <p>"Sacrificio vivo": volvemos al altar de Levítico. Esos sacrificios morían una sola vez. Nosotros somos un sacrificio que sigue vivo y que cada mañana tiene que volver a subir al altar.</p>
+    <p>Culto: servicio, adoración que se vive. Racional: lo lógico, lo coherente.</p>
+    <p>Cuando entendemos lo que Dios hizo, entregarle todo es lo más lógico.</p>
+    <p>▸ 2 Samuel 24:24</p>
+    <p>Le regalaban todo para el sacrificio, y David dijo que no. Una adoración que no cuesta nada no es una ofrenda.</p>
+    <p>▸ Apocalipsis 4:10-11</p>
+    <p>Adorar: postrarse, inclinarse ante alguien superior. Los ancianos echan sus coronas: lo que podrían mostrar como propio. Eso es rendirse.</p>
+    <p>No adoramos porque tengamos ganas: adoramos porque Él es digno.</p>
+  </aside>
+</section>
+
+<!-- 7 · APLICACIÓN 2 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Aplicación</div>
+    <div class="lista">
+      <div>Decisiones de <em>adoración</em></div>
+      <div>¿Qué corona guardamos?</div>
+      <div>Una decisión que nos cueste</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>Aplicación</h3>
+    <p>Debemos tomar decisiones de adoración en lo cotidiano: perdonar cuando no tenemos ganas, ser honestos en el trabajo aunque nos perjudique, servir cuando estamos cansados.</p>
+    <p>Necesitamos preguntarnos cuál es la "corona" que todavía no le entregamos: el orgullo, un rencor, el control de algo.</p>
+    <p>Paso para la semana: identificar una decisión concreta que nos cueste, y ofrecérsela a Dios como adoración.</p>
+  </aside>
+</section>
+
+<!-- 8 · PUENTE -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">Lo que Dios pone en el altar sale por la <em>boca</em></div>
+  </div>
+  <aside class="notes">
+    <p>El que ora y el que adora no puede quedarse callado. Lo que Dios pone en el altar termina saliendo por la boca.</p>
+  </aside>
+</section>
+
+<!-- 9 · PUNTO 3 -->
+<section class="slide una">
+  <div class="pic"><img src="img/09_predicar.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Punto 3</div>
+    <div class="title"><em>Predicar</em></div>
+    <div class="big">La Palabra de Dios tiene poder propio</div>
+  </div>
+  <aside class="notes">
+    <h3>3. Predicar</h3>
+    <p>La Palabra de Dios tiene poder propio: no son palabras al aire, y merece ser predicada con pasión y valentía.</p>
+    <p>▸ Isaías 55:10-11</p>
+    <p>La lluvia no pide permiso para hacer crecer la semilla. Vacía: volver con las manos vacías. La Palabra siempre vuelve con algo.</p>
+    <p>▸ Hebreos 4:12</p>
+    <p>Eficaz: que actúa, que trabaja. Por eso puede traer convicción al pecador más rebelde, y levantar al que está a punto de dejar todo. El poder no está en el predicador: está en la Palabra.</p>
+    <p>▸ Hechos 4:29, 31</p>
+    <p>Los habían amenazado. No le pidieron a Dios que les sacara la amenaza: le pidieron valentía. Denuedo: hablar con franqueza, de frente, sin esconderse.</p>
+    <p>El denuedo nació en una reunión de oración. El punto 3 sale del punto 1.</p>
+    <p>No todos estamos llamados a predicar desde este púlpito; para mí es un llamado personal. Pero la Palabra no se queda solo en el púlpito:</p>
+    <p>▸ Hechos 8:4</p>
+    <p>No eran los apóstoles (ellos se quedaron en Jerusalén, Hechos 8:1): eran hermanos comunes.</p>
+  </aside>
+</section>
+
+<!-- 10 · APLICACIÓN 3 -->
+<section class="slide solo app">
+  <div class="text">
+    <div class="kicker">Aplicación</div>
+    <div class="lista">
+      <div>Predicar con <em>denuedo</em></div>
+      <div>Compartir lo que Dios nos habla</div>
+      <div>Un versículo + una invitación</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>Aplicación</h3>
+    <p>En lo personal: quiero predicar con denuedo, con entrega y con pasión, porque la Palabra lo merece.</p>
+    <p>Todos podemos compartir lo que Dios nos habla con alguien de la familia, del trabajo o del barrio.</p>
+    <p>Paso para la semana: compartir un versículo con una persona, e invitar a alguien al domingo.</p>
+  </aside>
+</section>
+
+<!-- 11 · CONCLUSIÓN -->
+<section class="slide una">
+  <div class="pic"><img src="img/11_conclusion.jpg" alt=""></div>
+  <div class="text">
+    <div class="kicker">Conclusión</div>
+    <div class="big">La leña de <em>cada mañana</em></div>
+    <div class="tres">Orar · Adorar · Predicar</div>
+  </div>
+  <aside class="notes">
+    <h3>Conclusión</h3>
+    <p>▸ Hechos 6:4</p>
+    <p>"Persistiremos" es otra vez la misma palabra de Hechos 1:14 ("perseveraban"). Los apóstoles tuvieron que decidir qué no iban a soltar, y lo dijeron en voz alta.</p>
+    <p>La jornada encendió el fuego. Ahora nos toca la leña de cada mañana: orar, adorar, predicar.</p>
+  </aside>
+</section>
+
+<!-- 12 · LLAMADO -->
+<section class="slide solo">
+  <div class="text">
+    <div class="big">Cuidar el <em>fuego</em></div>
+    <div class="lista">
+      <div>Orar cada día</div>
+      <div>Entregar la corona</div>
+      <div>Abrir la boca</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <h3>Llamado</h3>
+    <p>Así como los apóstoles decidieron qué iban a sostener, hoy podemos decidir delante de Dios qué no vamos a soltar.</p>
+    <p>Pasar adelante quienes quieran comprometerse a cuidar el fuego: volver a orar cada día, entregarle a Dios la corona que todavía guardamos, abrir la boca para Su Palabra.</p>
+    <p>A los servidores: el fuego de la iglesia se sostiene con la leña de cada uno de nosotros.</p>
+    <p>Cerrar orando juntos: ya es poner en práctica el punto 1.</p>
+  </aside>
+</section>
+
+</main>
+</div>
+
+<script>
+/* Teclado (flechas, espacio, PageUp/Down de clickers), rueda, swipe, clic. */
+class SlidePresentation {
+    constructor() {
+        this.slides = [...document.querySelectorAll('.slide')];
+        this.stage = document.getElementById('deckStage');
+        this.progress = document.getElementById('progress');
+        this.setupScale();
+        this.setupNav();
+        const start = parseInt(location.hash.slice(1), 10);
+        this.show(Number.isFinite(start) ? start - 1 : 0);
+    }
+    setupScale() {
+        const fit = () => {
+            const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+            this.stage.style.transform = `translate(${(innerWidth - 1920 * k) / 2}px, ${(innerHeight - 1080 * k) / 2}px) scale(${k})`;
+        };
+        fit();
+        addEventListener('resize', fit);
+    }
+    setupNav() {
+        document.addEventListener('keydown', e => {
+            if (['ArrowRight', 'ArrowDown', ' ', 'PageDown', 'Enter'].includes(e.key)) { e.preventDefault(); this.show(this.current + 1); }
+            if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); this.show(this.current - 1); }
+            if (e.key === 'Home') this.show(0);
+            if (e.key === 'End') this.show(this.slides.length - 1);
+            if (e.key === 'f') document.documentElement.requestFullscreen?.();
+        });
+        let lock = false;
+        addEventListener('wheel', e => {
+            if (lock || Math.abs(e.deltaY) < 20) return;
+            lock = true; setTimeout(() => lock = false, 700);
+            this.show(this.current + (e.deltaY > 0 ? 1 : -1));
+        }, { passive: true });
+        let x0 = null;
+        addEventListener('touchstart', e => x0 = e.touches[0].clientX, { passive: true });
+        addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            if (Math.abs(dx) > 50) this.show(this.current + (dx < 0 ? 1 : -1));
+            x0 = null;
+        });
+        // Renuevo Presenter controla el deck cambiando #N (desde 1).
+        addEventListener('hashchange', () => {
+            const n = parseInt(location.hash.slice(1), 10);
+            if (Number.isFinite(n) && n - 1 !== this.current) this.show(n - 1);
+        });
+        document.querySelector('.deck-viewport').addEventListener('click', e => this.show(this.current + (e.clientX > innerWidth / 3 ? 1 : -1)));
+    }
+    show(i) {
+        this.current = Math.max(0, Math.min(i, this.slides.length - 1));
+        this.slides.forEach((x, j) => x.classList.toggle('active', j === this.current));
+        this.progress.style.width = ((this.current + 1) / this.slides.length * 100) + '%';
+        history.replaceState(null, '', '#' + (this.current + 1));
+    }
+}
+new SlidePresentation();
+</script>
+</body>
+</html>

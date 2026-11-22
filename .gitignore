@@ -6,3 +6,7 @@ convencion_cuyo_2026/mcym_cuyo_app/
 
 # Binarios de terceros
 *.exe
+
+# Artefactos de HyperFrames (checks, snapshots, cachés)
+.hyperframes/
+.thumbnails/
